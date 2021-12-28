@@ -1,0 +1,105 @@
+
+
+
+<html>
+<head>
+<title>Luhn Check Digit Calculator</title>
+<script type="text/javascript">
+function applyLuhn(number)
+{
+    var text2 = document.getElementById('fullid');
+    //reverse the String
+    var rev = reverse(number);
+    //get array of character Strings
+    var revArr = rev.split("");
+    var total = 0;
+    var tmp = 0;
+    //add up the numbers
+    for(var i = 0; i < revArr.length; i++)
+	{
+        if((i % 2) > 0)
+		{
+            tmp = revArr[i]*2;
+            tmp= (tmp < 9 ? tmp : (tmp - 9) );
+            total += tmp;
+        }
+       else 
+	   {
+            total += Number(revArr[i]);
+       }
+    }
+	total *= 9;
+	total %= 10;
+	text2.value=number+total;
+    //document.form1.fullid.select();
+}
+
+function applyShaveAndGibson(number)
+{
+    var text2 = document.getElementById('fullid_2');
+    //reverse the String
+    var rev = reverse(number);
+    //get array of character Strings
+    var revArr = rev.split("");
+    var total = 0;
+    var tmp = 0;
+    //add up the numbers
+    for(var i = 0; i < revArr.length; i++)
+	{
+        if((i % 2) > 0)
+		{
+            tmp = revArr[i]*2;
+            tmp= (tmp < 9 ? tmp : (tmp - 9) );
+            total += tmp;
+        }
+       else 
+	   {
+            total += Number(revArr[i]);
+       }
+    }
+	total %= 10;
+	text2.value=number+total;
+    //document.form1.fullid_2.select();
+}
+
+
+function reverse(str)
+{
+    var sArray = str.split("");
+    var newS="";
+    for(var i = sArray.length-1; i >= 0; i--)
+	{
+        newS += sArray[i];
+    }
+    return newS;
+}
+
+</script>
+</head>
+<body>
+<h2>Calculating Luhn and Shave & Gibson Check Digits</h2>
+<form name="form1">
+Enter digits: <input type="text" maxlength="9" size="9" id="eleven_digits" onkeydown="if (event.keyCode == 13) document.getElementById('calcbutton').click()"/>
+<input type="button" value="Calculate check digit" id="calcbutton"  onclick="applyLuhn(document.getElementById('eleven_digits').value);applyShaveAndGibson(document.getElementById('eleven_digits').value)"/><br /><br />
+Number with check digit - Luhn: <input type="text" size="13" id="fullid" /><br /><br />
+Number with check digit - Shave & Gibson: <input type="text" size="13" id="fullid_2" /><br /><br />
+<!-- <input type="button" onClick="CopyToClipboard()" value="Copy result to clipboard (IE only)" /> -->
+
+</form>
+<script type="text/javascript">
+document.form1.eleven_digits.focus();
+function CopyToClipboard()
+{
+   document.form1.fullid.select(); 
+   CopiedTxt = document.selection.createRange();
+   CopiedTxt.execCommand("Copy");
+}
+function CopyToClipboard_2()
+{
+   document.form1.fullid_2.select(); 
+   CopiedTxt = document.selection.createRange();
+   CopiedTxt.execCommand("Copy");
+}
+</script>
+</body>
+</html>

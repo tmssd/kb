@@ -12,5 +12,12 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-material
+      - run: pip install \
+              mkdocs-material \
+              # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+              mkdocs-awesome-pages-plugin \
+              # https://github.com/apenwarr/mkdocs-exclude
+              mkdocs-exclude \
+              # https://github.com/soulless-viewer/mkdocs-video
+              mkdocs-video \
       - run: mkdocs gh-deploy --force

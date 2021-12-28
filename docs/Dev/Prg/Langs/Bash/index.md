@@ -1,0 +1,192 @@
+# Bash
+
+## Bash Learning Sources
+
++ [Learn X in Y minutes](https://learnxinyminutes.com/docs/bash/)
++ [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls)
+
+## Bash Essentials
+
+```bash
+#! /bin/bash
+
+# ECHO COMMAND
+echo Hello World!
+
+# VARIABLES
+# Uppercase by convention
+# Letters, numbers, underscores
+NAME="Bob"
+echo "My name is $NAME"
+echo "My name is ${NAME}"
+
+# USER INPUT
+read -p "Enter your name: " NAME
+echo "Hello $NAME, nice to meet you!"
+
+# SIMPLE IF STATEMENT
+if [ "$NAME" == "Brad" ]
+then
+  echo "Your name is Brad"
+fi
+
+# IF-ELSE
+if [ "$NAME" == "Brad" ]
+then
+  echo "Your name is Brad"
+else
+  echo "Your name is NOT Brad"
+fi
+
+# ELSE-IF (elif)
+if [ "$NAME" == "Brad" ]
+then
+  echo "Your name is Brad"
+elif [ "$NAME" == "Jack" ]
+then
+  echo "Your name is Jack"
+else
+  echo "Your name is NOT Brad or Jack"
+fi
+
+# COMPARISON
+NUM1=31
+NUM2=5
+if [ "$NUM1" -gt "$NUM2" ]
+then
+  echo "$NUM1 is greater than $NUM2"
+else
+  echo "$NUM1 is less than $NUM2"
+fi
+
+########
+# val1 -eq val2 Returns true if the values are equal
+# val1 -ne val2 Returns true if the values are not equal
+# val1 -gt val2 Returns true if val1 is greater than val2
+# val1 -ge val2 Returns true if val1 is greater than or equal to val2
+# val1 -lt val2 Returns true if val1 is less than val2
+# val1 -le val2 Returns true if val1 is less than or equal to val2
+########
+
+# FILE CONDITIONS
+FILE="test.txt"
+if [ -e "$FILE" ]
+then
+  echo "$FILE exists"
+else
+  echo "$FILE does NOT exist"
+fi
+
+########
+# -d file   True if the file is a directory
+# -e file   True if the file exists (note that this is not particularly portable, thus -f is generally used)
+# -f file   True if the provided string is a file
+# -g file   True if the group id is set on a file
+# -r file   True if the file is readable
+# -s file   True if the file has a non-zero size
+# -u    True if the user id is set on a file
+# -w    True if the file is writable
+# -x    True if the file is an executable
+########
+
+# CASE STATEMENT
+read -p "Are you 21 or over? Y/N " ANSWER
+case "$ANSWER" in
+  [yY] | [yY][eE][sS])
+    echo "You can have a beer :)"
+    ;;
+  [nN] | [nN][oO])
+    echo "Sorry, no drinking"
+    ;;
+  *)
+    echo "Please enter y/yes or n/no"
+    ;;
+esac
+
+# SIMPLE FOR LOOP
+NAMES="Brad Kevin Alice Mark"
+for NAME in $NAMES
+  do
+    echo "Hello $NAME"
+done
+
+# FOR LOOP TO RENAME FILES
+FILES=$(ls *.txt)
+NEW="new"
+for FILE in $FILES
+  do
+    echo "Renaming $FILE to new-$FILE"
+    mv $FILE $NEW-$FILE
+done
+
+# WHILE LOOP - READ THROUGH A FILE LINE BY LINE
+LINE=1
+while read -r CURRENT_LINE
+  do
+    echo "$LINE: $CURRENT_LINE"
+    ((LINE++))
+done < "./new-1.txt"
+
+# FUNCTION
+function sayHello() {
+  echo "Hello World"
+}
+sayHello
+
+# FUNCTION WITH PARAMS
+function greet() {
+  echo "Hello, I am $1 and I am $2"
+}
+
+greet "Brad" "36"
+
+# CREATE FOLDER AND WRITE TO A FILE
+mkdir hello
+touch "hello/world.txt"
+echo "Hello World" >> "hello/world.txt"
+echo "Created hello/world.txt"
+```
+
+### Bash Shell Shortcuts
+
+```pdf
+    Dev/Prg/Langs/Bash/bash-shortcuts.pdf
+```
+
+## Bash Tips & Tricks
+
+### Useful Commands
+
+`du -hs` - show the current folder's size
+
+### Run Commands in the Background
+
+1. End a Command with **&**
+
+  ?> When the terminal session is closed, the command ends. You can also kill the command by issuing the `jobs` command, finding the number of the command that’s running, and killing it with the `kill` command: `kill %1`
+
+  !> Using `&` doesn’t disconnect the command away from you; it just pushes it into the background. You can verify this by typing `jobs` into the terminal. This means that while you’re trying to use the terminal, anything the command wants to push to `STDOUT` or `STDERR` will still be printed, which may be distracting, e.g. `ping google.com &`. If you’re looking to prevent this, consider redirecting the command to “/dev/null”: `COMMAND &>/dev/null &`
+2. **&** After a Command, Then **Disown** It
+
+   ?> Using `disown` after running command with `&` keep this command running in constant, even with your terminal session ending. It’ll still keep piping things to `STDOUT` or `STDERR`, but once you exit and reopen your terminal, you won’t see anything there. You can find the command again with the `top` or `ps` commands and kill it with the `kill` command.
+3. **Nohup**, with **&** and **/dev/null**
+
+   ?> `nohup` bypasses the HUP signal (signal hang up), making it possible to run commands in the background even when the terminal is off. Combine this command with redirection to “/dev/null” (to prevent nohup from making a nohup.out file), and everything goes to the background with one command: `nohup COMMAND &>/dev/null &`
+
+## Bash Utilities
+
++ [Basher - bash package manager](https://www.basher.it/)
++ [dotenv](https://github.com/bashup/dotenv)
++ [bashew - bash script / project creator](https://github.com/pforret/bashew)
++ [setver - get and set semver versions for php, node, github and bash](https://github.com/pforret/setver)
+
+## Zsh Shell
+
+[ ] [terminal-helpful-tips (7 Part Series)](https://dev.to/equiman/reveal-the-command-behind-an-alias-with-zsh-4d96)
+
+### Oh My Zsh
+
+A delightful community-driven framework for managing your zsh configuration.
+
++ [Official Website](https://ohmyz.sh/)
++ [Official Git](https://github.com/ohmyzsh)

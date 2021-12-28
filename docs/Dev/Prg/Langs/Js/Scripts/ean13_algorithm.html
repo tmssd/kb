@@ -1,0 +1,121 @@
+
+
+
+<!-- saved from url=(0057)http://192.168.1.129:7770/ean13_checkdigit_calculator.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>EAN13 Check Digit Calculator</title>
+<script type="text/javascript">
+function calculatecheckdigit(num, field)
+{ 
+	   var text1 = num;
+	   var text2 = document.getElementById(field);
+       var idlength = text1.length;
+	   var sum = 0;
+	   var oddsum=0;
+	   var evensum=0;
+	   var checklocation = 0;
+	   var n;
+	   var reversed_text1=text1.split("").reverse().join(""); //reversed so that the rightmost digit should be considered a odd location as required by EAN13 format, by placing it on location No. 1
+	   	   	   
+		for (var i=1;i<=idlength;i++)
+		{ 
+			checklocation=i%2;
+			if (checklocation == 1)
+			{
+				n = parseFloat(reversed_text1.substr(i-1,1));
+				oddsum = oddsum + Math.round(n);
+			}
+			else
+			{
+				n = parseFloat(reversed_text1.substr(i-1,1));
+				evensum = evensum + Math.round(n);
+			}
+		}
+		oddsum=oddsum*3;
+	    sum = oddsum+evensum;
+		sum = sum%10;
+		if (sum==0)
+	    {
+	    text2.value=text1+"0";
+	    }
+	    else
+	    {
+	    sum = 10-sum;
+	    text2.value=text1+sum;
+	    }
+	   
+	document.getElementById(field).select();
+}
+</script>
+<style type="text/css"></style></head>
+<body id="dummybodyid">
+<h2>Calculating EAN13 Check Digit</h2>
+<form name="form1">
+Enter 12 digits: <input type="text" maxlength="12" size="12" id="twelve_digits" onkeydown="if (event.keyCode == 13) document.getElementById(&#39;calcbutton&#39;).click()" data-cip-id="twelve_digits">
+<input type="button" value="Calculate check digit" id="calcbutton" onclick="calculatecheckdigit(document.getElementById(&#39;twelve_digits&#39;).value, &#39;fullid&#39;);"><br><br>
+Number with check digit: <input type="text" size="13" id="fullid" data-cip-id="fullid"><br><br>
+<input type="button" onclick="CopyToClipboard()" value="Copy result to clipboard (IE only)"><br><br><br><br>
+
+<input type="button" value="Get random Minor Registration app. No." id="randomminor" onclick="calculatecheckdigit(&#39;25&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomminortext&#39;);"><br>
+Random Minor Registration application No.: <input type="text" size="13" id="randomminortext" data-cip-id="randomminortext"><br><br><br>
+
+<input type="button" value="Get random Marriage Correction app. No." id="randommarcor" onclick="calculatecheckdigit(&#39;26&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randommarcortext&#39;);"><br>
+Random Marriage Correction application No.: <input type="text" size="13" id="randommarcortext" data-cip-id="randommarcortext"><br><br><br>
+
+<input type="button" value="Get random MDG Firearms app. No." id="randomfire" onclick="calculatecheckdigit(&#39;50&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomfiretext&#39;);"><br>
+Random MDG Firearms application No.: <input type="text" size="13" id="randomfiretext" data-cip-id="randomfiretext"><br><br><br>
+
+<input type="button" value="Get random ID app. No." id="randomid" onclick="calculatecheckdigit(&#39;24&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomidtext&#39;);"><br>
+Random ID application No.: <input type="text" size="13" id="randomidtext" data-cip-id="randomidtext"><br><br><br>
+<input type="button" value="Get random Birth app. No." id="randombirth" onclick="calculatecheckdigit(&#39;10&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randombirthtext&#39;);"><br>
+Random Birth application No.: <input type="text" size="13" id="randombirthtext" data-cip-id="randombirthtext"><br><br><br>
+<input type="button" value="Get random Reissuing of Birth/Death/Searches by Individual app. No." id="randomreissuingbirth" onclick="calculatecheckdigit(&#39;11&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomreissuingbirthtext&#39;);"><br>
+Random Reissuing of Birth/Death/Searches by Individual application No.: <input type="text" size="13" id="randomreissuingbirthtext" data-cip-id="randomreissuingbirthtext"><br><br><br>
+<input type="button" value="Get random Correction of Birth/Death app. No." id="randomcorrectionsbirth" onclick="calculatecheckdigit(&#39;12&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomcorrectionsbirthtext&#39;);"><br>
+Random Corrections of Birth/Death application No.: <input type="text" size="13" id="randomcorrectionsbirthtext" data-cip-id="randomcorrectionsbirthtext"><br><br><br>
+
+<input type="button" value="Get random Alteration of Name app. No." id="randomalterationofname" onclick="calculatecheckdigit(&#39;13&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomalterationofnametext&#39;);"><br>
+Random Alteration of Name application No.: <input type="text" size="13" id="randomalterationofnametext" data-cip-id="randomalterationofnametext"><br><br><br>
+
+<input type="button" value="Get random Adoption of Child app. No." id="randomadoptionofchild" onclick="calculatecheckdigit(&#39;14&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomadoptionofchildtext&#39;);"><br>
+Random Adoption of Child application No.: <input type="text" size="13" id="randomadoptionofchildtext" data-cip-id="randomadoptionofchildtext"><br><br><br>
+
+<input type="button" value="Get random Searches in Birth/Deaths - Organization app. No." id="randomsearchesorg" onclick="calculatecheckdigit(&#39;15&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomsearchesorgtext&#39;);"><br>
+Random Searches in Birth/Deaths - Organization application No.: <input type="text" size="13" id="randomsearchesorgtext" data-cip-id="randomsearchesorgtext"><br><br><br>
+
+<input type="button" value="Get random Death app. No." id="randomdeath" onclick="calculatecheckdigit(&#39;16&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomdeathtext&#39;);"><br>
+Random Death application No.: <input type="text" size="13" id="randomdeathtext" data-cip-id="randomdeathtext"><br><br><br>
+
+<input type="button" value="Get random Marriage app. No." id="randommarriage" onclick="calculatecheckdigit(&#39;17&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randommarriagetext&#39;);"><br>
+Random Marriage application No.: <input type="text" size="13" id="randommarriagetext" data-cip-id="randommarriagetext"><br><br><br>
+
+<input type="button" value="Get random Reissuing of Marriage/Searches in Marriage Register by Individual app. No." id="randomrenewalofmarriage" onclick="calculatecheckdigit(&#39;18&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomrenewalofmarriagetext&#39;);"><br>
+Random Reissuing of Marriage/Searches in Marriage Register by individual Application No.: <input type="text" size="13" id="randomrenewalofmarriagetext" data-cip-id="randomrenewalofmarriagetext"><br><br><br>
+
+<input type="button" value="Get random Special Marriage License app. No." id="randomspeciallicense" onclick="calculatecheckdigit(&#39;19&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomspeciallicensetext&#39;);"><br>
+Random Special Marriage License application No.: <input type="text" size="13" id="randomspeciallicensetext" data-cip-id="randomspeciallicensetext"><br><br><br>
+
+<input type="button" value="Get random Searches in Marriage Register by Organization app. No." id="randommarriagesearchesbyorg" onclick="calculatecheckdigit(&#39;20&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randommarriagesearchesbyorgtext&#39;);"><br>
+Random Searches in Marriage Register by Organization Application No.: <input type="text" size="13" id="randommarriagesearchesbyorgtext" data-cip-id="randommarriagesearchesbyorgtext"><br><br><br>
+
+<input type="button" value="Get random Divorce app. No." id="randomdivorce" onclick="calculatecheckdigit(&#39;21&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomdivorcetext&#39;);"><br>
+Random Divorce Application No.: <input type="text" size="13" id="randomdivorcetext" data-cip-id="randomdivorcetext"><br><br><br>
+
+<input type="button" value="Get random Registration of Rel. Org. app. No." id="randomregrelig" onclick="calculatecheckdigit(&#39;22&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomregreligtext&#39;);"><br>
+Random Registration of Relig. Org. Application No.: <input type="text" size="13" id="randomregreligtext" data-cip-id="randomregreligtext"><br><br><br>
+
+<input type="button" value="Get random Registration of Marriage Officer app. No." id="randomregofficer" onclick="calculatecheckdigit(&#39;23&#39;+Math.floor(1000000000 + Math.random()*9000000000), &#39;randomregofficertext&#39;);"><br>
+Random Registration of Marriage Officer Application No.: <input type="text" size="13" id="randomregofficertext" data-cip-id="randomregofficertext"><br><br><br>
+
+</form>
+<script type="text/javascript">
+document.form1.twelve_digits.focus();
+function CopyToClipboard()
+{
+   document.form1.fullid.select(); 
+   CopiedTxt = document.selection.createRange();
+   CopiedTxt.execCommand("Copy");
+}
+</script>
+
+</body></html>
