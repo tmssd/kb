@@ -46,10 +46,18 @@
     + Embed pdf:
         1. Embedding a PDF file
 
-            `#!html <object data="../foo.pdf" type="application/pdf" class="pdf"></object>`
+            ```html
+            <object data="../foo.pdf" type="application/pdf" class="pdf"></object>
+            ```
 
         2. Creating a link to a PDF file
 
-            + `#!html <a href="../foo.pdf" class="image fit" style="color: red">:fontawesome-regular-file-pdf:</a>`
+            ```html
+            <a href="../foo.pdf" class="image fit" style="color: red">:fontawesome-regular-file-pdf:</a>
+            ```
 
-            + `#!html <a href="../foo.pdf" class="image fit" style="color: red">:fontawesome-solid-file-pdf:</a>`
+            or
+
+            ```html
+            <a href="../foo.pdf" class="image fit" style="color: red">:fontawesome-solid-file-pdf:</a>
+            ```

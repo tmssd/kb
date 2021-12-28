@@ -9,6 +9,8 @@
 # .gitkeep non-official file used by convention to put it in empty folders in order to be able to sync them
 !.gitkeep
 
+site/
+
 *+OFFL*
 *+GH*
 *.mp[34]
