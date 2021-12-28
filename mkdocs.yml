@@ -29,8 +29,6 @@ plugins:
         - "*+OFFL/*"
   # https://github.com/soulless-viewer/mkdocs-video
   - mkdocs-video
-  # https://github.com/fralau/mkdocs_macros_plugin
-  - macros
 markdown_extensions:
   # - fenced_code
   - meta
