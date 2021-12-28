@@ -39,4 +39,5 @@ Reference:
 + [RegexOne Tutorial](https://regexone.com/)
 
 + [Шпаргалка по регулярным выражениям](https://www.exlab.net/tools/sheets/regexp.html)
-  ![regexp(rus)](regexp(rus).png){: .zoom}
+
+    ![regexp(rus)](regexp(rus).png){: .zoom}

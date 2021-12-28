@@ -1,5 +1,7 @@
 site_name: TSKB
 theme:
+  icon:
+      logo: material/book-open-page-variant
   name: material
   palette:
     - scheme: default
@@ -28,9 +30,11 @@ plugins:
       glob:
         - "*+OFFL/*"
   # https://github.com/soulless-viewer/mkdocs-video
-  - mkdocs-video
+  - mkdocs-video:
+      css_style:
+        width: "24vw"
+        height: "15vw"
 markdown_extensions:
-  # - fenced_code
   - meta
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
