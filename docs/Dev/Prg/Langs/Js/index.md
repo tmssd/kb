@@ -188,20 +188,19 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + Javascript convert certain type into another type:
 
-  ```js
-  1 == '1' //true, '1' change to 1
+    ```js
+    1 == '1' //true, '1' change to 1
 
-  // should always use ====
-  1 === '1' //false, compare exactly without coercion
+    // should always use ====
+    1 === '1' //false, compare exactly without coercion
 
-  if (1)  // if(true)
-  if (0)  // if(false)
+    if (1)  // if(true)
+    if (0)  // if(false)
 
-  NaN === NaN //false
-  // should be true, use:
-  Object.is(NaN,NaN)  //true
-
-  ```
+    NaN === NaN //false
+    // should be true, use:
+    Object.is(NaN,NaN)  //true
+    ```
 
 + [Type Coercion table](https://dorey.github.io/JavaScript-Equality-Table/)
 
@@ -1673,9 +1672,9 @@ So when we copy a variable into another variable - we copy the value and then cr
         const { ...clone } = obj;
         ```
 
-    !!! note
+        !!! note
 
-        **Rest/Spread Operator:** The **rest** operator which is the same as the **spread** operator is a powerful syntactic sugar. Combined with object destructuring it means, *I don't care about the other property names. Just push everything else into a variable which is called rest which has all other properties*.
+            **Rest/Spread Operator:** The **rest** operator which is the same as the **spread** operator is a powerful syntactic sugar. Combined with object destructuring it means, *I don't care about the other property names. Just push everything else into a variable which is called rest which has all other properties*.
 
 + **Deep Clone**
 

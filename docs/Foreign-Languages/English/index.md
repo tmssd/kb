@@ -2,6 +2,4 @@
 
 ## Tenses
 
-```pdf
-/Foreign-Languages/English/Tenses-table.pdf
-```
+![tenses-table](tenses-table.jpg){: .zoom}
