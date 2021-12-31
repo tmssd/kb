@@ -77,7 +77,7 @@ img {
 
   /* } */
 
-/* [data-md-color-scheme="slate"] { */
+[data-md-color-scheme="slate"] {
   /* --md-hue: 210; */
 
-/* } */
+}

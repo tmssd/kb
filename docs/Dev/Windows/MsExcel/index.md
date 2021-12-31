@@ -2,6 +2,6 @@
 
 Useful Examples:
 
-+ [Cell are Buttons](Cell-are-buttons.xlsm)
+[:fontawesome-solid-file-excel: Cell are Buttons](cell-are-buttons.xlsm)
 
-+ [Coordination Selecting](Coordination-selecting_planetaExcel.xls)
+[:fontawesome-solid-file-excel: Coordination Selecting](coordination-selecting(planeta-excel).xls)

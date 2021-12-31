@@ -37,12 +37,40 @@
         3. [Syntax theme definition(_highlight.scss)](https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/extensions/pymdownx/_highlight.scss#L86)
 
     + [Icons + Emojis Search](https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/)
+        + :fontawesome-brands-youtube: - `:fontawesome-brands-youtube:`
+        + :material-thumb-up: - `:material-thumb-up:`
+        + :material-thumb-down: - `:material-thumb-down:`
+        + :fontawesome-solid-file-excel: - `:fontawesome-solid-file-excel:`
+        + :fontawesome-regular-file-excel: - `:fontawesome-regular-file-excel:`
+        + :fontawesome-solid-file-word: - `:fontawesome-solid-file-word:`
+        + :fontawesome-regular-file-word: - `:fontawesome-regular-file-word:`
+        + :fontawesome-solid-file-powerpoint: - `:fontawesome-solid-file-powerpoint:`
+        + :fontawesome-regular-file-powerpoint: - `:fontawesome-regular-file-powerpoint:`
 
 + Personal customization to implement in the future:
     + [medium-zoom](https://github.com/francoischalifour/medium-zoom#selectors), [medium-zoom docsify plugin](https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js)
 
 + How To:
+    + Embed image with captions
+
+        ```html
+        <figure markdown>
+          ![Javascript Engine](image-file){: .zoom}
+          <figcaption>
+              <a href="image-source-link" target="_blank">image-caption(e.g. image-source-description)</a>
+          </figcaption>
+        </figure>
+        ```
+
     + Embed video: [MkDocs Video plugin](https://github.com/soulless-viewer/mkdocs-video), [1](https://github.com/squidfunk/mkdocs-material/issues/492), [2](https://github.com/mkdocs/mkdocs/issues/243)
+    + Embed YouTube Video List
+
+        copy initial embed code from the YouTube and then set `#!html width="400vw" height="225vw"`
+
+        ```html
+        <iframe width="400vw" height="225vw" src="https://www.youtube.com/embed/gb7gMluAeao?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        ```
+
     + Embed pdf:
         1. Embedding a PDF file
 

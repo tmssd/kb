@@ -1,4 +1,4 @@
-site_name: TSKB
+site_name: tskb
 theme:
   icon:
       logo: material/book-open-page-variant
@@ -17,7 +17,7 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
   features:
-    - navigation.instant
+    # - navigation.instant
     - navigation.tracking
     - navigation.tabs
     # - navigation.tabs.sticky
@@ -49,6 +49,8 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true

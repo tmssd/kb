@@ -149,9 +149,7 @@ echo "Created hello/world.txt"
 
 ### Bash Shell Shortcuts
 
-```pdf
-    Dev/Prg/Langs/Bash/bash-shortcuts.pdf
-```
+<object data="./bash-shortcuts.pdf" type="application/pdf" class="pdf"></object>
 
 ## Bash Tips & Tricks
 
@@ -163,15 +161,25 @@ echo "Created hello/world.txt"
 
 1. End a Command with **&**
 
-  ?> When the terminal session is closed, the command ends. You can also kill the command by issuing the `jobs` command, finding the number of the command that’s running, and killing it with the `kill` command: `kill %1`
+    !!! note ""
 
-  !> Using `&` doesn’t disconnect the command away from you; it just pushes it into the background. You can verify this by typing `jobs` into the terminal. This means that while you’re trying to use the terminal, anything the command wants to push to `STDOUT` or `STDERR` will still be printed, which may be distracting, e.g. `ping google.com &`. If you’re looking to prevent this, consider redirecting the command to “/dev/null”: `COMMAND &>/dev/null &`
+        When the terminal session is closed, the command ends. You can also kill the command by issuing the `jobs` command, finding the number of the command that’s running, and killing it with the `kill` command: `kill %1`
+
+    !!! warning ""
+
+        Using `&` doesn’t disconnect the command away from you; it just pushes it into the background. You can verify this by typing `jobs` into the terminal. This means that while you’re trying to use the terminal, anything the command wants to push to `STDOUT` or `STDERR` will still be printed, which may be distracting, e.g. `ping google.com &`. If you’re looking to prevent this, consider redirecting the command to “/dev/null”: `COMMAND &>/dev/null &`
+
 2. **&** After a Command, Then **Disown** It
 
-   ?> Using `disown` after running command with `&` keep this command running in constant, even with your terminal session ending. It’ll still keep piping things to `STDOUT` or `STDERR`, but once you exit and reopen your terminal, you won’t see anything there. You can find the command again with the `top` or `ps` commands and kill it with the `kill` command.
+    !!! note ""
+
+        Using `disown` after running command with `&` keep this command running in constant, even with your terminal session ending. It’ll still keep piping things to `STDOUT` or `STDERR`, but once you exit and reopen your terminal, you won’t see anything there. You can find the command again with the `top` or `ps` commands and kill it with the `kill` command.
+
 3. **Nohup**, with **&** and **/dev/null**
 
-   ?> `nohup` bypasses the HUP signal (signal hang up), making it possible to run commands in the background even when the terminal is off. Combine this command with redirection to “/dev/null” (to prevent nohup from making a nohup.out file), and everything goes to the background with one command: `nohup COMMAND &>/dev/null &`
+    !!! note ""
+
+        `nohup` bypasses the HUP signal (signal hang up), making it possible to run commands in the background even when the terminal is off. Combine this command with redirection to “/dev/null” (to prevent nohup from making a nohup.out file), and everything goes to the background with one command: `nohup COMMAND &>/dev/null &`
 
 ## Bash Utilities
 
@@ -182,7 +190,7 @@ echo "Created hello/world.txt"
 
 ## Zsh Shell
 
-[ ] [terminal-helpful-tips (7 Part Series)](https://dev.to/equiman/reveal-the-command-behind-an-alias-with-zsh-4d96)
++ [ ] [terminal-helpful-tips (7 Part Series)](https://dev.to/equiman/reveal-the-command-behind-an-alias-with-zsh-4d96)
 
 ### Oh My Zsh
 

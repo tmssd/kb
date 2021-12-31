@@ -1,70 +1,75 @@
 # NodeJs
 
-**Reference:**
+!!! info ""
 
-[Official Docs](https://nodejs.org/en/docs/)
+    **Reference:**
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/3aGSqasVPsI/mqdefault.jpg)](https://www.youtube.com/watch?v=3aGSqasVPsI)
+    [Official Docs](https://nodejs.org/en/docs/)
 
-Руководство по Node.js:
+    ![type:video](https://www.youtube.com/embed/3aGSqasVPsI)
 
-```pdf
-Dev/Prg/Runtime/NodeJs/Flavio_Copes_Rukovodstvo_po_Node.js-2018.pdf
-```
+    Руководство по Node.js:
 
-**Installation:** [Official website](https://nodejs.org/en/)
+    <object data="./flavio-copes_rukovodstvo-po-node.js-2018.pdf" type="application/pdf" class="pdf"></object>
+
+    **Installation:**
+
+    [Official website](https://nodejs.org/en/)
 
 ## NodeJs Essentials
 
 ### NodeJs Basics
 
 NodeJs allows computer to run JavaScript in a server, which is outside of the browser(it has a javascript engine V8).
+
 + enter node mode in terminal: `node`;
 + check function in node: `global.functionName`, e.g.: `global.setTimeout`;
 + exit node: `process.exit()`;
 + run script in node: `node script.js`;
 + get directory name: `__dirname`
 + import/export modules
-  + **using the *CommonJS* old way:**
-    + *created by ourselves modules*
-      + export variable:`module.exports = {property: value}`, e.g. in *script2.js* file: `module.exports = {largeNumber: largeNumber}`
+    1. **using the *CommonJS* old way:**
+        2. *created by ourselves modules*
+            + export variable:`module.exports = {property: value}`, e.g. in *script2.js* file: `module.exports = {largeNumber: largeNumber}`
 
-        `module` is a global object that we have access to(`global.module`). It has `exports` empty object property:
+                `module` is a global object that we have access to(`global.module`). It has `exports` empty object property:
 
-        ```node
-        Module {
-          id: '<repl>',
-          path: '.',
-          exports: {},
-          filename: null,
-          loaded: false,
-          children: [],
-          paths: [
-            .
-            .
-            .
-          ]
-        }
-        ```
+                ```node
+                Module {
+                  id: '<repl>',
+                  path: '.',
+                  exports: {},
+                  filename: null,
+                  loaded: false,
+                  children: [],
+                  paths: [
+                    .
+                    .
+                    .
+                  ]
+                }
+                ```
 
-        We can add to this object any entities we want like variables, functions, objects etc. so they become availabe through this object in the file where this object imported(*as a global object*) to.
+                We can add to this object any entities we want like variables, functions, objects etc. so they become availabe through this object in the file where this object imported(*as a global object*) to.
 
-      + import variable: `require()`, e.g. in *script.js* file: `const script2 =  require('./script2')` and `const script2` here is the name(which can be whatever we want) of the imported global object `require('./script2)`
-      + use imported variable: `importName.variableName`, e.g. in *script.js* file: `const a = script2.largeNumber`
-    + *built-in modules*
-      + import only: `require('moduleName')`
-    + *npm modules*
-      + import only: like built-in modules or by setting configuration in package.json file, e.g.:
+            + import variable: `require()`, e.g. in *script.js* file: `const script2 =  require('./script2')` and `const script2` here is the name(which can be whatever we want) of the imported global object `require('./script2)`
+            + use imported variable: `importName.variableName`, e.g. in *script.js* file: `const a = script2.largeNumber`
 
-        ```json
-        "scripts": {
-          "start": "nodemon server.js"
-        }
-        ```
+        2. *built-in modules*
+            + import only: `require('moduleName')`
 
-  + **using *ES6* new way:**
+        2. *npm modules*
+            + import only: like built-in modules or by setting configuration in package.json file, e.g.:
 
-    in order to be able to use this way we need either change the extension of each *.js* file to *.mjs* or insert `"type": "module"` line into the *package.json* file
+                ```json
+                "scripts": {
+                  "start": "nodemon server.js"
+                }
+                ```
+
+    1. **using *ES6* new way:**
+
+        in order to be able to use this way we need either change the extension of each *.js* file to *.mjs* or insert `"type": "module"` line into the *package.json* file
 
 + `JSON.stringify()` converts JavaScript objects into strings. When sending data to a web server the data has to be a string.
 
@@ -74,47 +79,47 @@ These modules come already pre-installed with Node.
 
 #### File System module
 
-Allow operations with a file.
+Allows operations with a file.
 
-`require('fs')`
+`#!js require('fs')`
 
 + read file content
 
-  `fs.readFile/readFileSync('filePath', (err, data) => {...})`
+    `#!js fs.readFile/readFileSync('filePath', (err, data) => {...})`
 
-  ```js
-  const fs = require('fs');
+    ```js
+    const fs = require('fs');
 
-  // async with call back function: read code line by line and after finish reading file content, will callback to pass the data to the function
-  fs.readFile('./hello.txt',(err,data)=>{
-    if (err) { console.log('err!!')}
-    console.log('1',data.toString()) // need to have encoding by toString('ENCODING'), default ENCODING is 'utf8' wich cover many languages
-  })
+    // async with call back function: read code line by line and after finish reading file content, will callback to pass the data to the function
+    fs.readFile('./hello.txt',(err,data)=>{
+      if (err) { console.log('err!!')}
+      console.log('1',data.toString()) // need to have encoding by toString('ENCODING'), default ENCODING is 'utf8' wich cover many languages
+    })
 
-  // sync, only read the next line if this line finished, so for large file, the program need to wait long time until it finish to continue
-  const file = fs.readFileSync('./hello.txt')
-  console.log('2',file.toString())
+    // sync, only read the next line if this line finished, so for large file, the program need to wait long time until it finish to continue
+    const file = fs.readFileSync('./hello.txt')
+    console.log('2',file.toString())
 
-  // output 2 1
-  ```
+    // output 2 1
+    ```
 
 + add text to the file(create a file in advance if it did not exist)
 
-  `fs.appendFile('filePath', 'Content', err =>{...})`
+    `#!js fs.appendFile('filePath', 'Content', err =>{...})`
 
 + create text file and write to it
 
-  `fs.writeFile('filePath', 'Content', err => {...})`
+    `#!js fs.writeFile('filePath', 'Content', err => {...})`
 
 + delete file
 
-  `fs.unlink('filePath', err => {...})`
+    `#!js fs.unlink('filePath', err => {...})`
 
 #### Http module
 
-Allow build a server.
+Allows build a server.
 
-`require('http')`
+`#!js require('http')`
 
 Simple example of building a server written inside *server.js* file:
 
@@ -140,9 +145,9 @@ server.listen(3000);
 
 #### Nodemon module
 
-Allow changing in js file reflect in terminal instantly.
+Allows changing in js file reflect in terminal instantly.
 
- `npm install nodemon --save-dev` or `npm install -D nodemon`
+`#!sh npm install nodemon --save-dev` or `#!sh npm install -D nodemon`
 
 ```json
 "scripts": {
@@ -152,14 +157,17 @@ Allow changing in js file reflect in terminal instantly.
 
 ## Express.js library
 
-**Reference:**
+!!! info ""
 
-[Official Website](https://expressjs.com/)
+    **Reference:**
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9EtkpCzqZu0/mqdefault.jpg)](https://www.youtube.com/watch?v=9EtkpCzqZu0)
+    [Official Website](https://expressjs.com/){target=_blank}
 
-**Installation:** `npm install express`
+    ![type:video](https://www.youtube.com/embed/9EtkpCzqZu0)
 
+    **Installation:**
+
+    `npm install express`
 
 ### Express.js Essentials
 
@@ -184,22 +192,24 @@ app.listen(3000); // port
 
 **Routing:**
 
-Express relies on routing to determine how an application responds to a client request to a particular *endpoint*, which is a [**U**niform **R**esource **I**dentifier](https://developer.mozilla.org/en-US/docs/Glossary/URI) (or path) and a specific HTTP request method (e.g., GET, POST, etc.).  Each route can have one or more handler functions, which are executed when the route is matched.
+Express relies on routing to determine how an application responds to a client request to a particular *endpoint*, which is a [**U**niform **R**esource **I**dentifier](https://developer.mozilla.org/en-US/docs/Glossary/URI){target=_blank} (or path) and a specific HTTP request method (e.g., GET, POST, etc.).  Each route can have one or more handler functions, which are executed when the route is matched.
 
 Routes follow the syntax below:
 
 *app.METHOD(PATH, HANDLER)* e.g. `app.get('/', (req, res) => {...})`
 
-  + **app**(`app`) is an instance of Express
-  + **METHOD**(`.get`) is an HTTP request method(GET, POST, PUT, DELETE etc.), in lowercase
++ **app**(`app`) is an instance of Express
++ **METHOD**(`.get`) is an HTTP request method(GET, POST, PUT, DELETE etc.), in lowercase
 
-    > 1. Everything entered into the **adressbar** will always be a **GET** request.
-    > 2. **POST** method can be used with a `fetch()` call or within a html form by defining `method="post"`.
-    > 3. All other methods can be accessed programmatically only. GET and POST can be accessed programmatically too.
-    > 4. Programmatically means using terminal or e.g. using [Postman](https://www.postman.com/) - a tool for API Development and testing server before connecting to front-end.
+    !!! note
 
-  + **PATH**(`'/'`) is a path on the server
-  + **HANDLER**(`(req, res) => {...}`) is the function executed when the route is matched
+        1. Everything entered into the **adressbar** will always be a **GET** request.
+        2. **POST** method can be used with a `fetch()` call or within a html form by defining `method="post"`.
+        3. All other methods can be accessed programmatically only. GET and POST can be accessed programmatically too.
+        4. Programmatically means using terminal or e.g. using [Postman](https://www.postman.com/){target=_blank} - a tool for API Development and testing server before connecting to front-end.
+
++ **PATH**(`'/'`) is a path on the server
++ **HANDLER**(`(req, res) => {...}`) is the function executed when the route is matched
     + `req` (*Request*) and `res` (*Response*) are actually objects (and can be named whatever we want, although **req** and **res** are conventions).
     + **"Request"** is an object containing all the information about the request that was made and which triggered the route.
     + **"Response"** is an object containing all of the data that the server is going to respond with.
@@ -208,93 +218,97 @@ Routes follow the syntax below:
 
 + An API that defines a set of functions which developers can perform: *requests* and *receive responses* via a HTTP protocol using methods such as *GET*, *POST*, *PUT*, *DELETE* and it uses these methods as follows:
 
-  + GET to receive a resource
-  + POST to create a resource
-  + PUT to change the state or update a resource
-  + DELETE to remove a resource
+    + GET to receive a resource
+    + POST to create a resource
+    + PUT to change the state or update a resource
+    + DELETE to remove a resource
 
 + REST APis are **stateless** - meaning that calls can be made independently of one another and each call contains all the data necessary to complete itself successfully. A server doesn't need to keep memorizing things, i.e. each request that comes in has enough information that the server can respond with, so each request sent to a server is a independent property of the *"Request"* object.
 
 + The most used properties of *Request* object:
 
-  + `req.query`
+    + `req.query`
 
-    use in GET request, e.g. `localhost:3000/?name=andrei&age=31`. **?** is for query
+        use in GET request, e.g. `localhost:3000/?name=andrei&age=31`. **?** is for query
 
-  + `req.body`
+    + `req.body`
 
-    use in POST request with middleware(like bodyparser or new express.js methods passed through the genereic app.use() middleware) to receive data(urlencoded or json) sent in request body, e.g `req.body.email`
+        use in POST request with middleware(like bodyparser or new express.js methods passed through the genereic app.use() middleware) to receive data(urlencoded or json) sent in request body, e.g `req.body.email`
 
-  + `req.headers`
+    + `req.headers`
 
-    use in GET request to get all headers and the input
+        use in GET request to get all headers and the input
 
-  + `req.params`
+    + `req.params`
 
-    use in GET request to get the parameters in the url(e.g. localhost:8000/12345), e.g. `app.get('/:id',(req,res)=>{const {id} = req.params})`, `app.get('/:id',(req,res) => console.log(req.params)`
+        use in GET request to get the parameters in the url(e.g. localhost:8000/12345), e.g. `app.get('/:id',(req,res)=>{const {id} = req.params})`, `app.get('/:id',(req,res) => console.log(req.params)`
 
 + The most used properties of *Response* object:
 
-  + `res.send()`, e.g. `app.get('/',(req,res) => res.send('getting root')`
+    + `res.send()`, e.g. `app.get('/',(req,res) => res.send('getting root')`
 
-  + `res.status()`, e.g. `res.status(404).send('not found')` to set the response status of the request
+    + `res.status()`, e.g. `res.status(404).send('not found')` to set the response status of the request
 
 + RESTful routing can be described as an *architectural style(an approach to communications)*  that provides a map between HTTP verbs (e.g., GET, POST, etc.) and CRUD (create, read, update, delete) actions.  There are seven RESTful route conventions:
 
-  ![RESTful-routs.png](RESTful-routs.png)
+    ![RESTful-routs.png](RESTful-routs.png){: .zoom}
 
 #### Express.js Middleware
 
-?> Middleware is a type of computer software that provides services to software applications beyond those available from the operating system. It can be described as "software glue"([Wikipedia](https://en.wikipedia.org/wiki/Middleware)).
+!!! note
+
+    Middleware is a type of computer software that provides services to software applications beyond those available from the operating system. It can be described as "software glue"([Wikipedia](https://en.wikipedia.org/wiki/Middleware){target=_blank}).
 
 + `app.use()` - generic Express middleware(универсальное промежуточное программное обеспечение). It receives ahead of time before we get to the routes, **the request**, modifies it and then passes the `next()` callback function to keep it going and "trickle down" the **modifiyed request** to *apt.get/post/put/delete* etc.
 
-  ```js
-  app.use((req,res,next) => {
-    console.log()
-    next(); // allow express to run after this
-  })
-  ```
+    ```js
+    app.use((req,res,next) => {
+      console.log()
+      next(); // allow express to run after this
+    })
+    ```
 
 + In order to get `req.body`(the body of our request, e.g. form data that user submitted through the `<form></from>` tag using POST method OR raw JSON data that was sent in the request body) we can use the *body-parser([npm](https://www.npmjs.com/package/body-parser))* middleware(the old way) or the *express built-in methods*(the new way):
 
-  ```js
-  // the old way
-  const bodyParser = require('body-parser');
+    ```js
+    // the old way
+    const bodyParser = require('body-parser');
 
-  app.use(bodyParser.urlencoded({extended: false})); // to get the form input
-  app.use(bodyParser.json());  // to get JSON data sent in the request body
+    app.use(bodyParser.urlencoded({extended: false})); // to get the form input
+    app.use(bodyParser.json());  // to get JSON data sent in the request body
 
-  // the new way
-  app.use(express.urlencoded({extended: false})); // to get the form input
-  app.use(express.json());  // to get JSON data sent in the request body
-  ```
+    // the new way
+    app.use(express.urlencoded({extended: false})); // to get the form input
+    app.use(express.json());  // to get JSON data sent in the request body
+    ```
 
-  ?> The above middleware packages, already implement the `next()` within them. We only add the `next()` when we implement **our own** middleware.
+    !!! note
+
+        The above middleware packages, already implement the `next()` within them. We only add the `next()` when we implement **our own** middleware.
 
 + To serve **static assets**, i.e. *index.html*, *css file* and *js file* we put'em in the *public* folder within our project folder and get Express to send these file using its following middleware: `app.user(express.static(__dirname + '/public'))`
 
-  So the server(server.js file) that serves simple static assets will look like this:
+    So the server(server.js file) that serves simple static assets will look like this:
 
-  ```js
-  const express = require('express');
-  const app = express();
+    ```js
+    const express = require('express');
+    const app = express();
 
-  app.use(express.static(__dirname + '/public'))
+    app.use(express.static(__dirname + '/public'))
 
-  app.listen(3000);
-  ```
+    app.listen(3000);
+    ```
 
-+ **CORS**([mdn](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)) - to allow cross-origin request we use following npm package: `npm install cors` by calling it through generic Express.js middleware, e.g.:
++ **CORS**([mdn](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS){target=_blank}) - to allow cross-origin request we use following npm package: `npm install cors` by calling it through generic Express.js middleware, e.g.:
 
-  ```js
-  const express = require('express');
-  const app = express();
+    ```js
+    const express = require('express');
+    const app = express();
 
-  app.user(cors())
+    app.user(cors())
 
-  app.listen(3000);
-  ```
+    app.listen(3000);
+    ```
 
 ### Connect frontend to backend
 
@@ -324,14 +338,16 @@ onSubmitSignIn = () => {
 
 SQL query builder library for Postgres, MSSQL, MySQL, MariaDB, SQLite3, Oracle, and Amazon Redshift.
 
-**Reference:**
+!!! info ""
 
-[Official Website](https://knexjs.org/)
+    **Reference:**
 
-**Installation:**
+    [Official Website](https://knexjs.org/){target=_blank}
 
-1. instal postgreSQL database package: `npm install pg`
-2. install knex: `npm install express`
+    **Installation:**
+
+    1. instal postgreSQL database package: `npm install pg`
+    2. install knex: `npm i knex`
 
 **Connect server to database(code from server.js file):**
 
@@ -427,29 +443,44 @@ app.listen(3000, () => {
 
 ## NPM (Node Package Manager)
 
-### Npm Essentialsaaa
+**Reference:**
 
-+ Refernce: [Official website](https://www.npmjs.com/)
-+ Installation: NPM is installed with Node.js
-+ Upgrading([according to official docs](https://docs.npmjs.com/try-the-latest-stable-version-of-npm)):
+[Official website](https://www.npmjs.com/){target=_blank}
 
-  to the latest version: `npm install -g npm@latest`
+!!! info ""
 
-  to the most recent version: `npm install -g npm@next`
+    **Installation:**
 
-  ?> You may need to prefix these commands with `sudo`, especially on Linux, or OS X if you installed Node using its default installer.
-+ `npm init` create *package.json* file in your repo
-+ `npm install packageName` only install in a project
-+ `npm install -g packageName` will install globally, which can use in terminal
-+ `npm run built` create a optimized js file that can put on the internet
-+ `--save-dev` means the dependencies only use in development by you
-+ run command in `scripts:{}` will look for file in `.bin`
+    NPM is installed with Node.js
 
-### Dependencies: package.json file
+    **Upgrading([according to official docs](https://docs.npmjs.com/try-the-latest-stable-version-of-npm){target=_blank}):**
 
-+ Created after runnung `npm init`. Gets populated with git repo info, scripts and dependecies(locally installed NPM packages for our project)
+    + to the latest version: `npm install -g npm@latest`
 
-  ?> Dependencies: a new person can install all dependencies when start the  project by `npm install`
+    + to the most recent version: `npm install -g npm@next`
+
+        !!! note
+
+            You may need to prefix these commands with `sudo`, especially on Linux, or OS X if you installed Node using its default installer.
+
+    **Common commands:**
+
+    + `npm init` create *package.json* file in your repo
+    + `npm install packageName` only install in a project
+    + `npm install -g packageName` will install globally, which can use in terminal
+    + `npm run built` create a optimized js file that can put on the internet
+    + `--save-dev` means the dependencies only use in development by you
+    + run command in `scripts:{}` will look for file in `.bin`
+
+### Npm Essentials
+
+#### Dependencies: package.json file
+
++ Created after runnung `npm init`. Gets populated with git repo info, scripts and *dependecies*(locally installed NPM packages for our project)
+
+    !!! note
+
+        *Dependencies*: a new person can install all dependencies when start the  project by `npm install`
 
 + Script: run commands in a script by `npm run scriptName` e.g.:
 
@@ -465,24 +496,33 @@ app.listen(3000, () => {
     npm run build
     ```
 
-+ Check the version of packages you need to update to: [NPM Semver](https://semver.npmjs.com/)
++ Check the version of packages you need to update to: [NPM Semver](https://semver.npmjs.com/){target=_blank}
 
 ### Useful Npm packages
 
 #### Lodash
 
-+ Refernce: [Official website](https://lodash.com/), [NPM](https://www.npmjs.com/package/lodash)
-+ Installation: `npm install lodash`
+!!! info ""
+
+    [Official website](https://lodash.com/){target=_blank}, [NPM](https://www.npmjs.com/package/lodash){target=_blank}
+
+    `npm install lodash`
 
 #### Live-server
 
-+ Refernce: [NPM](https://www.npmjs.com/package/live-server)
-+ Installation: `npm install -g live-server`
+!!! info ""
 
-#### Browserify <mark><small>outdated - used for old browsers that doesn't support ES6 Modules</small></mark>
+    [NPM](https://www.npmjs.com/package/live-server){target=_blank}
 
-+ Refernce: [NPM](https://www.npmjs.com/package/browserify)
-+ Installation: `npm install -g browserify`
+    `npm install -g live-server`
+
+#### Browserify ==<small>outdated - used for old browsers that doesn't support ES6 Modules</small>==
+
+!!! info ""
+
+    [NPM](https://www.npmjs.com/package/browserify){target=_blank}
+
+    `npm install -g browserify`
 
 ```js
 // browserify syntax
@@ -498,8 +538,11 @@ browserify script.js > bundle.js
 
 #### Bcrypt
 
-+ Refernce: [NPM](https://www.npmjs.com/package/bcrypt)
-+ Installation: `npm install bcrypt`
+!!! info ""
+
+    [NPM](https://www.npmjs.com/package/bcrypt){target=_blank}
+
+    `npm install bcrypt`
 
 To securily store sensitive data like passwords we store it in hashes:
 
@@ -538,21 +581,26 @@ storeUserPassword(userPassword, saltRounds)
   .catch(console.error)
 ```
 
-> United States National Institute for Standards and Technology (NIST) recommendations for password management:
->
-> + Password length: 8-64 characters
-> + Do accept both ASCII and UNICODE characters and encourage people to set long passwords with high entropy (upper case letters, lower case letters, digits, special characters).
-> + Don’t allow password hints.
-> + Avoid security questions.
-> + Use 2FA (2 factor authentication) if you want an extra layer of security in your application, but avoid using SMS as this can be easily hacked to have the attackers phone receive the confirmation code.
-> + Once the user has registered, there are two things to keep in mind:
->   1. Don’t let the user know the password was incorrect when logging in. Instead, mention that the username and password combination is incorrect.
->   2. The only time passwords should be reset by an administrator is when they suspect that an account has been compromised. Otherwise, passwords should only be reset by a user when he or she has forgotten their credentials.
+!!! note
+
+    United States National Institute for Standards and Technology (NIST) recommendations for password management:
+
+    + Password length: 8-64 characters
+    + Do accept both ASCII and UNICODE characters and encourage people to set long passwords with high entropy (upper case letters, lower case letters, digits, special characters).
+    + Don’t allow password hints.
+    + Avoid security questions.
+    + Use 2FA (2 factor authentication) if you want an extra layer of security in your application, but avoid using SMS as this can be easily hacked to have the attackers phone receive the confirmation code.
+    + Once the user has registered, there are two things to keep in mind:
+        1. Don’t let the user know the password was incorrect when logging in. Instead, mention that the username and password combination is incorrect.
+        2. The only time passwords should be reset by an administrator is when they suspect that an account has been compromised. Otherwise, passwords should only be reset by a user when he or she has forgotten their credentials.
 
 #### Dotenv
 
-+ Refernce: [NPM](https://www.npmjs.com/package/dotenv)
-+ Installation: `npm i dotenv`
+!!! info ""
+
+    [NPM](https://www.npmjs.com/package/dotenv){target=_blank}
+
+    `npm i dotenv`
 
 As early as possible in your application, require and configure dotenv.
 
@@ -588,22 +636,34 @@ db.connect({
 
 #### Serve
 
-+ Refernce: [NPM](https://www.npmjs.com/package/serve)
-+ Installation: `npm i serve`
+!!! info ""
+
+    [NPM](https://www.npmjs.com/package/serve){target=_blank}
+
+    `npm i serve`
 
 Used to serve a static site, single page application or just a static file (no matter if on your device or on the local network).
 
-In particular to serve a react spa pass this script into package.json `"scripts": { "start": "serve -s build" }`. This is the preffered way of deployment according to CRA(Create React App) documentation.
+In particular to serve a react spa pass this script into package.json `#!json "scripts": { "start": "serve -s build" }`. This is the preffered way of deployment according to CRA(Create React App) documentation.
 
 ### NPX (Execute NPM Package Binaries)
 
 NPX it's a package runner tool that comes with npm 5.2+
 
-+ Refernce: [Medium](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)
-+ Installation: NPX is installed with Node.js
+!!! info ""
+
+    **Refernce:**
+
+    [Medium](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b){target=_blank}
+
+    **Installation:**
+
+    NPX is installed with Node.js
 
 ## NVM (Node Version Manager)
 
-Reference: [Official GitHub](https://github.com/nvm-sh/nvm#installing-and-updating), [Unofficial tutorial](https://www.sitepoint.com/quick-tip-multiple-versions-node-nvm/)
-
 Allows to install multiple versions of NodeJs and change between them.
+
+!!! info ""
+
+    [Official GitHub](https://github.com/nvm-sh/nvm#installing-and-updating){target=_blank}, [Unofficial tutorial](https://www.sitepoint.com/quick-tip-multiple-versions-node-nvm/){target=_blank}

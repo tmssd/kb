@@ -7,7 +7,8 @@ Reference:
 + [CSS Tricks](https://css-tricks.com/almanac/)
 + [Learn CSS](https://web.dev/learn/css/)
 + [Шпаргалка по CSS](https://www.exlab.net/tools/sheets/css.html)
-  ![css(rus)](css(rus).png)
+
+    ![css(rus)](css(rus).png){: .zoom}
 
 ## 3 ways to connect CSS to HTML
 
@@ -45,12 +46,12 @@ What seletors win out in the cascade depends on:
 + Importance
 + Source Order
 
-  ```css
-  -moz-     /* Firefox and other browsers using Mozilla's browser engine */
-  -webkit-  /* Safari, Chrome and browsers using the Webkit engine */
-  -o-       /* Opera */
-  -ms-      /* Internet Explorer (but not always) */
-  ```
+    ```css
+    -moz-     /* Firefox and other browsers using Mozilla's browser engine */
+    -webkit-  /* Safari, Chrome and browsers using the Webkit engine */
+    -o-       /* Opera */
+    -ms-      /* Internet Explorer (but not always) */
+    ```
 
 ## Useful staff
 

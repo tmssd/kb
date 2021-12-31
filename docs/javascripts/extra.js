@@ -4,3 +4,13 @@ document.querySelectorAll('.zoom').forEach(item => {
         this.classList.toggle('image-zoom-large');
     })
 });
+
+const video = document.querySelector('video');
+
+video.addEventListener('seeking', (event) => {
+    console.log('Video is seeking a new position.');
+});
+
+video.onseeking = (event) => {
+    console.log('Video is seeking a new position.');
+};

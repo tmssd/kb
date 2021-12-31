@@ -1,8 +1,10 @@
 # PostgreSQL
 
-[Official Website](https://www.postgresql.org/)
+!!! info ""
 
-[Official Wiki](https://wiki.postgresql.org/wiki/Main_Page)
+     [Official Website](https://www.postgresql.org/){target=_blank}
+
+     [Official Wiki](https://wiki.postgresql.org/wiki/Main_Page){target=_blank}
 
 ## Create and access db using terminal
 
@@ -24,7 +26,7 @@
 
 ### Linux
 
-[Installation instruction for Debian and Ubuntu based distros](https://wiki.postgresql.org/wiki/Apt)
+[Installation instruction for Debian and Ubuntu based distros](https://wiki.postgresql.org/wiki/Apt){target=_blank}
 
 Terminal commands to manage *postgresql.service*(PostgreSQL database server):
 
@@ -58,8 +60,8 @@ Assuming you currently have postgresql installed through homebrew but unable to 
 
 1. Run `$ brew link postgresql`
 2. Write down the directory path that the error says it is not able to write to. (e.g. usr/local/share/man/man7) NOTE: you'll want to actually write this down on paper or take a picture of the screen on your phone because you will not be able to use copy and paste)
-3. Enable your 'root' user account if you have not already done so. [Apple Support](https://support.apple.com/en-us/HT204012) NOTE: make sure to make a really good password for this account and write it down somewhere safe. This is a powerful account and there's no way to recover the password.
-4. Disable System Integrity Protection. [HowTo.](https://www.igeeksblog.com/how-to-disable-system-integrity-protection-on-mac/)
+3. Enable your 'root' user account if you have not already done so. [Apple Support](https://support.apple.com/en-us/HT204012){target=_blank} NOTE: make sure to make a really good password for this account and write it down somewhere safe. This is a powerful account and there's no way to recover the password.
+4. Disable System Integrity Protection. [HowTo.](https://www.igeeksblog.com/how-to-disable-system-integrity-protection-on-mac/){target=_blank}
 5. Log into 'root' user account
 6. In Finder menu bar select GO > GO TO FOLDER... (CMND + SHFT + G) and type in the path from Step 2.
 7. Right-Click/ Cntrl-Click the folder and select Get Info
@@ -73,9 +75,10 @@ Assuming you currently have postgresql installed through homebrew but unable to 
 
 ### Windows
 
-Follow [this tutorial](https://www.postgresqltutorial.com/install-postgresql/)
+Follow [this tutorial](https://www.postgresqltutorial.com/install-postgresql/){target=_blank}
 
-The most common issue you will find is this: [setting windows path for postgres tools](https://stackoverflow.com/questions/11460823/setting-windows-path-for-postgres-tools). This means you will just need to set the path correctly for PostgreSQL:
+The most common issue you will find is this: [setting windows path for postgres tools](https://stackoverflow.com/questions/11460823/setting-windows-path-for-postgres-tools){target=_blank}. This means you will just need to set the path correctly for PostgreSQL:
+
 Step 1:) Goto Control Panel\System and Security\System
 
 Step 2:) Click on Advanced system settings

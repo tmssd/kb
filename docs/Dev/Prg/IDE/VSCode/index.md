@@ -17,4 +17,4 @@ Your extensions are in
 
 Alternately, just go to the Extensions, show installed extensions, and install those on your target installation. For me, copying the extensions worked just fine, but it may be extension-specific, particularly if moving between platforms, depending on what the extension does.
 
-%APPDATA%\Code, %USERPROFILE%\.vscode\extensions <- use these in Windows so you don't have to type the username in the path back and forth
+`%APPDATA%\Code`, `%USERPROFILE%\.vscode\extensions` <- use these in Windows so you don't have to type the username in the path back and forth

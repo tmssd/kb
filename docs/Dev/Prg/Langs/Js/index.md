@@ -26,9 +26,7 @@
 
 + Eloquent JavaScript
 
-  ```pdf
-  Dev/Prg/Langs/Js/Eloquent_JavaScript.pdf
-  ```
+    <object data="./eloquent-javascript.pdf" type="application/pdf" class="pdf"></object>
 
 ## Import Javascript into HTML
 
@@ -40,7 +38,9 @@ Inside `<body> </body>` at the **bottom**:
 
 ## Js Types
 
-?> reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+!!! info ""
+
+    reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 
 ### Primitives
 
@@ -76,7 +76,9 @@ So when we copy a variable into another variable - we copy the value and then cr
 
             + Can be a *floating-point* or *infinity(/-infinity)* value
 
-            + ```js
+            + <space>
+
+                ```js
                 // Using Infinity
                 console.log(Infinity          ); /* Infinity */
                 console.log(Infinity + 1      ); /* Infinity */
@@ -84,10 +86,12 @@ So when we copy a variable into another variable - we copy the value and then cr
                 console.log(Math.log(0)       ); /* -Infinity */
                 console.log(1 / Infinity      ); /* 0 */
                 console.log(1 / 0             ); /* Infinity */
-              ```
+                ```
 
         + **NaN**
+
             > Undefined value or value that cannot be represented, especially results of floating-point calculations.
+
             + There are five different types of operations that return NaN:
 
                 1. Number cannot be parsed (e.g. `parseInt("blabla")` or `Number(undefined)`)
@@ -147,9 +151,9 @@ So when we copy a variable into another variable - we copy the value and then cr
     Objects are **reference types**, i.e. they **passed by reference**(when we assign one object to another) and defined by a programmer.
     So when we assign "object1" to "object2" we don't copy the values like we did with primitive types. We simply address "object2" to the same place in memory where is "object1" is.
 
-    *Pros:* By just having one object we're saving space and memory. We're not copying and cloning the object creating multiple version. We simply save memory reference(just one location!) instead of just loading up our memory heap.
+    :material-thumb-up: *Pros:* By just having one object we're saving space and memory. We're not copying and cloning the object creating multiple version. We simply save memory reference(just one location!) instead of just loading up our memory heap.
 
-    *Cons:* Unlike a primitive type we might have issue where by mistake somebody else changes a property on the referenced object(by changing "original object" property).
+    :material-thumb-down: *Cons:* Unlike a primitive type we might have issue where by mistake somebody else changes a property on the referenced object(by changing "original object" property).
 
     ```js
     // Object Example:
@@ -214,27 +218,27 @@ So when we copy a variable into another variable - we copy the value and then cr
 + ``+`` ``-`` ``*`` ``/``
 + ``+`` : numeric addition vs. string concatenation
 
-  ```js
-    // NUMERIC ADDITION:
-    // Number + Number -> addition
-    1 + 2 // 3
+    ```js
+        // NUMERIC ADDITION:
+        // Number + Number -> addition
+        1 + 2 // 3
 
-    // Boolean + Number -> addition
-    true + 1 // 2
+        // Boolean + Number -> addition
+        true + 1 // 2
 
-    // Boolean + Boolean -> addition
-    false + false // 0
+        // Boolean + Boolean -> addition
+        false + false // 0
 
-    // STRING CONCATENATION:
-    // String + String -> CONCATENATION
-    'foo' + 'bar' // "foobar"
+        // STRING CONCATENATION:
+        // String + String -> CONCATENATION
+        'foo' + 'bar' // "foobar"
 
-    // Number + String -> concatenation
-    5 + 'foo' // "5foo"
+        // Number + String -> concatenation
+        5 + 'foo' // "5foo"
 
-    // String + Boolean -> concatenation
-    'foo' + false // "foofalse"
-  ```
+        // String + Boolean -> concatenation
+        'foo' + false // "foofalse"
+    ```
 
 + ``**`` (ES7(2016): Exponentiation)
 + ``%`` (Modulus)
@@ -248,30 +252,30 @@ So when we copy a variable into another variable - we copy the value and then cr
 + ``=`` ``+=`` ``-=`` ``*=`` ``/=`` ``**=`` ``%=``
 + ``+=`` : *addition* or *concatenation* behavior of the addition assignment
 
-  ```js
-    // Assuming the following variables
-    //  foo = 'foo'
-    //  bar = 5
-    //  baz = true
+    ```js
+        // Assuming the following variables
+        //  foo = 'foo'
+        //  bar = 5
+        //  baz = true
 
-    // Number + Number -> addition
-    bar += 2 // 7
+        // Number + Number -> addition
+        bar += 2 // 7
 
-    // Boolean + Number -> addition
-    baz += 1 // 2
+        // Boolean + Number -> addition
+        baz += 1 // 2
 
-    // Boolean + Boolean -> addition
-    baz += false // 1
+        // Boolean + Boolean -> addition
+        baz += false // 1
 
-    // Number + String -> concatenation
-    bar += 'foo' // "5foo"
+        // Number + String -> concatenation
+        bar += 'foo' // "5foo"
 
-    // String + Boolean -> concatenation
-    foo += false // "foofalse"
+        // String + Boolean -> concatenation
+        foo += false // "foofalse"
 
-    // String + String -> concatenation
-    foo += 'bar' // "foobar"
-  ```
+        // String + String -> concatenation
+        foo += 'bar' // "foobar"
+    ```
 
 ### String operators
 
@@ -287,44 +291,44 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + `+` (converts operand to Number type)
 
-  ```js
-    const x = 1;
-    const y = -1;
+    ```js
+        const x = 1;
+        const y = -1;
 
-    console.log(+x);
-    // expected output: 1
+        console.log(+x);
+        // expected output: 1
 
-    console.log(+y);
-    // expected output: -1
+        console.log(+y);
+        // expected output: -1
 
-    console.log(+'');
-    // expected output: 0
+        console.log(+'');
+        // expected output: 0
 
-    console.log(+true);
-    // expected output: 1
+        console.log(+true);
+        // expected output: 1
 
-    console.log(+false);
-    // expected output: 0
+        console.log(+false);
+        // expected output: 0
 
-    console.log(+'hello');
-    // expected output: NaN
-  ```
+        console.log(+'hello');
+        // expected output: NaN
+    ```
 
 + **`-`** (converts operand to Number type and then negates it)
 
-  ```js
-    const x = 4;
-    const y = -x;
+    ```js
+        const x = 4;
+        const y = -x;
 
-    console.log(y);
+        console.log(y);
+        // expected output: -4
+
+        const a = '4';
+        const b = -a;
+
+        console.log(b);
     // expected output: -4
-
-    const a = '4';
-    const b = -a;
-
-    console.log(b);
-  // expected output: -4
-  ```
+    ```
 
 ### Chaining operators
 
@@ -336,48 +340,50 @@ So when we copy a variable into another variable - we copy the value and then cr
 
     + The `?.` operator is like the `.` chaining operator, except that instead of causing an error if a reference is *nullish* (null or undefined), the expression short-circuits with a return value of `undefined`. When used with function calls, it returns `undefined` if the given function does not exist.
 
-    + ```js
-      // Exercise: Clean up this code using optional chaining
-      let will_pokemon = {
-          pikachu: {
-              species: 'Mouse Pokemon',
-              height: 0.4,
-              power: 'lightning',
-              friend: {
-                  charizard: {
-                      species: 'Dragon Pokemon',
-                      height: 1.7,
-                      weight: 90.5,
-                      power: 'fire'
-                  }
-              }
-          }
-      }
+    + <space>
 
-      let andrei_pokemon = {
-          raichu: {
-              species: 'Mouse Pokemon',
-              height: 0.8,
-              weight: 30,
-              power: ''
-          }
-      }
+        ```js
+        // Exercise: Clean up this code using optional chaining
+        let will_pokemon = {
+            pikachu: {
+                species: 'Mouse Pokemon',
+                height: 0.4,
+                power: 'lightning',
+                friend: {
+                    charizard: {
+                        species: 'Dragon Pokemon',
+                        height: 1.7,
+                        weight: 90.5,
+                        power: 'fire'
+                    }
+                }
+            }
+        }
 
-      if (andrei_pokemon && andrei_pokemon.raichu && will_pokemon
-          && will_pokemon.pikachu && will_pokemon.pikachu.friend
-          && will_pokemon.pikachu.friend.charizard) {
-              console.log('fight!')
-          } else {
-              console.log('walk away...')
-          }
+        let andrei_pokemon = {
+            raichu: {
+                species: 'Mouse Pokemon',
+                height: 0.8,
+                weight: 30,
+                power: ''
+            }
+        }
 
-      // Solution:
-      if (andrei_pokemon?.raichu && will_pokemon?.pikachu?.friend?.charizard) {
-              console.log('fight!')
-          } else {
-              console.log('walk away...')
-          }
-      ```
+        if (andrei_pokemon && andrei_pokemon.raichu && will_pokemon
+            && will_pokemon.pikachu && will_pokemon.pikachu.friend
+            && will_pokemon.pikachu.friend.charizard) {
+                console.log('fight!')
+            } else {
+                console.log('walk away...')
+            }
+
+        // Solution:
+        if (andrei_pokemon?.raichu && will_pokemon?.pikachu?.friend?.charizard) {
+                console.log('fight!')
+            } else {
+                console.log('walk away...')
+            }
+        ```
 
 ### Logical
 
@@ -389,28 +395,30 @@ So when we copy a variable into another variable - we copy the value and then cr
 
     + This can be contrasted with the logical OR (`||`) operator, which returns the right-hand side operand if the left operand is *any* falsy value(`null`, `NaN`, `0`, empty string: `""` or `''` or ` `` `, `undefined`), not only `null` or `undefined`. In other words, if you use `||` to provide some default value to another variable `foo`, you may encounter unexpected behaviors if you consider some falsy values as usable (e.g., `''` or `0`).
 
-    + ```js
-      // Example 1:
-      let andrei_pokemon = {
-          pikachu: {
-              species: 'Mouse Pokemon',
-              height: 0.8,
-              weight: 30,
-              power: 0,
-          }
-      }
+    + <space>
 
-      let power = andrei_pokemon?.pikachu?.power || 'no power'; // "no power"
+        ```js
+        // Example 1:
+        let andrei_pokemon = {
+            pikachu: {
+                species: 'Mouse Pokemon',
+                height: 0.8,
+                weight: 30,
+                power: 0,
+            }
+        }
 
-      let power = andrei_pokemon?.pikachu?.power ?? 'no power'; // 0
+        let power = andrei_pokemon?.pikachu?.power || 'no power'; // "no power"
 
-      // Example 2:
-      console.log(false ?? 'hellooo') // false
-      console.log(null ?? 'hellooo') // 'hellooo'
-      console.log(null || 'hellooo') // 'hellooo'
-      console.log((false || null) ?? 'hellooo') // 'hellooo'
-      console.log(null ?? (false || 'hellooo')) // 'hellooo'
-      ```
+        let power = andrei_pokemon?.pikachu?.power ?? 'no power'; // 0
+
+        // Example 2:
+        console.log(false ?? 'hellooo') // false
+        console.log(null ?? 'hellooo') // 'hellooo'
+        console.log(null || 'hellooo') // 'hellooo'
+        console.log((false || null) ?? 'hellooo') // 'hellooo'
+        console.log(null ?? (false || 'hellooo')) // 'hellooo'
+        ```
 
 ### Comparisons
 
@@ -434,58 +442,64 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + `if`, `else`, `else if`
 
-    + ```js
-      if (condition) {
-          statements1
-      } else if {
-          statements2
-      } else {
-          statements3
-      }
-      ```
+    + <space>
+
+        ```js
+        if (condition) {
+            statements1
+        } else if {
+            statements2
+        } else {
+            statements3
+        }
+        ```
 
 + `condition ? exprIfTrue : exprIfFalse`
 
     + ES6: ternary operator
 
-    + ```js
-      // change this function into a ternary and assign it to variable called experiencePoints
-      function experiencePoints() {
-          if (winBattle()) {
-              return 10;
-          } else {
-              return 1;
-          }
-      }
-      // solution:
-      var experiencePoints = winBattle() ? 10 : 1;
-      ```
+    + <space>
+
+        ```js
+        // change this function into a ternary and assign it to variable called experiencePoints
+        function experiencePoints() {
+            if (winBattle()) {
+                return 10;
+            } else {
+                return 1;
+            }
+        }
+        // solution:
+        var experiencePoints = winBattle() ? 10 : 1;
+        ```
 
 + `switch`
 
-    + ```js
-      function moveCommand(direction) {
-          var whatHappens;
-          switch (direction) {
-              case "forward":
-                  whatHappens = "you encounter a monster";
-                  break;
-              case "back":
-                  whatHappens = "you arrived home";
-                  break;
-              case "right":
-                  whatHappens = "you found a river";
-                  break;
-              case "left":
-                  whatHappens = "you run into a troll";
-                  break;
-              default:
-                  whatHappens = "please enter a valid direction";
-          }
-          return whatHappens;
-              weight: 6,
-      }
-      ```
+    + <space>
+
+        ```js
+        function moveCommand(direction) {
+            var whatHappens;
+            switch (direction) {
+                case "forward":
+                    whatHappens = "you encounter a monster";
+                    break;
+                case "back":
+                    whatHappens = "you arrived home";
+                    break;
+                case "right":
+                    whatHappens = "you found a river";
+                    break;
+                case "left":
+                    whatHappens = "you run into a troll";
+                    break;
+                default:
+                    whatHappens = "please enter a valid direction";
+            }
+            return whatHappens;
+                weight: 6,
+        }
+        ```
 
 ## Statements
 
@@ -530,149 +544,156 @@ So when we copy a variable into another variable - we copy the value and then cr
 ### export
 
 + refrerence: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
-+ The `export` statement is used when creating JavaScript <mark>[modules](###modules)</mark> to export live bindings to functions, objects, or primitive values from the module so they can be used by other programs with the `import` statement. Bindings that are exported can still be modified locally; when imported, although they can only be read by the importing module the value updates whenever it is updated by the exporting module.
++ The `export` statement is used when creating JavaScript ==[modules](#modules)== to export live bindings to functions, objects, or primitive values from the module so they can be used by other programs with the `import` statement. Bindings that are exported can still be modified locally; when imported, although they can only be read by the importing module the value updates whenever it is updated by the exporting module.
 
-  Exported modules are in <mark>[strict mode](###strict-mode)</mark> whether you declare them as such or not. The export statement cannot be used in embedded scripts.
+    Exported modules are in ==[strict mode](#strict-mode)== whether you declare them as such or not. The export statement cannot be used in embedded scripts.
 
 ### import
 
 + refrerence: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 + The static `import` statement is used to import read only live bindings which are exported by another module.
 
-  Imported modules are in <mark>[strict mode](###strict-mode)</mark> whether you declare them as such or not. The import statement cannot be used in embedded scripts unless such script has a `type="module"`. Bindings imported are called live bindings because they are updated by the module that exported the binding.
+    Imported modules are in ==[strict mode](#strict-mode)== whether you declare them as such or not. The import statement cannot be used in embedded scripts unless such script has a `type="module"`. Bindings imported are called live bindings because they are updated by the module that exported the binding.
 
-  There is also a function-like dynamic `import()`, which does not require scripts of `type="module"`.
+    There is also a function-like dynamic `import()`, which does not require scripts of `type="module"`.
 
-  Backward compatibility can be ensured using attribute nomodule on the `<script>` tag.
+    Backward compatibility can be ensured using attribute nomodule on the `<script>` tag.
 
 ## Looping
 
 `for` : *Loops through a block of code a number of times*
 
-+ ```js
-  let todos = [
-      'clean room',
-      'brush teeth',
-      'exercise',
-      'study javascript',
-      'eat healthy'
-  ];
-  const todosLength = todos.length;
-  for (let i=0; i < todosLength; i++) {
-      todos.pop();
-  }
++ <space>
 
-  console.log(todos);
-  // []
-  ```
+    ```js
+    let todos = [
+        'clean room',
+        'brush teeth',
+        'exercise',
+        'study javascript',
+        'eat healthy'
+    ];
+    const todosLength = todos.length;
+    for (let i=0; i < todosLength; i++) {
+        todos.pop();
+    }
+
+    console.log(todos);
+    // []
+    ```
 
 `while`, `do/while` : *Loops through a block of code while a specified condition is true*
 
-+ ```js
-  // while loop:
-  let counterOne = 0;
-  while (counterOne < 10) {
-      console.log(counterOne);
-      counterOne++;
-  }
-  // 0
-  // 1
-  // 2
-  // 3
-  // 4
-  // 5
-  // 6
-  // 7
-  // 8
-  // 9
++ <space>
 
-  // do while loop:
-  let counterTwo = 0;
-  do {
-      console.log(counterTwo);
-      counterTwo++;
-  } while (counterTwo < 10);
-  // 0
-  // 1
-  // 2
-  // 3
-  // 4
-  // 5
-  // 6
-  // 7
-  // 8
-  // 9
+    ```js
+    // while loop:
+    let counterOne = 0;
+    while (counterOne < 10) {
+        console.log(counterOne);
+        counterOne++;
+    }
+    // 0
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
+    // 6
+    // 7
+    // 8
+    // 9
 
-  // while vs. do while:
-  let counterOne = 10;
-  while (counterOne < 10) {
-      console.log('while', counterOne);
-      counterOne++;
-  }
+    // do while loop:
+    let counterTwo = 0;
+    do {
+        console.log(counterTwo);
+        counterTwo++;
+    } while (counterTwo < 10);
+    // 0
+    // 1
+    // 2
+    // 3
+    // 4
+    // 5
+    // 6
+    // 7
+    // 8
+    // 9
 
-  let counterTwo = 10;
-  do {
-      console.log('do while', counterTwo);
-      counterTwo++;
-  } while (counterTwo < 10);
-  // do while 10
-  /* we see that 'do while' ran while 'while' never did
-  because of condition position in each loop */
-  ```
+    // while vs. do while:
+    let counterOne = 10;
+    while (counterOne < 10) {
+        console.log('while', counterOne);
+        counterOne++;
+    }
+
+    let counterTwo = 10;
+    do {
+        console.log('do while', counterTwo);
+        counterTwo++;
+    } while (counterTwo < 10);
+    // do while 10
+    /* we see that 'do while' ran while 'while' never did
+    because of condition position in each loop */
+    ```
 
 `for/in` : *Loops(**enumirates**) through the properties(that can include its prototypes' properties too) of an object*
 
-> **Note:** *Enumerables* - something, which we **can't** iterate through out of the box. To be able to access one property after another, we need the property names. This is the reason why we have methods like Object.entries to make them iterable.
+> **Note:** *Enumerables* - something, which we **can't** ^^iterate through^^ out of the box. To be able to access one property after another, we need the property names. This is the reason why we have methods like `#!js Object.entries` to make them iterable.
 
 + ES6.
 
-+ ```js
-  const detailedBasket = {
-      apples: 5,
-      oranges: 10,
-      grapes: 1000,
-  }
++ <space>
 
-  for (let item in detailedBasket) {
-      if (detailedBasket.hasOwnProperty(item)) { // to consider properties attached to the object itself, and not its prototypes
-          console.log(item);
-      }
-  }
-  /* apples
-     oranges
-     grapes */
+    ```js
+    const detailedBasket = {
+        apples: 5,
+        oranges: 10,
+        grapes: 1000,
+    }
 
-  const basket = ['apples', 'oranges', 'grapes'];
+    for (let item in detailedBasket) {
+        if (detailedBasket.hasOwnProperty(item)) { // to consider properties attached to the object itself, and not its prototypes
+            console.log(item);
+        }
+    }
+    /* apples
+        oranges
+        grapes */
 
-  for (let item in basket) {
-      if (basket.hasOwnProperty(item)) { // to consider properties attached to the object itself, and not its prototypes
-          console.log(item);
-      }
-  }
-  /* 0
-     1
-     2 */
+    const basket = ['apples', 'oranges', 'grapes'];
 
-  ```
+    for (let item in basket) {
+        if (basket.hasOwnProperty(item)) { // to consider properties attached to the object itself, and not its prototypes
+            console.log(item);
+        }
+    }
+    /* 0
+        1
+        2 */
+    ```
 
 `for/of` : *Loops(**iterates**) through the values of an **iterable** object(array, string)*
 
-> **Note:** *Iterables* - everything which has a **length** (like arrays and strings).
+> **Note:** *Iterables* - everything which has a **length**(like arrays and strings).
 
 + ES6.
 
-+ ```js
-  const basket = ['apples', 'oranges', 'grapes'];
++ <space>
 
-  for (let item of basket) {
-      console.log(item);
-  }
-  /* apples
-     oranges
-     grapes */
-  ```
+    ```js
+    const basket = ['apples', 'oranges', 'grapes'];
 
-`forEach` : *Is the Array method. See below in the [Array](#array) section.*
+    for (let item of basket) {
+        console.log(item);
+    }
+    /* apples
+        oranges
+        grapes */
+    ```
+
+`forEach` : *Is the Array method. See below in the ==[Array](#array)== section.*
 
 ## Variables
 
@@ -755,7 +776,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 > **Note:** Values inside brackets called **parameters** when we *declare* the function and **arguments** when we *call* the function.
 >
-> **Note:** [Func. Declaration vs. Func. Expression](https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/):
+> **Note:** [Func. Declaration vs. Func. Expression](https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/){target=_blank}:
 > The difference lies in how the browser loads them into the *execution context*.
 > *Function declarations* load **before** any code is executed.
 > *Function expressions* load **only when** the interpreter reaches that line of code.
@@ -837,15 +858,17 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + `...` : Allows a function to accept an indefinite number of arguments as an ***array***, providing a way to represent variadic functions.
 
-+ ```js
-  const sumAll = (...all) => {
++ <space>
+
+    ```js
+    const sumAll = (...all) => {
     let result = 0;
     for (let num of all) {
         result += num;
     }
     return result
-  }
-  ```
+    }
+    ```
 
 ### Default Arguments
 
@@ -873,30 +896,30 @@ So when we copy a variable into another variable - we copy the value and then cr
     + The funciton executed. It's never going to execute again.
     + BUT it's going to remember that there are references to those variables. So the child scope always has access to the parent scope.
 
-    ```js
-    // Example 1:
-    const first = () => {
-        const greet = 'Hi';
-        const second = () => {
-            alert(greet);
+        ```js
+        // Example 1:
+        const first = () => {
+            const greet = 'Hi';
+            const second = () => {
+                alert(greet);
+            }
+            return second;
         }
-        return second;
-    }
 
-    const newFunc = first();
-    newFunc();
+        const newFunc = first();
+        newFunc();
 
-    // Example 2:
-    const addTo = x => y => x + y
-    var addToTen = addTo(10)
-    addToTen(3) // 13
-    ```
+        // Example 2:
+        const addTo = x => y => x + y
+        var addToTen = addTo(10)
+        addToTen(3) // 13
+        ```
 
 ### Currying
 
-+ `const functionname = param1 => param2 => action`
++ `#!js const functionname = param1 => param2 => action`
 
-+ To properly call function syntax is: `functionname (param1)(param2)`
++ To properly call function syntax is: `#!js functionname (param1)(param2)`
 
 + **Currying** is the process of converting a function that takes multiple arguments into a function that takes them one at a time.
 
@@ -916,7 +939,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 ### Compose
 
-+ `const functionname = (param2,param3) => param1 => param2(param3(param1))` : Being param2 and 3 *functions* when param1 a *value*. Executes a function inside a function executed with the initial param1.
++ `#!js const functionname = (param2,param3) => param1 => param2(param3(param1))` : Being param2 and 3 *functions* when param1 a *value*. Executes a function inside a function executed with the initial param1.
 
 + **Compose** is the act of putting two functions together to form a third function where the output of one function is the input of the other.
 
@@ -948,22 +971,26 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 ### *Useful Functions*
 
-+ ```js
-  const getRandomBetween = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
-  ```
++ <space>
 
-+ ```js
-  // Recursion function:
-  function fac(num) {
-      // emergency termination condition
-      if (num < 0) return
-      // it is necessary to limit the number of recursion calls =>
-      // basic check to stop recursion
-      if (num === 1) return num
-      // recursion - the function calls itself
-      return num * fac(num - 1)
-  }
-  ```
+    ```js
+    const getRandomBetween = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+    ```
+
++ <space>
+
+    ```js
+    // Recursion function:
+    function fac(num) {
+        // emergency termination condition
+        if (num < 0) return
+        // it is necessary to limit the number of recursion calls =>
+        // basic check to stop recursion
+        if (num === 1) return num
+        // recursion - the function calls itself
+        return num * fac(num - 1)
+    }
+    ```
 
 ## Data Structures
 
@@ -979,7 +1006,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 > useful links: [JavaScript Array Explorer](https://sdras.github.io/array-explorer/)
 >
 > **Good for:** Creating lists, e.g. shopping list, todo list, list of users(when each user in it is an object).
-> **Tip:** We can have arrays with different types inside them but it is not advised because it's actually a bit of a performance issue, e.g.: `['apples', 3, undefined, true, () => console.log('apples')]`
+> **Tip:** We can have arrays with different types inside them but it is not advised because it's actually a bit of a performance issue, e.g.: `#!js ['apples', 3, undefined, true, () => console.log('apples')]`
 
 #### Common Operations
 
@@ -1097,51 +1124,55 @@ So when we copy a variable into another variable - we copy the value and then cr
 
     + Actually `findIndex()` is a loop, because it executes the function once for each element present in the array:
 
-      + If it finds an array element where the function returns a true value, `findIndex()` returns the index of that array element (and does not check the remaining values)
+        + If it finds an array element where the function returns a true value, `findIndex()` returns the index of that array element (and does not check the remaining values)
 
-      + Otherwise it returns **-1**
+        + Otherwise it returns **-1**
 
-    > **Note:**
-    >
-    >`findIndex()` does not execute the function for array elements without values.
-    >
-    >`findIndex()` does not change the original array.
+        > **Note:**
+        >
+        >`findIndex()` does not execute the function for array elements without values.
+        >
+        >`findIndex()` does not change the original array.
 
-    ?> **Tip:** this method suits for work with objects.
+        !!! tip
+
+            This method suits for work with objects.
 
     **`find()`** : *Returns the **value** of the first element in an array that pass a test(provided as a function)*
 
     + Actually `find()` is a loop, because it executes the function once for each element present in the array:
 
-      + If it finds an array element where the function returns a true value, `find()` returns the value of that array element (and does not check the remaining values)
+        + If it finds an array element where the function returns a true value, `find()` returns the value of that array element (and does not check the remaining values)
 
-      + Otherwise it returns **undefined**
+        + Otherwise it returns **undefined**
 
-    > **Note:**
-    >
-    >`find()` does not execute the function for empty arrays.
-    >
-    >`find()` does not change the original array.
+        > **Note:**
+        >
+        >`find()` does not execute the function for empty arrays.
+        >
+        >`find()` does not change the original array.
 
-    ?> **Tip:** this method suits for work with objects.
+        !!! tip
 
-  ```js
-  const people = [
-      {name: 'Alice', budget: 4200},
-      {name: 'Eva', budget: 3500},
-      {name: 'Bob', budget: 1700},
-  ]
+            This method suits for work with objects.
 
-  // using findIndex:
-  const index = people.findIndex(person => person.budget === 3500);
-  console.log(index)
-  // 1
+    ```js
+    const people = [
+        {name: 'Alice', budget: 4200},
+        {name: 'Eva', budget: 3500},
+        {name: 'Bob', budget: 1700},
+    ]
 
-  // using find:
-  const person = people.find(person => person.budget === 3500);
-  console.log(person)
-  // {name: "Eva", budget: 3500}
-  ```
+    // using findIndex:
+    const index = people.findIndex(person => person.budget === 3500);
+    console.log(index)
+    // 1
+
+    // using find:
+    const person = people.find(person => person.budget === 3500);
+    console.log(person)
+    // {name: "Eva", budget: 3500}
+    ```
 
 + **Remove an item by index position**
 
@@ -1214,7 +1245,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
             > **Note:** It doesn't work with values not compatible with JSON. It only work with *Number* and *String* and *Object literal without function or Symbol properties*.
 
-        + Using `_.cloneDeep(value)` *Lodash library* [method](https://lodash.com/docs/4.17.15#cloneDeep)
+        + Using `#!js _.cloneDeep(value)` *Lodash library* [method](https://lodash.com/docs/4.17.15#cloneDeep)
 
             ```js
             var objects = [{ 'a': 1 }, { 'b': 2 }];
@@ -1241,30 +1272,30 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + **Sort an Array**
 
-  **`sort()`** : *Sorts the elements of an array*
+    **`sort()`** : *Sorts the elements of an array*
 
-  *Syntax:* ***array*.sort(*compareFunction*)**
+    *Syntax:* ***array*.sort(*compareFunction*)**
 
-  The sort order can be either alphabetic or numeric, and either ascending (up) or descending (down).
+    The sort order can be either alphabetic or numeric, and either ascending (up) or descending (down).
 
-  By default, the sort() method sorts the values as strings in alphabetical and ascending order.
+    By default, the sort() method sorts the values as strings in alphabetical and ascending order.
 
-  ```js
-  let fruits = ["Banana", "Orange", "Apple", "Mango"];
-  fruits.sort();
-  // ["Apple", "Banana", "Mango", "Orange"]
+    ```js
+    let fruits = ["Banana", "Orange", "Apple", "Mango"];
+    fruits.sort();
+    // ["Apple", "Banana", "Mango", "Orange"]
 
-  // Using compareFunction:
-  // Sort numbers in an array in ascending order:
-  let points = [40, 100, 1, 5, 25, 10];
-  points.sort((a, b) => a-b);
-  // [1, 5, 10, 25, 40, 100]
+    // Using compareFunction:
+    // Sort numbers in an array in ascending order:
+    let points = [40, 100, 1, 5, 25, 10];
+    points.sort((a, b) => a-b);
+    // [1, 5, 10, 25, 40, 100]
 
-  // Sort numbers in an array in descending order:
-  let points = [40, 100, 1, 5, 25, 10];
-  points.sort((a, b) => b-a);
-  // [100, 40, 25, 10, 5, 1]
-  ```
+    // Sort numbers in an array in descending order:
+    let points = [40, 100, 1, 5, 25, 10];
+    points.sort((a, b) => b-a);
+    // [100, 40, 25, 10, 5, 1]
+    ```
 
 + **Split string, Reverse elements in Array, Join elements in Array**
 
@@ -1284,25 +1315,28 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + **Check if an array contains the specified element**
 
-  **`includes()`** :	*Check if an array contains the specified element*
+    **`includes()`** :	*Check if an array contains the specified element*
 
-  ES7.
+    ES7.
 
-  Returns *true* if the array contains the element, and *false* if not.
+    Returns *true* if the array contains the element, and *false* if not.
 
-  ?> The includes() method is case sensitive.
+    !!! note
 
-  ```js
-  const fruits = ["Banana", "Orange", "Apple", "Mango"];
-  let n = fruits.includes("Mango"); //true
-  ```
+        The includes() method is case sensitive.
+
+    ```js
+    const fruits = ["Banana", "Orange", "Apple", "Mango"];
+    let n = fruits.includes("Mango"); //true
+    ```
 
 #### Hier Order Functions
 
 + **Map, Filter, Reduce**
 
-    **`array.map(num => {})`**: *For each element num in the array, executes actions inside {} and **return needs to be specified** since the return will be placed in a **new array**.
-    **Used for:** arrays where we want to alter the arrays elements like adding a exclamation mark to a string.*
+    **`array.map(num => {})`**: *For each element num in the array, executes actions inside `{}` and ^^return needs to be specified^^ since the return will be placed in a ^^new array^^.*
+
+    *^^Used for:^^ arrays where we want to alter the arrays elements like adding a exclamation mark to a string.*
 
     ```js
     const array = [1, 2, 10, 16];
@@ -1364,7 +1398,9 @@ So when we copy a variable into another variable - we copy the value and then cr
     console.log(answer);
     ```
 
-+ > **Note:** Map function always returns an array of the same size that of the parent array, unlike filter. For more read this blog post about how map function is implemented: [Implementing our own Array.map() method in javascript.](https://dev.to/dhilipkmr/implementing-our-own-array-map-method-in-javascript-553m?signin=true)
+    !!! note
+
+        Map function always returns an array of the same size that of the parent array, unlike filter. For more read this blog post about how map function is implemented: [Implementing our own Array.map() method in javascript.](https://dev.to/dhilipkmr/implementing-our-own-array-map-method-in-javascript-553m?signin=true){target=_blank}
 
     ```js
     // Usnig map:
@@ -1378,9 +1414,9 @@ So when we copy a variable into another variable - we copy the value and then cr
     // [2, 3, 4, 5, 6]
     ```
 
-    **`array.filter(num => {})`**: *For each element num of the array a condition is checked. If the value turns out true, it will be added to the **new array**. If none of the elements meet the condition, it will return an empty array. **Return needs to be specified.***
+    **`array.filter(num => {})`**: *For each element num of the array a condition is checked. If the value turns out true, it will be added to the ^^new array^^. If none of the elements meet the condition, it will return an empty array. ^^Return needs to be specified.^^*
 
-    **Used for:** filtering out elements which match the condition we defined.
+    *^^Used for:^^ filtering out elements which match the condition we defined.*
 
     ```js
     const array = [1, 2, 10, 16];
@@ -1394,9 +1430,11 @@ So when we copy a variable into another variable - we copy the value and then cr
 
     **`array.reduce((accumulator,num) => {}, param3)`**: *Acumulates values of the operation performed in previous elements, param3 being the initial value of the acumulator.*
 
-    **Used for:** arrays which we want to result in one value. Like a total sum of a array of numbers or if we want to concatenate elements from a array.
+    *^^Used for:^^ arrays which we want to result in one value. Like a total sum of a array of numbers or if we want to concatenate elements from a array.*
 
-    > reference: [A real world usage example](https://trekinbami.medium.com/explanation-of-javascripts-reduce-with-a-real-world-use-case-f3f5014951e2)
+    !!! info ""
+
+        reference: [A real world usage example](https://trekinbami.medium.com/explanation-of-javascripts-reduce-with-a-real-world-use-case-f3f5014951e2)
 
     ```js
     const array = [1, 2, 10, 16];
@@ -1409,7 +1447,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + **flat, flatMap**
 
-    **`array.flat(param1)`**: *Creates a **new array** with all sub-array elements concatenated into it recursively up to the param1 depth. The flat method removes empty slots(array holes) in arrays*
+    **`array.flat(param1)`**: *Creates a ^^new array^^ with all sub-array elements concatenated into it recursively up to the param1 depth. The flat method removes empty slots(array holes) in arrays*
 
     ```js
     const arr1 = [0, 1, 2, [3, 4]];
@@ -1429,7 +1467,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     // [1, 2, 4, 5]
     ```
 
-    **`array.flatMap(param1=>{})`**: *Returns a **new array** formed by applying a given callback function to each element of the array, and then flattening the result by one level. It is identical to a `map()` followed by a `flat()` of **depth 1**, but slightly more efficient than calling those two methods separately.*
+    **`array.flatMap(param1=>{})`**: *Returns a ^^new array^^ formed by applying a given callback function to each element of the array, and then flattening the result by one level. It is identical to a `map()` followed by a `flat()` of ^^depth 1^^, but slightly more efficient than calling those two methods separately.*
 
     ```js
     let arr1 = [1, 2, 3, 4];
@@ -1453,8 +1491,11 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + Objects are **enumerables** which means, you can't loop over them out of the box with array methods.
 
-> **Good for:** storing information e.g. user info.
-> useful links: [JavaScript Object Explorer](https://objectexplorer.netlify.app/)
+!!! tip ""
+
+    **Good for:** storing information e.g. user info.
+
+    useful links: [JavaScript Object Explorer](https://objectexplorer.netlify.app/){target=_blank}
 
 #### Object Basics
 
@@ -1544,8 +1585,10 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + `Object.entries()`: returns an **array** of a given object's own enumerable string-keyed property `[key, value]` pairs, in the same order as that provided by a `for...in` loop. (The only important difference is that a `for...in` loop enumerates properties in the prototype chain as well). The ordering of the properties is the same as that given by looping over the property values of the object manually.
 
-    > **Note:** The order of the array returned by **Object.entries()** does not depend on how an object is defined. If there is a need for certain ordering, then the array should be sorted first, like:
-    > `Object.entries(obj).sort((a, b) => b[0].localeCompare(a[0]));`
+    !!! note
+
+        The order of the array returned by `#!js Object.entries()` does not depend on how an object is defined. If there is a need for certain ordering, then the array should be sorted first, like:
+        `#!js Object.entries(obj).sort((a, b) => b[0].localeCompare(a[0]));`
 
     ```js
     const object1 = {
@@ -1571,7 +1614,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
     ```js
     const obj = {
-        username0: 'Sanata',
+        username0: 'Santa',
         username1: 'Rudolf',
         username2: 'Mr. Grinch',
     }
@@ -1579,7 +1622,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     Object.entries(obj).map(value => {
         return value[1] + value[0].replace('username','');
     })
-    // ["Sanata0", "Rudolf1", "Mr. Grinch2"]
+    // ["Santa0", "Rudolf1", "Mr. Grinch2"]
     ```
 
 + `Object.fromEntries()`: transforms a list of key-value pairs into an object, making the *first element* of the list **the property** and *the second* **the value** of such property.
@@ -1599,9 +1642,11 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + **Shallow Clone**
 
-    > reference: [3 Ways to Shallow Clone Objects in JavaScript (w/ bonuses)](https://dmitripavlutin.com/javascript-shallow-clone-objects/)
+    !!! info ""
 
-    + Using `Object.assign`
+        reference: [3 Ways to Shallow Clone Objects in JavaScript (w/ bonuses)](https://dmitripavlutin.com/javascript-shallow-clone-objects/)
+
+    + Using `#!js Object.assign`
 
         `Object.assign(param1,param2)`: clones the elements of an object param2 in an object param1.
 
@@ -1628,7 +1673,9 @@ So when we copy a variable into another variable - we copy the value and then cr
         const { ...clone } = obj;
         ```
 
-  ?> **Rest/Spread Operator:** The **rest** operator which is the same as the **spread** operator is a powerful syntactic sugar. Combined with object destructuring it means, *I don't care about the other property names. Just push everything else into a variable which is called rest which has all other properties*.
+    !!! note
+
+        **Rest/Spread Operator:** The **rest** operator which is the same as the **spread** operator is a powerful syntactic sugar. Combined with object destructuring it means, *I don't care about the other property names. Just push everything else into a variable which is called rest which has all other properties*.
 
 + **Deep Clone**
 
@@ -1646,7 +1693,9 @@ So when we copy a variable into another variable - we copy the value and then cr
         const clone = JSON.parse(JSON.stringify(obj));
         ```
 
-        > **Note:** It doesn't work with values not compatible with JSON. It only work with Number and String and Object literal without function or Symbol properties.
+        !!! warning
+
+            It doesn't work with values not compatible with JSON. It only work with ^^Number^^, ^^String^^ and ^^Object literal^^ without *function* or *symbol* properties.
 
     + Using *recursion*
 
@@ -1657,9 +1706,11 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 #### Destructuring assignment
 
-> reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+!!! info ""
 
-+ **`const(/let) {property1, property2,...} = obj`**: given an object obj, keeps the value of the properties in new variables property1, property2,...etc
+    [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+
++ **`const(/let) {property1, property2,...} = obj`**: given an object *obj*, keeps the value of the properties in new variables *property1*, *property2*,...etc
 
     ```js
     const obj = {
@@ -1702,7 +1753,9 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + ES6.
 
-+ When 'property name' = 'value' we can use following syntax: **`property: value as a beforehand declared variable name that matches the property name`**
++ When 'property name' = 'value' we can use following syntax:
+
+    **`property: value as a beforehand declared variable name that matches the property name`**
 
     ```js
     const a = "Simon";
@@ -1724,12 +1777,12 @@ So when we copy a variable into another variable - we copy the value and then cr
     }
     ```
 
-#### Context, `this` keyword
+#### Context, `#!js this` keyword
 
 + *Context* tells you, where we are within the object, i.e. what is the **object environment** that we're in right now.
 
 + `this` refers to what *object* it's inside of. If the object “foo” has a method called “bar”, when the JavaScript keyword `this` is used inside of “bar”, it refers to “foo”.
-If the function “bar” were executed in the global scope, then `this` refers to the window object (except in *strict mode*).
+If the function “bar” were executed in the global scope, then `this` refers to the window object (except in ==*[strict mode](#strict-mode)*==).
 
     ```js
     function a() {
@@ -1747,7 +1800,9 @@ If the function “bar” were executed in the global scope, then `this` refers 
 
 #### Instantiation(создание экземпляров)
 
-+ reference: [MDN: Inheritance in JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance)
+!!! info ""
+
+    reference: [MDN: Inheritance in JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance)
 
 + ES6.
 
@@ -1924,9 +1979,11 @@ return true;
 
 ### Scope
 
-> reference: [YT Video 1](https://www.youtube.com/watch?v=aK_nuUAdr8E&list=PL0eyrZgxdwhxNGMWROnaY35NLyEjTqcgB&index=17), [YT Video 2](https://www.youtube.com/watch?v=5LEuJNLfLN0)
->
-> **Translation:** сфера применения, область действия, область видимости
+!!! info ""
+
+    reference: [YT Video 1](https://www.youtube.com/watch?v=aK_nuUAdr8E&list=PL0eyrZgxdwhxNGMWROnaY35NLyEjTqcgB&index=17), [YT Video 2](https://www.youtube.com/watch?v=5LEuJNLfLN0)
+
+    **Translation:** сфера применения, область действия, область видимости
 
 + **Scope** has to do with the the **visibility of variables** i.e. variable access: what variables do I have access to when a code is running.
 
@@ -1945,61 +2002,63 @@ return true;
 
     + **Function-level** scope
 
-        >**Note:** This is different from languages like C, C++, C#, or Java. They has **block-level** scope.
+        !!! note
+
+            This is different from languages like C, C++, C#, or Java. They has **block-level** scope.
 
         + Achieved through the use of **functions**.
 
         + The variable declared inside of a function is private to the function, and cannot be seen outside of that function.
 
-          ```js
-          function bb() {
-              var a = 'hello';
-          }
-          console.log(a);
-          // Uncaught ReferenceError: a is not defined
+            ```js
+            function bb() {
+                var a = 'hello';
+            }
+            console.log(a);
+            // Uncaught ReferenceError: a is not defined
 
-          // to get variable 'a':
-          function bb() {
-              var a = 'hello';
-              console.log(a);
-          };
-          bb(); // hello
-          ```
+            // to get variable 'a':
+            function bb() {
+                var a = 'hello';
+                console.log(a);
+            };
+            bb(); // hello
+            ```
 
         + Functions have access to any variable in the root scope, i.e. they can access the *global* variable inside of a function and mutate it.
 
         + Functions can “see” variables that are declared inside of them. They can also “see” any that are declared outside of them (and those variables said to be **in-scope**), but never those declared inside of functions that are nested in them.
 
-          ```js
-          // Accessing the global variable:
-          var b = 'Can I access this?';
+            ```js
+            // Accessing the global variable:
+            var b = 'Can I access this?';
 
-          function bb() {
-              console.log(b);
-          };
-          bb(); // Can I access this?
+            function bb() {
+                console.log(b);
+            };
+            bb(); // Can I access this?
 
-          // Mutating the global variable:
-          var b = 'Can I access this?';
+            // Mutating the global variable:
+            var b = 'Can I access this?';
 
-          function bb() {
-              b = 'hello';
-          };
-          bb();
-          console.log(b); // hello
-          ```
+            function bb() {
+                b = 'hello';
+            };
+            bb();
+            console.log(b); // hello
+            ```
 
-          ```js
-          // Root Scope (window)
-          var fun = 5;
+            ```js
+            // Root Scope (window)
+            var fun = 5;
 
-          function funFunction() {
-              //Child Scope
-              var fun = 'hellooo';
-              console.log(fun);
-          }
-          funFunction(); // hellooo
-          ```
+            function funFunction() {
+                //Child Scope
+                var fun = 'hellooo';
+                console.log(fun);
+            }
+            funFunction(); // hellooo
+            ```
 
     + **Block-level scope**
 
@@ -2007,15 +2066,19 @@ return true;
 
 ### Hoisting
 
-> reference: [W3S](https://www.w3schools.com/js/js_hoisting.asp), [JavaScript Scoping and Hoisting](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html), [Function Declarations vs. Function Expressions](https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/), [YT Video](https://www.youtube.com/watch?v=ppMlvGMT2qE)
+!!! info ""
 
-+ **Hoisting** is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).
+    reference: [W3S](https://www.w3schools.com/js/js_hoisting.asp){target=_blank}, [JavaScript Scoping and Hoisting](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html){target=_blank}, [Function Declarations vs. Function Expressions](https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/){target=_blank}, [:fontawesome-brands-youtube:](https://www.youtube.com/watch?v=ppMlvGMT2qE){target=_blank}
+
+**Hoisting** is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).
 Function declarations and function variables are always moved (‘hoisted’) to the top of their JavaScript scope by the JavaScript interpreter.
 JavaScript only hoists declarations, not initializations.
 
 #### *Variable Declaration* Hoisting
 
-> **Tip:**  To avoid bugs, always declare all variables at the beginning of every scope. Since this is how JavaScript interprets the code, it is always a good rule.
+!!! tip
+
+    To avoid bugs, always declare all variables at the beginning of every scope. Since this is how JavaScript interprets the code, it is always a good rule.
 
 + The `var` keyword.
 
@@ -2050,18 +2113,21 @@ JavaScript only hoists declarations, not initializations.
         // Uncaught ReferenceError: Cannot access 'carName' before initialization
         ```
 
-        + Using a `const` variable before it is declared, is a syntax errror, so the code will simply not run:
+    + Using a `const` variable before it is declared, is a syntax errror, so the code will simply not run:
 
-            ```js
-            carName = "Volvo";
-            const carName;
-            // Uncaught SyntaxError: Missing initializer in const declaration
-            ```
+        ```js
+        carName = "Volvo";
+        const carName;
+        // Uncaught SyntaxError: Missing initializer in const declaration
+        ```
 
 #### *Function Expression* Hoisting
 
 + The *left hand side* (var bar) is a *Variable Declaration*. *Variable Declarations* get hoisted but their *Assignment Expressions* don’t. So when **bar** is hoisted the interpreter initially sets `var bar = undefined`. The *function definition* itself is not hoisted.
-    > (ECMA 5 12.2 A variable with an *initialzier* is assigned the value of its *AssignmentExpression* when the *VariableStatement* is **executed**, not when the variable is **created**.)
+
+    !!! note ""
+
+        (ECMA 5 12.2 A variable with an *initialzier* is assigned the value of its *AssignmentExpression* when the *VariableStatement* is **executed**, not when the variable is **created**.)
 
     ```js
     function foo(){
@@ -2090,11 +2156,11 @@ JavaScript only hoists declarations, not initializations.
         // second Function Expression unreachable
     }
     alert(foo()); //3
-        ```
+    ```
 
 #### *Function Decalration* Hoisting
 
-+ When a *function declaration* is hoisted the **entire function body** is lifted with it
++ When a *function declaration* is hoisted the **entire function body** is lifted with it.
 
     ```js
     function foo(){
@@ -2127,7 +2193,10 @@ JavaScript only hoists declarations, not initializations.
 
 ### Strict Mode
 
-+ reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
+!!! info ""
+
+    reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode){target=_blank}
+
 + ES5
 + Is a way to opt in to a restricted variant of JavaScript, thereby implicitly opting-out of "*sloppy mode*"(normal mode). Strict mode isn't just a subset: it intentionally has different semantics from normal code. Browsers not supporting strict mode will run strict mode code with different behavior from browsers that do, so don't rely on strict mode without feature-testing for support for the relevant aspects of strict mode. Strict mode code and non-strict mode code can coexist, so scripts can opt into strict mode incrementally.
 
@@ -2135,21 +2204,24 @@ JavaScript only hoists declarations, not initializations.
 
 Modules are pieces of code, grouped together, that can be combined together to create an expandable program that can get bigger as it needs to. Good modules are self contained and grouped together with their own specific functionality allowing them to be moved or deleted without breaking the program.
 
-#### Reference
+!!! info ""
 
-+ [Brief history of JavaScript Modules](https://medium.com/sungthecoder/javascript-module-module-loader-module-bundler-es6-module-confused-yet-6343510e7bde)
-+ [ES modules: A cartoon deep-dive](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/)
-+ [JavaScript Modules: A Beginner’s Guide](https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a5fcc/?source=latest---------1)
-+ [JavaScript Modules Part 2: Module Bundling](https://www.freecodecamp.org/news/javascript-modules-part-2-module-bundling-5020383cf306/)
-+ [What Tool to Use: webpack vs Gulp vs Grunt vs Browserify](https://alligator.io/tooling/webpack-gulp-grunt-browserify/)
-+ [Webpack — What is it and is it better than Gulp?](https://blog.vanila.io/webpack-what-is-it-and-is-it-better-than-gulp-375db8011d22)
-+ [Why webpack(form official docs)](https://webpack.js.org/concepts/why-webpack/)
-+ [Parcel](https://parceljs.org/)
-+ [Why we have banned default exports in Javascript and you should do the same](https://blog.neufund.org/why-we-have-banned-default-exports-and-you-should-do-the-same-d51fdc2cf2ad)
-+ JavaScript Modules: From IIFEs to CommonJS to ES6 Modules
-  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/qJWALEoGge4/mqdefault.jpg)](https://www.youtube.com/watch?v=qJWALEoGge4)
-+ JS модули - как сделать экспорт и импорт. Фундаментальный JavaScript
-  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/r1JjvJmRvTI/mqdefault.jpg)](https://www.youtube.com/watch?v=r1JjvJmRvTI)
+    + [Brief history of JavaScript Modules](https://medium.com/sungthecoder/javascript-module-module-loader-module-bundler-es6-module-confused-yet-6343510e7bde){target=_blank}
+    + [ES modules: A cartoon deep-dive](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/){target=_blank}
+    + [JavaScript Modules: A Beginner’s Guide](https://www.freecodecamp.org/news/javascript-modules-a-beginner-s-guide-783f7d7a5fcc/?source=latest---------1){target=_blank}
+    + [JavaScript Modules Part 2: Module Bundling](https://www.freecodecamp.org/news/javascript-modules-part-2-module-bundling-5020383cf306/){target=_blank}
+    + [What Tool to Use: webpack vs Gulp vs Grunt vs Browserify](https://alligator.io/tooling/webpack-gulp-grunt-browserify/){target=_blank}
+    + [Webpack — What is it and is it better than Gulp?](https://blog.vanila.io/webpack-what-is-it-and-is-it-better-than-gulp-375db8011d22){target=_blank}
+    + [Why webpack(form official docs){target=_blank}](https://webpack.js.org/concepts/why-webpack/){target=_blank}
+    + [Parcel](https://parceljs.org/){target=_blank}
+    + [Why we have banned default exports in Javascript and you should do the same](https://blog.neufund.org/why-we-have-banned-default-exports-and-you-should-do-the-same-d51fdc2cf2ad){target=_blank}
+    + JavaScript Modules: From IIFEs to CommonJS to ES6 Modules
+
+        ![type:video](https://www.youtube.com/embed/qJWALEoGge4)
+
+    + JS модули - как сделать экспорт и импорт. Фундаментальный JavaScript
+
+        ![type:video](https://www.youtube.com/embed/r1JjvJmRvTI)
 
 #### Module Patterns
 
@@ -2182,12 +2254,12 @@ Even though modules help us to contain and organize code, there are still proble
 + **CommonJS** - uses the keywords **require** and **exports** to interact with the module system. Require is a function used to import from another module and exports is an object where functions get exported from. These are run synchronously where we wait on one module to load before another can start and this is not ideal for browsers. However, this code may look familiar because NodeJS still uses this library. There are other packages such as *Browserify* and *Webpack* that aid in bundling scripts with CommonJS to be used in the browsers.
 
 + **Asynchronous Module Definition (AMD)** - as in the name, AMD loads modules asynchronously. This was great for browsers early on before packages that bundled code.
-`define(['module1', 'module2'], function(module1, module2) {console.log(module1.setName());});`
+`#!js define(['module1', 'module2'], function(module1, module2) {console.log(module1.setName());});`
 The **define** function takes an array of dependency modules that are loaded in a non-blocking manner in the background. Once completed, the callback function is then executed. Packages came out like RequireJS that implemented the AMD endpoint and was the main way people used AMD modules.
 
 #### ES6 Modules
 
-After ES6 came out, pretty much everything above was thrown out the window with 2 new keywords. We can now use the <mark>[**export**](###export)</mark> and <mark>[**import**](###import)</mark> keywords in our files to implement modules. This again may look familiar from popular frameworks like React.
+After ES6 came out, pretty much everything above was thrown out the window with 2 new keywords. We can now use the ==[**export**](#export)== and ==[**import**](#import)== keywords in our files to implement modules. This again may look familiar from popular frameworks like React.
 
 ```js
 import module1 from "module1";
@@ -2208,7 +2280,7 @@ export function name(msg1, msg2) {
 }
 ```
 
-There are 2 types of exports, *named* and *default*. A named export is imported using curly braces (`{ importFnName }`) and a default function is added and created like this:
+There are 2 types of exports, *named* and *default*. A named export is imported using curly braces(`{ importFnName }`) and a default function is added and created like this:
 
 ```js
 import { importFnName } from "./script.js";
@@ -2236,17 +2308,19 @@ Originally, the only way to submit some form data to a server was through the `<
 
 ### Service workers
 
-Reference: [Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers/#what_is_a_service_worker)
+!!! info ""
+
+    [Google Developers](https://developers.google.com/web/fundamentals/primers/service-workers/#what_is_a_service_worker)
 
 **Service workers** enable applications to control network requests, cache those requests to improve performance, and provide offline access to cached content.
 
 ### Asynchrony
 
-#### Learning Sources
+!!! info "Learning Sources"
 
-+ Asynchronous JavaScript Course (Async/Await, Promises, Callbacks)
+    + Asynchronous JavaScript Course (Async/Await, Promises, Callbacks)
 
-  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ZYb_ZU8LNxs/mqdefault.jpg)](https://www.youtube.com/watch?v=ZYb_ZU8LNxs)
+        ![type:video](https://www.youtube.com/embed/ZYb_ZU8LNxs)
 
 #### How program works?
 
@@ -2258,120 +2332,124 @@ Reference: [Google Developers](https://developers.google.com/web/fundamentals/pr
 
 #### How Javascript Engine works?
 
-**Javascript Engine**(from [blog.sessionstack.com](https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf)):
-
-![Javascript Engine](JsEngine.png)
+<figure markdown>
+  ![Javascript Engine](js-engine.png){: .zoom}
+  <figcaption><a href="https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf" target="_blank">blog.sessionstack.com</a></figcaption>
+</figure>
 
 + **Javascript engine**(that each browser implements) - reads the javascript that we write and changes into machine executable instructions for the browser. It has two parts:
 
     1. **Memory Heap:** This is where the *memory allocation* happens. It has a **limited amount**
 
-       ```js
-       // allocation of a memory in the memory heap occurs when we assign value to a variable
-       const a = 1;
-       const b = 10;
-       const c = 100;
-       ```
+        ```js
+        // allocation of a memory in the memory heap occurs when we assign value to a variable
+        const a = 1;
+        const b = 10;
+        const c = 100;
+        ```
 
-       ?> **Memory Leak** occures when we fill up *memory heap* with unused global variables and eventually the browser will not be able to work.
+        !!! note
+
+            **Memory Leak** occures when we fill up *memory heap* with unused global variables and eventually the browser will not be able to work.
 
     2. **Call Stack:** This is where our code is *read and executed*. It tells us **where we are** in the program.
 
-       *Call Stack* reads our code line by line. Each time it encounters a function it gets put onto the stack and excuted immediately. So functions in our code executed in order they appear in code and eventually *call stack* become empty.
+        *Call Stack* reads our code line by line. Each time it encounters a function it gets put onto the stack and excuted immediately. So functions in our code executed in order they appear in code and eventually *call stack* become empty.
 
-       When there are nested functions the *call stack* will add each of those functions on top of its partent every time it's encounters them and eventually start execution from the last one. So in case of nested functions *call stack* uses LIFO(Last In First Out) method.
+        When there are nested functions the *call stack* will add each of those functions on top of its partent every time it's encounters them and eventually start execution from the last one. So in case of nested functions *call stack* uses LIFO(Last In First Out) method.
 
-       ```js
-       const one = () => {
-           const two = () => {
-               console.log('hi')
-           }
-           two()
-       };
-       one();
+        ```js
+        const one = () => {
+            const two = () => {
+                console.log('hi')
+            }
+            two()
+        };
+        one();
 
-       // what on the top of call stack gets run first, and gets remove first
-       console.log('hi')
-       two()
-       one()
-       // CALL STACK
-       ```
+        // what on the top of call stack gets run first, and gets remove first
+        console.log('hi')
+        two()
+        one()
+        // CALL STACK
+        ```
 
-       ?> Other languages can have multiple call stacks and these are called **Multi Threaded**. But complicated scenarios/issues may arise in multithreaded environment such as *Deadlocks*.
+        !!! note
 
-       **Stackoverflow** happens when the *call stack* just gets bigger and bigger until it just doesn't have enough space anymore.
+            Other languages can have multiple call stacks and these are called **Multi Threaded**. But complicated scenarios/issues may arise in multithreaded environment such as *Deadlocks*.
 
-       ```js
-       // stackoverflow can be created using recursion
-       // so here we keep adding foo() to the callstack
-       function foo() {
-           foo()
-       }
+        **Stackoverflow** happens when the *call stack* just gets bigger and bigger until it just doesn't have enough space anymore.
 
-       foo()
-       ```
+        ```js
+        // stackoverflow can be created using recursion
+        // so here we keep adding foo() to the callstack
+        function foo() {
+            foo()
+        }
 
-       **Stackoverflow**(from [blog.sessionstack.com](https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf)):
+        foo()
+        ```
 
-       ![stackoverflow](stackoverflow.png)
+        <figure markdown>
+        ![Javascript Engine](stackoverflow.png){: .zoom}
+        <figcaption><a href="https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf" target="_blank">blog.sessionstack.com</a></figcaption>
+        </figure>
 
 #### How Javascript works?
 
-+ Javascript as a **single threaded** language that can be **non-blocking**.
+Javascript as a **single threaded** language that can be **non-blocking**.
 
-  **Single threaded:** Has only one *call stack*, so only one *statement* is executed at a time.
+**Single threaded:** Has only one *call stack*, so only one *statement* is executed at a time.
 
-  And so we have  definition of **synchronous programming** that means line two of code gets executed only after line one finished. If a task takes a long time, then consequent tasks get freeze, so actually the first task **blocks** our single thread(call stack).
+And so we have  definition of **synchronous programming** that means line two of code gets executed only after line one finished. If a task takes a long time, then consequent tasks get freeze, so actually the first task **blocks** our single thread(call stack).
 
-  **Non-blocking:** In order to not block the single thread, it can be *asynchronous* with callback functions and these callback functions gets run in the background, through the *callback queue* and then the *event loop*, to bring it back to the *call stack*. And that is **asynchronous programming**. To achive it we use asynchronous functions such as **setTimeOut()**.
+**Non-blocking:** In order to not block the single thread, it can be *asynchronous* with callback functions and these callback functions gets run in the background, through the *callback queue* and then the *event loop*, to bring it back to the *call stack*. And that is **asynchronous programming**. To achive it we use asynchronous functions such as **setTimeOut()**.
 
-  `setTimeOut()` Window/WorkerGlobalScope method is a part of browser's Web API and it sets a timer which executes a function or specified piece of code once the timer expires([MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)).
+`setTimeOut()` Window/WorkerGlobalScope method is a part of browser's Web API and it sets a timer which executes a function or specified piece of code once the timer expires([MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)).
 
-  ```js
-  //not from javascript but the web API
-  console.log('0')
-  setTimeout(() => console.log('1'),2000) // 2 seconds
-  console.log('2')
-  // 0 2 1  because callback() after call stack is empty
+```js
+//not from javascript but the web API
+console.log('0')
+setTimeout(() => console.log('1'),2000) // 2 seconds
+console.log('2')
+// 0 2 1  because callback() after call stack is empty
 
-  setTimeout(..., 2000)  // web api starts a timer here defined by setTimeout()(2 sec. in our case)
-  // after this time limit is up web api sends the callback function "() => console.log('1')" to the callback queue
+setTimeout(..., 2000)  // web api starts a timer here defined by setTimeout()(2 sec. in our case)
+// after this time limit is up web api sends the callback function "() => console.log('1')" to the callback queue
 
-  callback()  console.log()
-  //CALL STACK
+callback()  console.log()
+//CALL STACK
 
-  //WEB API
+//WEB API
 
-  callback()
-  //CALLBACK QUEUE
+callback()
+//CALLBACK QUEUE
 
-  //EVENT LOOP
-  // keeps checking at each tick(amount of time which the event loop makes a check) whether call stack is empty,
-  // once empty, put callback to the call stack,
-  // like eventListener that checks whether there is a click and do callback
-  ```
+//EVENT LOOP
+// keeps checking at each tick(amount of time which the event loop makes a check) whether call stack is empty,
+// once empty, put callback to the call stack,
+// like eventListener that checks whether there is a click and do callback
+```
 
-  **Javascript Run-Time Environment**(from [blog.sessionstack.com](https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf)):
+<figure markdown>
+![Javascript Engine](js-run_time-environment.png){: .zoom}
+<figcaption><a href="https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf" target="_blank">blog.sessionstack.com</a></figcaption>
+</figure>
 
-  ![Javascript Run-Time Environment](JsRun-TimeEnvironment.png)
+!!! note
 
-  ?> *Callback Queue* also holds an eventListener's callbacks.
+    *Callback Queue* also holds an eventListener's callbacks.
 
 #### Promise
 
-+ Reference:
+!!! info ""
 
-  [MDN(Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-
-  [MDN(Using Promises)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
-
-  [JavaScript Promises: an introduction](https://web.dev/promises/)
-
-  [Master the JavaScript Interview: What is a Promise?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261)
-
-  [Что такое промисы в JavaScript. Фундаментальный JavaScript(YouTube)](https://www.youtube.com/watch?v=4X7OjIjjaQE)
-
-  [Урок 5. JavaScript. Promise. Что это, как работает (+ пример)(YouTube)](https://www.youtube.com/watch?v=1idOY3C1gYU)
+    + [MDN(Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise){target=_blank}
+    + [MDN(Using Promises)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises){target=_blank}
+    + [JavaScript Promises: an introduction](https://web.dev/promises/){target=_blank}
+    + [Master the JavaScript Interview: What is a Promise?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261){target=_blank}
+    + [:fontawesome-brands-youtube: Что такое промисы в JavaScript. Фундаментальный JavaScript](https://www.youtube.com/watch?v=4X7OjIjjaQE){target=_blank}
+    + [:fontawesome-brands-youtube: Урок 5. JavaScript. Promise. Что это, как работает (+ пример)](https://www.youtube.com/watch?v=1idOY3C1gYU){target=_blank}
 
 + ES6.
 
@@ -2381,128 +2459,128 @@ Reference: [Google Developers](https://developers.google.com/web/fundamentals/pr
 
 + So at their most basic promises are a bit like *event listeners* except a promise can only succeed or fail **once**. It cannot succeed or fail twice.
 
-  And this is extremely useful for things that are *asynchronous success and failure* such as API calls because we're less interested in the exact time something became available and more interested in reacting to the outcome. So we're reacting to something that happens asynchronously.
+    And this is extremely useful for things that are *asynchronous success and failure* such as API calls because we're less interested in the exact time something became available and more interested in reacting to the outcome. So we're reacting to something that happens asynchronously.
 
 + **Promise creation:**
 
-  A promise is something that we have now that we can use around our code even though we don't have the value just yet. We can just assign it to a variable.
+    A promise is something that we have now that we can use around our code even though we don't have the value just yet. We can just assign it to a variable.
 
-  ```js
-  // creating promise instance from the Promise class constractor
-  const promise = new Promise((resolve, reject) => {
-      if (true) {
-          resolve('Stuff Worked');
-      } else {
-          reject('Error, it broke')
-      }
-  })
-  ```
+    ```js
+    // creating promise instance from the Promise class constractor
+    const promise = new Promise((resolve, reject) => {
+        if (true) {
+            resolve('Stuff Worked');
+        } else {
+            reject('Error, it broke')
+        }
+    })
+    ```
 
 + **Promise usage - When to use:**
 
-  Promises are great for *asynchronous programming* when we don't want javascript to block the execution of our code(so that the task happens in the background), e.g.:
+    Promises are great for *asynchronous programming* when we don't want javascript to block the execution of our code(so that the task happens in the background), e.g.:
 
-  **1. Using async functions**, e.g. *making back-end or API calls* using `fetch()` function that return us a promise
+    **1. Using async functions**, e.g. *making back-end or API calls* using `fetch()` function that return us a promise
 
-  OR
+    OR
 
-  **2. Using 'new Promise()'**, e.g. *grabbing data from a database*(e.g. transforming 30.000 datarows) or maybe *optimizing an image*
+    **2. Using 'new Promise()'**, e.g. *grabbing data from a database*(e.g. transforming 30,000 datarows) or maybe *optimizing an image*
 
-  When the promise gets *resolved* or *rejected* then we'll get the *response*.
+    When the promise gets *resolved* or *rejected* then we'll get the *response*.
 
 + **Promise usage - Instance methods:**
 
-  ***.then***
+    ***.then***
 
-  `.then()` produce synchronous result. This method receives the **resolved** value of the promise to which it gets chained onto.
+    `.then()` produce synchronous result. This method receives the **resolved** value of the promise to which it gets chained onto.
 
-  ```js
-  promise.then(result => console.log(result)); // Stuff Worked
+    ```js
+    promise.then(result => console.log(result)); // Stuff Worked
 
-  // OR
+    // OR
 
-  promise.then(console.log); // Stuff Worked
+    promise.then(console.log); // Stuff Worked
 
-  // promises chaining
-  promise
-  .then(result => result + '!')
-  .then(result2 => {
-      console.log(result2); // Stuff Worked!
-  })
-  ```
+    // promises chaining
+    promise
+    .then(result => result + '!')
+    .then(result2 => {
+        console.log(result2); // Stuff Worked!
+    })
+    ```
 
-  `promise.then(console.log);` - This is behind the scenes Javascript magic. The first argument of the `.then` is a function which can work on with the resolved value. By using `console.log` only, the resolved value gets passed automatically into it which will print it out into the dev tools console.
+    `#!js promise.then(console.log);` - This is behind the scenes Javascript magic. The first argument of the `.then` is a function which can work on with the resolved value. By using `console.log` only, the resolved value gets passed automatically into it which will print it out into the dev tools console.
 
-  ***.catch***
+    ***.catch***
 
-  `.catch()` can catch failure and we get only the `.catch()` return when a *promise gets rejected* or if an *error happens*, good for *fetch api*
+    `.catch()` can catch failure and we get only the `.catch()` return when a *promise gets rejected* or if an *error happens*, good for *fetch api*
 
-  ```js
-  promise
-      .then(result => result + '!')
-      .then(result2 => {
-          throw Error
-          console.log(result2); // we DO NOT get output here
-      })
-      .catch(() => console.log('errror!')) // errror!
-  ```
+    ```js
+    promise
+        .then(result => result + '!')
+        .then(result2 => {
+            throw Error
+            console.log(result2); // we DO NOT get output here
+        })
+        .catch(() => console.log('errror!')) // errror!
+    ```
 
-  `.catch` catches ANY errors that may happen between the chains `.then`. So if we moving the `throw Error` to the first `.then` we still only get the 'error!'
+    `.catch` catches ANY errors that may happen between the chains `.then`. So if we moving the `throw Error` to the first `.then` we still only get the 'error!'
 
-  ```js
-  promise
-      .then(result => {
-          throw Error
-          return result + '!'
-      })
-      .then(result2 => {
-          console.log(result2); // we DO NOT get output here
-      })
-      .catch(() => console.log('errror!')) // errror!
-  ```
+    ```js
+    promise
+        .then(result => {
+            throw Error
+            return result + '!'
+        })
+        .then(result2 => {
+            console.log(result2); // we DO NOT get output here
+        })
+        .catch(() => console.log('errror!')) // errror!
+    ```
 
-  But catching errors happens only between the chains `.then` that are located **above** the `.catch`
+    But catching errors happens only between the chains `.then` that are located **above** the `.catch`
 
-  ```js
-  promise
-      .then(result => result + '!')
-      .then(result2 => result2 + '?')
-      .catch(() => console.log('errror!'))// we DO NOT get output here
-      .then(result3 => {
-          throw Error; // Uncaught (in promise) ƒ Error() { [native code] }
-          console.log(result3 + '!');
-      })
-  ```
+    ```js
+    promise
+        .then(result => result + '!')
+        .then(result2 => result2 + '?')
+        .catch(() => console.log('errror!'))// we DO NOT get output here
+        .then(result3 => {
+            throw Error; // Uncaught (in promise) ƒ Error() { [native code] }
+            console.log(result3 + '!');
+        })
+    ```
 
-  ***.finally()***
+    ***.finally()***
 
-  `.finally()` allows us to do something after a promise has finished. We add it usually at the end of the proise. The `finally()` block will be called regardless of whether `.then()` works or the promise is catches into an error. `.finally()` usually doesn't receive anything from the promise so it has no parameters.
+    `.finally()` allows us to do something after a promise has finished. We add it usually at the end of the proise. The `finally()` block will be called regardless of whether `.then()` works or the promise is catches into an error. `.finally()` usually doesn't receive anything from the promise so it has no parameters.
 
-  ?> Finally is great for those times that you need to run a piece of code no matter what, e.g. sending an email to a user regardless of whether their request was successful or failed; or showing a little notification icon.
+    ?> Finally is great for those times that you need to run a piece of code no matter what, e.g. sending an email to a user regardless of whether their request was successful or failed; or showing a little notification icon.
 
-  ```js
-  const urls = [
+    ```js
+    const urls = [
     'http://swapi.dev/api/people/1',
     'http://swapi.dev/api/people/2',
     'http://swapi.dev/api/people/3',
     'http://swapi.dev/api/people/4'
-  ]
+    ]
 
-  Promise.all(urls.map(url => fetch(url).then(resp => resp.json())))
+    Promise.all(urls.map(url => fetch(url).then(resp => resp.json())))
     .then(results => results.map(((result,i) => console.log(++i, result))))
     .catch(() => console.log('error'))
     .finally(() => console.log('extra'))
-  ```
+    ```
 
 + **Promise usage - Static methods:**
 
-  **Promise.resolve**
+    **Promise.resolve**
 
-  `Promise.resolve(value)` - Returns a new `Promise` object that is resolved with the given value. If the value is a thenable (i.e. has a `then` method), the returned promise will "follow" that thenable, adopting its eventual state; otherwise, the returned promise will be fulfilled with the value.
+    `Promise.resolve(value)` - Returns a new `Promise` object that is resolved with the given value. If the value is a thenable (i.e. has a `then` method), the returned promise will "follow" that thenable, adopting its eventual state; otherwise, the returned promise will be fulfilled with the value.
 
-  ```js
-  // creating promise using Promise constractor method
-  const promise = new Promise((resolve, reject) => {
+    ```js
+    // creating promise using Promise constractor method
+    const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("success");
     }, 4000)
@@ -2516,109 +2594,111 @@ Reference: [Google Developers](https://developers.google.com/web/fundamentals/pr
         console.log("success");
     }, 4000)
     );
-  ```
+    ```
 
-  **Promise.reject**
+    **Promise.reject**
 
-  `Promise.reject(reason)` - Returns a new `Promise` object that is rejected with the given reason.
+    `Promise.reject(reason)` - Returns a new `Promise` object that is rejected with the given reason.
 
-  ```js
-  Promise.reject('failed')
+    ```js
+    Promise.reject('failed')
     .catch(console.log('Ooops something went wrong'))
-  ```
+    ```
 
-  **Promise.all**
+    **Promise.all**
 
-  `Promise.all(iterable)` - Wait for all promises to be resolved, or for any to be rejected.
+    `Promise.all(iterable)` - Wait for all promises to be resolved, or for any to be rejected.
 
-  If the returned promise resolves, it is resolved with an aggregating array of the values from the resolved promises, in the same order as defined in the iterable of multiple promises.
+    If the returned promise resolves, it is resolved with an aggregating array of the values from the resolved promises, in the same order as defined in the iterable of multiple promises.
 
-  If it rejects, it is rejected with the reason from the first promise in the iterable that was rejected.
+    If it rejects, it is rejected with the reason from the first promise in the iterable that was rejected.
 
-  **Example 1** of defining 3 promises and immediately running Promise.all after that:
+    **Example 1** of defining 3 promises and immediately running Promise.all after that:
 
-  ```js
-  const promise1 = new Promise((resolve, reject) => {
-      setTimeout(resolve, 100, 'HIII') // Essentially this is saying, "resolve('HIII') in 100 millisecond"
-  })
+    ```js
+    const promise1 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 100, 'HIII') // Essentially this is saying, "resolve('HIII') in 100 millisecond"
+    })
 
-  const promise2 = new Promise((resolve, reject) => {
-      setTimeout(resolve, 1000, 'POOKIE')
-  })
+    const promise2 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, 'POOKIE')
+    })
 
-  const promise3 = new Promise((resolve, reject) => {
-      setTimeout(resolve, 5000, 'Is it me you are looking for?')
-  })
+    const promise3 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 5000, 'Is it me you are looking for?')
+    })
 
-  Promise.all([promise1, promise2, promise3])
+    Promise.all([promise1, promise2, promise3])
     .then(values => {
         console.log(values); // output after 5 seconds => ["HIII", "POOKIE", "Is it me you are looking for?"]
     })
-  ```
+    ```
 
-  ?> If we assign the variables(promise1, promise2 etc.) **first** and only then run `Promise.all` ,the result `["HIII", "POOKIE", "Is it me you are looking for?"]` will be **instant**, because we've assigned all promises to their variables and between the time that we copied and pasted `Promise.all ...` to console these promises in the background have been resolved.
+    > If we assign the variables(promise1, promise2 etc.) **first** and only then run `Promise.all` ,the result `["HIII", "POOKIE", "Is it me you are looking for?"]` will be **instant**, because we've assigned all promises to their variables and between the time that we copied and pasted `Promise.all ...` to console these promises in the background have been resolved.
 
-  **Example 2** from real world apps using *Fetch api* showing the idea of when we want to use promises:
+    **Example 2** from real world apps using *Fetch api* showing the idea of when we want to use promises:
 
-  ?> `fetch('url')` always returns a promise
+    !!! note
 
-  ```js
-  const urls = [
-      'https://jsonplaceholder.typicode.com/users',
-      'https://jsonplaceholder.typicode.com/posts',
-      'https://jsonplaceholder.typicode.com/albums',
-  ]
+        `fetch('url')` always returns a promise
 
-  Promise.all(urls.map(url => {
-      return fetch(url).then(resp => resp.json())
-  })).then(results => {
-      console.log(results[0])
-      console.log(results[1])
-      console.log(results[2])
-  }).catch(() => console.log('error')) // here we can catch 'reject' from a promise and we can do whatever we want with this error
+    ```js
+    const urls = [
+        'https://jsonplaceholder.typicode.com/users',
+        'https://jsonplaceholder.typicode.com/posts',
+        'https://jsonplaceholder.typicode.com/albums',
+    ]
 
-  /* (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-  (100) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-  (100) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}] */
-  ```
+    Promise.all(urls.map(url => {
+        return fetch(url).then(resp => resp.json())
+    })).then(results => {
+        console.log(results[0])
+        console.log(results[1])
+        console.log(results[2])
+    }).catch(() => console.log('error')) // here we can catch 'reject' from a promise and we can do whatever we want with this error
 
-  **Promise.allSettled**
+    /* (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+    (100) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+    (100) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}] */
+    ```
 
-  `Promise.allSettled(iterable)` - Wait until all promises have settled (each may resolve or reject).
+    **Promise.allSettled**
 
-  Returns a Promise that resolves after all of the given promises have either resolved or rejected, with an array of objects that each describe the outcome of each promise.
+    `Promise.allSettled(iterable)` - Wait until all promises have settled (each may resolve or reject).
 
-  ```js
-  const promiseOne = new Promise((resolve, reject) =>
-      setTimeout(resolve, 6000))
-  const promiseTwo = new Promise((resolve, reject) =>
-      setTimeout(reject, 3000))
+    Returns a Promise that resolves after all of the given promises have either resolved or rejected, with an array of objects that each describe the outcome of each promise.
 
-  // Even though the first promise that returns(after 3 sec.) is rejected .allSettled doesn't care.
-  // It just checks for 6 sec. until all the promises are returned.
-  Promise.allSettled([promiseOne, promiseTwo]).then(data => console.log(data))
-      .catch(e => console.log('something failed', e));
-  ```
+    ```js
+    const promiseOne = new Promise((resolve, reject) =>
+        setTimeout(resolve, 6000))
+    const promiseTwo = new Promise((resolve, reject) =>
+        setTimeout(reject, 3000))
+
+    // Even though the first promise that returns(after 3 sec.) is rejected .allSettled doesn't care.
+    // It just checks for 6 sec. until all the promises are returned.
+    Promise.allSettled([promiseOne, promiseTwo]).then(data => console.log(data))
+        .catch(e => console.log('something failed', e));
+    ```
 
 + Promises serve the same purpose as callbacks.
 
-  ```js
-  // callback pyramid of doom
-  movePlayer(100, 'Left', function() {
-      movePlayer(400, 'Left', function() {
-          movePlayer(10, 'Right', function() {
-              movePlayer(330, 'Left', function() {
-              });
-          });
-      });
-  });
+    ```js
+    // callback pyramid of doom
+    movePlayer(100, 'Left', function() {
+        movePlayer(400, 'Left', function() {
+            movePlayer(10, 'Right', function() {
+                movePlayer(330, 'Left', function() {
+                });
+            });
+        });
+    });
 
-  // same code as above using Promise
-  movePlayer(100, 'Left')
-  .then(() => movePlayer(400, 'Left'))
-  .then(() => movePlayer(10, 'Right'))
-  .then(() => movePlayer(330, 'Left'))
-  ```
+    // same code as above using Promise
+    movePlayer(100, 'Left')
+    .then(() => movePlayer(400, 'Left'))
+    .then(() => movePlayer(10, 'Right'))
+    .then(() => movePlayer(330, 'Left'))
+    ```
 
 #### async...await
 
@@ -2630,136 +2710,136 @@ Reference: [Google Developers](https://developers.google.com/web/fundamentals/pr
 
 + Syntax:
 
-  ```js
-  // using Promises
-  movePlayer(100, 'Left')
+    ```js
+    // using Promises
+    movePlayer(100, 'Left')
     .then(() => movePlayer(400, 'Left'))
     .then(() => movePlayer(10, 'Right'))
     .then(() => movePlayer(330, 'Left'))
 
-  // same code using Async...Await
-  async function playerStart() {
-      await movePlayer(100, 'Left');  //pause
-      await movePlayer(400, 'Left');  //pause
-      await movePlayer(10, 'Right');  //pause
-      await movePlayer(330, 'Left');  //pause
-  }
-  ```
+    // same code using Async...Await
+    async function playerStart() {
+        await movePlayer(100, 'Left');  //pause
+        await movePlayer(400, 'Left');  //pause
+        await movePlayer(10, 'Right');  //pause
+        await movePlayer(330, 'Left');  //pause
+    }
+    ```
 
-  **async** - We first declare a function as async letting javascript to know "Hey this is an async function". And we declare it with the word `function` and then a function name. Also we can use function expression with `async` keyword before `function()`, e.g. `const getData = async function() {...}`.
+    **async** - We first declare a function as async letting javascript to know "Hey this is an async function". And we declare it with the word `function` and then a function name. Also we can use function expression with `async` keyword before `function()`, e.g. `const getData = async function() {...}`.
 
-  **await** - we have access to this keyword after we declared function with `async` keyword. `await` before a function means "pause the(`playerStart()`) function until I have something for you", so we're awaiting the response. We can use `await` keyword in front of any function that returns a *promise*. Once the promise is resolved then the function(`playerStart()`) moves to the next line and it awaits the next function.
+    **await** - we have access to this keyword after we declared function with `async` keyword. `await` before a function means "pause the(`playerStart()`) function until I have something for you", so we're awaiting the response. We can use `await` keyword in front of any function that returns a *promise*. Once the promise is resolved then the function(`playerStart()`) moves to the next line and it awaits the next function.
 
-  So the `await` keyword doesn't really do anything different than what a *promise* does. Since **async functions pause** their **execution** at any **“await” keyword** to wait for asynchronous expressions to resolve, they themselves become asynchronous (and hence why they have the `async` keyword in front of them). So the js engine keeps running code and will get back to the asynchronous function when the promise is returned.
+    So the `await` keyword doesn't really do anything different than what a *promise* does. Since **async functions pause** their **execution** at any **“await” keyword** to wait for asynchronous expressions to resolve, they themselves become asynchronous (and hence why they have the `async` keyword in front of them). So the js engine keeps running code and will get back to the asynchronous function when the promise is returned.
 
 + The benefit of using `async..await` is that we can now assign variables to functions with `await` in front of them like we do in *synchronous programming*. These variables will keep the result of each function.
 
-  ```js
-  async function playerStart() {
-      const first = await movePlayer(100, 'Left');  //pause
-      const second = await movePlayer(400, 'Left');  //pause
-      const third = await movePlayer(10, 'Right');  //pause
-      const fourth = await movePlayer(330, 'Left');  //pause
-  }
-  ```
+    ```js
+    async function playerStart() {
+        const first = await movePlayer(100, 'Left');  //pause
+        const second = await movePlayer(400, 'Left');  //pause
+        const third = await movePlayer(10, 'Right');  //pause
+        const fourth = await movePlayer(330, 'Left');  //pause
+    }
+    ```
 
 + More realistic examples with fetch API:
 
-  ```js
-  // using Promises and .then notation
-  fetch('https://jsonplaceholder.typicode.com/users')
+    ```js
+    // using Promises and .then notation
+    fetch('https://jsonplaceholder.typicode.com/users')
     .then(resp => resp.json())
     .then(console.log)
 
-  // same code using Async...Await(Syntactic Sugar)
-  async function fetchUsers() {
-      const resp = await fetch('https://jsonplaceholder.typicode.com/users')
-      const data = await resp.json();
-      console.log(data);
-  }
-
-  fetchUsers()
-
-  // in the code above we can wrap the code inside of the function within a `try...catch` block to catch errors
-  // OR we can even use a `.catch` with async/await:
-  async function fetchUsers() {
-      const resp = await fetch('https://jsonplaceholder.typicode.com/users').catch(err => console.log('ooops', err))
-      const data = await resp.json();
-      console.log(data);
-  }
-
-  fetchUsers()
-  ```
-
-  ```js
-  // using Promise.all
-  const urls = [
-      'https://jsonplaceholder.typicode.com/users',
-      'https://jsonplaceholder.typicode.com/posts',
-      'https://jsonplaceholder.typicode.com/albums',
-  ]
-
-  Promise.all(urls.map(url =>
-      fetch(url).then(resp => resp.json())
-  )).then(array => {
-      console.log('uaers', array[0])
-      console.log('posts' , array[1])
-      console.log('albums' , array[2])
-  }).catch(() => console.log('oops'))
-
-  // same code using Async...Await(Syntactic Sugar)
-  const getData = async function() {
-      try {
-         const [ users, posts, albums ] = await Promise.all(urls.map(url =>
-              fetch(url).then(resp => resp.json())
-          ))
-          console.log('uaers', users)
-          console.log('posts' , posts)
-          console.log('albums' , albums)
-      } catch(err) {
-          console.log('oops', err)
-      }
-  }
-
-  getData()
-
-  // ADVANCED: Update of the above code to also have
-  // async await for this line: fetch(url).then(resp => resp.json())
-  // so there is no .then() calls anymore
-  const getData = async function () {
-    try {
-      const [users, posts, albums] = await Promise.all(
-        urls.map(async function (url) {
-          const response = await fetch(url);
-          return response.json();
-        }),
-      );
-      console.log("users", users);
-      console.log("posta", posts);
-      console.log("albums", albums);
-    } catch (err) {
-      console.log("oops", err);
+    // same code using Async...Await(Syntactic Sugar)
+    async function fetchUsers() {
+        const resp = await fetch('https://jsonplaceholder.typicode.com/users')
+        const data = await resp.json();
+        console.log(data);
     }
-  };
 
-  getData()
+    fetchUsers()
 
-  // ADVANCED - Another solution: without Promise.all and using array functions
-  const fetchAll = urls => {//no async
+    // in the code above we can wrap the code inside of the function within a `try...catch` block to catch errors
+    // OR we can even use a `.catch` with async/await:
+    async function fetchUsers() {
+        const resp = await fetch('https://jsonplaceholder.typicode.com/users').catch(err => console.log('ooops', err))
+        const data = await resp.json();
+        console.log(data);
+    }
+
+    fetchUsers()
+    ```
+
+    ```js
+    // using Promise.all
+    const urls = [
+        'https://jsonplaceholder.typicode.com/users',
+        'https://jsonplaceholder.typicode.com/posts',
+        'https://jsonplaceholder.typicode.com/albums',
+    ]
+
+    Promise.all(urls.map(url =>
+        fetch(url).then(resp => resp.json())
+    )).then(array => {
+        console.log('uaers', array[0])
+        console.log('posts' , array[1])
+        console.log('albums' , array[2])
+    }).catch(() => console.log('oops'))
+
+    // same code using Async...Await(Syntactic Sugar)
+    const getData = async function() {
+        try {
+            const [ users, posts, albums ] = await Promise.all(urls.map(url =>
+                fetch(url).then(resp => resp.json())
+            ))
+            console.log('uaers', users)
+            console.log('posts' , posts)
+            console.log('albums' , albums)
+        } catch(err) {
+            console.log('oops', err)
+        }
+    }
+
+    getData()
+
+    // ADVANCED: Update of the above code to also have
+    // async await for this line: fetch(url).then(resp => resp.json())
+    // so there is no .then() calls anymore
+    const getData = async function () {
+    try {
+        const [users, posts, albums] = await Promise.all(
+        urls.map(async function (url) {
+            const response = await fetch(url);
+            return response.json();
+        }),
+        );
+        console.log("users", users);
+        console.log("posta", posts);
+        console.log("albums", albums);
+    } catch (err) {
+        console.log("oops", err);
+    }
+    };
+
+    getData()
+
+    // ADVANCED - Another solution: without Promise.all and using array functions
+    const fetchAll = urls => {//no async
     urls.map(async url => {
-      try {
+        try {
         const resp = await fetch(url);
         const data = await resp.json();
         console.log(data);
         }
-      catch (err) {
+        catch (err) {
         console.log('error', err);
         }
     });
-  }
+    }
 
-  fetchAll(urls);
-  ```
+    fetchAll(urls);
+    ```
 
 #### for await of
 
