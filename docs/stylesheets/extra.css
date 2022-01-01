@@ -1,7 +1,11 @@
 .md-grid {
-  max-width: initial;
+  /* max-width: initial; */
+  max-width: 1650px;
 }
 
+.md-sidebar {
+  width: 10rem;
+}
 
 /* Improving images in docs(https://github.com/squidfunk/mkdocs-material/issues/1635) */
 img {
@@ -30,7 +34,7 @@ img {
     position: relaative;
 }
 
-
+/* for pdf embedding */
 .pdf {
   width: 100%;
   height: 56rem;
@@ -38,7 +42,7 @@ img {
   overflow: auto;
 }
 
-
+/* for code highlighting */
 .highlight .nx {
   color: #d38648;
 }

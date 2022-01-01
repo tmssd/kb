@@ -16,27 +16,27 @@
 
 ## Documentation
 
-+ [mkdocs](https://www.mkdocs.org)
-+ [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
-    + [Getting started](https://squidfunk.github.io/mkdocs-material/getting-started/)
-    + [Setup](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
-    + [Reference](https://squidfunk.github.io/mkdocs-material/reference/)
-    + [PyMdown Extensions(built-in into Material for MkDocs)](https://facelessuser.github.io/pymdown-extensions/)
++ [mkdocs](https://www.mkdocs.org){target=_blank}
++ [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/){target=_blank}
+    + [Getting started](https://squidfunk.github.io/mkdocs-material/getting-started/){target=_blank}
+    + [Setup](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/){target=_blank}
+    + [Reference](https://squidfunk.github.io/mkdocs-material/reference/){target=_blank}
+    + [PyMdown Extensions(built-in into Material for MkDocs)](https://facelessuser.github.io/pymdown-extensions/){target=_blank}
 + Plugins:
-    + [List of plugins from official mkdocs github repo](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins#site-management)
-    + [The best MkDocs plugins and customizations(medium)](https://chrieke.medium.com/the-best-mkdocs-plugins-and-customizations-fc820eb19759)
-    + [mkdocs-awesome-pages-plugin](https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin)
-    + [mkdocs-exclude](https://github.com/apenwarr/mkdocs-exclude)
-    + [mkdocs-video](https://github.com/soulless-viewer/mkdocs-video)
-    + [mkdocs-macros-plugin](https://github.com/fralau/mkdocs_macros_plugin)
+    + [List of plugins from official mkdocs github repo](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins#site-management){target=_blank}
+    + [The best MkDocs plugins and customizations(medium)](https://chrieke.medium.com/the-best-mkdocs-plugins-and-customizations-fc820eb19759){target=_blank}
+    + [mkdocs-awesome-pages-plugin](https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin){target=_blank}
+    + [mkdocs-exclude](https://github.com/apenwarr/mkdocs-exclude){target=_blank}
+    + [mkdocs-video](https://github.com/soulless-viewer/mkdocs-video){target=_blank}
+    + [mkdocs-macros-plugin](https://github.com/fralau/mkdocs_macros_plugin){target=_blank}
 
 + Style:
     + Code syntax highlight:
-        1. [Code blocks: Custom syntax theme(docs)](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#custom-syntax-theme)
-        2. [Source style sheet(_colors.scss)](https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/_colors.scss#L68)
-        3. [Syntax theme definition(_highlight.scss)](https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/extensions/pymdownx/_highlight.scss#L86)
+        1. [Code blocks: Custom syntax theme(docs)](https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#custom-syntax-theme){target=_blank}
+        2. [Source style sheet(_colors.scss)](https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/_colors.scss#L68){target=_blank}
+        3. [Syntax theme definition(_highlight.scss)](https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/extensions/pymdownx/_highlight.scss#L86){target=_blank}
 
-    + [Icons + Emojis Search](https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/)
+    + [Icons + Emojis Search](https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/){target=_blank}
         + :fontawesome-brands-youtube: - `:fontawesome-brands-youtube:`
         + :material-thumb-up: - `:material-thumb-up:`
         + :material-thumb-down: - `:material-thumb-down:`
@@ -48,7 +48,7 @@
         + :fontawesome-regular-file-powerpoint: - `:fontawesome-regular-file-powerpoint:`
 
 + Personal customization to implement in the future:
-    + [medium-zoom](https://github.com/francoischalifour/medium-zoom#selectors), [medium-zoom docsify plugin](https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js)
+    + [medium-zoom](https://github.com/francoischalifour/medium-zoom#selectors){target=_blank}, [medium-zoom docsify plugin](https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js){target=_blank}
 
 + How To:
     + Embed image with captions
@@ -62,7 +62,7 @@
         </figure>
         ```
 
-    + Embed video: [MkDocs Video plugin](https://github.com/soulless-viewer/mkdocs-video), [1](https://github.com/squidfunk/mkdocs-material/issues/492), [2](https://github.com/mkdocs/mkdocs/issues/243)
+    + Embed video: [MkDocs Video plugin](https://github.com/soulless-viewer/mkdocs-video){target=_blank}, [1](https://github.com/squidfunk/mkdocs-material/issues/492){target=_blank}, [2](https://github.com/mkdocs/mkdocs/issues/243){target=_blank}
     + Embed YouTube Video List
 
         copy initial embed code from the YouTube and then set `#!html width="400vw" height="225vw"`
@@ -90,4 +90,4 @@
             <a href="../foo.pdf" class="image fit" style="color: red">:fontawesome-solid-file-pdf:</a>
             ```
 
-        3. [docsify-pdf-embed.js](https://unpkg.com/docsify-pdf-embed-plugin@1.0.8/src/docsify-pdf-embed.js)
+        3. [docsify-pdf-embed.js](https://unpkg.com/docsify-pdf-embed-plugin@1.0.8/src/docsify-pdf-embed.js{target=_blank}
