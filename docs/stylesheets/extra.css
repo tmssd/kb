@@ -46,7 +46,7 @@ img {
 :root > * {
 }
 
-[data-md-color-scheme=default] .md-typeset p > code {
+[data-md-color-scheme=default] .md-typeset code:not(.highlight code) {
     background-color: #E3E3E3;
 }
 
