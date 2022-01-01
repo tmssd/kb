@@ -1145,8 +1145,6 @@ So when we copy a variable into another variable - we copy the value and then cr
 
         + Otherwise it returns **undefined**
 
-        > **Note:**
-        >
         >`find()` does not execute the function for empty arrays.
         >
         >`find()` does not change the original array.
