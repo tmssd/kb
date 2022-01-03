@@ -10,6 +10,7 @@
 !.gitkeep
 
 site/
+mkdocssh.yml
 
 *+OFFL*
 *+GH*
