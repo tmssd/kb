@@ -90,4 +90,4 @@
             <a href="../foo.pdf" class="image fit" style="color: red">:fontawesome-solid-file-pdf:</a>
             ```
 
-        3. [docsify-pdf-embed.js](https://unpkg.com/docsify-pdf-embed-plugin@1.0.8/src/docsify-pdf-embed.js{target=_blank}
+        3. [docsify-pdf-embed.js](https://unpkg.com/docsify-pdf-embed-plugin@1.0.8/src/docsify-pdf-embed.js){target=_blank}

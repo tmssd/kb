@@ -26,6 +26,7 @@ theme:
     - navigation.indexes
 plugins:
   - search
+  # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
   - awesome-pages
   # https://github.com/apenwarr/mkdocs-exclude
   - exclude:

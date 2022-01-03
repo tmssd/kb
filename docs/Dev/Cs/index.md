@@ -1,4 +1,4 @@
-# Computer Sciense
+# Conventions and standards
 
 ## Semantic Versioning: aa.bb.cc
 

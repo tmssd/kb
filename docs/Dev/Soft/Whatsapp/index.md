@@ -1,6 +1,8 @@
-# Whatsapp-nativefier
+# Whatsapp
 
-WhatsApp desktop built with nativefier (electron)
+## Whatsapp-nativefier
+
+WhatsApp desktop built with nativefier(electron)
 
 Installation: [AUR](https://aur.archlinux.org/packages/whatsapp-nativefier), [GitHub Releases](https://github.com/frealgagu/archlinux.whatsapp-nativefier/releases/)
 

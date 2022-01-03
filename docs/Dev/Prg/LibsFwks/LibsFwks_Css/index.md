@@ -1,7 +1,3 @@
-<!-- ---
-title: Libs & Fwks for Css
---- -->
-
 # Css Libraries and Frameworks
 
 ## Tachyons - css toolkit
@@ -44,5 +40,5 @@ title: Libs & Fwks for Css
 
 !!! info ""
 
-    [Official Demo Website](https://particles.js.org/){target=_blank}  
+    [Official Demo Website](https://particles.js.org/){target=_blank}
     [npm: react-tsparticles](https://www.npmjs.com/package/react-tsparticles){target=_blank}
