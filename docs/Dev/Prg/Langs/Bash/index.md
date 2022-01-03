@@ -149,7 +149,7 @@ echo "Created hello/world.txt"
 
 ### Bash Shell Shortcuts
 
-<object data="./bash-shortcuts.pdf" type="application/pdf" class="pdf"></object>
+![bash-shortcuts.jpg](bash-shortcuts.jpg){: .zoom}
 
 ## Bash Tips & Tricks
 

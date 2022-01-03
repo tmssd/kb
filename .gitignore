@@ -10,7 +10,10 @@
 !.gitkeep
 
 site/
+docs/Foreign-Languages/
+docs/index.md
 mkdocssh.yml
+.pagessh
 
 *+OFFL*
 *+GH*

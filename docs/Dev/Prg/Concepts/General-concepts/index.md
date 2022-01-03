@@ -1,4 +1,13 @@
 # General Concepts
+## Conventions and standards
+
+### Semantic Versioning: aa.bb.cc
+
+**aa**: major release, quite different from previous version
+
+**bb**: minor release, add a new feature
+
+**cc**: patch release, a bug fix
 
 ## Environment variables
 
@@ -9,6 +18,8 @@ Each environment (the location a project runs on) has its own variables, benefit
 #### Bash
 
 Reference:
+
+<object data="./environmet-variables.pdf" type="application/pdf" class="pdf"></object>
 
 + Как хранить пароли и ключи в коде проектов? Всё о переменных окружения. Пример с Django
 

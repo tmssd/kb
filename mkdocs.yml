@@ -39,7 +39,7 @@ plugins:
       type: timeago
   - exclude:
       glob:
-        - "*+OFFL/*"
+        - "*+OFFL*"
   # https://github.com/soulless-viewer/mkdocs-video
   - mkdocs-video:
       css_style:
