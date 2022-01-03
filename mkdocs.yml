@@ -1,7 +1,11 @@
 site_name: tskb
+repo_url: https://github.com/tmssd/kb
+repo_name: tmssd/kb
+edit_uri: edit/main/docs/
 theme:
   icon:
       logo: material/book-open-page-variant
+      repo: fontawesome/brands/github
   name: material
   palette:
     - scheme: default
@@ -29,6 +33,8 @@ plugins:
   # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
   - awesome-pages
   # https://github.com/apenwarr/mkdocs-exclude
+  - git-revision-date:
+      enabled_if_env: CI
   - exclude:
       glob:
         - "*+OFFL/*"
