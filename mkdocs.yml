@@ -33,7 +33,6 @@ plugins:
   # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
   - awesome-pages
   # https://github.com/apenwarr/mkdocs-exclude
-  - git-revision-date
   # - git-revision-date:
       # enabled_if_env: CI
   - git-revision-date-localized:

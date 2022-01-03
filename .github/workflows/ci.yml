@@ -15,6 +15,7 @@ jobs:
               mkdocs-material \
               mkdocs-awesome-pages-plugin \
               mkdocs-git-revision-date-plugin \
+              mkdocs-git-revision-date-localized-plugin \
               mkdocs-exclude \
               mkdocs-video \
       - run: mkdocs gh-deploy --force
