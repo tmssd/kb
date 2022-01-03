@@ -3,6 +3,10 @@
   max-width: 1650px;
 }
 
+main.md-main {
+    margin-top: -45px;
+}
+
 .md-sidebar {
   width: 10rem;
 }
