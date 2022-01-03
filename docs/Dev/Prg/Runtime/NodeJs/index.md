@@ -6,6 +6,8 @@
 
     [Official Docs](https://nodejs.org/en/docs/)
 
+    [Node JS Cheat Sheet(by ZTM)](https://zerotomastery.io/cheatsheets/node-js-cheat-sheet/)
+
     ![type:video](https://www.youtube.com/embed/3aGSqasVPsI)
 
     Руководство по Node.js:

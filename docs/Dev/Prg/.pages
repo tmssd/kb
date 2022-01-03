@@ -1,6 +1,7 @@
 nav:
   - 'Dev Resources': 'DevRes'
   - 'Concepts'
+  - 'Design'
   - 'IDE'
   - 'Langs'
   - 'Libs & Fwks': 'LibsFwks'

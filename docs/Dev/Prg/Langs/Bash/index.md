@@ -155,7 +155,44 @@ echo "Created hello/world.txt"
 
 ### Useful Commands
 
-`du -hs` - show the current folder's size
++ `du -hs` - show the current folder's size
+
++ convert pdf to jpg
+
+    **Using `pdftoppm` tool**
+
+    basic command format:
+
+    `#! bash pdftoppm -jpeg -r 300 input.pdf output`
+
+    The `-jpeg` sets the output image format to JPG, `-r 300` sets the output image resolution to 300 DPI, and the word `output` will be the prefix to all pages of images, which will be numbered and placed into your current directory you are working in. A better way, in my opinion, however, is to use `mkdir -p images` first to create an "images" directory, then set the output to `images/pg` so that all output images will be placed cleanly into the `images` dir you just created, with the file prefix `pg` in front of each of their numbers.
+
+    Therefore, here are my favorite commands:
+
+    1. [Produces ~1MB-sized files per pg] Output in **.jpg** format at **300 DPI**:
+
+        ```bash
+        mkdir -p images && pdftoppm -jpeg -r 300 mypdf.pdf images/pg
+        ```
+
+    2. [Produces ~2MB-sized files per pg] Output in **.jpg** format **at highest quality (least compression)** and still at **300 DPI**:
+
+        ```bash
+        mkdir -p images && pdftoppm -jpeg -jpegopt quality=100 -r 300 mypdf.pdf images/pg
+        ```
+
+    **Using ImageMagick's `convert` tool**
+
+    1. install `imagemagick`
+
+    2. use `convert` like this:
+
+        ```bash
+        convert input.pdf output.jpg
+
+        # For good quality use these parameters
+        convert -density 300 -quality 100 in.pdf out.jpg
+        ```
 
 ### Run Commands in the Background
 
