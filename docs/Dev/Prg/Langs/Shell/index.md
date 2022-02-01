@@ -1,11 +1,13 @@
-# Bash
+# Shell
 
-## Bash Learning Sources
+## Bash
+
+### Bash Learning Sources
 
 + [Learn X in Y minutes](https://learnxinyminutes.com/docs/bash/)
 + [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls)
 
-## Bash Essentials
+### Bash Essentials
 
 ```bash
 #! /bin/bash
@@ -147,13 +149,13 @@ echo "Hello World" >> "hello/world.txt"
 echo "Created hello/world.txt"
 ```
 
-### Bash Shell Shortcuts
+#### Bash Shell Shortcuts
 
 ![bash-shortcuts.jpg](bash-shortcuts.jpg){: .zoom}
 
-## Bash Tips & Tricks
+### Bash Tips & Tricks
 
-### Useful Commands
+#### Useful Commands
 
 + `du -hs` - show the current folder's size
 
@@ -194,7 +196,7 @@ echo "Created hello/world.txt"
         convert -density 300 -quality 100 in.pdf out.jpg
         ```
 
-### Run Commands in the Background
+#### Run Commands in the Background
 
 1. End a Command with **&**
 
@@ -218,7 +220,7 @@ echo "Created hello/world.txt"
 
         `nohup` bypasses the HUP signal (signal hang up), making it possible to run commands in the background even when the terminal is off. Combine this command with redirection to “/dev/null” (to prevent nohup from making a nohup.out file), and everything goes to the background with one command: `nohup COMMAND &>/dev/null &`
 
-## Bash Utilities
+### Bash Utilities
 
 + [Basher - bash package manager](https://www.basher.it/)
 + [dotenv](https://github.com/bashup/dotenv)
