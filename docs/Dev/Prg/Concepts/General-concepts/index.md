@@ -36,9 +36,9 @@
     + [HowTo: Set an Environment Variable in Windows - Command Line and Registry](http://www.dowdandassociates.com/blog/content/howto-set-an-environment-variable-in-windows-command-line-and-registry/)
     + [Set PATH and other environment variables in Windows 10](https://www.opentechguides.com/how-to/article/windows-10/113/windows-10-set-path.html)
 
-+ Environment is
-+ Each environment (the location a project runs on) has its own variables.
-+ An *environment variable* is a storage location that has a ^^name^^ and a ^^value^^.
++ Environment is an area that the shell builds every time that it starts a session that contains variables that define system properties.
++ The environment provides a medium through which the shell process can get or set settings and, in turn, pass these on to its child processes. It implemented as strings that represent key-value pairs. If multiple values are passed, they are typically separated by colon(`:`) characters: `#!bash KEY=value1:value2:...`. If the value contains significant white-space, quotations(as double as single quotes) are used: `#!bash KEY="value with spaces"`, `#!bash KEY='value with spaces'`.
++ An *environment variable* is a storage location that has a ^^name(key)^^ and a ^^value^^. The keys in these scenarios are variables. They can be one of two types, *environmental variables* or *shell variables*(==[see below](#types-of-environment-variables)==).
 + Benefit to things that should **keep secret** or **need to be dynamic**, like API keys, PORT, database url.
 
 ### Common Environment Variables
@@ -59,15 +59,27 @@
 ### Common commands
 
 + `#!bash echo $VARIABLE_NAME` or `#!bash printenv VARIABLE_NAME` - examine specific variable
-+ `#!bash env` or `#!bash printenv` - examine all the environment variables that are set
-+ `#!bash KEY=VALUE` or `#!bash export KEY=VALUE` - set *local* or *global* variable(see below)
++ `#!bash env` or `#!bash printenv` - examine all the environmental variables that are set
++ `#!bash set` - list of all *shell variables*, *environmental variables*, *local variables*(and also *shell functions* in Bash)
+    + `(#!bash set -o posix; set)` - for Bash: clean up the output by specifying that `set` should operate in POSIX mode, which won’t print the *shell functions* by executing this in a sub-shell(by wrapping the whole command with parenthesis) so that it does not change our current environment.
++ `#!bash comm -23 <(set | sort) <(env | sort)`, `#!bash comm -23 <(set -o posix; set | sort) <(env | sort)`(in Bash) - list of only shell variables
+
+    !!! warning ""
+
+        This will likely still include a few environmental variables, due to the fact that the `set` outputs quoted values, while the `printenv` and `env` do not quote the values of strings.
+
++ `#!bash KEY=VALUE` or `#!bash export KEY=VALUE` - set *shell* or *environmental* variable(see below)
++ `#!bash env VAR1="value1" VAR2="value2" command_to_run command_options` - modify the environment that programs run in by passing a set of variable definitions into a command
++ `#!bash printenv | grep VARIABLE_NAME` - check if variable is an *environmental variable*
++ `#!bash set | grep VARIABLE_NAME` - check if variable is a *shell variable*
++ `#!bash export -n VARIABLE_NAME` - demote an environmental variable, i.e. set to shell variable
 + `#!bash unset VARIABLE_NAME` - remove or delete an environment variable
 
 ### Types of environment variables
 
-+ ***Local(Shell?) Variables*** - defined by `KEY=VALUE` format. Only effects the current running process, e.g. within the running script or shell(when defined in it).
++ ***Shell(Local?) Variables*** - defined using `KEY=VALUE` format. Only effects the current running process, e.g. within the running script or shell(when defined in it).
 
-+ ***Environmental(Global?) Variables*** - defined by `export KEY=VALUE` format. `export` exports the variable assignment to child processes of the shell in which the export command was ran. In general, when a process is started it inherits the exported environment variables of the process that spawned it.
++ ***Environmental(Global?) Variables*** - defined using `export KEY=VALUE` format. `export` exports the variable assignment to child processes of the shell in which the export command was ran. In general, when a process is started it inherits the exported environment variables of the process that spawned it.
 
 + Local vs. Global variables example:
 
@@ -97,21 +109,32 @@
 
 ### Levels of environment variables
 
-1. **^^Operating System^^** - available for ^^any^^ user, session, app etc. Set in `/etc/environment` file.
+1. **^^System-wide^^** - available for ^^any^^ user, session, app etc. Set in folowing files:
+
+    + `/etc/environment` - This file is parsed by pam_env module. Syntax: simple "KEY=VAL" pairs on separate lines.
+
+    + for *Login Shells*:
+        + Bash(read by shell in this order!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): `/etc/profile` -> logged-in user dotfiles
+
+    + for *Non-Login Shells*:
+
+        + Bash(read by shell in this order!): `/etc/bash.bashrc` -> logged-in user dotfiles
+
+        + Zsh(read by shell in this order!):
 
     !!! note
 
         Restart system after modifying `/etc/environment` so changes will take effect.
 
-2. **^^User Session^^** - available for ^^current^^ logged-in user in all processes. Set in following dotfiles of the shell that is currently used by that user in a *KEY=VALUE* format:
+2. **^^User^^** - available for ^^current^^ logged-in user. Set in following dotfiles of the shell that is currently used by that user in a *KEY=VALUE* format:
 
     !!! note
 
-        **IMHO:** `export KEY=VALUE` can be used too, but thus it exports the variable assignment to child processes of the shell which is in my opinion quite unneseccairy for most of defined envs because each time we run new subshell those envs get **sourced** by the shell.
+        **IMHO:** `export KEY=VALUE` can be used too, but thus it exports the variable assignment to child processes of the shell which is in my opinion quite unneseccairy for most of defined envs because each time we run new sub-shell those envs get **sourced** by the shell.
 
-    + For *Login Shells*:
+    + for *Login Shells*:
 
-        + Bash(read by shell in this order!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): `/etc/profile` -> `~/.bash_profile` -> `~/.bash_login` -> `~/.profile`
+        + Bash(read by shell in this order!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): system-wide settings files -> `~/.bash_profile` -> `~/.bash_login` -> `~/.profile`
 
             !!! info ""
 
@@ -119,21 +142,21 @@
 
         + Zsh(read by shell in this order!): `/
 
-    + For *Non-Login Shells*:
+    + for *Non-Login Shells*:
 
-        + Bash(read by shell in this order!): `/etc/bash.bashrc` -> `~/.bashrc`
+        + Bash(read by shell in this order!): system-wide settings files -> `~/.bashrc`
 
         + Zsh(read by shell in this order!): `~/.zshrc`
 
     !!! tip
 
-        When you have both *Bash* and *Zsh* shells in your system it is convenient to define $PATH(and other system envs) and also some other user-defined envs in `~/.profile` and source it in `~/.zprofile` by adding `#!bash [[ -e ~/.profile ]] && emulate sh -c '. ~/.profile'` line at the top of the file.
+        When you have both *Bash* and *Zsh* shells in your system it is convenient to define $PATH(and other system envs) and also some other user-defined envs in `~/.profile` and source it through `~/.zprofile` by adding `#!bash [[ -e ~/.profile ]] && emulate sh -c '. ~/.profile'` line at the top of the file.
 
         There is also other complicated scenario with multiple shells and ways to arrange your envs in one place:
 
-3. **^^Interactive Shell Session^^** - available for current shell session
+3. **^^Session^^** - available for current shell session and its child processes. Set by using *environmental variables*.
 
-4. **^^Application/Script^^** - available for current running app/script ^^only^^. Set using *KEY=VALUE* format without prepending `export` command, e.g.:
+4. **^^Application/Script^^** - available for current running app/script process ^^only^^. Set by using *shell variables*, e.g.:
 
     ```bash
     # set port of server
@@ -150,10 +173,6 @@
     !!! note
 
         Because such varibales are not exported(using `export`) they called **local variables**(or **shell variables** when they contained exclusively within the shell in which they were set or defined. There are some predefined by shell vars of such type and they are often used to keep track of ephemeral data, like the current working directory(`PWD`).)
-
-+ Как хранить пароли и ключи в коде проектов? Всё о переменных окружения. Пример с Django
-
-    ![type:video](https://www.youtube.com/embed/Y9MRCxq4DIc)
 
 ## Regex
 
