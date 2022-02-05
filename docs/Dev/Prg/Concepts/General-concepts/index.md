@@ -109,22 +109,63 @@
 
 ### Levels of environment variables
 
+!!! info ""
+
+    **Definitions:**
+    + ^^Login Shell^^ - is a shell session that begins by authenticating the user, e.g. if you signing into a terminal session or through SSH and authenticate.
+    + ^^Non-Login Shell^^ -is a new shell session from within your authenticated session.
+    + ^^Interactive Shell^^ - is a shell session that is attached to a terminal.
+    + ^^Non-Interactive Shell^^ - is a shell session that is not attached to a terminal session. It’s most often run from a script or similar. It is important to note that this often influences your `PATH` variable.
+    + Detect the type of shell:
+
+        ```bash
+        ## Detect login/non-login shells:
+        shopt -q login_shell && echo 'login' || echo 'not-login'    # for Bash only
+        # or
+        shopt | grep login_shell                                    # for Bash only
+        # or
+        echo $0                                                     # if output prepended with '-' then it is a login shell, e.g. '-zsh'
+
+        ## Detect interactive/non-interactive shells:
+        [[ $- == *i* ]] && echo 'Interactive' || echo 'not-interactive'
+        ```
+
+    **Reference:**
+    + [Unix Shells: Bash, Fish, Ksh, Tcsh, Zsh startup files](https://hyperpolyglot.org/unix-shells#startup-file)
+    + [Difference between Login Shell and Non-Login Shell?(Unix & Linux Stack Exchange)](https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell)
+    + [Zsh/Bash startup files loading order (.bashrc, .zshrc etc.)](https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/)
+    + [Zsh - Startup/Shutdown files(ArchWiki)](https://wiki.archlinux.org/title/Zsh#Startup/Shutdown_files)
+    + <figure markdown>
+        ![Javascript Engine](./shell-startup-graph.png){: .zoom}
+        <figcaption>
+            <a href="image-source-link" target="_blank">https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html</a>
+        </figcaption>
+      </figure>
+
 1. **^^System-wide^^** - available for ^^any^^ user, session, app etc. Set in folowing files:
 
-    + `/etc/environment` - This file is parsed by pam_env module. Syntax: simple "KEY=VAL" pairs on separate lines.
+    + `/etc/environment` - This file is parsed by *pam_env* module. Syntax: simple "KEY=VAL" pairs on separate lines.
 
     + for *Login Shells*:
         + Bash(read by shell in this order!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): `/etc/profile` -> logged-in user dotfiles
 
-    + for *Non-Login Shells*:
+        + Zsh(read by shell in this order!): `/etc/zshenv` -> logged-in user dotfile -> `/etc/zprofile` -> logged-in user dotfile -> `/etc/zshrc` -> logged-in user dotfile -> `/etc/zlogin` -> logged-in user dotfile
+
+    + for *Non-Login Interactive Shells*:
 
         + Bash(read by shell in this order!): `/etc/bash.bashrc` -> logged-in user dotfiles
 
-        + Zsh(read by shell in this order!):
+        + Zsh(read by shell in this order!): `/etc/zshenv` -> logged-in user dotfile -> `/etc/zshrc` -> logged-in user dotfile
+
+    + for *Non-Login Non-Interactive Shells(scripts etc.)*:
+
+        + Bash: *BASH_ENV* environmental variable
+
+        + Zsh(read by shell in this order!): `/etc/zshenv` -> logged-in user dotfile
 
     !!! note
 
-        Restart system after modifying `/etc/environment` so changes will take effect.
+        Restart system after modifying these system files so changes will take effect.
 
 2. **^^User^^** - available for ^^current^^ logged-in user. Set in following dotfiles of the shell that is currently used by that user in a *KEY=VALUE* format:
 
@@ -134,25 +175,57 @@
 
     + for *Login Shells*:
 
-        + Bash(read by shell in this order!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): system-wide settings files -> `~/.bash_profile` -> `~/.bash_login` -> `~/.profile`
+        + Bash(read by shell in this order but it executes only the first of those files found!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): system-wide settings files -> `~/.bash_profile` -> `~/.bash_login` -> `~/.profile`
+
+            !!! tip
+
+                Put these in `~/.profile` at the top in order to source `~/.bashrc`
+                ```bash
+                # ~/.profile must include ~/.bashrc, but only if the shell is interactive and is bash but not if the login shell is some other shell
+                case "$-" in *i*)
+                    if
+                        test "$BASH_VERSION" &&\
+                        test "${0#-}" != sh &&\
+                        test -r "$HOME"/.bashrc
+                    then
+                        . "$HOME"/.bashrc
+                    fi
+                    ;;
+                esac
+                ```
 
             !!! info ""
 
-                [Configuring your login sessions(for 5 different environments!) with dot files](http://mywiki.wooledge.org/DotFiles)
+                + [Configuring your login sessions(for 5 different environments!) with dot files](http://mywiki.wooledge.org/DotFiles)
+                + [Difference between .bashrc and .bash_profile(SuperUser)](https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile)
 
-        + Zsh(read by shell in this order!): `/
+        + Zsh(read by shell in this order!): system-wide settings file -> `$ZDOTDIR/.zshenv` -> system-wide settings file -> `$ZDOTDIR/.zprofile` -> system-wide settings file -> `$ZDOTDIR/.zshrc` -> system-wide settings file -> `$ZDOTDIR/.zlogin`
 
-    + for *Non-Login Shells*:
+    + for *Non-Login Interactive Shells*:
 
-        + Bash(read by shell in this order!): system-wide settings files -> `~/.bashrc`
+        + Bash(read by shell in this order!):system-wide settings files -> `~/.bashrc`
 
-        + Zsh(read by shell in this order!): `~/.zshrc`
+        + Zsh(read by shell in this order!): system-wide settings file -> `$ZDOTDIR/.zshenv` -> system-wide settings file -> `$ZDOTDIR/.zshrc`
+
+    + for *Non-Login Non-Interactive Shells(scripts etc.)*:
+
+        + Bash: *BASH_ENV* environmental variable
+
+        + Zsh(read by shell in this order!): system-wide settings -> `$ZDOTDIR/.zshenv`
+
+    !!! note
+
+        If `$ZDOTDIR` is not set, `$HOME` is used instead.
 
     !!! tip
 
-        When you have both *Bash* and *Zsh* shells in your system it is convenient to define $PATH(and other system envs) and also some other user-defined envs in `~/.profile` and source it through `~/.zprofile` by adding `#!bash [[ -e ~/.profile ]] && emulate sh -c '. ~/.profile'` line at the top of the file.
+        When you have both *Bash* and *Zsh* shells in your system it is convenient to define $PATH(and other system envs) and also some other user-defined envs in `~/.profile` and source it through `~/.zprofile` by adding `#!bash [[ -e ~/.profile ]] && emulate sh -c '. ~/.profile'` line at the top of the file([Zsh not hitting ~/.profile(SuperUser thread comment)](https://superuser.com/a/398990)).
 
         There is also other complicated scenario with multiple shells and ways to arrange your envs in one place:
+
+        + [Xsh - A simple framework for shell configuration management.](https://github.com/sgleizes/xsh)
+        + [Is there a ".bashrc" equivalent file read by all shells?(SuperUser thread comment)](https://unix.stackexchange.com/a/44619)
+        +
 
 3. **^^Session^^** - available for current shell session and its child processes. Set by using *environmental variables*.
 
