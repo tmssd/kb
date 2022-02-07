@@ -12,6 +12,7 @@
 + [**Free Developer Resources**](https://zerotomastery.io/resources/?utm_source=github&utm_medium=resources) - Hand-picked list of Andrei Neagoe's (ZTM instuctor) favourite resources.
 + [**Cheatography**](https://cheatography.com/) - Over 4,000 Free Cheat Sheets, Revision Aids and Quick References!
 + [**DevDocs**](https://devdocs.io/) - Combines multiple API documentations.
++ [**Hyperpolyglot**](https://hyperpolyglot.org/) - Programming languages and tools comparison in a side-by-side format.
 + [**Learn X in Y minutes**](https://learnxinyminutes.com/) - Programming languages and concepts in a nutshell.
 + [**Metanit**](https://metanit.com/) - Сайт о программировании(руководства и учебные материалы, статьи и примеры).
 + [**MDN (Mozilla Developer Network) Web Docs**](https://developer.mozilla.org/en-US/)

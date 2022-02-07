@@ -252,13 +252,10 @@
 !!! info ""
 
     + [RegExp(4pda)](https://4pda.to/forum/index.php?showtopic=940394)
-
+    + [Regular Expression HOWTO(python.org)](https://docs.python.org/dev/howto/regex.html)
     + [Regex tutorial — A quick cheatsheet by examples(Medium)](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285)
-
     + [Regex cookbook — Top 10 Most wanted regex(Medium)](https://medium.com/factory-mind/regex-cookbook-most-wanted-regex-aa721558c3c1)
-
     + [RegexOne Tutorial](https://regexone.com/)
-
     + [Шпаргалка по регулярным выражениям](https://www.exlab.net/tools/sheets/regexp.html)
 
         ![regexp(rus)](regexp(rus).png){: .zoom}

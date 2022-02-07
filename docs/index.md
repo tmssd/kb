@@ -46,6 +46,7 @@
         + :fontawesome-regular-file-word: - `:fontawesome-regular-file-word:`
         + :fontawesome-solid-file-powerpoint: - `:fontawesome-solid-file-powerpoint:`
         + :fontawesome-regular-file-powerpoint: - `:fontawesome-regular-file-powerpoint:`
+        + :material-arch: - `:material-arch:`
 
 + Personal customization to implement in the future:
     + [medium-zoom](https://github.com/francoischalifour/medium-zoom#selectors){target=_blank}, [medium-zoom docsify plugin](https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js){target=_blank}
