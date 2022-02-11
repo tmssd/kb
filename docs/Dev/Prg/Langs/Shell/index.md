@@ -191,6 +191,18 @@ echo "Created hello/world.txt"
 
 ![bash-shortcuts.jpg](bash-shortcuts.jpg){: .zoom}
 
+#### Bash configuration
+
++ ##### *compatibility mode with vi in bash*
+
+    1. Set `set -o vi` in ~./bashrc
+    2. Set following in ~./inputrc
+
+        ```bash
+        set editing-mode vi
+        set keymap vi
+        ```
+
 ### Bash Tips & Tricks
 
 #### Useful Commands
@@ -298,6 +310,7 @@ echo "Created hello/world.txt"
     **MacOS:**
 
     + [Moving to zsh](https://scriptingosx.com/2019/06/moving-to-zsh/)
+    + [Change cursor shape in different modes - for MacOS](https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes#For_iTerm2_on_OS_X)
 
 ### Zsh Utilities
 

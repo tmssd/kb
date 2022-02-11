@@ -158,6 +158,10 @@ You only have to do this once. Now all new repositories you create with `git ini
       https://github.com/jimit105/Intro-to-Deep-Learning-with-PyTorch """
       ```
 
+### Deleting commited by mistake private data from git repo
+
++ [ ] [Удаляем случайно закомиченные приватные данные из git репозитория](https://the-bosha.ru/2016/07/01/udaliaem-sluchaino-zakomichennye-privatnye-dannye-iz-git-repozitoriia/)
+
 ## Git Started Guide by ZTM
 
 <object data="./ztm-git-started-guide.pdf" type="application/pdf" class="pdf"></object>
