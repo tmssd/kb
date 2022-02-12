@@ -1,11 +1,17 @@
 # General Concepts
 ## Conventions and standards
 
+### 3-2-1 Data Backup Rule
+
++ **3** - at least 3 copies (one primary, two copies)
++ **2** - two different technologies (e.g. different filesystem, different software, or different media types)
++ **1** - one copy should be off-site/offline
+
 ### Semantic Versioning: aa.bb.cc
 
-+ **aa**: major release, quite different from previous version
-+ **bb**: minor release, add a new feature
-+ **cc**: patch release, a bug fix
++ **aa** - major release, quite different from previous version
++ **bb** - minor release, add a new feature
++ **cc** - patch release, a bug fix
 
 ### The Twelve Factor App([source](https://www.12factor.net/))
 

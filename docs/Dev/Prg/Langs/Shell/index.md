@@ -195,13 +195,14 @@ echo "Created hello/world.txt"
 
 + ##### *compatibility mode with vi in bash*
 
-    1. Set `set -o vi` in ~./bashrc
-    2. Set following in ~./inputrc
+    ```bash
+    # put this line in ~./bashrc
+    set -o vi
 
-        ```bash
-        set editing-mode vi
-        set keymap vi
-        ```
+    # put these lines in ~./inputrc
+    set editing-mode vi
+    set keymap vi
+    ```
 
 ### Bash Tips & Tricks
 
