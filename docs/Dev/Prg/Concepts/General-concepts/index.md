@@ -242,8 +242,8 @@
 4. {++**Application/Script**++} - available for current running app/script process ^^only^^. Set by using *shell variables*, e.g.:
 
     ```bash
-    # set port of server
-    PORT=3000 node server.js
+    # Prepending Variables - you can prepend ANY number of variables before running a command.
+    PORT=3000 node server.js    # set port of server
     ```
 
     ```bash

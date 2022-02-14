@@ -46,6 +46,10 @@
         + :fontawesome-regular-file-word: - `:fontawesome-regular-file-word:`
         + :fontawesome-solid-file-powerpoint: - `:fontawesome-solid-file-powerpoint:`
         + :fontawesome-regular-file-powerpoint: - `:fontawesome-regular-file-powerpoint:`
+        + :octicons-logo-github-16: - `:octicons-logo-github-16:`
+        + :octicons-mark-github-16: - `:octicons-mark-github-16:`
+        + :fontawesome-brands-github: - `:fontawesome-brands-github:`
+        + :material-github: - `:material-github:`
         + :material-arch: - `:material-arch:`
 
 + Personal customization to implement in the future:

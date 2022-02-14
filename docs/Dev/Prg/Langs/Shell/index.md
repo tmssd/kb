@@ -5,7 +5,13 @@
     + [:material-arch: Command-line shell](https://wiki.archlinux.org/title/Command-line_shell#Configuration_files)
     + [Unix Shells: Bash, Fish, Ksh, Tcsh, Zsh comparison](https://hyperpolyglot.org/unix-shells)
     + [Linux Handbook](https://linuxhandbook.com/)
+    + [ ] [Автоматически изменяем заголовок эмулятора терминала на последнюю введённую команду](https://the-bosha.ru/2012/07/08/avtomaticheski-izmenyaem-zagolovok-emulyatora-terminala-na-poslednyuyu-vvedyonnuyu-komandu/)
 
+    **256 colors for Terminal:**
+
+    + [Xterm256 color names for console Vim](https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim)
+    + [256 цветов в терминале ⇒ уровень nightmare(Habr)](https://habr.com/ru/post/161999/)
+    + [Color Builder for Terminal](http://terminal-color-builder.mudasobwa.ru/) + [:material-github:](https://github.com/mudasobwa/TermColorBuilder)
 ## Bash
 
 !!! info ""
@@ -26,6 +32,8 @@
         ![type:video](https://www.youtube.com/embed/uqHjc7hlqd0)
 
         <object data="./bash_oscon_2014.pdf" type="application/pdf" class="pdf"></object>
+
+    + [ ] [An introduction to parameter expansion in Bash](https://opensource.com/article/17/6/bash-parameter-expansion)
 
 ### Bash Essentials
 
@@ -301,12 +309,15 @@ echo "Created hello/world.txt"
 + [dotenv](https://github.com/bashup/dotenv)
 + [bashew - bash script / project creator](https://github.com/pforret/bashew)
 + [setver - get and set semver versions for php, node, github and bash](https://github.com/pforret/setver)
++ [ ] [:octicons-mark-github-16: Trashy](https://gitlab.com/trashy/trashy)
 
 ## Zsh
 
 !!! info ""
 
+    + [Переход с bash на zsh(Habr)](https://habr.com/ru/post/326580/)
     + [ ] [terminal-helpful-tips (7 Part Series)](https://dev.to/equiman/reveal-the-command-behind-an-alias-with-zsh-4d96)
+    + [ ] [zsh: tips & tricks(Habr)](https://habr.com/ru/post/164597/) + [github](https://github.com/bosha/zshrc/tree/master/.zsh)
 
     **MacOS:**
 
