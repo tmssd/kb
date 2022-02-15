@@ -324,6 +324,33 @@ echo "Created hello/world.txt"
     + [Moving to zsh](https://scriptingosx.com/2019/06/moving-to-zsh/)
     + [Change cursor shape in different modes - for MacOS](https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes#For_iTerm2_on_OS_X)
 
+### Zsh Essentials
+
+#### Zsh configuration
+
++ ##### *zsh startup and shutdown files read order*
+
+    !!! note
+
+        Files starting with `.` are **user-level configs** and are located in the directory path set as value to the **ZDOTDIR** variable. If the value of this variable is an empty string, files are assumed to be in the user **HOME** directory.
+
+    {++ Login Interactive Shell ++}
+
+    1. `/etc/zshenv` -> `.zshenv` - are used to define *environmental variables*. They are always invoked each time a zsh session is started, therefore they should contain the less possible content. Only commands that don’t produce output should be written in these files.
+    2. `/etc/zprofile` -> `.zprofile` - can be used to run commands to setup *login shell's* context.
+    3. `/etc/zshrc` -> `.zshrc` - are invoked when an *interactive shell* session is started. They are basically the counterpart of the /etc/bashrc and ~/.bashrc files for the BASH shell.
+    4. `/etc/zlogin` -> `.zlogin` - are considered as an alternative to “profile” files.
+    5. `.zlogout` -> `/etc/zlogout` -  are run when a *login shell* session is ^^closed^^.
+
+    {++ Non-Login Interactive Shell ++}
+
+    1. `/etc/zshenv` -> `.zshenv`
+    2. `/etc/zshrc` -> `.zshrc`
+
+    {++ Non-Login Non-Interactive Shell (e.g. scripts) ++}
+
+    1. `/etc/zshenv` -> `.zshenv`
+
 ### Zsh Utilities
 
 !!! info ""

@@ -186,7 +186,7 @@
     + for ^^*Login Shells*^^:
 
         + **^^Bash^^**(read by shell in this order but it executes only the first of those files found!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): *system-wide settings files* -> `~/.bash_profile` -> `~/.bash_login` -> `~/.profile`
-
+    
             !!! tip
 
                 Put these in `~/.profile` at the top in order to source `~/.bashrc`:
