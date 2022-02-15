@@ -157,21 +157,21 @@
     + `/etc/environment` - This file is parsed by *pam_env* module. Syntax: simple "KEY=VAL" pairs on separate lines.
 
     + for ^^*Login Shells*^^:
-        + **Bash**(read by shell in this order!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): `/etc/profile` -> *logged-in user dotfiles*
+        + **^^Bash^^**(read by shell in this order!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): `/etc/profile` -> *logged-in user dotfiles*
 
-        + **Zsh**(read by shell in this order!): `/etc/zshenv` -> *logged-in user dotfile* -> `/etc/zprofile` -> *logged-in user dotfile* -> `/etc/zshrc` -> *logged-in user dotfile* -> `/etc/zlogin` -> *logged-in user dotfile*
+        + **^^Zsh^^**(read by shell in this order!): `/etc/zshenv` -> *logged-in user dotfile* -> `/etc/zprofile` -> *logged-in user dotfile* -> `/etc/zshrc` -> *logged-in user dotfile* -> `/etc/zlogin` -> *logged-in user dotfile*
 
     + for ^^*Non-Login Interactive Shells*^^:
 
-        + **Bash**(read by shell in this order!): `/etc/bash.bashrc` -> *logged-in user dotfiles*
+        + **^^Bash^^**(read by shell in this order!): `/etc/bash.bashrc` -> *logged-in user dotfiles*
 
-        + **Zsh**(read by shell in this order!): `/etc/zshenv` -> *logged-in user dotfile* -> `/etc/zshrc` -> *logged-in user dotfile*
+        + **^^Zsh^^**(read by shell in this order!): `/etc/zshenv` -> *logged-in user dotfile* -> `/etc/zshrc` -> *logged-in user dotfile*
 
     + for ^^*Non-Login Non-Interactive Shells(scripts etc.)*^^:
 
-        + **Bash**: *BASH_ENV* environmental variable
+        + **^^Bash^^**: *BASH_ENV* environmental variable
 
-        + **Zsh**(read by shell in this order!): `/etc/zshenv` -> *logged-in user dotfile*
+        + **^^Zsh^^**(read by shell in this order!): `/etc/zshenv` -> *logged-in user dotfile*
 
     !!! note
 
@@ -185,7 +185,7 @@
 
     + for ^^*Login Shells*^^:
 
-        + **Bash**(read by shell in this order but it executes only the first of those files found!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): system-wide settings files -> `~/.bash_profile` -> `~/.bash_login` -> `~/.profile`
+        + **^^Bash^^**(read by shell in this order but it executes only the first of those files found!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): *system-wide settings files* -> `~/.bash_profile` -> `~/.bash_login` -> `~/.profile`
 
             !!! tip
 
@@ -209,19 +209,19 @@
                 + [Configuring your login sessions(for 5 different environments!) with dot files](http://mywiki.wooledge.org/DotFiles)
                 + [Difference between .bashrc and .bash_profile(SuperUser)](https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile)
 
-        + **Zsh**(read by shell in this order!): *system-wide settings file* -> `$ZDOTDIR/.zshenv` -> *system-wide settings file* -> `$ZDOTDIR/.zprofile` -> *system-wide settings file* -> `$ZDOTDIR/.zshrc` -> *system-wide settings file* -> `$ZDOTDIR/.zlogin`
+        + **^^Zsh^^**(read by shell in this order!): *system-wide settings file* -> `$ZDOTDIR/.zshenv` -> *system-wide settings file* -> `$ZDOTDIR/.zprofile` -> *system-wide settings file* -> `$ZDOTDIR/.zshrc` -> *system-wide settings file* -> `$ZDOTDIR/.zlogin`
 
     + for ^^*Non-Login Interactive Shells*^^:
 
-        + **Bash**(read by shell in this order!): *system-wide settings files* -> `~/.bashrc`
+        + **^^Bash^^**(read by shell in this order!): *system-wide settings files* -> `~/.bashrc`
 
-        + **Zsh**(read by shell in this order!): *system-wide settings file* -> `$ZDOTDIR/.zshenv` -> *system-wide settings file* -> `$ZDOTDIR/.zshrc`
+        + **^^Zsh^^**(read by shell in this order!): *system-wide settings file* -> `$ZDOTDIR/.zshenv` -> *system-wide settings file* -> `$ZDOTDIR/.zshrc`
 
     + for ^^*Non-Login Non-Interactive Shells(scripts etc.)*^^:
 
-        + **Bash**: *BASH_ENV* environmental variable
+        + **^^Bash^^**: *BASH_ENV* environmental variable
 
-        + **Zsh**(read by shell in this order!): system-wide settings -> `$ZDOTDIR/.zshenv`
+        + **^^Zsh^^**(read by shell in this order!): *system-wide settings* -> `$ZDOTDIR/.zshenv`
 
     !!! note
 
@@ -243,6 +243,7 @@
 
     ```bash
     # Prepending Variables - you can prepend ANY number of variables before running a command.
+
     PORT=3000 node server.js    # set port of server
     ```
 
