@@ -12,6 +12,14 @@
 
 ### Vim Shortcuts
 
+!!! note "Legend:"
+
+    **bol** - begining of line
+
+    **"soft" bol** - first non-whitespace character of line
+
+    **eol** - end of line
+
 #### Normal Mode
 
 ##### Repeating Commands
@@ -29,21 +37,23 @@
 
     Motion - move the cursor, or define the range for an operator.
 
-+ ++"h"++ , ++"j"++ , ++"k"++ , ++"l"++ (or ++left++ , ++down++ or ++enter++ , ++up++ , ++right++ ) - move the cursor left, down, up, right
++ ++"h"++ , ++"j"++ , ++"k"++ , ++"l"++ (or ++left++ , ++down++ , ++up++ , ++right++ ) - move the cursor left, down, up, right
 + ++"w"++ ( or ++shift+right++ ) / ++w++ ( or ++ctrl+right++ ) - move cursor to ^^begining of next^^ word / whitespace-separated segment of text
 + ++"b"++ ( or ++shift+left++ ) / ++b++ ( or ++ctrl+left++ ) - move cursor to ^^previous begining^^ of word / whitespace-separated segment of text
 + ++"e"++ / ++e++ - move cursor to ^^end^^ of word / whitespace-separated segment of text
 <br/><br/>
 
-+ ++0++ - beginning of current line
-+ ++"^"++ - first non-whitespace character of current line
-+ ++"$"++ - end of current line
++ ++0++ - bol of current line
++ ++"^"++ or ++underscore++ - "soft" bol of current line
++ ++"$"++ - eol of current line
++ ++plus++ or ++enter++ - "soft" bol of next line
++ ++minus++ - "soft" bol of previous line
 + ++"%"++ - move to matching parenthesis, bracket or brace
 <br/><br/>
 
 + ++h++ / ++m++ / ++l++ - top / middle / bottom line on screen
 + ++"gg"++ / ++g++ - first / last line of the file
-+ ++colon++*{num}* / *{num}*++"gg"++ / *{num}*++g++ - line {num} of the file
++ ++colon++*{num}* or *{num}*++"gg"++ or *{num}*++g++ - line {num} of the file
 
 ##### Editing(part 1)
 
@@ -51,15 +61,12 @@
 + ++ctrl+"r"++ - redo last undo change
 <br/><br/>
 
-+ ++gt++++gt++ / ++lt++++lt++ - increase / decrease current line indentation(no matter where the cursor located in it)
 + ++tilde++ - toggle case of character beneath the cursor
 + ++"r"++ - replace a character at the cursor position
-+ ++"x"++ - cut character after the cursor
-+ ++x++ - cut character before the cursor
 <br/><br/>
 
-+ ++"p"++ - paste after the cursor
-+ ++p++ - paste before the cursor
++ ++"p"++ - *put* : paste after the cursor
++ ++p++ - *put* : paste before the cursor
 + ++ctrl+shift+"v"++ - paste from system clipboard
 
 ###### Operator(part 1)
@@ -71,8 +78,9 @@
     + *normal mode* - range is specified by a series of ==[modifiers](#operators-modifiers)==
     + *visual mode* - range is the highlighted text
 
-+ ++"y"++ - *yank* command : copy
-+ ++"d"++ - *delete* command : cut
++ ++"y"++ - *yank* : copy
++ ++"d"++ - *delete* : cut
++ ++gt++ / ++lt++ - un-indent / indent
 
 #### Insert Mode
 
@@ -87,7 +95,7 @@
 
 ###### Operator(part 2)
 
-+ ++"c"++ - *change* command : cut
++ ++"c"++ - *change* : cut
 
 #### Visual Mode
 
@@ -107,26 +115,39 @@
 
 ##### Operator Doubling
 
-##### Motions
-
-##### Text-objects
-
-<br/><br/>
-
-+ ++y++ ( shorthand for ++"y$"++ ) - copy from cursor position to end of line
-+ ++d++ ( shorthand for ++"d$"++ ) - cut from cursor position to end of line
-
-modifiers:
+double an operator to make it operate on a whole line:
 
 + ++"yy"++ - copy current line(no matter where the cursor located in it), including *invisible newline sign* at the end
 + ++"dd"++ - cut current line(no matter where the cursor located in it), including *invisible newline sign* at the end
-+ *{command}{num}{motion}* - ^^motion^^ are commands from ==[navigation section](#navigation)== above except *page-up/down* commands
++ ++"cc"++ - cut current line(no matter where the cursor located in it), including *invisible newline sign* at the end
++ ++gt++++gt++ / ++lt++++lt++ - increase / decrease current line indentation(no matter where the cursor located in it)
 
+useful shorthands:
+
++ ++s++ ( same as ++"cc"++ ) - *substitute line*
+
+##### Motions
+
+use operators and ==[motions](#motion)== together by following any of these patterns:
+
++ {operator}{num}{motion}
++ {num}{operator}{motion}
+
+useful shorthands:
+
+!!! tip
+
+    When you capitalize a command it performs a stronger (or alternate) version of the original command.
+
++ ++y++ ( same as ++"y$"++ ) - copy from cursor position to end of line
 <br/><br/>
 
-+ ++c++ ( shorthand for ++"c$"++ ) - cut from cursor position to end of line
++ ++d++ ( same as ++"d$"++ ) - cut from cursor position to end of line
++ ++"x"++ ( same as ++"dl"++ ) - cut character after the cursor
++ ++x++ ( same as ++"dh"++ ) - cut character before the cursor
+<br/><br/>
 
-modifiers:
++ ++"s"++ ( same as ++"cl"++ ) - *substitute character* :  cut character after the cursor and enter *insert mode*
++ ++c++ ( same as ++"c$"++ ) - cut from cursor position to end of line and enter *insert mode*
 
-+ ++"cc"++ - cut current line(no matter where the cursor located in it), including *invisible newline sign* at the end
-+ *{command}{num}{motion}* - ^^motion^^ are commands from ==[navigation section](#navigation)== above except *page-up/down* commands
+##### Text-objects
