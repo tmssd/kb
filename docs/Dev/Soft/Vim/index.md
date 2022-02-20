@@ -43,7 +43,7 @@
 + ++"e"++ / ++e++ - move cursor to ^^end^^ of word / whitespace-separated segment of text
 <br/><br/>
 
-+ ++0++ - bol of current line
++ ++0++ or ++pipe++ - bol of current line
 + ++"^"++ or ++underscore++ - "soft" bol of current line
 + ++"$"++ - eol of current line
 + ++plus++ or ++enter++ - "soft" bol of next line
@@ -54,6 +54,11 @@
 + ++h++ / ++m++ / ++l++ - top / middle / bottom line on screen
 + ++"gg"++ / ++g++ - first / last line of the file
 + ++colon++*{num}* or *{num}*++"gg"++ or *{num}*++g++ - line {num} of the file
+<br/><br/>
+
++ ++"*"++ / ++"#"++ - search forward / backwards for the next instance of the identifier(word) under the cursor
++ ++"n"++ / ++n++ - repeats the last search in the same / opposite direction specified by
+the last use of ++"*"++ , ++"#"++
 
 ##### Editing(part 1)
 
@@ -67,7 +72,10 @@
 
 + ++"p"++ - *put* : paste after the cursor
 + ++p++ - *put* : paste before the cursor
-+ ++ctrl+shift+"v"++ - paste from system clipboard
++ ++dblquote++++plus++ - select the system CLIPBOARD(traditional windows-like) clipboard; to paste: use immediately ++"p"++ / ++p++ after that command
++ ++dblquote++++"*"++ - select the system PRIMARY(data copied upon highlighting with mouse) clipboard; to paste: use immediately ++"p"++ / ++p++ after that command
++ ++shift+insert++ - paste from system PRIMARY clipboard
++ ++ctrl+shift+"v"++ - paste from system CLIPBOARD clipboard
 
 ###### Operator(part 1)
 
