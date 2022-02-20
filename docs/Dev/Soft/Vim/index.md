@@ -80,6 +80,7 @@
 
 + ++"y"++ - *yank* : copy
 + ++"d"++ - *delete* : cut
++ ++equal++ - format code
 + ++gt++ / ++lt++ - un-indent / indent
 
 #### Insert Mode
@@ -107,6 +108,8 @@
 
 ##### Editing(part 3)
 
+Use ==[operators](#operatorpart-1)== on selected text.
+
 #### Replace Mode
 
 #### Command Mode
@@ -120,7 +123,8 @@ double an operator to make it operate on a whole line:
 + ++"yy"++ - copy current line(no matter where the cursor located in it), including *invisible newline sign* at the end
 + ++"dd"++ - cut current line(no matter where the cursor located in it), including *invisible newline sign* at the end
 + ++"cc"++ - cut current line(no matter where the cursor located in it), including *invisible newline sign* at the end
-+ ++gt++++gt++ / ++lt++++lt++ - increase / decrease current line indentation(no matter where the cursor located in it)
++ ++"=="++ - format line
++ ++">>"++ / ++"<<"++ - increase / decrease current line indentation(no matter where the cursor located in it)
 
 useful shorthands:
 
