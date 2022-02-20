@@ -114,7 +114,7 @@ Use ==[operators](#operatorpart-1)== on selected text.
 
 #### Command Mode
 
-#### ==[Operator's](#operatorpart-1)== modifiers
+#### ==[Operator's](#operatorpart-1)== Modifiers
 
 ##### Operator Doubling
 
@@ -154,4 +154,22 @@ useful shorthands:
 + ++"s"++ ( same as ++"cl"++ ) - *substitute character* :  cut character after the cursor and enter *insert mode*
 + ++c++ ( same as ++"c$"++ ) - cut from cursor position to end of line and enter *insert mode*
 
-##### Text-objects
+##### Text Objects
+
+Text objects are special motions that describe structured pieces of text(the entities of a document domain model), e.g. words, sentences, quoted text, paragraphs, blocks, (HTML) tags, etc.
+
+Specify a text object within a command by following this pattern: **{operator}{a|i}{text-object}**
+
++ **a** (think **a** or **a**ll) - ^^a^^ text object plus surrounding whitespace
++ **i** (think **i**nner) - ^^inner^^ object without whitespace
++ **text-object** - one of the built-in text objects:
+
+    + `w` - word
+    + `s` - sentence
+    + `'`, `"`, `` ` `` - quotes
+    + `p` - paragraph
+    + `b` (or `(`, `)`) - block surrounded by ( )
+    + `B` (or `{`, `}`) - block surrounded by { }
+    + `<`, `>` - block surrounded by < >
+    + `[`, `]` - block surrounded by [ ]
+    + `t` - tag
