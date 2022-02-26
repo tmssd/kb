@@ -24,10 +24,10 @@
 ++esc++ or ++ctrl+bracket-left++ - back to normal mode from any other mode <br>
 ++"v"++ / ++"v"++++"v"++ - back to normal mode from charwise / linewise visual mode
 
-##### Quit(part 1)
+##### Saving, closing(part 1)
 
-+ ++z++++z++ - save and quit
-+ ++z++++q++ - quit without saving
++ ++z++++z++ - save and close the current file
++ ++z++++q++ - close the current file without saving
 
 ##### Repeating Commands
 
@@ -163,11 +163,47 @@ Use ==[operators](#operatorpart-1)== on selected text.
 + ++r++ - replace characters starting at the cursor position using overstrike cursor, which types over existing characters
 
 #### Command Mode
-##### Navigation(part 2)
+
+##### Navigation: search, substitute
+
++ `:s/{old}/{new}/{options}` - substitute {new} for {old} on the current line
++ `:%s/{old}/{new}/{options}` - substitute {new} for {old} in the entire document
 
 ###### Motion(part 2)
 
-+ ++slash++*{pattern}* / ++question++*{pattern}* - forward / reverse search for {pattern}
++ `/{pattern}` / `?{pattern}` - forward / reverse search for {pattern}
+
+##### Editing(part 4)
+
++ `:e {file}` - open {file} in the current buffer
++ `:{x},{y}w` - write from line {x} to line {y} into {file}
++ `w >> {file}` - append buffer to {file}
+<br/><br/>
+
++ `r {file}` - insert {file} content at the current cursor position
+
+##### Saving, closing(part 2)
+
++ `:q` / `:q!` - close / force-close a file without saving
+<br/><br/>
+
++ `:w` - save the current file
++ `:wq` (or `:x`) / `:wq!` (or `:x!`) - save and close the current file / force save and close the current file; exits vim if no open files remain
++ `:w {newname}` - save a copy of the current file as {newname}, but continue editing the original file
++ `:sav {newname}` - save a copy of the current file as {newname} and continue editing the file {newname}
+
+##### Other commands
+
++ `:map` - mapping a key in command mode to a group of commands, e.g.: `:map de :1,$d^M` will delete all lines when using the `:de` command
++ `:set` / `:set {options}` - show / define editor options
+
+    some of the {options} are:
+
+    + *all* - display all current vi options
+    + *number* - display line numbers
++ `:ab` - define a text abbreviation in *insert node*, e.g.: `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
+
++ `:!{cmd}` - execute a shell command named {cmd}
 
 #### ==[Operator's](#operatorpart-1)== Modifiers
 
