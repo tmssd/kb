@@ -1,14 +1,23 @@
 # Vim
 
+!!! info ""
+
+    + [Vim Tips Wiki](https://vim.fandom.com/wiki/Vim_Tips_Wiki)
+
 ## Vim Essentials
 
 ### Vim Cheatsheet
 
-<object data="./vim-cheatsheet-1.pdf" type="application/pdf" class="pdf"></object>
+!!! info ""
 
-<object data="./vim-cheatsheet-2.pdf" type="application/pdf" class="pdf"></object>
+    [Neovim Cheat Sheet fro various keyboard layouts :material-github:](https://github.com/mattmc3/neovim-cheatsheet)
 
-<object data="./vi-vim-cheatsheet.pdf" type="application/pdf" class="pdf"></object>
+<figure markdown>
+  ![vim-cheatsheet](vim-cheatsheet.jpg){: .zoom}
+  <figcaption>
+      <a href="[image-source-link](https://docs.google.com/spreadsheets/d/15k_UgeY0C3j8tVQnR2hD_kNljB1AApG3x3gYrKtUAlw/edit#gid=1082709605)" target="_blank">neovim/vim graphical cheat sheet(google sheets)</a>
+  </figcaption>
+</figure>
 
 ### Vim Shortcuts
 
@@ -42,7 +51,7 @@
 + ++"@"++*{a-z}* - replay {a-z} macro
 + ++"@"++++"@"++ - replay the last macro played
 
-##### Navigation(part 1)
+##### Navigation
 
 + ++ctrl+"f"++ / ++"b"++ ( or ++shift+up++ / ++down++ or ++page-up++ / ++page-down++ ) - move pages up / down
 + ++ctrl+"e"++ / ++"y"++ - ^^scroll^^ line up / down
@@ -164,14 +173,52 @@ Use ==[operators](#operatorpart-1)== on selected text.
 
 #### Command Mode
 
-##### Navigation: search, substitute
+##### Saving, closing(part 2)
 
-+ `:s/{old}/{new}/{options}` - substitute {new} for {old} on the current line
-+ `:%s/{old}/{new}/{options}` - substitute {new} for {old} in the entire document
++ `:q` / `:q!` - close / force-close a file without saving
++ `:w` - save the current file
++ `:wq` (or `:x`) / `:wq!` (or `:x!`) - save and close the current file / force save and close the current file; exits vim if no open files remain
++ `:w {newname}` - save a copy of the current file as {newname}, but continue editing the original file
++ `:sav {newname}` - save a copy of the current file as {newname} and continue editing the file {newname}
+
+##### Navigation: search, replace
+
++ `:[range]s/{old}/{new}/[flags]` - replace {old} with {new} in ^^range^^ according to ^^flags^^
+
+    ^^Ranges:^^
+
+    + `%` - the entire file
+    + `'<,'>` - the current selection; the default range while in visual mode
+    + `25` - line 25
+    + `25,50` - lines 25-50
+    + `$` - last line;  can be combined with other lines as in `50,$`
+    + `.` (or just empty sign) - current line; can be combined with other lines as in `.,50` (or `,50`)
+    + `,+2` or `+2,` - the current lines and the two lines therebelow
+    + `-2,` or `,-2` - the current line and the two lines thereabove
+
+    ^^Flags:^^
+
+    + `g` - replace all occurrences on the specified line(or lines selected in *visual mode*); without this flag just the ^^first^^ occurrence is changed per line
+    + `i` - ignore case
+    + `c` - confirm each substitution
 
 ###### Motion(part 2)
 
 + `/{pattern}` / `?{pattern}` - forward / reverse search for {pattern}
++ `/\<{word}\>` - find the next occurrence of the word {word}, where {word} is bounded by word
+boundaries (ex. space, dash)
+
+!!! note
+
+    **Regular expressions:**
+
+    Both vim’s find and replace functions accept regular expressions. <br>
+    Characters assumed by vim as part of regular expression(must be escaped with `\` to be searched for literally): `(`, `)`,  `*`,  `.`, `^`, `$` <br>
+    Regular expression patterns that interpreted literally(must be escaped with `\` to be used as a part of a regular expression): `+`
+
+    **Ignoring case:**
+
+    `\c` in searching and replacing commands - can be placed anywhere in the sequence being searched for and affects the whole sequence
 
 ##### Editing(part 4)
 
@@ -182,26 +229,18 @@ Use ==[operators](#operatorpart-1)== on selected text.
 
 + `r {file}` - insert {file} content at the current cursor position
 
-##### Saving, closing(part 2)
-
-+ `:q` / `:q!` - close / force-close a file without saving
-<br/><br/>
-
-+ `:w` - save the current file
-+ `:wq` (or `:x`) / `:wq!` (or `:x!`) - save and close the current file / force save and close the current file; exits vim if no open files remain
-+ `:w {newname}` - save a copy of the current file as {newname}, but continue editing the original file
-+ `:sav {newname}` - save a copy of the current file as {newname} and continue editing the file {newname}
-
 ##### Other commands
 
-+ `:map` - mapping a key in command mode to a group of commands, e.g.: `:map de :1,$d^M` will delete all lines when using the `:de` command
-+ `:set` / `:set {options}` - show / define editor options
++ `:noh` - un-highlight previously searched words
++ `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
++ `:set` / `:set [options]` - show / define editor options
 
-    some of the {options} are:
+    ^^Some of the {options} are:^^
 
     + *all* - display all current vi options
     + *number* - display line numbers
-+ `:ab` - define a text abbreviation in *insert node*, e.g.: `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
+
++ `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
 
 + `:!{cmd}` - execute a shell command named {cmd}
 
@@ -264,3 +303,13 @@ Specify a text object within a command by following this pattern: ***{operator}{
     + `<`, `>` - block surrounded by < >
     + `[`, `]` - block surrounded by [ ]
     + `t` - tag
+
+## Vim Tips & Tricks
+
+### Execure vim's commands in a file from the command line
+
+Use `-c` flag. You can separate multiple commands with a pipe `|`. Example:
+
+``` bash
+vi -c "%s/false/true/g|:wq" file.txt
+```
