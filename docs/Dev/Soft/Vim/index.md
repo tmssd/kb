@@ -26,6 +26,7 @@
     **bol** - begining of line <br>
     **"soft" bol** - first non-whitespace character of line <br>
     **eol** - end of line <br>
+    **buffer** - content of opened in vim file <br>
     **register** - vim's clipboard
 
 #### Normal Mode
@@ -41,7 +42,7 @@
 ##### Repeating Commands
 
 + ***{num}{command}*** - repeat command {num} times
-+ ++"&"++ - repeat `:s` command
++ ++"&"++ - repeat `:s` ==[command](#navigation-search-replace-buffers)==
 + ++period++ - repeat previous change
 
 ##### Macros
@@ -52,6 +53,11 @@
 + ++"@"++++"@"++ - replay the last macro played
 
 ##### Navigation
+
++ ++ctrl+"^"++ - switch between two last buffers
++ ++ctrl+"w"++ ++"s"++ / ++ctrl+"w"++ ++"v"++ - create a horizontal / vertical split; ++ctrl+"w"++ ++"w"++ to switch windows
++ ++ctrl+"w"++ ++"c"++ - close current window in splitted layout i.e. doesn't close the last window
+<br/><br/>
 
 + ++ctrl+"f"++ / ++"b"++ ( or ++shift+up++ / ++down++ or ++page-up++ / ++page-down++ ) - move pages up / down
 + ++ctrl+"e"++ / ++"y"++ - ^^scroll^^ line up / down
@@ -65,7 +71,7 @@
 
 ###### Motion(part 1)
 
-!!! info ""
+!!! note
 
     Motion - move the cursor, or define the range for an operator.
 
@@ -161,7 +167,7 @@ the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are c
 
 + ++"v"++ - *visual* : marks starting selection point, then move the cursor to the desired end selection point
 + ++v++ - *linewise-visual* : always select full lines
-+ ++ctrl+"v"++ - *block-visual* : select any rectangular region
++ ++ctrl+"q"++ - *block-visual* : select any rectangular region
 
 ##### Editing(part 3)
 
@@ -178,10 +184,11 @@ Use ==[operators](#operatorpart-1)== on selected text.
 + `:q` / `:q!` - close / force-close a file without saving
 + `:w` - save the current file
 + `:wq` (or `:x`) / `:wq!` (or `:x!`) - save and close the current file / force save and close the current file; exits vim if no open files remain
-+ `:w {newname}` - save a copy of the current file as {newname}, but continue editing the original file
++ `:w {newfile}` (`:{x},{y}w {newfile}`) - ^^write^^ the whole ( from line {x} to line {y} ) current buffer into {newfile}, but continue editing the original file; `:w! {file}` (`:{x},{y}w! {file}`) to ^^overwrite^^ content of {file} that already exists
++ `:w >> {file}` (`:{x},{y}w >> {file}`) - ^^append^^ the whole ( from line {x} to line {y} ) current buffer to {file}
 + `:sav {newname}` - save a copy of the current file as {newname} and continue editing the file {newname}
 
-##### Navigation: search, replace
+##### Navigation: search, replace, buffers
 
 + `:[range]s/{old}/{new}/[flags]` - replace {old} with {new} in ^^range^^ according to ^^flags^^
 
@@ -220,17 +227,23 @@ boundaries (ex. space, dash)
 
     `\c` in searching and replacing commands - can be placed anywhere in the sequence being searched for and affects the whole sequence
 
+###### Buffers
+
++ `:ls` - show opened buffers; focused buffer named with `%a`
++ `:bp` / `:bn` / `:b#` / `:b{N}` / `:b {Name}` - switch to previous / next/ alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer
++ `:bd` / `:%bd` /  `:bd#` / `:bd{N}` / `:bd {Name}` - unload current / all / alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer and delete it from the buffer list
+    1. to force unload use `!` after `bd`; changes are lost in this case
+    2. in splitted layout that command will also close all windows currently showing the buffer
+
 ##### Editing(part 4)
 
++ `:new` - new file
 + `:e {file}` - open {file} in the current buffer
-+ `:{x},{y}w` - write from line {x} to line {y} into {file}
-+ `w >> {file}` - append buffer to {file}
-<br/><br/>
-
-+ `r {file}` - insert {file} content at the current cursor position
++ `:r {file}` - insert {file} content at the current cursor position
 
 ##### Other commands
 
++ `:h` (or `:help`) - help
 + `:noh` - un-highlight previously searched words
 + `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
 + `:set` / `:set [options]` - show / define editor options
@@ -238,11 +251,20 @@ boundaries (ex. space, dash)
     ^^Some of the {options} are:^^
 
     + *all* - display all current vi options
-    + *number* - display line numbers
+    + *[no]number* - display line numbers
+    + *[no]ruler* (and optionally *rulerformat*) - showing line number headers
+    + *[no]wrap* - text wrapping
+    + *[no]linebreak* - line breaking
+    + *[no]spell* - spellchecking
+    + *syntax on/off* - syntax highlighting
+    + *expandtab* - space-tabbing
+    + *softtabstop=4* - soft tab
+    + *shiftwidth=4* - indent sizing
 
 + `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
 
 + `:!{cmd}` - execute a shell command named {cmd}
++ `:term` - load an inline terminal to new buffer in *normal mode*; to exit use `:bd!` or `exit` command in *insert mode*
 
 #### ==[Operator's](#operatorpart-1)== Modifiers
 
@@ -306,7 +328,7 @@ Specify a text object within a command by following this pattern: ***{operator}{
 
 ## Vim Tips & Tricks
 
-### Execure vim's commands in a file from the command line
+### Execute vim's commands in a file from the command line
 
 Use `-c` flag. You can separate multiple commands with a pipe `|`. Example:
 
