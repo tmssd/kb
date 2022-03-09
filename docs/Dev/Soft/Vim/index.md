@@ -248,11 +248,13 @@ boundaries (ex. space, dash)
 + `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
 + `:set` / `:set [options]` - show / define editor options
 
-    ^^Some of the {options} are:^^
++ `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
+
+    ^^Some of the commmon {options} are:^^
 
     + *all* - display all current vi options
     + *[no]number* - display line numbers
-    + *[no]ruler* (and optionally *rulerformat*) - showing line number headers
+    + *[no]ruler* (and optionally *rulerformat*) - showing line number headers; if you don't want to see the ruler all the time but want to know where you are, use ++"g"++ ++ctrl+"g"++
     + *[no]wrap* - text wrapping
     + *[no]linebreak* - line breaking
     + *[no]spell* - spellchecking
@@ -261,7 +263,7 @@ boundaries (ex. space, dash)
     + *softtabstop=4* - soft tab
     + *shiftwidth=4* - indent sizing
 
-+ `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
++ `noremap x "_x` - re-map ++"x"++ command to work with the “black hole” register, i.e. to allow deleting characters without copying them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste the previously *yanked* value instead
 
 + `:!{cmd}` - execute a shell command named {cmd}
 + `:term` - load an inline terminal to new buffer in *normal mode*; to exit use `:bd!` or `exit` command in *insert mode*
