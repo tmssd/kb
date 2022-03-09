@@ -13,7 +13,7 @@
     [Neovim Cheat Sheet fro various keyboard layouts :material-github:](https://github.com/mattmc3/neovim-cheatsheet)
 
 <figure markdown>
-  ![vim-cheatsheet](vim-cheatsheet.jpg){: .zoom}
+  ![vim-cheatsheet](vim-cheatsheet.png){: .zoom}
   <figcaption>
       <a href="[image-source-link](https://docs.google.com/spreadsheets/d/15k_UgeY0C3j8tVQnR2hD_kNljB1AApG3x3gYrKtUAlw/edit#gid=1082709605)" target="_blank">neovim/vim graphical cheat sheet(google sheets)</a>
   </figcaption>
