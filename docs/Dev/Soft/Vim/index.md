@@ -26,6 +26,7 @@
     **bol** - begining of line <br>
     **"soft" bol** - first non-whitespace character of line <br>
     **eol** - end of line <br>
+    **"soft" eol** - last non-whitespace character of line <br>
     **buffer** - content of opened in vim file <br>
     **register** - vim's clipboard
 
@@ -84,6 +85,7 @@
 + ++0++ or ++pipe++ - bol of current line
 + ++"^"++ or ++underscore++ - "soft" bol of current line
 + ++"$"++ - eol of current line
++ ++"g"++++underscore++ - "soft" eol of current line
 + ++plus++ or ++enter++ - "soft" bol of next line
 + ++minus++ - "soft" bol of previous line
 <br/><br/>
@@ -99,6 +101,7 @@
 + ++brace-left++ / ++brace-right++ - move the cursor to the previous / next empty line
 + ++grave++*{a/A-z/Z}* / ++grave++++period++ - move the cursor to mark {a/A-z/Z} / to the position of the last modification
 + ++single-quote++*{a/A-z/Z}* / ++single-quote++++period++ - move the cursor to "soft" bol of {a/A-z/Z} mark / of the last modification position
++ ++grave++++0++ - move the cursor to the position where Vim was previously exited
 + ++h++ , ++m++ , ++l++ - move the cursor to the top, middle, bottom line on screen
 + ++"g"++++"g"++ / ++g++ - move the cursor first / last line of the file
 + ++colon++*{num}* or *{num}*++"gg"++ or *{num}*++g++ - move the cursor to line {num} of the file
@@ -243,8 +246,9 @@ boundaries (ex. space, dash)
 
 ##### Other commands
 
++ ++"q"++++colon++ - show commands history list in a new horisontally-splitted window
 + `:h` (or `:help`) - help
-+ `:noh` - un-highlight previously searched words
++ `:noh` - un-highlight search matches
 + `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
 + `:set` / `:set [options]` - show / define editor options
 
@@ -253,7 +257,7 @@ boundaries (ex. space, dash)
     ^^Some of the commmon {options} are:^^
 
     + *all* - display all current vi options
-    + *[no]number* - display line numbers
+    + *[no]nu* - display line numbers
     + *[no]ruler* (and optionally *rulerformat*) - showing line number headers; if you don't want to see the ruler all the time but want to know where you are, use ++"g"++ ++ctrl+"g"++
     + *[no]wrap* - text wrapping
     + *[no]linebreak* - line breaking
@@ -263,10 +267,10 @@ boundaries (ex. space, dash)
     + *softtabstop=4* - soft tab
     + *shiftwidth=4* - indent sizing
 
-+ `noremap x "_x` - re-map ++"x"++ command to work with the “black hole” register, i.e. to allow deleting characters without copying them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste the previously *yanked* value instead
-
++ `noremap x "_x` - re-map ++"x"++ command to work with the "black hole" register, i.e. to allow deleting characters without copying them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste the previously *yanked* value instead
++ `:pwd` - print working directory
 + `:!{cmd}` - execute a shell command named {cmd}
-+ `:term` - load an inline terminal to new buffer in *normal mode*; to exit use `:bd!` or `exit` command in *insert mode*
++ `:ter` - load an inline terminal to new buffer in *normal mode*; to exit use `:bd!` or `exit` command in *insert mode*
 
 #### ==[Operator's](#operatorpart-1)== Modifiers
 
