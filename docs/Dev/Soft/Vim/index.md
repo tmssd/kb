@@ -61,6 +61,7 @@
 <br/><br/>
 
 + ++ctrl+"f"++ / ++"b"++ ( or ++shift+up++ / ++down++ or ++page-up++ / ++page-down++ ) - move pages up / down
++ ++ctrl+"u"++ / ++"d"++ - move up / down 1/2 a screen
 + ++ctrl+"e"++ / ++"y"++ - ^^scroll^^ line up / down
 + ++"z"++++"t"++ , ++"z"++++"z"++ , ++"z"++++"b"++ - ^^scroll^^ cursor to top, center, bottom
 <br/><br/>
@@ -77,9 +78,11 @@
     Motion - move the cursor, or define the range for an operator.
 
 + ++"h"++ , ++"j"++ , ++"k"++ , ++"l"++ (or ++left++ , ++down++ , ++up++ , ++right++ ) - move the cursor left, down, up, right
++ ++"g"++++"j"++ / ++"g"++++"k"++ - move the cursor down / up in multi-line text
 + ++"w"++ ( or ++shift+right++ ) / ++w++ ( or ++ctrl+right++ ) - move cursor to ^^begining of next^^ word / whitespace-separated segment of text
 + ++"b"++ ( or ++shift+left++ ) / ++b++ ( or ++ctrl+left++ ) - move cursor to ^^previous begining^^ of word / whitespace-separated segment of text
-+ ++"e"++ / ++e++ - move cursor to ^^end^^ of word / whitespace-separated segment of text
++ ++"e"++ / ++e++ - move the cursor to ^^end^^ of word / whitespace-separated segment of text
++ ++"g"++++"e"++ / ++"g"++++e++ - move the cursor to ^^end^^ of ^^previous^^ word / whitespace-separated segment of text
 <br/><br/>
 
 + ++0++ or ++pipe++ - bol of current line
@@ -114,6 +117,7 @@ the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are c
 ##### Editing(part 1)
 
 + ++"u"++ - undo the previous operation
++ ++u++ - restore (undo) last changed line
 + ++ctrl+"r"++ - redo last undo change
 <br/><br/>
 
@@ -124,10 +128,26 @@ the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are c
 
 + ++"p"++ - *put* : to paste after (if charwise, to the right; if linewise, below)
 + ++p++ - *put* : to paste before (if charwise, to the left; if linewise, above)
-+ ++dblquote++*{char}* - select from register the {char} register before a *yank*/*delete*/*put* commands, e.g. ++dblquote++++"a"++++y++ - copy rest of line to register *a*. <br>
-  ++dblquote++*{A-Z}* before *yank*/*delete* - ^^append-copy^^ to register {a-z}
-+ ++dblquote++++"*"++ - select from register the system the register of PRIMARY(data copied upon highlighting with mouse) clipboard; to paste: use immediately ++"p"++ / ++p++ after that command
-+ ++dblquote++++plus++ - select from register the system the register of CLIPBOARD(traditional windows-like) clipboard; to paste: use immediately ++"p"++ / ++p++ after that command
++ ++dblquote++*{char}* - select from register the {char} register before a *yank*/*delete*/*put* commands, e.g. ++dblquote++++"a"++++y++ - copy rest of line to register *a*
+    1. ++dblquote++*{A-Z}* before *yank*/*delete* - ^^append-copy^^ to register {a-z}
+    2. following *{chars}* are *special registers*: <br>
+        `0` - last yank <br>
+        `"` - unnamed register, last delete or yank <br>
+        `%` - current file name <br>
+        `#` - alternate file name <br>
+        `*` - X11 PRIMARY(data copied upon highlighting with mouse) clipboard contents <br>
+        `+` - X11 CLIPBOARD(traditional windows-like) clipboard contents <br>
+        `/` - last search pattern <br>
+        `:` - last command-line <br>
+        `.` - last inserted text <br>
+        `-` - last small (less than a line) delete <br>
+        `=` - expression register <br>
+        `_` - black hole register <br>
+
+!!! tip
+
+    Registers are being stored in ~/.viminfo, and will be loaded again on next restart of vim.
+
 + ++shift+insert++ - paste from system PRIMARY clipboard
 + ++ctrl+shift+"v"++ - paste from system CLIPBOARD clipboard
 
@@ -290,7 +310,7 @@ useful shorthands:
 
 ##### Motions
 
-use operators and ==[motions](#motion)== together by following any of these patterns:
+use operators and ==[motions](#motionpart-1)== together by following any of these patterns:
 
 + ***{operator}{num}{motion}***
 + ***{num}{operator}{motion}***
