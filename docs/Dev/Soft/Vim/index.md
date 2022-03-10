@@ -30,11 +30,27 @@
     **buffer** - content of opened in vim file <br>
     **register** - vim's clipboard
 
+#### MODES
+
+1. Normal Mode
+    + Default mode vim starts in. Key presses don’t insert text into the document.
+    + To get back to the mode from other ones: <br>
+        ++esc++ or ++ctrl+bracket-left++ - back from any mode <br>
+        ++"v"++ / ++"v"++++"v"++ - back from charwise / linewise *visual mode* <br>
+2. Insert Mode
+    + Typing inserts characters just like a regular text editor.
+    + Accessed from *normal mode* by pressing: ++"i"++, ++i++, ++"a"++, ++a++, ++"o"++, ++o++, ++"c"++, ++c++ or ++"s"++, ++s++
+3. Replace Mode
+    + Allows replace existing text by directly typing over it.
+    + Accessed from *normal mode* by pressing: ++r++
+4. Visual Mode
+    + Used to make selections of text, similar to how clicking and dragging with a mouse behaves.
+    + Accessed from *normal mode* by pressing: ++"v"++, ++v++ or ++ctrl+"q"++
+5. Command Mode
+    + Has a wide variety of commands and can do things that *normal mode* can’t do as easily.
+    + Accessed by pressing: ++slash++, ++question++ or ++colon++
+
 #### Normal Mode
-
-++esc++ or ++ctrl+bracket-left++ - back to normal mode from any other mode <br>
-++"v"++ / ++"v"++++"v"++ - back to normal mode from charwise / linewise visual mode
-
 ##### Saving, closing(part 1)
 
 + ++z++++z++ - save and close the current file
