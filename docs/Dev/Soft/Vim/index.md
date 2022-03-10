@@ -32,49 +32,76 @@
 
 #### MODES
 
-1. Normal Mode
-    + Default mode vim starts in. Key presses don’t insert text into the document.
-    + To get back to the mode from other ones: <br>
-        ++esc++ or ++ctrl+bracket-left++ - back from any mode <br>
-        ++"v"++ / ++"v"++++"v"++ - back from charwise / linewise *visual mode* <br>
-2. Insert Mode
-    + Typing inserts characters just like a regular text editor.
-    + Accessed from *normal mode* by pressing: ++"i"++, ++i++, ++"a"++, ++a++, ++"o"++, ++o++, ++"c"++, ++c++ or ++"s"++, ++s++
-3. Replace Mode
-    + Allows replace existing text by directly typing over it.
-    + Accessed from *normal mode* by pressing: ++r++
-4. Visual Mode
-    + Used to make selections of text, similar to how clicking and dragging with a mouse behaves.
-    + Accessed from *normal mode* by pressing: ++"v"++, ++v++ or ++ctrl+"q"++
-5. Command Mode
-    + Has a wide variety of commands and can do things that *normal mode* can’t do as easily.
-    + Accessed by pressing: ++slash++, ++question++ or ++colon++
+^^Normal Mode^^
 
-#### Normal Mode
-##### Saving, closing(part 1)
++ Default mode vim starts in. Key presses don’t insert text into the document.
++ To get back to the mode from other ones: <br>
+    ++esc++ or ++ctrl+bracket-left++ - back from any mode <br>
+    ++"v"++ / ++"v"++++"v"++ - back from charwise / linewise *visual mode* <br>
+
+^^Insert Mode^^
+
++ Typing inserts characters just like a regular text editor.
++ Accessed from *normal mode* by pressing: ++"i"++, ++i++, ++"a"++, ++a++, ++"o"++, ++o++, ++"c"++, ++c++ or ++"s"++, ++s++
+
+^^Replace Mode^^
+
++ Allows replace existing text by directly typing over it.
++ Accessed from *normal mode* by pressing: ++r++
+
+^^Visual Mode^^
+
++ Used to make selections of text, similar to how clicking and dragging with a mouse behaves.
++ Accessed from *normal mode* by pressing: ++"v"++, ++v++ or ++ctrl+"q"++
+
+^^Command Mode^^
+
++ Has a wide variety of commands and can do things that *normal mode* can’t do as easily.
++ Accessed by pressing: ++slash++, ++question++ or ++colon++
+
+#### SAVING, CLOSING
 
 + ++z++++z++ - save and close the current file
 + ++z++++q++ - close the current file without saving
++ `:q` / `:q!` - close / force-close a file without saving
++ `:w` - save the current file
++ `:wq` (or `:x`) / `:wq!` (or `:x!`) - save and close the current file / force save and close the current file; exits vim if no open files remain
++ `:w {newfile}` (`:{x},{y}w {newfile}`) - ^^write^^ the whole ( from line {x} to line {y} ) current buffer into {newfile}, but continue editing the original file; `:w! {file}` (`:{x},{y}w! {file}`) to ^^overwrite^^ content of {file} that already exists
++ `:w >> {file}` (`:{x},{y}w >> {file}`) - ^^append^^ the whole ( from line {x} to line {y} ) current buffer to {file}
++ `:sav {newname}` - save a copy of the current file as {newname} and continue editing the file {newname}
 
-##### Repeating Commands
+#### REPEATING
 
 + ***{num}{command}*** - repeat command {num} times
 + ++"&"++ - repeat `:s` ==[command](#navigation-search-replace-buffers)==
 + ++period++ - repeat previous change
 
-##### Macros
+#### MACROS
 
 + ++"q"++*{a-z}* - start recording macro named {a-z}
 + ++"q"++ - stop recording macro(after it started with the above command)
 + ++"@"++*{a-z}* - replay {a-z} macro
 + ++"@"++++"@"++ - replay the last macro played
 
-##### Navigation
+#### NAVIGATION
 
-+ ++ctrl+"^"++ - switch between two last buffers
+##### Tabs
+
+##### Windows
+
 + ++ctrl+"w"++ ++"s"++ / ++ctrl+"w"++ ++"v"++ - create a horizontal / vertical split; ++ctrl+"w"++ ++"w"++ to switch windows
 + ++ctrl+"w"++ ++"c"++ - close current window in splitted layout i.e. doesn't close the last window
-<br/><br/>
+
+##### Buffers
+
++ ++ctrl+"^"++ - switch between two last buffers
++ `:ls` - show opened buffers; focused buffer named with `%a`
++ `:bp` / `:bn` / `:b#` / `:b{N}` / `:b {Name}` - switch to previous / next/ alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer
++ `:bd` / `:%bd` /  `:bd#` / `:bd{N}` / `:bd {Name}` - unload current / all / alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer and delete it from the buffer list
+    1. to force unload use `!` after `bd`; changes are lost in this case
+    2. in splitted layout that command will also close all windows currently showing the buffer
+
+##### Screen
 
 + ++ctrl+"f"++ / ++"b"++ ( or ++shift+up++ / ++down++ or ++page-up++ / ++page-down++ ) - move pages up / down
 + ++ctrl+"u"++ / ++"d"++ - move up / down 1/2 a screen
@@ -87,7 +114,7 @@
 
 + ++k++ - jumps to the help for the word under the cursor: neovim help, man page, etc...( ++"q"++++"q"++ - to get back to the editor)
 
-###### Motion(part 1)
+###### Motion
 
 !!! note
 
@@ -129,8 +156,36 @@
 + ++"*"++ / ++"#"++ - search forward / backwards for the next instance of the identifier(word) under the cursor
 + ++"n"++ / ++n++ - repeats the last search in the same / opposite direction specified by
 the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are command mode motion commands)
++ `/{pattern}` / `?{pattern}` - forward / reverse search for {pattern}
++ `/\<{word}\>` - find the next occurrence of the word {word}, where {word} is bounded by word
+boundaries (ex. space, dash)
 
-##### Editing(part 1)
+!!! note
+
+    **Regular expressions:**
+
+    Both vim’s find and replace functions accept regular expressions. <br>
+    Characters assumed by vim as part of regular expression(must be escaped with `\` to be searched for literally): `(`, `)`,  `*`,  `.`, `^`, `$` <br>
+    Regular expression patterns that interpreted literally(must be escaped with `\` to be used as a part of a regular expression): `+`
+
+    **Ignoring case:**
+
+    `\c` in searching and replacing commands - can be placed anywhere in the sequence being searched for and affects the whole sequence
+
+#### EDITING
+
++ `:new` - new file
++ `:e {file}` - open {file} in the current buffer
++ `:r {file}` - insert {file} content at the current cursor position
+<br/><br/>
+
++ ++"i"++ - insert at cursor
++ ++"a"++ - append after cursor
++ ++i++ - insert at the beginning of the line
++ ++a++ - append at the end of the line
++ ++"o"++ - insert a line below the current line
++ ++o++ - insert a line above the current line
+<br/><br/>
 
 + ++"u"++ - undo the previous operation
 + ++u++ - restore (undo) last changed line
@@ -139,6 +194,7 @@ the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are c
 
 + ++tilde++ - toggle case of character beneath the cursor
 + ++"r"++ - replace a character at the cursor position
++ ++r++ - replace characters starting at the cursor position using overstrike cursor, which types over existing characters
 + ++j++ - joins the current line with the next one, or all the lines in the current visual selection
 <br/><br/>
 
@@ -167,67 +223,7 @@ the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are c
 + ++shift+insert++ - paste from system PRIMARY clipboard
 + ++ctrl+shift+"v"++ - paste from system CLIPBOARD clipboard
 
-###### Operator(part 1)
-
-!!! info ""
-
-    Operator - operate on the specified range depending on current vim mode:
-
-    + *normal mode* - range is specified by a series of ==[modifiers](#operators-modifiers)==
-    + *visual mode* - range is the highlighted text
-
-+ ++"y"++ - *yank* : copy
-+ ++"d"++ - *delete* : cut
-+ ++equal++ - format code
-+ ++gt++ / ++lt++ - un-indent / indent
-
-#### Insert Mode
-
-!!! note
-
-    Insert mode is actually very similar to a regular editor, you can use cursor/navigation keys, backspace, delete...
-
-##### Editing(part 2)
-
-+ ++"i"++ - insert at cursor
-+ ++"a"++ - append after cursor
-+ ++i++ - insert at the beginning of the line
-+ ++a++ - append at the end of the line
-+ ++"o"++ - insert a line below the current line
-+ ++o++ - insert a line above the current line
-
-###### Operator(part 2)
-
-+ ++"c"++ - *change* : cut
-
-#### Visual Mode
-
-##### Selecting
-
-+ ++"v"++ - *visual* : marks starting selection point, then move the cursor to the desired end selection point
-+ ++v++ - *linewise-visual* : always select full lines
-+ ++ctrl+"q"++ - *block-visual* : select any rectangular region
-
-##### Editing(part 3)
-
-Use ==[operators](#operatorpart-1)== on selected text.
-
-#### Replace Mode
-
-+ ++r++ - replace characters starting at the cursor position using overstrike cursor, which types over existing characters
-
-#### Command Mode
-
-##### Saving, closing(part 2)
-
-+ `:q` / `:q!` - close / force-close a file without saving
-+ `:w` - save the current file
-+ `:wq` (or `:x`) / `:wq!` (or `:x!`) - save and close the current file / force save and close the current file; exits vim if no open files remain
-+ `:w {newfile}` (`:{x},{y}w {newfile}`) - ^^write^^ the whole ( from line {x} to line {y} ) current buffer into {newfile}, but continue editing the original file; `:w! {file}` (`:{x},{y}w! {file}`) to ^^overwrite^^ content of {file} that already exists
-+ `:w >> {file}` (`:{x},{y}w >> {file}`) - ^^append^^ the whole ( from line {x} to line {y} ) current buffer to {file}
-+ `:sav {newname}` - save a copy of the current file as {newname} and continue editing the file {newname}
-
-##### Navigation: search, replace, buffers
+##### Replace
 
 + `:[range]s/{old}/{new}/[flags]` - replace {old} with {new} in ^^range^^ according to ^^flags^^
 
@@ -248,69 +244,24 @@ Use ==[operators](#operatorpart-1)== on selected text.
     + `i` - ignore case
     + `c` - confirm each substitution
 
-###### Motion(part 2)
+##### Operators
 
-+ `/{pattern}` / `?{pattern}` - forward / reverse search for {pattern}
-+ `/\<{word}\>` - find the next occurrence of the word {word}, where {word} is bounded by word
-boundaries (ex. space, dash)
+!!! info ""
 
-!!! note
+    Operator - operate on the specified range depending on current vim mode:
 
-    **Regular expressions:**
+    + *normal mode* - range is specified by a series of ==[modifiers](#operators-modifiers)==
+    + *visual mode* - range is the highlighted text
 
-    Both vim’s find and replace functions accept regular expressions. <br>
-    Characters assumed by vim as part of regular expression(must be escaped with `\` to be searched for literally): `(`, `)`,  `*`,  `.`, `^`, `$` <br>
-    Regular expression patterns that interpreted literally(must be escaped with `\` to be used as a part of a regular expression): `+`
++ ++"y"++ - *yank* : copy
++ ++"d"++ - *delete* : cut
++ ++"c"++ - *change* : cut
++ ++equal++ - format code
++ ++gt++ / ++lt++ - un-indent / indent
 
-    **Ignoring case:**
+##### ==[Operator's](#operators)== Modifiers
 
-    `\c` in searching and replacing commands - can be placed anywhere in the sequence being searched for and affects the whole sequence
-
-###### Buffers
-
-+ `:ls` - show opened buffers; focused buffer named with `%a`
-+ `:bp` / `:bn` / `:b#` / `:b{N}` / `:b {Name}` - switch to previous / next/ alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer
-+ `:bd` / `:%bd` /  `:bd#` / `:bd{N}` / `:bd {Name}` - unload current / all / alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer and delete it from the buffer list
-    1. to force unload use `!` after `bd`; changes are lost in this case
-    2. in splitted layout that command will also close all windows currently showing the buffer
-
-##### Editing(part 4)
-
-+ `:new` - new file
-+ `:e {file}` - open {file} in the current buffer
-+ `:r {file}` - insert {file} content at the current cursor position
-
-##### Other commands
-
-+ ++"q"++++colon++ - show commands history list in a new horisontally-splitted window
-+ `:h` (or `:help`) - help
-+ `:noh` - un-highlight search matches
-+ `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
-+ `:set` / `:set [options]` - show / define editor options
-
-+ `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
-
-    ^^Some of the commmon {options} are:^^
-
-    + *all* - display all current vi options
-    + *[no]nu* - display line numbers
-    + *[no]ruler* (and optionally *rulerformat*) - showing line number headers; if you don't want to see the ruler all the time but want to know where you are, use ++"g"++ ++ctrl+"g"++
-    + *[no]wrap* - text wrapping
-    + *[no]linebreak* - line breaking
-    + *[no]spell* - spellchecking
-    + *syntax on/off* - syntax highlighting
-    + *expandtab* - space-tabbing
-    + *softtabstop=4* - soft tab
-    + *shiftwidth=4* - indent sizing
-
-+ `noremap x "_x` - re-map ++"x"++ command to work with the "black hole" register, i.e. to allow deleting characters without copying them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste the previously *yanked* value instead
-+ `:pwd` - print working directory
-+ `:!{cmd}` - execute a shell command named {cmd}
-+ `:ter` - load an inline terminal to new buffer in *normal mode*; to exit use `:bd!` or `exit` command in *insert mode*
-
-#### ==[Operator's](#operatorpart-1)== Modifiers
-
-##### Operator Doubling
+###### Operator Doubling
 
 double an operator to make it operate on a whole line:
 
@@ -324,9 +275,9 @@ useful shorthands:
 
 + ++s++ ( same as ++"c"++++"c"++ ) - *substitute line*
 
-##### Motions
+###### Motions
 
-use operators and ==[motions](#motionpart-1)== together by following any of these patterns:
+use operators and ==[motions](#motion)== together by following any of these patterns:
 
 + ***{operator}{num}{motion}***
 + ***{num}{operator}{motion}***
@@ -348,7 +299,7 @@ useful shorthands:
 + ++"s"++ ( same as ++"c"++++"l"++ ) - *substitute character* :  cut character after the cursor and enter *insert mode*
 + ++c++ ( same as ++"c"++++"$"++ ) - cut from cursor position to end of line and enter *insert mode*
 
-##### Text Objects
+###### Text Objects
 
 Text objects are special motions that describe structured pieces of text(the entities of a document domain model), e.g. words, sentences, quoted text, paragraphs, blocks, (HTML) tags, etc.
 
@@ -367,6 +318,41 @@ Specify a text object within a command by following this pattern: ***{operator}{
     + `<`, `>` - block surrounded by < >
     + `[`, `]` - block surrounded by [ ]
     + `t` - tag
+
+
+#### SELECTING
+
++ ++"v"++ - *visual* : marks starting selection point, then move the cursor to the desired end selection point
++ ++v++ - *linewise-visual* : always select full lines
++ ++ctrl+"q"++ - *block-visual* : select any rectangular region
++ Upon selecting one can use various ==[operators](#operator)==.
+
+#### GLOBAL
+
++ ++"q"++++colon++ - show commands history list in a new horisontally-splitted window
++ `:h` (or `:help`) - help
++ `:noh` - un-highlight search matches
++ `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
++ `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
++ `:set` / `:set {options}` - show / define editor options
+
+    ^^Some of the commmon *{options}* are:^^
+
+    + *all* - display all current vi options
+    + *[no]nu* - display line numbers
+    + *[no]ruler* (and optionally *rulerformat*) - showing line number headers; if you don't want to see the ruler all the time but want to know where you are, use ++"g"++ ++ctrl+"g"++
+    + *[no]wrap* - text wrapping
+    + *[no]linebreak* - line breaking
+    + *[no]spell* - spellchecking
+    + *syntax on/off* - syntax highlighting
+    + *expandtab* - space-tabbing
+    + *softtabstop=4* - soft tab
+    + *shiftwidth=4* - indent sizing
+
++ `noremap x "_x` - re-map ++"x"++ command to work with the "black hole" register, i.e. to allow deleting characters without copying them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste the previously *yanked* value instead
++ `:pwd` - print working directory
++ `:!{cmd}` - execute a shell command named {cmd}
++ `:ter` - load an inline terminal to new buffer in *normal mode*; to exit use `:bd!` or `exit` command in *insert mode*
 
 ## Vim Tips & Tricks
 
