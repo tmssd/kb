@@ -163,6 +163,21 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 
 + `:marks` - list of marks
 + ++"m"++*{a/A-z/Z}* - set a mark {a/A-z/Z}; {a-z} - per buffer marks, {A-Z} - global marks
+<br/><br/>
+
++ `:ju` - list of jumps
+
+    !!! note
+
+        **Jump** - a command that normally moves the cursor several lines away. <br>
+        If you make the cursor **jump** the position of the cursor before the jump is remembered. <br>
+        **Junp** commands are: ++grave++ , ++single-quote++ , ++"g"++, ++g++ , ++l++ , ++m++ , ++h++ , ++"("++ , ++")"++ , ++brace-left++ , ++brace-right++ , ++bracket-left++++bracket-left++ , ++bracket-right++++bracket-right++ , ++"%"++ , `/` , `?` , ++"n"++ , ++n++ , `:s` , `:tag` and the commands that start editing a new file.
+
++ ++ctrl+"o"++ / ++ctrl+"i"++ (or ++tab++ ) - move cursor to older(backwards) / newer(forward) position in jump list
+<br/><br/>
+
++ `:changes` - list of changes
++ ++"g"++++semicolon++ / ++"g"++++comma++ - move cursor to older(backwards) / newer(forward) position in change list
 
 ###### Motion
 
@@ -170,12 +185,36 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 
     Motion - move the cursor, or define the range for an ==[operator](#operators)==.
 
++ ++grave++*{mark}* / ++single-quote++*{mark}* - move the cursor to *{mark}* / "soft" bol of *{mark}*
+
+    ^^Special marks:^^
+
+    ++grave++ / ++single-quote++ - position / "soft" bol of position before the last jump <br>
+    ++period++ - position of the last change in this file <br>
+    ++dblquote++ - position when last editing this file <br>
+    ++0++ - position where Vim was previously exited
+<br/><br/>
+
++ ++"("++ / ++")"++ - move the cursor ^^backwards^^ to the beginning of the current(if cursor is not at the first letter of the sentence) or next sentence / ^^forward^^ to the beginning of the next sentence
++ ++brace-left++ / ++brace-right++ - move the cursor to the previous / next empty line, i.e. to previous / next paragraph(or function/block, when editing code)
++ ++h++ , ++m++ , ++l++ - move the cursor to the top, middle, bottom line on screen
++ ++"g"++++"g"++ (or ++bracket-left++++bracket-left++ ) / ++g++ (or ++bracket-right++++bracket-right++ ) - move the cursor first / last line of the file
++ ++colon++*{num}* or *{num}*++"gg"++ or *{num}*++g++ - move the cursor to line {num} of the file
+<br/><br/>
+
 + ++"h"++ , ++"j"++ , ++"k"++ , ++"l"++ (or ++left++ , ++down++ , ++up++ , ++right++ ) - move the cursor left, down, up, right
 + ++"g"++++"j"++ / ++"g"++++"k"++ - move the cursor down / up in multi-line text
 + ++"w"++ ( or ++shift+right++ ) / ++w++ ( or ++ctrl+right++ ) - move cursor to ^^begining of next^^ word / whitespace-separated segment of text
 + ++"b"++ ( or ++shift+left++ ) / ++b++ ( or ++ctrl+left++ ) - move cursor to ^^previous begining^^ of word / whitespace-separated segment of text
 + ++"e"++ / ++e++ - move the cursor to ^^end^^ of word / whitespace-separated segment of text
 + ++"g"++++"e"++ / ++"g"++++e++ - move the cursor to ^^end^^ of ^^previous^^ word / whitespace-separated segment of text
+<br/><br/>
+
++ ++"%"++ - move the cursor to matching parenthesis, bracket or brace
++ ++"f"++*{char}* / ++f++*{char}* - move the cursor ^^to^^ the next / previous instance of {char}
++ ++"t"++*{char}* / ++t++*{char}* - move the cursor ^^till^^ the next / previous instance of {char}
++ ++semicolon++ - repeat ++"f"++ , ++f++ , ++"t"++ , ++t++ commands
++ ++comma++ - reverse ++"f"++ , ++f++ , ++"t"++ , ++t++ commands
 <br/><br/>
 
 + ++0++ or ++pipe++ - bol of current line
@@ -186,41 +225,25 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 + ++minus++ - "soft" bol of previous line
 <br/><br/>
 
-+ ++"%"++ - move the cursor to matching parenthesis, bracket or brace
-+ ++"f"++*{char}* / ++f++*{char}* - move the cursor ^^to^^ the next / previous instance of {char}
-+ ++"t"++*{char}* / ++t++*{char}* - move the cursor ^^till^^ the next / previous instance of {char}
-+ ++semicolon++ - repeat ++"f"++ , ++f++ , ++"t"++ , ++t++ commands
-+ ++comma++ - reverse ++"f"++ , ++f++ , ++"t"++ , ++t++ commands
-<br/><br/>
++ `/{pattern}` / `?{pattern}` - forward / reverse search for {pattern}
 
-+ ++"("++ / ++")"++ - move the cursor ^^backwards^^ to the beginning of the current(if cursor is not at the first letter of the sentence) or next sentence / ^^forward^^ to the beginning of the next sentence
-+ ++brace-left++ / ++brace-right++ - move the cursor to the previous / next empty line, i.e. to previous / next paragraph(or function/block, when editing code)
-+ ++grave++*{a/A-z/Z}* / ++grave++++period++ - move the cursor to mark {a/A-z/Z} / to the position of the last modification
-+ ++single-quote++*{a/A-z/Z}* / ++single-quote++++period++ - move the cursor to "soft" bol of {a/A-z/Z} mark / of the last modification position
-+ ++grave++++0++ - move the cursor to the position where Vim was previously exited
-+ ++h++ , ++m++ , ++l++ - move the cursor to the top, middle, bottom line on screen
-+ ++"g"++++"g"++ (or ++bracket-left++++bracket-left++ ) / ++g++ (or ++bracket-right++++bracket-right++ ) - move the cursor first / last line of the file
-+ ++colon++*{num}* or *{num}*++"gg"++ or *{num}*++g++ - move the cursor to line {num} of the file
-<br/><br/>
+    !!! note
 
+        **Regular expressions:**
+
+        Both vim’s find(`/`, `?`) and ==[replace](#replacing)== functions accept regular expressions. <br>
+        Characters assumed by vim as part of regular expression(must be escaped with `\` to be searched for literally): `(`, `)`,  `*`,  `.`, `^`, `$` <br>
+        Regular expression patterns that interpreted literally(must be escaped with `\` to be used as a part of a regular expression): `+`
+
+        **Ignoring case:**
+
+        `\c` in searching and replacing commands - can be placed anywhere in the sequence being searched for and affects the whole sequence
+
++ `/\<{word}\>` - find the next occurrence of the word {word}, where {word} is bounded by word
 + ++"*"++ / ++"#"++ - search forward / backwards for the next instance of the identifier(word) under the cursor
 + ++"n"++ / ++n++ - repeats the last search in the same / opposite direction specified by
 the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are command mode motion commands)
-+ `/{pattern}` / `?{pattern}` - forward / reverse search for {pattern}
-+ `/\<{word}\>` - find the next occurrence of the word {word}, where {word} is bounded by word
 boundaries (ex. space, dash)
-
-!!! note
-
-    **Regular expressions:**
-
-    Both vim’s find and replace functions accept regular expressions. <br>
-    Characters assumed by vim as part of regular expression(must be escaped with `\` to be searched for literally): `(`, `)`,  `*`,  `.`, `^`, `$` <br>
-    Regular expression patterns that interpreted literally(must be escaped with `\` to be used as a part of a regular expression): `+`
-
-    **Ignoring case:**
-
-    `\c` in searching and replacing commands - can be placed anywhere in the sequence being searched for and affects the whole sequence
 
 #### Selecting
 
