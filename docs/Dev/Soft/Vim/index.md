@@ -21,6 +21,10 @@
 
 ### Vim Shortcuts
 
+!!! tip
+
+    Run `vimtutor` in a terminal to learn the first Vim commands.
+
 !!! note "Legend:"
 
     **bol** - begining of line <br>
@@ -43,6 +47,15 @@
 
 + Typing inserts characters just like a regular text editor.
 + Accessed from *normal mode* by pressing: ++"i"++ , ++i++ , ++"a"++ , ++a++ , ++"o"++ , ++o++ , ++"c"++ , ++c++ or ++"s"++ , ++s++
++ Mode's specific commands:
+
+    ++ctrl+"h"++ - delete the character before the cursor <br>
+    ++ctrl+"w"++ - delete word before the cursor <br>
+    ++ctrl+"j"++ - begin new line <br>
+    ++ctrl+"t"++ / ++ctrl+"d"++ - indent(move right) / de-indent(move left) line one shiftwidth <br>
+    ++ctrl+"p"++ / ++ctrl+"n"++ - insert(auto-complete) previous / next  match before the cursor <br>
+    ++ctrl+"r"++ *{char}* - insert the contents of register {char} <br>
+    ++ctrl+"o"++ *{command}* - Temporarily enter normal mode to issue one normal-mode {command} <br>
 
 ^^Replace Mode^^
 
@@ -53,6 +66,9 @@
 
 + Used to make selections of text, similar to how clicking and dragging with a mouse behaves.
 + Accessed from *normal mode* by pressing: ++"v"++ , ++v++ or ++ctrl+"q"++
++ Mode's specific commands:
+
+    ++"u"++ / ++u++ - change marked text to lowercase / uppercase
 
 ^^Command Mode^^
 
@@ -241,6 +257,7 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 
 + `/\<{word}\>` - find the next occurrence of the word {word}, where {word} is bounded by word
 + ++"*"++ / ++"#"++ - search forward / backwards for the next instance of the identifier(word) under the cursor
++ ++"g"++++"*"++ / ++"g"++++"#"++ - search forward / backwards for the next instance(including nested in other word) of the identifier(word) under the cursor
 + ++"n"++ / ++n++ - repeats the last search in the same / opposite direction specified by
 the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are command mode motion commands)
 boundaries (ex. space, dash)
@@ -269,6 +286,7 @@ boundaries (ex. space, dash)
 + ++a++ - append at the end of the line
 + ++"o"++ - insert a line below the current line
 + ++o++ - insert a line above the current line
++ ++"g"++++"i"++ - insert text in the same position as where *insert mode* was stopped last time in the current buffer
 <br/><br/>
 
 + ++"u"++ - undo the previous operation
@@ -279,11 +297,13 @@ boundaries (ex. space, dash)
 + ++tilde++ - toggle case of character beneath the cursor
 + ++"r"++ - replace a character at the cursor position
 + ++r++ - replace characters starting at the cursor position using overstrike cursor, which types over existing characters
-+ ++j++ - joins the current line with the next one, or all the lines in the current visual selection
++ ++j++ - joins the current line with the next one, or all the lines in the current visual selection with one space in between
++ ++"g"++++j++ - joins the current line with the next one, or all the lines in the current visual selection without space in between
 <br/><br/>
 
 + ++"p"++ - *put* : to paste after (if charwise, to the right; if linewise, below)
-+ ++p++ - *put* : to paste before (if charwise, to the left; if linewise, above)
++ ++p++ (or ++"p"++++bracket-left++ ) - *put* : to paste before (if charwise, to the left; if linewise, above)
++ ++"g"++++"p"++ , ++"g"++++p++ - same as ++"p"++ , ++p++ + leave cursor after the new text(if charwise) or at the bigining of next line(if linewise)
 + ++shift+insert++ - paste from system PRIMARY clipboard
 + ++ctrl+shift+"v"++ - paste from system CLIPBOARD clipboard
 
