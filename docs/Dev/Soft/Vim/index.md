@@ -31,14 +31,14 @@
     **"soft" bol** - first non-whitespace character of line <br>
     **eol** - end of line <br>
     **"soft" eol** - last non-whitespace character of line <br>
-    **buffer** - content of opened in vim file <br>
-    **register** - vim's clipboard
+    **buffer** - content of opened in Vim file <br>
+    **register** - Vim's clipboard
 
 #### Modes
 
 ^^Normal Mode^^
 
-+ Default mode vim starts in. Key presses don’t insert text into the document.
++ Default mode Vim starts in. Key presses don’t insert text into the document.
 + To get back to the mode from other ones: <br>
     ++esc++ or ++ctrl+bracket-left++ - back from any mode <br>
     ++"v"++ / ++"v"++++"v"++ - back from charwise / linewise *visual mode* <br>
@@ -77,6 +77,7 @@
 
 #### Global
 
++ ++ctrl+"l"++ - clear Vim's command line
 + ++"q"++++colon++ - show commands history list in a new horisontally-splitted window
 + `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
 + `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
@@ -142,7 +143,7 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 + `:tabs` - list all open tabs
 + `:tabe` or `:tabnew`  - open new tab
 + `:tabe {name} / {file}` or `:tabnew {name} / {file}`  - open new tab with name {name} / file {file}
-+ `#!bash vim -p file1 file2` - run vim and open file1 and file2 in separate tabs
++ `#!bash vim -p file1 file2` - run Vim and open file1 and file2 in separate tabs
 + ++"g"++++"t"++ / ++"g"++++t++  or `:tabn` / `:tabp` - move to the next / previous tab
 + *{num}*++"g"++++"t"++ or `:tabm {num}` - move to tab number *{num}*
 + `:tabm {num}` - move current tab to the *{num}*th position (indexed from 0)
@@ -241,14 +242,16 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 + ++minus++ - "soft" bol of previous line
 <br/><br/>
 
+<sub>**Search in all windows for current screen:**<sub/>
+
 + `/{pattern}` / `?{pattern}` - forward / reverse search for {pattern}
 
     !!! note
 
         **Regular expressions:**
 
-        Both vim’s find(`/`, `?`) and ==[replace](#replacing)== functions accept regular expressions. <br>
-        Characters assumed by vim as part of regular expression(must be escaped with `\` to be searched for literally): `(`, `)`,  `*`,  `.`, `^`, `$` <br>
+        Both Vim’s find(`/`, `?`) and ==[replace](#replacing)== functions accept regular expressions. <br>
+        Characters assumed by Vim as part of regular expression(must be escaped with `\` to be searched for literally): `(`, `)`,  `*`,  `.`, `^`, `$` <br>
         Regular expression patterns that interpreted literally(must be escaped with `\` to be used as a part of a regular expression): `+`
 
         **Ignoring case:**
@@ -261,6 +264,16 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 + ++"n"++ / ++n++ - repeats the last search in the same / opposite direction specified by
 the last use of ++"*"++ , ++"#"++ , ++slash++ , ++question++ (the last two are command mode motion commands)
 boundaries (ex. space, dash)
+
+<sub>**Search in multiple file(wether in current screen or not):**<sub/>
+
++ `:vim /{pattern}/ {file 1} {file 2} ...` - search for {pattern} in files {file 1}, {file 2} etc.
++ `:cp` / `:cn` - move cursor to the previous / next match
++ `:cope` - open a window containing the list of matches
++ `:ccl` - close the quickfix window
+!!! note ""
+
+    2 last commands are not motions!
 
 #### Selecting
 
@@ -311,7 +324,7 @@ boundaries (ex. space, dash)
 
 !!! tip
 
-    Registers are being stored in ~/.viminfo, and will be loaded again on next restart of vim.
+    Registers are being stored in ~/.viminfo, and will be loaded again on next restart of Vim.
 
 + ++dblquote++*{char}* - select from register the {char} register before a *yank*/*delete*/*put* commands, e.g. ++dblquote++++"a"++++y++ - copy rest of line to register *a*
     1. ++dblquote++*{A-Z}* before *yank*/*delete* - ^^append-copy^^ to register {a-z}
@@ -354,7 +367,7 @@ boundaries (ex. space, dash)
 
 !!! note
 
-    Operator - operate on the specified range depending on current vim mode:
+    Operator - operate on the specified range depending on current Vim mode:
 
     + *normal mode* - range is specified by a series of ==[modifiers](#operators-modifiers)==
     + *visual mode* - range is the highlighted text
@@ -429,14 +442,14 @@ Specify a text object within a command by following this pattern: ***{operator}{
 
 + `:q` / `:q!` or ++z++++q++ - close / force-close a file without saving
 + `:w` - save the current file
-+ `:wq` (or `:x`) / `:wq!` (or `:x!`) or ++z++++z++ - save and close the current file / force save and close the current file; exits vim if no open files remain
++ `:wq` (or `:x`) / `:wq!` (or `:x!`) or ++z++++z++ - save and close the current file / force save and close the current file; exits Vim if no open files remain
 + `:w {newfile}` (`:{x},{y}w {newfile}`) - ^^write^^ the whole ( from line {x} to line {y} ) current buffer into {newfile}, but continue editing the original file; `:w! {file}` (`:{x},{y}w! {file}`) to ^^overwrite^^ content of {file} that already exists
 + `:w >> {file}` (`:{x},{y}w >> {file}`) - ^^append^^ the whole ( from line {x} to line {y} ) current buffer to {file}
 + `:sav {newname}` - save a copy of the current file as {newname} and continue editing the file {newname}
 
 ## Vim Tips & Tricks
 
-### Execute vim's commands in a file from the command line
+### Execute Vim's commands in a file from the command line
 
 Use `-c` flag. You can separate multiple commands with a pipe `|`. Example:
 
