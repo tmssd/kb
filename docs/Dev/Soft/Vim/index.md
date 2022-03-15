@@ -176,6 +176,22 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 + ++ctrl+"e"++ / ++"y"++ - ^^scroll^^ line up / down
 + ++"z"++++"t"++ , ++"z"++++"z"++ , ++"z"++++"b"++ - ^^scroll^^ cursor to top, center, bottom
 
+###### Folding
+
++ *{num}*++"z"++++f++ - create a fold for {num} lines
++ `:{range}fo` - create a fold for the lines in {range}
++ ++"z"++++"o"++ / ++"z"++++o++ - open fold(s) by one / all level(s) under the cursor
++ ++"z"++++"c"++ / ++"z"++++c++ - close fold(s) by one / all level(s) under the cursor
++ `:{range}foldo[!]` / `:{range}foldc[!]` - open / close folds in {range} by one or all(when `[!]` is used) level(s)
++ ++"z"++++"a"++ / ++"z"++++a++ - toggle one / all fold(s) under the cursor
++ ++"z"++++"v"++ - view cursor line: open just enough folds to make the line in which the cursor is located not folded
++ ++"z"++++"r"++ / ++"z"++++r++ - reduce(open) all folds by one / all level(s)
++ ++"z"++++"m"++ / ++"z"++++m++ - fold more(close) all folds by one / all level(s)
++ ++"z"++++"i"++ - toggle folding functionality(inverts *foldenable* setting) <br>
+<sub>Following commands only work when *foldmethod* set to "manual" or "marker":</sub>
++ ++"z"++++"d"++ / ++"z"++++d++ - delete one fold(nested folds are moved one level up) / all folds at the cursor
++ ++"z"++++e++ - eliminate all folds in the window
+
 ###### Marks and positions
 
 + `:marks` - list of marks
@@ -214,6 +230,8 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 
 + ++"("++ / ++")"++ - move the cursor ^^backwards^^ to the beginning of the current(if cursor is not at the first letter of the sentence) or next sentence / ^^forward^^ to the beginning of the next sentence
 + ++brace-left++ / ++brace-right++ - move the cursor to the previous / next empty line, i.e. to previous / next paragraph(or function/block, when editing code)
++ ++bracket-left++++"z"++ / ++bracket-right++++"z"++ - move cursor to the start / end of the current open fold
++ ++"z"++++"j"++ / ++"z"++++"k"++ - move cursor downwards / upwards to the start / end of the next / previous fold
 + ++h++ , ++m++ , ++l++ - move the cursor to the top, middle, bottom line on screen
 + ++"g"++++"g"++ (or ++bracket-left++++bracket-left++ ) / ++g++ (or ++bracket-right++++bracket-right++ ) - move the cursor first / last line of the file
 + ++colon++*{num}* or *{num}*++"gg"++ or *{num}*++g++ - move the cursor to line {num} of the file
@@ -291,15 +309,16 @@ boundaries (ex. space, dash)
 + `:vs {file}` - open a file in a new buffer and vertically split window
 + ++"g"++++"f"++ - open file under cursor
 + `:r {file}` - insert {file} content at the current cursor position
++ `:[range]folddoc {cmd}` / `:[range]foldd {cmd}` - execute {cmd} on all lines(or lines in `[range]`) that are / are not in a closed fold. Example: `:foldd s/end/loop_end/ge` (note the use of the `e` flag to avoid getting an error message where "end" doesn't match)
 <br/><br/>
 
 + ++"i"++ - insert at cursor
 + ++"a"++ - append after cursor
 + ++i++ - insert at the beginning of the line
 + ++a++ - append at the end of the line
++ ++"g"++++"i"++ - insert text in the same position as where *insert mode* was stopped last time in the current buffer
 + ++"o"++ - insert a line below the current line
 + ++o++ - insert a line above the current line
-+ ++"g"++++"i"++ - insert text in the same position as where *insert mode* was stopped last time in the current buffer
 <br/><br/>
 
 + ++"u"++ - undo the previous operation
@@ -377,6 +396,8 @@ boundaries (ex. space, dash)
 + ++"c"++ - *change* : cut
 + ++equal++ - format code
 + ++gt++ / ++lt++ - un-indent / indent
++ ++"g"++++tilde++ - toggle case
++ ++"z"++++"f"++ - manually define a fold(not a editing command, but a view changer)
 
 ##### ==[Operator's](#operators)== Modifiers
 
