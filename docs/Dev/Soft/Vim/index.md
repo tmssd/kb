@@ -139,6 +139,7 @@ A buffer is the in-memory text of a file.
     1. to force unload use `!` after `bd`; changes are lost in this case
     2. in splitted layout that command will also close all windows currently showing the buffer
 + `:tab ba` - edit all buffers as tabs
++ `:[range]bufdo[!] {command}` - execute {command} in each buffer in the buffer list or only for buffers for which their buffer number is in the `[range]`; when the current file can't be *abandoned* and the `[!]` is not present, the command fails
 
 ##### Tabs
 
@@ -154,7 +155,6 @@ A tab page is a collection of windows.
 + `:tabc` - close the current tab and all its windows
 + `:tabo` - close all tabs except for the current one
 + `:tabdo {command}` - run the *{command}* on all tabs (e.g. `:tabdo q` - closes all opened tabs)
-+ ++ctrl+"w"++ ++t++ - move the current split window into its own tab
 
 ##### Windows
 
@@ -171,6 +171,7 @@ A window is a viewport on a buffer.
 + *{win_num}*++ctrl+"w"++ ++"x"++ - exchange current window with next / {win_num} window
 + ++ctrl+"w"++ ++"r"++ - rotate windows downwards/rightwards; this only works within the row or column of windows that the current window is in
 + ++ctrl+"w"++ ++r++ - rotate windows upwards/leftwards; this only works within the row or column of windows that the current window is in
++ ++ctrl+"w"++ ++t++ - move the current split window into its own tab
 <br/><br/>
 
 + ++ctrl+"w"++ ++equal++ - make all windows equal height & width
@@ -189,6 +190,9 @@ A window is a viewport on a buffer.
 
 + ++ctrl+"w"++ ++h++ / ++ctrl+"w"++ ++l++ - make current window full height at far left(leftmost) / right(rightmost) vertical window
 + ++ctrl+"w"++ ++j++ / ++ctrl+"w"++ ++k++ - make current window full width at the very bottom(bottommost) / top(topmost) horizontal window
+<br/><br/>
+
++ `:[range]windo {commad}` - execute {commad} in each / `[range]` window(s)
 
 ##### Screen
 
@@ -328,7 +332,9 @@ boundaries (ex. space, dash)
 + `:e {file}` - edit {file} in a new buffer
 + `:sp {file}` - open a file in a new buffer and horizontally split window
 + `:vs {file}` - open a file in a new buffer and vertically split window
-+ ++"g"++++"f"++ - open file under cursor
++ ++"g"++++"f"++ / ++"g"++++f++ - open file under cursor / and jump to the line number following the file name
++ ++ctrl+"w"++ ++"f"++ / ++ctrl+"w"++ ++f++ - split current window in two + open file under cursor / and jump to the line number following the file name
++ ++ctrl+"w"++ ++"g"++++"f"++ / ++ctrl+"w"++ ++"g"++++f++ - open a new tab page + open file under cursor / and jump to the line number following the file name
 + `:r {file}` - insert {file} content at the current cursor position
 + `:[range]folddoc {cmd}` / `:[range]foldd {cmd}` - execute {cmd} on all lines(or lines in `[range]`) that are / are not in a closed fold. Example: `:foldd s/end/loop_end/ge` (note the use of the `e` flag to avoid getting an error message where "end" doesn't match)
 <br/><br/>
