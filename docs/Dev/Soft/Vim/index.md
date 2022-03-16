@@ -134,7 +134,7 @@ A buffer is the in-memory text of a file.
 
 + ++ctrl+"^"++ - switch between two last buffers
 + `:ls` - list all open buffers; focused buffer named with `%a`
-+ `:bp` / `:bn` / `:b#` / `:b{N}` / `:b {Name}` - switch to previous / next/ alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer
++ `:bf`(or `:br`) / `:bl` / `:bp` / `:bn` / `:b#` / `:b{N}` / `:b {Name}` - switch to previous first / last / next/ alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer
 + `:bd` / `:%bd` /  `:bd#` / `:bd{N}` / `:bd {Name}` - unload current / all / alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer and delete it from the buffer list
     1. to force unload use `!` after `bd`; changes are lost in this case
     2. in splitted layout that command will also close all windows currently showing the buffer
