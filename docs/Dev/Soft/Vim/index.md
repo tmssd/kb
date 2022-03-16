@@ -111,7 +111,7 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
     `softtabstop=4` - soft tab <br>
     `shiftwidth=4` - indent sizing <br>
 
-+ `noremap x "_x` - re-map ++"x"++ command to work with the "black hole" register, i.e. to allow deleting characters without copying
++ `:noremap x "_x` - re-map ++"x"++ command to work with the "black hole" register, i.e. to allow deleting characters without copying
 
 #### Repeating
 
@@ -130,6 +130,8 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 
 ##### Buffers
 
+A buffer is the in-memory text of a file.
+
 + ++ctrl+"^"++ - switch between two last buffers
 + `:ls` - list all open buffers; focused buffer named with `%a`
 + `:bp` / `:bn` / `:b#` / `:b{N}` / `:b {Name}` - switch to previous / next/ alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer
@@ -139,6 +141,8 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 + `:tab ba` - edit all buffers as tabs
 
 ##### Tabs
+
+A tab page is a collection of windows.
 
 + `:tabs` - list all open tabs
 + `:tabe` or `:tabnew`  - open new tab
@@ -154,16 +158,33 @@ them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste 
 
 ##### Windows
 
-+ ++ctrl+"w"++ ++"s"++ / ++ctrl+"w"++ ++"v"++ - create a horizontal / vertical split
-+ ++ctrl+"w"++ ++"w"++ - move cursor between windows
+A window is a viewport on a buffer.
+
++ ++ctrl+"w"++ ++"n"++ or `:sp n` - create a new horizontal split and start editing an empty file in it
++ ++ctrl+"w"++ ++"s"++ or `:sp` / ++ctrl+"w"++ ++"v"++ or `:vert sp` - create a horizontal / vertical split
++ *{num}*++ctrl+"w"++ ++"^"++ - create a horizontal split and edit the alternate / {num} buffer
 + ++ctrl+"w"++ ++"c"++ or `:clo` - close focused split window, i.e. doesn't close not-splitted window
 + ++ctrl+"w"++ ++"q"++ - quit a window
-+ ++ctrl+"w"++ ++equal++ - make all windows equal height & width
-+ ++ctrl+"w"++ ++"x"++ - exchange current window with next one
++ *{num}*++ctrl+"w"++ ++"o"++ or `:{num}on[!]` - close(force close if `!` is used) all but the current / {num} window
 <br/><br/>
 
++ *{win_num}*++ctrl+"w"++ ++"x"++ - exchange current window with next / {win_num} window
++ ++ctrl+"w"++ ++"r"++ - rotate windows downwards/rightwards; this only works within the row or column of windows that the current window is in
++ ++ctrl+"w"++ ++r++ - rotate windows upwards/leftwards; this only works within the row or column of windows that the current window is in
+<br/><br/>
+
++ ++ctrl+"w"++ ++equal++ - make all windows equal height & width
++ *{num}*++ctrl+"w"++ ++minus++ / *{num}*++ctrl+"w"++ ++plus++ or `:{win_num}res [+-]{num}` - decrease / increase current(or {win_num}) window height by 1 / {num}
++ *{num}*++ctrl+"w"++ ++lt++ / *{num}*++ctrl+"w"++ ++gt++ or `:vert {win_num}res [+-]{num}` - decrease / increase current(or {win_num}) window width by 1 / {num}
++ ++ctrl+"w"++ ++underscore++ / ++ctrl+"w"++ ++bar++ - set current window height / width to highest / widest possible
+<br/><br/>
+
++ *{num}*++ctrl+"w"++ ++"w"++ - move cursor to next / {num} window
 + ++ctrl+"w"++ ++"h"++ / ++ctrl+"w"++ ++"l"++ - move cursor to the left /right window (vertical split)
 + ++ctrl+"w"++ ++"j"++ / ++ctrl+"w"++ ++"k"++ - move cursor to the window below / above (horizontal split)
++ ++ctrl+"w"++ ++"t"++ / ++ctrl+"w"++ ++"b"++ - move cursor to top-left / bottom-right window
++ ++ctrl+"w"++ ++"p"++ - move cursor to previous (last accessed) window
++ ++ctrl+"w"++ ++p++ - move cursor to preview window; when there is no preview window this is an error
 <br/><br/>
 
 + ++ctrl+"w"++ ++h++ / ++ctrl+"w"++ ++l++ - make current window full height at far left(leftmost) / right(rightmost) vertical window
@@ -339,6 +360,31 @@ boundaries (ex. space, dash)
 + ++shift+insert++ - paste from system PRIMARY clipboard
 + ++ctrl+shift+"v"++ - paste from system CLIPBOARD clipboard
 
+##### Diff mode
+
+Diff - showing differences between 2 to 8 versions of the same file.
+
++ `nvim -d file1 file2 [file3 [file4]]` - cmd command to start editing in diff mode using vertical split <br>
+  The second and following arguments may also be a directory name.  Vim will then append the file name of the first argument to the directory name to find.
+the file. <br>
+  Use `-o` argument for horizontal split.
+
++ `:diffs {file}` / `:vert diffs {file}` - start *diff mode* for the current and the newly opened window for {file} in horizontal / vertical split layout
+
+    !!! tip
+        If you always prefer a vertical split include "vertical" in *diffopt*.
+
++ `:difft` - make current window part of *diff* windows
++ `:diffo[!]` - switch off diff mode for the current window and, when `!` is used, in all windows in the current tab page where *diff* is set(hidden buffers are also removed from the list of diff'ed buffers in this case)
++ `:dif[!]` - update the diff highlighting and folds; if the `!` is included Vim will check if the file was changed externally and needs to be reloaded
++ ++bracket-left++++"c"++ / ++bracket-right++++"c"++ - move cursor to start of previous / next change
++ *{bufspec(count)}*++"d"++++"o"++ or `:[range]diffg [bufspec]` - obtain(get) difference(from other buffer)
++ *{bufspec(count)}*++"d"++++"p"++ or `:[range]diffpu [bufspec]` - put difference(to other buffer)
++ !!! note
+     In 2 comands above: <br>
+     **bufspec** argument specifies the buffer to be used and can be a ^^buffer number^^, a ^^pattern for a buffer name^^ or a ^^part of a buffer name^^. <br>
+     If **bufspec** is ^^omitted^^ the other buffer which is in diff mode is used. But for the second command there should be ^^only one^^ such buffer(where *modifiable* is set), otherwise it fails.
+
 ##### Registers
 
 !!! tip
@@ -399,7 +445,7 @@ boundaries (ex. space, dash)
 + ++"g"++++tilde++ - toggle case
 + ++"z"++++"f"++ - manually define a fold(not a editing command, but a view changer)
 
-##### ==[Operator's](#operators)== Modifiers
+##### ==[Operator's](#operators)== modifiers
 
 ###### Operator doubling
 
