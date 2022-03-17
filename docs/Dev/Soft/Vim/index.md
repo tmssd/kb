@@ -451,6 +451,8 @@ the file. <br>
   `tr` - e.g. `!}tr "[:lower:]" "[:upper:]"` will *translate* the current paragraph to uppercase <br>
   `uniq` - e.g. `!5juniq` to ensure the next five lines to be unique <br>
 + ++"g"++++tilde++ - toggle case
++ ++"g"++++"q"++ / ++"g"++++"w"++ - format the lines / and put the cursor back at the same position in the text; see: `:h gq`, `:h fo`(format options), `:h fp`(format program), `:h fo-table`(an explanation of the possible options) <br>
+  tip for useful command: ++"g"++++"w"++++"i"++++"p"++ - reflow paragraph
 + ++"z"++++"f"++ - manually define a fold(not a editing command, but a view changer)
 
 ##### ==[Operator's](#operators)== modifiers
@@ -465,6 +467,7 @@ double an operator to make it operate on a whole line:
 + ++"="++++"="++ - format line
 + ++">"++++">"++ / ++"<"++++"<"++ - increase / decrease current line indentation(no matter where the cursor located in it)
 + ++exclam++++exclam++ *{filter}* - filter current line through the external program {filter}
++ ++"g"++++"q"++++"q"++ / ++"g"++++"w"++++"w"++ - format current line / and put the cursor back at the same position in the text
 
 useful shorthands:
 
