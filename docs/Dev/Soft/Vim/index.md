@@ -1,10 +1,11 @@
 # Vim
 
+## Vim Essentials
+
 !!! info ""
 
     + [Vim Tips Wiki](https://vim.fandom.com/wiki/Vim_Tips_Wiki)
-
-## Vim Essentials
+    + [Vi and Vim(StackExchange)](https://vi.stackexchange.com/)
 
 ### Vim Cheatsheet
 
