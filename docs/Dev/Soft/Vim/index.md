@@ -514,7 +514,6 @@ Specify a text object within a command by following this pattern: ***{operator}{
     `[`, `]` - block surrounded by [ ] <br>
     `t` - tag <br>
 
-
 #### File Manipulation
 
 ##### Creating, opening
