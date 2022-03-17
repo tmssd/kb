@@ -222,6 +222,16 @@ echo "Created hello/world.txt"
     du -hs
     ```
 
++ ##### *redirect output to protected file*
+
+    ```bash
+    # overwrite output to protected file
+    echo 16 | sudo tee /proc/sys/kernel/sysrq
+
+    # append output to protected file
+    echo 16 | sudo tee -a /proc/sys/kernel/sysrq
+    ```
+
 + ##### *convert pdf to jpg*
 
     1. *using `pdftoppm` tool:*
