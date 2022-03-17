@@ -532,6 +532,7 @@ Specify a text object within a command by following this pattern: ***{operator}{
 
 + `:q` / `:q!` or ++z++++q++ - close / force-close a file without saving
 + `:w` - save the current file
++ `:w !sudo tee %` - write out the current file using sudo
 + `:wq` (or `:x`) / `:wq!` (or `:x!`) or ++z++++z++ - save and close the current file / force save and close the current file; exits Vim if no open files remain
 + `:w {newfile}` (`:{x},{y}w {newfile}`) - ^^write^^ the whole ( from line {x} to line {y} ) current buffer into {newfile}, but continue editing the original file; `:w! {file}` (`:{x},{y}w! {file}`) to ^^overwrite^^ content of {file} that already exists
 + `:w >> {file}` (`:{x},{y}w >> {file}`) - ^^append^^ the whole ( from line {x} to line {y} ) current buffer to {file}
