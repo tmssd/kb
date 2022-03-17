@@ -258,6 +258,7 @@ A window is a viewport on a buffer.
 + ++brace-left++ / ++brace-right++ - move the cursor to the previous / next empty line, i.e. to previous / next paragraph(or function/block, when editing code)
 + ++bracket-left++++"z"++ / ++bracket-right++++"z"++ - move cursor to the start / end of the current open fold
 + ++"z"++++"j"++ / ++"z"++++"k"++ - move cursor downwards / upwards to the start / end of the next / previous fold
++ ++"g"++++"d"++ / ++"g"++++d++ - move cursor to local / global variable declaration
 + ++h++ , ++m++ , ++l++ - move the cursor to the top, middle, bottom line on screen
 + ++"g"++++"g"++ (or ++bracket-left++++bracket-left++ ) / ++g++ (or ++bracket-right++++bracket-right++ ) - move the cursor first / last line of the file
 + ++colon++*{num}* or *{num}*++"gg"++ or *{num}*++g++ - move the cursor to line {num} of the file
