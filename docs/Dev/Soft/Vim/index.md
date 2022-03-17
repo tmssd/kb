@@ -134,7 +134,8 @@ A buffer is the in-memory text of a file.
 
 + ++ctrl+"^"++ - switch between two last buffers
 + `:ls` - list all open buffers; focused buffer named with `%a`
-+ `:bf`(or `:br`) / `:bl` / `:bp` / `:bn` / `:b#` / `:b{N}` / `:b {Name}` - switch to previous first / last / next/ alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer
++ `:bf`(or `:br`) / `:bl` / `:bp` / `:bn` / `:b#` / `:b{N}` / `:b {Name}` - switch to first / last / previous / next / alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer
++ `:bad [+{lnum}] {file}` - add {file} to the buffer list, without loading it, if it wasn't listed yet(and position cursor at {lnum} line)
 + `:bd` / `:%bd` /  `:bd#` / `:bd{N}` / `:bd {Name}` - unload current / all / alternate(heretofore opened) / {N}'s(as shown by `:ls`) / {Name}(as shown by `:ls`) buffer and delete it from the buffer list
     1. to force unload use `!` after `bd`; changes are lost in this case
     2. in splitted layout that command will also close all windows currently showing the buffer
@@ -297,6 +298,10 @@ A window is a viewport on a buffer.
         Characters assumed by Vim as part of regular expression(must be escaped with `\` to be searched for literally): `(`, `)`,  `*`,  `.`, `^`, `$` <br>
         Regular expression patterns that interpreted literally(must be escaped with `\` to be used as a part of a regular expression): `+`
 
+        **{\pattern} - "very magic" pattern:**
+
+        Non-alphanumeric characters are interpreted as special regex symbols (no escaping needed), e.g. `/\a` - search for alphabetic character: [A-Za-z]. For more info search help: `:h magic`
+
         **Ignoring case:**
 
         `\c` in searching and replacing commands - can be placed anywhere in the sequence being searched for and affects the whole sequence
@@ -328,17 +333,6 @@ boundaries (ex. space, dash)
 
 #### Editing
 
-+ `:new` - new file
-+ `:e {file}` - edit {file} in a new buffer
-+ `:sp {file}` - open a file in a new buffer and horizontally split window
-+ `:vs {file}` - open a file in a new buffer and vertically split window
-+ ++"g"++++"f"++ / ++"g"++++f++ - open file under cursor / and jump to the line number following the file name
-+ ++ctrl+"w"++ ++"f"++ / ++ctrl+"w"++ ++f++ - split current window in two + open file under cursor / and jump to the line number following the file name
-+ ++ctrl+"w"++ ++"g"++++"f"++ / ++ctrl+"w"++ ++"g"++++f++ - open a new tab page + open file under cursor / and jump to the line number following the file name
-+ `:r {file}` - insert {file} content at the current cursor position
-+ `:[range]folddoc {cmd}` / `:[range]foldd {cmd}` - execute {cmd} on all lines(or lines in `[range]`) that are / are not in a closed fold. Example: `:foldd s/end/loop_end/ge` (note the use of the `e` flag to avoid getting an error message where "end" doesn't match)
-<br/><br/>
-
 + ++"i"++ - insert at cursor
 + ++"a"++ - append after cursor
 + ++i++ - insert at the beginning of the line
@@ -346,11 +340,8 @@ boundaries (ex. space, dash)
 + ++"g"++++"i"++ - insert text in the same position as where *insert mode* was stopped last time in the current buffer
 + ++"o"++ - insert a line below the current line
 + ++o++ - insert a line above the current line
-<br/><br/>
-
-+ ++"u"++ - undo the previous operation
-+ ++u++ - restore (undo) last changed line
-+ ++ctrl+"r"++ - redo last undo change
++ `:r {file}` - insert {file} content at the current cursor position
++ `:[range]folddoc {cmd}` / `:[range]foldd {cmd}` - execute {cmd} on all lines(or lines in `[range]`) that are / are not in a closed fold. Example: `:foldd s/end/loop_end/ge` (note the use of the `e` flag to avoid getting an error message where "end" doesn't match)
 <br/><br/>
 
 + ++tilde++ - toggle case of character beneath the cursor
@@ -365,6 +356,11 @@ boundaries (ex. space, dash)
 + ++"g"++++"p"++ , ++"g"++++p++ - same as ++"p"++ , ++p++ + leave cursor after the new text(if charwise) or at the bigining of next line(if linewise)
 + ++shift+insert++ - paste from system PRIMARY clipboard
 + ++ctrl+shift+"v"++ - paste from system CLIPBOARD clipboard
+<br/><br/>
+
++ ++"u"++ - undo the previous operation
++ ++u++ - restore (undo) last changed line
++ ++ctrl+"r"++ - redo last undo change
 
 ##### Diff mode
 
@@ -448,6 +444,11 @@ the file. <br>
 + ++"c"++ - *change* : cut
 + ++equal++ - format code
 + ++gt++ / ++lt++ - un-indent / indent
++ ++exclam++[modifier] *{filter}* - filter text lines through the external program {filter} <br>
+  ^^Useful filter programs:^^ <br>
+  `sort` - e.g. `!4jsort` will sort the next four lines <br>
+  `tr` - e.g. `!}tr "[:lower:]" "[:upper:]"` will *translate* the current paragraph to uppercase <br>
+  `uniq` - e.g. `!5juniq` to ensure the next five lines to be unique <br>
 + ++"g"++++tilde++ - toggle case
 + ++"z"++++"f"++ - manually define a fold(not a editing command, but a view changer)
 
@@ -462,6 +463,7 @@ double an operator to make it operate on a whole line:
 + ++"c"++++"c"++ - cut current line(no matter where the cursor located in it), including *invisible newline sign* at the end
 + ++"="++++"="++ - format line
 + ++">"++++">"++ / ++"<"++++"<"++ - increase / decrease current line indentation(no matter where the cursor located in it)
++ ++exclam++++exclam++ *{filter}* - filter current line through the external program {filter}
 
 useful shorthands:
 
@@ -511,7 +513,21 @@ Specify a text object within a command by following this pattern: ***{operator}{
     `[`, `]` - block surrounded by [ ] <br>
     `t` - tag <br>
 
-#### Saving, Exiting
+
+#### File Manipulation
+
+##### Creating, opening
+
++ `:new` - new file
++ `:e {file}` - edit {file} in a new buffer
++ `:e scp://remoteuser@server.tld//absolute/path/to/document` or `:e scp://remoteuser@server.tld/remoteuser/home/directory/relative/path/to/document` - edit remote file via scp
++ `:sp {file}` - open a file in a new buffer and horizontally split window
++ `:vs {file}` - open a file in a new buffer and vertically split window
++ ++"g"++++"f"++ / ++"g"++++f++ - open file under cursor / and jump to the line number following the file name
++ ++ctrl+"w"++ ++"f"++ / ++ctrl+"w"++ ++f++ - split current window in two + open file under cursor / and jump to the line number following the file name
++ ++ctrl+"w"++ ++"g"++++"f"++ / ++ctrl+"w"++ ++"g"++++f++ - open a new tab page + open file under cursor / and jump to the line number following the file name
+
+##### Exiting, saving
 
 + `:q` / `:q!` or ++z++++q++ - close / force-close a file without saving
 + `:w` - save the current file
