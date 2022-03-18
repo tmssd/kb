@@ -80,6 +80,7 @@
 
 + ++ctrl+"l"++ - clear Vim's command line
 + ++"q"++++colon++ - show commands history list in a new horisontally-splitted window
++ `:{command-pattern}`++ctrl+"d"++ - show {command-pattern}'s available commands
 + `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
 
 #### Help
