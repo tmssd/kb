@@ -81,8 +81,6 @@
 + ++ctrl+"l"++ - clear Vim's command line
 + ++"q"++++colon++ - show commands history list in a new horisontally-splitted window
 + `:map` - mapping a key in command mode to a group of commands, e.g. `:map de :1,$d^M` will delete all lines when using the `:de` command
-+ `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved"
-them to the clipboard, so that a following ++"p"++ / ++p++ commands would paste the previously *yanked* value instead
 
 #### Help
 
@@ -308,6 +306,9 @@ A window is a viewport on a buffer.
 
         `\c` in searching and replacing commands - can be placed anywhere in the sequence being searched for and affects the whole sequence
 
+    1. ++"c"++++"g"++++"n"++ - *change* next match
+    2. `/{pattern}/m$` - move first match line to the last line of the document(doesn't seem to work)
+
 + `/\<{word}\>` - find the next occurrence of the word {word}, where {word} is bounded by word
 + ++"*"++ / ++"#"++ - search forward / backwards for the next instance of the identifier(word) under the cursor
 + ++"g"++++"*"++ / ++"g"++++"#"++ - search forward / backwards for the next instance(including nested in other word) of the identifier(word) under the cursor
@@ -342,8 +343,11 @@ boundaries (ex. space, dash)
 + ++"g"++++"i"++ - insert text in the same position as where *insert mode* was stopped last time in the current buffer
 + ++"o"++ - insert a line below the current line
 + ++o++ - insert a line above the current line
-+ `:r {file}` - insert {file} content at the current cursor position
++ `:ab` - define a text abbreviation in *insert node*, e.g. `:ab VIM Vi Improved` will auto-complete "VIM" in *insert mode* for the phrase "Vi Improved" them to the clipboard <br>
+  *{abbreviation}*++ctrl++++"v"++ - to disable auto-completion and type the {abbreviation} as is
++ `:[range] norm A{text}` - add {text} on each eol within the [range]; `A` is just an example, other commands could be used instead
 + `:[range]folddoc {cmd}` / `:[range]foldd {cmd}` - execute {cmd} on all lines(or lines in `[range]`) that are / are not in a closed fold. Example: `:foldd s/end/loop_end/ge` (note the use of the `e` flag to avoid getting an error message where "end" doesn't match)
++ `:r {file}` - insert {file} content at the current cursor position
 <br/><br/>
 
 + ++tilde++ - toggle case of character beneath the cursor
