@@ -4,6 +4,7 @@
 
 !!! info ""
 
+    + [Vimdoc : the online source for Vim documentation](http://vimdoc.sourceforge.net/index.php)
     + [Vim Tips Wiki](https://vim.fandom.com/wiki/Vim_Tips_Wiki)
     + [Vi and Vim(StackExchange)](https://vi.stackexchange.com/)
 
