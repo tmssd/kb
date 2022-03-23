@@ -129,6 +129,13 @@
 
 #### Navigation
 
+##### Argument list
+
+A list of opened files given as arguments to the `vim` cmd.
+
++ `:ar` - print the argument list, with the current file in square brackets
++ `:[count]N[!]` / `:[count]n[!]` - edit [count] previous / next file + discard any changes to the buffer if `[!]` is used
+
 ##### Buffers
 
 A buffer is the in-memory text of a file.
