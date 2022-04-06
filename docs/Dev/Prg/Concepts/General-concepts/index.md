@@ -186,7 +186,7 @@
     + for ^^*Login Shells*^^:
 
         + **^^Bash^^**(read by shell in this order but it executes only the first of those files found!<sup> [source](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)</sup>): *system-wide settings files* -> `~/.bash_profile` -> `~/.bash_login` -> `~/.profile`
-    
+
             !!! tip
 
                 Put these in `~/.profile` at the top in order to source `~/.bashrc`:
@@ -259,6 +259,7 @@
 !!! info ""
 
     + [RegExp(4pda)](https://4pda.to/forum/index.php?showtopic=940394)
+    + [Regex in Java Script(MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet)
     + [Regular Expression HOWTO(python.org)](https://docs.python.org/dev/howto/regex.html)
     + [Regex tutorial — A quick cheatsheet by examples(Medium)](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285)
     + [Regex cookbook — Top 10 Most wanted regex(Medium)](https://medium.com/factory-mind/regex-cookbook-most-wanted-regex-aa721558c3c1)

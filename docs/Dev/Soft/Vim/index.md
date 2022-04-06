@@ -556,6 +556,10 @@ Specify a text object within a command by following this pattern: ***{operator}{
 
 ## Vim Tips & Tricks
 
+### Useful configs
+
++ Neovim IDE from Scratch - Introduction (100% lua config): [:fontawesome-brands-youtube:](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ), [:fontawesome-brands-github:](https://github.com/LunarVim/Neovim-from-scratch)
+
 ### Execute Vim's commands in a file from the command line
 
 Use `-c` flag. You can separate multiple commands with a pipe `|`. Example:
@@ -563,3 +567,30 @@ Use `-c` flag. You can separate multiple commands with a pipe `|`. Example:
 ``` bash
 vi -c "%s/false/true/g|:wq" file.txt
 ```
+
+## Vim Plugins
+
+!!! info ""
+
+    + [Vim Awesome](https://vimawesome.com/)
+    + [Awesome Neovim :material-github:](https://github.com/rockerBOO/awesome-neovim)
+
+### Floaterm
+
+Commands - [:fontawesome-brands-github:](https://github.com/voldikss/vim-floaterm#commands)
+
+### Fzf
+
+
+
+### NERD Commenter
+
+Mappings - [:fontawesome-brands-github:](https://github.com/preservim/nerdcommenter#default-mappings)
+
+### Vim Surround
+
+Mappings - [:fontawesome-brands-github:](https://github.com/tpope/vim-surround#surroundvim)
+
+### ALE and coc.nvim
+
+[...to be edited after installation and trying](https://vimawesome.com/plugin/ale#faq-coc-nvim)
