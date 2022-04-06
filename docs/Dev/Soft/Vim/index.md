@@ -581,6 +581,7 @@ Commands - [:fontawesome-brands-github:](https://github.com/voldikss/vim-floater
 
 ### Fzf
 
+++ctrl+"t"++ , ++ctrl+"x"++ , ++ctrl+"v"++ - open file in a new tab, split, vertical split <br>
 Commands - [:fontawesome-brands-github:](https://github.com/junegunn/fzf.vim#commands)
 
 ### NERD Commenter
