@@ -581,7 +581,7 @@ Commands - [:fontawesome-brands-github:](https://github.com/voldikss/vim-floater
 
 ### Fzf
 
-
+Commands - [:fontawesome-brands-github:](https://github.com/junegunn/fzf.vim#commands)
 
 ### NERD Commenter
 
