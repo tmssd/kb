@@ -592,6 +592,21 @@ Mappings - [:fontawesome-brands-github:](https://github.com/preservim/nerdcommen
 
 Mappings - [:fontawesome-brands-github:](https://github.com/tpope/vim-surround#surroundvim)
 
+### Vim Gitgutter
+
+++bracket-left++++"c"++ / ++bracket-right++++"c"++ - jump to previous / next hunk (change) <br>
+++"Leader"++++"h"++++"s"++ / ++"Leader"++++"h"++++"u"++ - stage / unstage the hunk <br>
+Commands - [:fontawesome-brands-github:](https://github.com/airblade/vim-gitgutter#getting-started)
+
+### Vim Fugitive
+
+Commands - [:fontawesome-brands-github:](https://github.com/tpope/vim-fugitive#fugitivevim)
+
+### Vimagit
+
+++"Leader"++++m++ - open Magit buffer <br>
+Mappings - [:fontawesome-brands-github:](https://github.com/jreybert/vimagit#mappings)
+
 ### ALE and coc.nvim
 
 [...to be edited after installation and trying](https://vimawesome.com/plugin/ale#faq-coc-nvim)
