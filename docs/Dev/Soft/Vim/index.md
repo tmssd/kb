@@ -588,6 +588,16 @@ Commands - [:fontawesome-brands-github:](https://github.com/junegunn/fzf.vim#com
 
 Mappings - [:fontawesome-brands-github:](https://github.com/preservim/nerdcommenter#default-mappings)
 
+### Replace With Register
+
+[:fontawesome-brands-github:](https://github.com/vim-scripts/ReplaceWithRegister)
+
+[count] ["x] ++"g"++++"r"++{motion} - replace {motion} text with the contents of register x.
+
+[count] ["x] ++"g"++++"r"++++"r"++{motion} - replace [count] lines with the contents of register x.
+
+{Visual} ["x] ++"g"++++"r"++ - replace the selection with the contents of register x.
+
 ### Vim Surround
 
 Mappings - [:fontawesome-brands-github:](https://github.com/tpope/vim-surround#surroundvim)
