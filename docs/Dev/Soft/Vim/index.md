@@ -598,6 +598,15 @@ Mappings - [:fontawesome-brands-github:](https://github.com/preservim/nerdcommen
 
 {Visual} ["x] ++"g"++++"r"++ - replace the selection with the contents of register x.
 
+### Vim-argwrap
+
+++comma++++"r"++ - wrap/unwrap arguments inside of the parenthesis, brackets or curly braces. <br>
+Configuration - [:fontawesome-brands-github:](https://github.com/FooSoft/vim-argwrap#configuration)
+
+### Vim Unimpaired
+
+[:fontawesome-brands-github:](https://github.com/tpope/vim-unimpaired)
+
 ### Vim Surround
 
 Mappings - [:fontawesome-brands-github:](https://github.com/tpope/vim-surround#surroundvim)
