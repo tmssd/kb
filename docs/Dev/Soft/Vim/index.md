@@ -603,6 +603,10 @@ Mappings - [:fontawesome-brands-github:](https://github.com/preservim/nerdcommen
 ++comma++++"r"++ - wrap/unwrap arguments inside of the parenthesis, brackets or curly braces. <br>
 Configuration - [:fontawesome-brands-github:](https://github.com/FooSoft/vim-argwrap#configuration)
 
+### Vim-indent-object
+
+Usage - [:fontawesome-brands-github:](https://github.com/michaeljsmith/vim-indent-object#usage)
+
 ### Vim Unimpaired
 
 [:fontawesome-brands-github:](https://github.com/tpope/vim-unimpaired)
