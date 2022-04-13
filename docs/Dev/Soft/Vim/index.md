@@ -598,6 +598,13 @@ Mappings - [:fontawesome-brands-github:](https://github.com/preservim/nerdcommen
 
 {Visual} ["x] ++"g"++++"r"++ - replace the selection with the contents of register x.
 
+### Targets
+
+Provides additional text objects.
+
+Examples - [:fontawesome-brands-github:](https://github.com/wellle/targets.vim#examples) <br>
+Cheatsheet - [:fontawesome-brands-github:](https://github.com/wellle/targets.vim/blob/master/cheatsheet.md)
+
 ### Vim-argwrap
 
 ++comma++++"r"++ - wrap/unwrap arguments inside of the parenthesis, brackets or curly braces. <br>
@@ -606,6 +613,12 @@ Configuration - [:fontawesome-brands-github:](https://github.com/FooSoft/vim-arg
 ### Vim-indent-object
 
 Usage - [:fontawesome-brands-github:](https://github.com/michaeljsmith/vim-indent-object#usage)
+
+### Vim-textobj-user
+
+Create your own text objects.
+
+Examples - [:fontawesome-brands-github:](https://github.com/kana/vim-textobj-user#examples)
 
 ### Vim Unimpaired
 
