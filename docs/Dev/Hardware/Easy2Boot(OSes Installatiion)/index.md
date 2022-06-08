@@ -29,9 +29,9 @@ Most (but not all) E2B payload files need to be contiguous (in sequential sector
     sudo perl /run/media/$USER/E2B/_ISO/docs/linux_utils/defragfs.pl /run/media/$USER/E2B/_ISO/LINUX
     ```
 
-    ``` warning
+    !!! warning
 
-        When asked: "Please specify the percentage of files should be defrag (1-100) [33.3333333333333] or hit Enter", hit 100 and then Enter
+        When asked: `Please specify the percentage of files should be defrag (1-100) [33.3333333333333] or hit Enter`, type 100 and hit ++enter++
 
 + Solution Windows
 
