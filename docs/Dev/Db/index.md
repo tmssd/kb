@@ -87,6 +87,13 @@ DELETE FROM users WHERE name='Sally';
 DROP TABLE users;
 ```
 
+## Installation Guides
+
+### Linuxi Mint
+
+See `psql+instalation.docx` or `psql+instalation.pdf` files in this doc folder. </br>
+TODO: Transform `psql+instalation.docx` to .md format for this section.
+
 ## GUI dbms clients
 
 ### Free
