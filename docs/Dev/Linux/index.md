@@ -110,8 +110,46 @@
 
 #### Step 2 - Creating EncDisk(s)
 
-1. Instead of unmounting and locking 'cryptboot' unlock and mount `/mnt/img.key` as `lukskey`
+1. *EncDisk* --> (optional) Shred whole data in the disk.
 
     ```bash
-
+    dd if=/dev/urandom of=/dev/sdX bs=4096
     ```
+
+2. *KeyDisk* --> Being in `/mnt` dir, instead of unmounting 'cryptboot' and locking the `/dev/mmcblk0p2` in Step 1,p6 unlock `/mnt/img.key` and mount it as 'lukskey'.
+
+    ```bash
+    keepassxc-cli show -a Password -y 1 --no-password "<KeepassXC-db-path>" "Other: YUBIKEY_YKFDE secret challenge" | sudo ykfde-open -d /mnt/key.img -n lukskey
+    ```
+
+3. *KeyDisk* --> Create `header.img` for the detached LUKS header full disk encryption of the EncDisk.
+
+    ```bash
+    truncate -s 2M header.img
+    ```
+
+4. *EncDisk* --> Detached LUKS header full disk encrypt the EncDisk.
+
+    ```bash
+    cryptsetup --cipher=serpent-xts-plain64 --key-size=512 --hash=sha512 --key-file=/dev/mapper/lukskey --keyfile-offset=0 --keyfile-size=8192 -i 30000 luksFormat /dev/sdX --align-payload 4096 --header header.img
+    ```
+
+5. *EncDisk* --> Unlock encripted EncDisk and name it e.g. 'enc'. Format it to `ext4`.
+
+    ```bash
+    cryptsetup open --header header.img --key-file=/dev/mapper/lukskey --keyfile-offset=0 --keyfile-size=8192 /dev/sdX enc
+    mkfs.ext4 /dev/mapper/enc
+    ```
+
+6. Lock back 'enc' and 'lukskey'. Unmount `/mnt`.
+
+    ```bash
+    cd /
+    cryptsetup close enc
+    cryptsetup close lukskey
+    umount /mnt
+    ```
+
+    !!! note
+
+        if it complains about being busy make sure 'lukskey' container is closed then `ps -efw` to find hanged processes and their PIDs to kill with `kill -9 <PID>`
