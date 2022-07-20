@@ -17,6 +17,50 @@
 
 ## Tutorials
 
+### OS Installation
+
+#### Encrypted main partition with no separate `/boot` partition
+
+1. edit `/etc/mkinitcpio.conf` and `/etc/default/grub` as follows:
+
+    ```bash title="/etc/mkinitcpio.conf"
+    .
+    .
+    .
+    FILES="/crypto_keyfile.bin"
+    .
+    .
+    .
+    ```
+
+    ```bash title="/etc/default/grub"
+    .
+    .
+    .
+    cryptdevice=UUID=<main-partition-uuid-found-in-/dev/disk/by-uuid>:luks-<main-partition-uuid-found-in-/dev/disk/by-uuid> root=/dev/mapper/luks-<main-partition-uuid-found-in-/dev/disk/by-uuid> cryptkey=rootfs:/crypto_keyfile.bin loglevel=3 audit=0 nvme_load=yes"
+    .
+    .
+    .
+    GRUB_ENABLE_CRYPTODISK="y"
+    .
+    .
+    .
+    GRUB_GFXMODE="1920x1080"
+    .
+    .
+    .
+    GRUB_DISABLE_OS_PROBER="true"
+    ```
+
+2. Update changes:
+
+    ```bash
+    sudo mkinitcpio -P
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+    ```
+
+#### Encrypted main partition with separate  `/boot` partition + `/boot/efi` partition
+
 ### LUKS disks setup
 
 !!! info ""
