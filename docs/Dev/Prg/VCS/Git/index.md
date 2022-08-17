@@ -101,6 +101,13 @@ You only have to do this once. Now all new repositories you create with `git ini
       2. Under **Active branches** find **master**.
       3. Click the trash can to the right to delete the branch.
 
+### Add multiple `pushurl`s for a given remote(`orignin`)
+
+``` bash
+git remote set-url --add --push origin git://original/repo.git
+git remote set-url --add --push origin git://another/repo.git
+```
+
 ### GitHub URL Shortener
 
 **Using [git.io](https://git.io/){target=_blank} - a service provided by GitHub to shorten the URLs**
