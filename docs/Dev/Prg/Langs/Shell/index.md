@@ -328,6 +328,10 @@ echo "Created hello/world.txt"
     + [Переход с bash на zsh(Habr)](https://habr.com/ru/post/326580/)
     + [ ] [terminal-helpful-tips (7 Part Series)](https://dev.to/equiman/reveal-the-command-behind-an-alias-with-zsh-4d96)
     + [ ] [zsh: tips & tricks(Habr)](https://habr.com/ru/post/164597/) + [github](https://github.com/bosha/zshrc/tree/master/.zsh)
+    + [ ] [What are the practical differences between Bash and Zsh?](https://apple.stackexchange.com/questions/361870/what-are-the-practical-differences-between-bash-and-zsh/361957#361957)
+    + [ ] [Command Line Productivity with ZSH Aliases](https://blog.lftechnology.com/command-line-productivity-with-zsh-aliases-28b7cebfdff9)
+    + [ ] [Learn the basics of the ZSH shell](https://linuxconfig.org/learn-the-basics-of-the-zsh-shell)
+    + [ ] [Getting started with Zsh](https://opensource.com/article/19/9/getting-started-zsh)
 
     **MacOS:**
 
