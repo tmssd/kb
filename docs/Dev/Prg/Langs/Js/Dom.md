@@ -165,7 +165,7 @@ document.querySelector("h1").innerHTML = "<strong>!!!!!!</strong>";
 
 ```js
 document.querySelectorAll.("li")[1].parentElement; //e.g. get 'ul' element
-document.querySelectorAll.("li")[1].parentElement.parentElement; //e.g. gest 'body' element
+document.querySelectorAll.("li")[1].parentElement.parentElement; //e.g. gets 'body' element
 ```
 
 #### *element*.children
