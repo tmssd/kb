@@ -2,7 +2,39 @@
 title: DOM
 ---
 
-# HTML Document Object Model
+# Document Object Model
+
+## Preface: Browser environment, specs
+
+Read more from [source](https://javascript.info/browser-environment).
+
+The JavaScript language was initially created for web browsers. Since then, it has evolved into a language with many uses and platforms.
+
+A platform may be a browser, or a web-server or another *host*, or even a “smart” coffee machine if it can run JavaScript. Each of these provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
+
+A host environment provides its own objects and functions in addition to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
+
+### Browser environment
+
+Here’s a bird’s-eye view of what we have when JavaScript runs in a web browser:
+
++ **window:**
+    1. **DOM:** document, ...
+    2. **BOM:** navigator, screen, location, frames, history, XMLHttpRequest
+    3. **JavsScript:** Object, Array, Function, ...
+
+There’s a “root” object called *window*. It has two roles:
+
+1. First, it is a global object for JavaScript code.
+2. Second, it represents the “browser window” and provides methods to control it.
+
+### Specs
+
++ [DOM specification](https://dom.spec.whatwg.org) - Describes the document structure, manipulations, and events.
++ [CSSOM specification](https://www.w3.org/TR/cssom-1/) - Describes stylesheets and style rules, manipulations with them, and their binding to documents.</br>
+  The CSSOM is used together with the DOM when we modify style rules for the document. In practice though, the CSSOM is rarely required, because we rarely need to modify CSS rules from JavaScript (usually we just add/remove CSS classes, not modify their CSS rules), but that’s also possible.
++ [HTML specification](https://html.spec.whatwg.org) - Describes the HTML language (e.g. tags) and also the BOM (browser object model) – various browser functions: `setTimeout`, `alert`, `location` and so on. It takes the DOM specification and extends it with many additional properties and methods.
++ Additionally, some classes are described separately at [https://spec.whatwg.org/](https://spec.whatwg.org/).
 
 ## DOM Essentials
 
@@ -14,9 +46,84 @@ title: DOM
     + [Event Delegation(JAVASCRIPT.INFO)](https://javascript.info/event-delegation#hide-messages-with-delegation){target=_blank}
     + [Javascript Char Codes (Key Codes)](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes){target=_blank}
 
-Document Object Model, or DOM for short, represents all page content as objects that can be modified.
+Document Object Model, or DOM for short, represents all ^^page content^^ as objects that can be modified.
 
-The `document` object is the main “entry point” to the page. We can change or create anything on the page using it.
+!!! note
+
+    **DOM is not only for browsers**</br>
+    For instance, server-side scripts that download HTML pages and process them can also use the DOM. They may support only a part of the specification though.
+
+## DOM Tree
+
+There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usually work with 4 of them:
+
+1. `document` object - the main “entry point” to the page(= into DOM), represents the whole document.
+2. *element* nodes – HTML-tags, the tree building blocks.
+3. *text* nodes – contain text(*spaces* and *newlines* too!).
+4. *comment* nodes – sometimes we can put information there, it won’t be shown, but JS can read it from the DOM.
+
+## Walking the DOM
+
++ The topmost tree nodes are available directly as `document` properties:
+
+    + `#!html <html>...</html>` = `#!js document.documentElement`
+    + `#!html <head>...</head>` = `#!js document.head`
+    + `#!html <body>...</body>` = `#!js document.body`
+
++ Given a DOM node, we can go to its immediate neighbors using navigation properties.
+
+    There are two main sets of them:
+
+    + For all nodes: `#!js parentNode`, `#!js childNodes`, `#!js firstChild`(=== `#!js childNodes[0]`), `#!js lastChild`(=== `#!js childNodes[elem.childNodes.length - 1]`), `#!js previousSibling`, `#!js nextSibling`.
+    + For element nodes only: `#!js parentElement`, `#!js children`, `#!js firstElementChild`, `#!js lastElementChild`, `#!js previousElementSibling`, `#!js nextElementSibling`.
+
++ Some types of DOM elements, provide additional properties and collections to access their content, e.g.:
+
+    1. `#!html <table>...</table>`
+
+        + `#!js table.rows` – the collection of `#!html <tr>` elements of the table.
+        + `#!js table.caption/tHead/tFoot` – references to elements `#!html <caption>`, `#!html <thead>`, `#!html <tfoot>`.
+        + `#!js table.tBodies` – the collection of `#!html <tbody>` elements (can be many according to the standard, but there will always be at least one – even if it is not in the source HTML, the browser will put it in the DOM).
+
+        `#!html <thead>`, `#!html <tfoot>`, `#!html <tbody>` elements provide the rows property:
+
+        + `#!js tbody.rows` – the collection of `#!html <tr>` inside.
+
+        `#!html <tr>` :
+
+        + `#!js tr.cells` – the collection of `#!html <td>` and `#!html <th>` cells inside the given `#!html <tr>`.
+        + `#!js tr.sectionRowIndex` – the position (index) of the given `#!html <tr>` inside the enclosing `#!html <thead>/<tbody>/<tfoot>`.
+        + `#!js tr.rowIndex` – the number of the `#!html <tr>` in the table as a whole (including all table rows).
+
+        `#!html <td>` and `#!html <th>` :
+
+        + `#!js td.cellIndex` – the number of the cell inside the enclosing `#!html <tr>`.
+
+        An example of usage:
+
+        ```html
+        <table id="table">
+          <tr>
+            <td>one</td><td>two</td>
+          </tr>
+          <tr>
+            <td>three</td><td>four</td>
+          </tr>
+        </table>
+
+        <script>
+          // get td with "two" (first row, second column)
+          let td = table.rows[0].cells[1];
+          td.style.backgroundColor = "red"; // highlight it
+        </script>
+        ```
+
+    2. `#!html <form>...</form>`
+
+
+
+
+
 
 ## DOM Selectors
 
@@ -90,7 +197,7 @@ document.querySelector("img").setAttribute("width", "5px");
 
 #### *element*.style.{property} //ok
 
-all elements on the web page have a 'syle' attribute
+all elements on the web page have a 'style' attribute
 
 ```js
 // return the whole bunch of CSS properties of the element:
