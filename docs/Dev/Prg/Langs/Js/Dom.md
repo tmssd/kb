@@ -257,7 +257,8 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 + ***element*.querySelectorAll**
 
-    returns *all* elements in the document that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank}, as a *static NodeList object(static collection)*, i.e. it doesn't reflect the current state of the document and doesn't “auto-update” when it changes
+    returns *all* elements in the document that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank}, as a *static NodeList object(static collection)*, i.e. it doesn't reflect the current state of the document and doesn't “auto-update” when it changes</br>
+    can be iterated with `#!js for...of` loop or with `#!js forEach` array method
 
     !!! note "Can use pseudo-classes as well"
 
@@ -283,6 +284,28 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
     </script>
     ```
 
+    !!! note "*element*.querySelectorAll “unexpected“ result"
+
+        By default this method checks the last element without considering the context, e.g.:
+
+        ```html
+        <ul class="list">
+          <li class="item-list">
+            <ul class="sub-list">
+              <li class="item-sub-list"></li>
+              <li class="item-sub-list"></li>
+            </ul>
+          </li>
+        </ul>
+
+        <script>
+          const sublist = document.querySelectorAll('.sub-list')
+          const sublistitems = sublist[0].querySelectorAll('.list .item-sub-list')
+          console.log(sublistitems)  // NodeList(2) [li.item-sub-list, li.item-sub-list]
+        </script>
+        <!-- we expect here to get nothing, but instead we've got collection of 2 nodes -->
+        ```
+
 + ***element*.querySelector**
 
     returns the *first* element that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank} in the document, i.e. the result(only!) is the same as `#!js element.querySelectorAll[css](0)`, but the latter is ^^looking for all^^ elements and picking one, while `#!js element.querySelector` just ^^looks for one^^, so it’s faster and also shorter to write
@@ -302,7 +325,55 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 | `getElementsByTagName`      |tag or `'*'`  | Collection of objects | :material-check:                                                               | :material-check: |
 | `getElementsByClassName`    |class         | Collection of objects | :material-check:                                                               | :material-check: |
 
-### *CHANGING STYLES (the old way):*                                | `getElementsByClassName`    |class         |
+### Additional useful methods
+
++ ***element*.matches(css)**
+
+    checks if *element* matches the given CSS-selector and returns `true` or `false`
+
+    ```html
+    <a href="http://example.com/file.zip">...</a>
+    <a href="http://ya.ru">...</a>
+
+    <script>
+      // can be any collection instead of document.body.children
+      for (let elem of document.body.children) {
+        if (elem.matches('a[href$="zip"]')) {
+          alert("The archive reference: " + elem.href );
+        }
+      }
+    </script>
+    ```
+
++ ***element*.closest(css)**
+
+    looks for the nearest ancestor that matches the CSS-selector; returns `null` if finds nothing; the *element* itself is also included in the search
+
+    ```html
+    <h1>Contents</h1>
+
+    <div class="contents">
+      <ul class="book">
+        <li class="chapter">Chapter 1</li>
+        <li class="chapter">Chapter 2</li>
+      </ul>
+    </div>
+
+    <script>
+      let chapter = document.querySelector('.chapter'); // LI
+
+      alert(chapter.closest('.book')); // UL
+      alert(chapter.closest('.contents')); // DIV
+
+      alert(chapter.closest('h1')); // null (because h1 is not an ancestor)
+    </script>
+    ```
+
++ **elemA.contains(elemB)**
+
+    checks for the child-parent relationship; returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`
+
+### *CHANGING STYLES (the old way):*
 
 #### *element*.getAttribute
 
