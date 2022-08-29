@@ -77,6 +77,15 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
     + For all nodes: `#!js parentNode`, `#!js childNodes`, `#!js firstChild`(=== `#!js childNodes[0]`), `#!js lastChild`(=== `#!js childNodes[elem.childNodes.length - 1]`), `#!js previousSibling`, `#!js nextSibling`.
     + For *element* nodes only: `#!js parentElement`, `#!js children`, `#!js firstElementChild`, `#!js lastElementChild`, `#!js previousElementSibling`, `#!js nextElementSibling`.
 
+        Examples:
+
+        ```js
+        document.querySelectorAll.("li")[1].parentElement; //e.g. get 'ul' element
+        document.querySelectorAll.("li")[1].parentElement.parentElement; //e.g. gets 'body' element
+
+        document.querySelectorAll.("li")[1].parentElement.children; //e.g. get all the children elements of the 'body'
+        ```
+
     !!! note "DOM Collections"
 
         `#!js childNodes` and `#!js children` are *collections*.</br>
@@ -169,57 +178,131 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
     2. `#!html <form>...</form>`
 
-## DOM Selectors
+## Searching the DOM
 
-### *Following 3 selectors used for older code bases:*
+### Using `getElement(s)*`
 
-#### document.getElementsByTagName
+!!! note "This methods used for older code bases."
 
-```js
-// outputs array:
-document.getElementsByTagName("h1");
-// outputs specific element:
-document.getElementsByTagName("h1")[0];
-```
++ ***document*.getElementById**
 
-#### document.getElementsByClassName
+    ```js
+    document.getElementById("first");
+    ```
 
-```js
-// outputs array:
-document.getElementsByClassName("second");
-// outputs specific element:
-document.getElementsByClassName("second")[0];
-```
+!!! note "All methods `getElementsBy*` below return a *live collection*."
 
-#### document.getElementById
+    Such collections always reflect the current state of the document and “auto-update” when it changes.
 
-```js
-document.getElementById("first");
-```
++ ***element*.getElementsByTagName**
 
-### *Following 2 selectors can select anything inside quotes exactly like selecting in CSS:*
+    looks for elements with the given tag and returns the *live collection* of them</br>
+    the tag parameter can also be a star `"*"` for “any tags”
 
-!!! note
+    ```js
+    // outputs live collection of all h1 elements:
+    document.getElementsByTagName("h1");
+    // outputs specific element:
+    document.getElementsByTagName("h1")[0];
+    ```
 
-    These selectors are more powerfull than the first three above.
+    ```html
+    <!-- Let’s find all input tags inside the table: -->
+    <table id="table">
+      <tr>
+        <td>Your age:</td>
 
-#### document.querySelector
+        <td>
+          <label>
+            <input type="radio" name="age" value="young" checked> less than 18
+          </label>
+          <label>
+            <input type="radio" name="age" value="mature"> from 18 to 50
+          </label>
+          <label>
+            <input type="radio" name="age" value="senior"> more than 60
+          </label>
+        </td>
+      </tr>
 
-returns the *first* element that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank} in the document
+    </table>
 
-```js
-document.querySelector("li");
-```
+    <script>
+      let inputs = table.getElementsByTagName('input');
 
-#### document.querySelectorAll
+      for (let input of inputs) {
+        alert( input.value + ': ' + input.checked );
+      }
+    </script>
+    ```
 
-returns *all* elements in the document that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank}, as a static NodeList object
++ ***element*.getElementsByClassName**
 
-```js
-document.querySelectorAll("li, h1");
-```
+    looks for elements with the given class and returns the *live collection* of them
 
-### *CHANGING STYLES (the old way):*
+    ```js
+    // outputs live collection of all elements with class 'second':
+    document.getElementsByClassName("second");
+    // outputs specific element:
+    document.getElementsByClassName("second")[0];
+    ```
+
++ ***document*.getElementsByName**
+
+    looks for elements with the given name and returns the *live collection* of them
+
+### Using `querySelector*`
+
+!!! note "This methods can select anything inside quotes exactly like selecting in CSS. They are more powerfull than the first three above."
+
++ ***element*.querySelectorAll**
+
+    returns *all* elements in the document that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank}, as a *static NodeList object(static collection)*, i.e. it doesn't reflect the current state of the document and doesn't “auto-update” when it changes
+
+    !!! note "Can use pseudo-classes as well"
+
+        Pseudo-classes in the CSS selector like `#!css :hover` and `#!css :active` are also supported. For instance, `#!js document.querySelectorAll(':hover')` will return the collection with elements that the pointer is over now (in nesting order: from the outermost `#!html <html>` to the most nested one).
+
+    ```html
+    <!-- Here we look for all <li> elements that are last children: -->
+    <ul>
+      <li>The</li>
+      <li>test</li>
+
+    </ul>
+    <ul>
+      <li>has</li>
+      <li>passed</li>
+    </ul>
+    <script>
+      let elements = document.querySelectorAll('ul > li:last-child');
+
+      for (let elem of elements) {
+        alert(elem.innerHTML); // "test", "passed"
+      }
+    </script>
+    ```
+
++ ***element*.querySelector**
+
+    returns the *first* element that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank} in the document, i.e. the result(only!) is the same as `#!js element.querySelectorAll[css](0)`, but the latter is ^^looking for all^^ elements and picking one, while `#!js element.querySelector` just ^^looks for one^^, so it’s faster and also shorter to write
+
+    ```js
+    document.querySelector("li");
+    ```
+
+### Dom selectors summary table
+
+| Method                      |Searches by...| Retruns               | Can call on an element?                                                        | Live collection? |
+| --------------------------- | ------------ | --------------------- | ------------------------------------------------------------------------------ | ---------------- |
+| `querySelector`             |CSS-selector  | One obect             | :material-check:                                                               | :material-close: |
+| `querySelectorAll`          |CSS-selector  | Collection of objects | :material-check:                                                               | :material-close: |
+| `getElementById`            |`id`          | One obect             | :material-close: - Searches the whole document by calling on `document` object | :material-close: |
+| `getElementsByName`         |`name`        | Collection of objects | :material-close: - Searches the whole document by calling on `document` object | :material-check: |
+| `getElementsByTagName`      |tag or `'*'`  | Collection of objects | :material-check:                                                               | :material-check: |
+| `getElementsByClassName`    |class         | Collection of objects | :material-check:                                                               | :material-check: |
+
+### *CHANGING STYLES (the old way):*                                | `getElementsByClassName`    |class         |
 
 #### *element*.getAttribute
 
@@ -310,19 +393,6 @@ document.querySelector("h1").innerHTML;
 ```js
 // sets the HTML content (inner HTML) of an element. DANGEROUS - becsause it removes everything within the element (also other elements).
 document.querySelector("h1").innerHTML = "<strong>!!!!!!</strong>";
-```
-
-#### *node*.parentElement
-
-```js
-document.querySelectorAll.("li")[1].parentElement; //e.g. get 'ul' element
-document.querySelectorAll.("li")[1].parentElement.parentElement; //e.g. gets 'body' element
-```
-
-#### *element*.children
-
-```js
-document.querySelectorAll.("li")[1].parentElement.children; //e.g. get all the children elements of the 'body'
 ```
 
 !!! tip
