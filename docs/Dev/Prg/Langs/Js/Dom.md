@@ -70,14 +70,63 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
     + `#!html <head>...</head>` = `#!js document.head`
     + `#!html <body>...</body>` = `#!js document.body`
 
-+ Given a DOM node, we can go to its immediate neighbors using navigation properties.
++ Given an any DOM node, we can go to its immediate neighbors using *navigation properties*.
 
     There are two main sets of them:
 
     + For all nodes: `#!js parentNode`, `#!js childNodes`, `#!js firstChild`(=== `#!js childNodes[0]`), `#!js lastChild`(=== `#!js childNodes[elem.childNodes.length - 1]`), `#!js previousSibling`, `#!js nextSibling`.
-    + For element nodes only: `#!js parentElement`, `#!js children`, `#!js firstElementChild`, `#!js lastElementChild`, `#!js previousElementSibling`, `#!js nextElementSibling`.
+    + For *element* nodes only: `#!js parentElement`, `#!js children`, `#!js firstElementChild`, `#!js lastElementChild`, `#!js previousElementSibling`, `#!js nextElementSibling`.
 
-+ Some types of DOM elements, provide additional properties and collections to access their content, e.g.:
+    !!! note "DOM Collections"
+
+        `#!js childNodes` and `#!js children` are *collections*.</br>
+        *Collection* – a special array-like ^^iterable^^ object and has two important consequences:
+
+        + we can use `#!js for..of` to iterate over it:
+
+            ```js
+            for (let node of document.body.childNodes) {
+              alert(node); // shows all nodes from the collection
+            }
+            ```
+
+            That’s because it’s iterable (provides the `#!js Symbol.iterator` property, as required).
+
+            !!! warning "Don’t use `#!js for..in` to loop over collections"
+
+                The `#!js for..in` loop iterates over all ^^enumerable^^ properties. And collections have some “extra” rarely used properties that we usually do not want to get:
+
+                ```html
+                <body>
+                <script>
+                  // shows 0, 1, length, item, values and more.
+                  for (let prop in document.body.childNodes) alert(prop);
+                </script>
+                </body>
+                ```
+
+        + array methods won’t work, because it’s not an array:
+
+            ```js
+            alert(document.body.childNodes.filter); // undefined (there's no filter method!)
+            ```
+
+            BUT: We can create a “real” array from the collection, if we want array methods, i.e. to make a copy using `#!js Array.from` to iterate over if adding, moving, or removing nodes.
+
+            ```js
+            alert( Array.from(document.body.childNodes).filter ); // function
+            ```
+
+    !!! note "DOM collections are live"
+
+        Almost all DOM collections with minor exceptions are **live**, i.e. they reflect the ^^current state of DOM^^.</br>
+        If we keep a reference to `#!js element.childNodes`, and add/remove nodes into DOM, then they appear in the collection automatically.
+
+    !!! note "DOM collections and navigation properties are read-only"
+
+        We can’t replace a child by something else by assigning `#!js childNodes[i] = ...`. Changing DOM needs other methods, see [below]().
+
++ Some types of DOM elements, provide additional *navigation properties* and *collections* to access their content, e.g.:
 
     1. `#!html <table>...</table>`
 
@@ -119,11 +168,6 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
         ```
 
     2. `#!html <form>...</form>`
-
-
-
-
-
 
 ## DOM Selectors
 
