@@ -325,6 +325,10 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 | `getElementsByTagName`      |tag or `'*'`  | Collection of objects | :material-check:                                                               | :material-check: |
 | `getElementsByClassName`    |class         | Collection of objects | :material-check:                                                               | :material-check: |
 
+!!! tip
+
+    **It is important to CACHE selectors in variables in order to reduce memory usage by js engine(by going to DOM each time when we use selector), e.g: `#!js var h1 = document.querySelector("h1");`**
+
 ### Additional useful methods
 
 + ***element*.matches(css)**
@@ -372,6 +376,8 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 + **elemA.contains(elemB)**
 
     checks for the child-parent relationship; returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`
+
+## Changing the DOM
 
 ### *CHANGING STYLES (the old way):*
 
@@ -465,9 +471,5 @@ document.querySelector("h1").innerHTML;
 // sets the HTML content (inner HTML) of an element. DANGEROUS - becsause it removes everything within the element (also other elements).
 document.querySelector("h1").innerHTML = "<strong>!!!!!!</strong>";
 ```
-
-!!! tip
-
-    **It is important to CACHE selectors in variables in order to reduce memory usage by js engine(by going to DOM each time when we use selector), e.g: `#!js var h1 = document.querySelector("h1");`**
 
 ## DOM Events
