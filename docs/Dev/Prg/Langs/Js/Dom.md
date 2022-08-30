@@ -379,6 +379,8 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 ## Changing the DOM
 
+### Changing inside nodes
+
 + ***element*.innerHTML**
 
     ```js
@@ -461,7 +463,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
         There are only minor specification differences. So we’ll use `#!js data`, because it’s shorter.
 
-    returns/modifies the content of a non-element node (text, comment):
+    returns/modifies the content of a non-element node(text, comment):
 
     ```html
     <body>
@@ -572,6 +574,117 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
         Or if we’d like to get them fast or are interested in a concrete browser specification – we can always output the element using `console.dir(element)` and read the properties. Or explore “DOM properties” in the Elements tab of the browser developer tools.
 
         !!! warning "However, HTML attributes and DOM properties are not always the same, see below."
+
+### Creation, insertion, removal of nodes
+
+#### Creation
+
++ ***document*.createElement('tag')** – creates an element with the given tag
++ ***document*.createTextNode('string value')** – creates a text node(rarely used)
++ ***element*.cloneNode(*deep*)** – clones the element without descendants when `deep==''`, if `deep==true` then with all descendants
+
+#### Insertion and removal
+
++ ***node*.append(*...nodes or 'strings'*)** - insert into node, at the end
++ ***node*.prepend(*...nodes or 'strings'*)** - insert into node, at the beginning
++ ***node*.before(*...nodes or 'strings'*)** - insert right before node
++ ***node*.after(*...nodes or 'strings'*)** - insert right after node
++ ***node*.replaceWith(*...nodes or 'strings'*)** - replace node
++ ***node*.remove()** - remove the node
+
+!!! note "The above insertion methods can only be used to insert DOM nodes or text pieces."
+
+    To insert an HTML string “as html”, with all tags and stuff working, in the same manner as `#!js element.innerHTML` does it use following method:
+
++ Given some HTML in `html`, ***element*.insertAdjacentHTML("where", html)** inserts it depending on the value of `"where"`:
+
+    + **"beforebegin"** – insert html right before elem
+    + **"afterbegin"** – insert html into elem, at the beginning
+    + **"beforeend"** – insert html into elem, at the end
+    + **"afterend"** – insert html right after elem
+
+    Also there are similar methods, ***element*.insertAdjacentText("where", 'text')** and ***element*.insertAdjacentElement("where", element)**, that insert text strings and elements, but they are rarely used because there are mentioned above `#!js append`, `#!js prepend`, `#!js before` and `#!js after` methods for this needs.
+
+```html
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
+
+<script>
+  // 1. Create <div> element
+  let div = document.createElement('div');
+  // 2. Set its class to "alert"
+  div.className = "alert";
+  // 3. Fill it with the content
+  div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+
+  document.body.append(div);
+</script>
+
+<!-- alternative variant using insertAdjacentHTML -->
+<script>
+  document.body.insertAdjacentHTML("afterbegin", `<div class="alert">
+    <strong>Hi there!</strong> You've read an important message.
+  </div>`);
+</script>
+```
+
+```html
+<!-- inserting multiple nodes and text pieces in a single call -->
+<div id="div"></div>
+<script>
+  div.before('<p>Hello</p>', document.createElement('hr'));
+</script>
+```
+
+!!! tip "All insertion methods automatically remove the node from the old place."
+
+    For instance, let’s swap elements:
+
+    ```html
+    <div id="first">First</div>
+    <div id="second">Second</div>
+    <script>
+      // no need to call remove
+      second.after(first); // take #second and after it insert #first
+    </script>
+    ```
+
++ [**DocumentFragment**](https://javascript.info/modifying-document#document-fragment) - a special DOM node that serves as a wrapper to pass around lists of nodes. It is rarely used explicitly.
+
+    `DocumentFragment` mentioned here mainly because there are some concepts on top of it, like `#!html <template></template>` element.
+
++ ***document*.write(html)** - append HTML to the page before it has finished loading
+
+    ```html
+    <p>Somewhere in the page...</p>
+    <script>
+      document.write('<b>Hello from JS</b>');
+    </script>
+    <p>The end</p>
+    ```
+
+    The call to `#!js document.write` only works while the page is loading. So it’s kind of unusable at “after loaded” stage, unlike other DOM methods.
+
+    Technically, when `#!js document.write` is called while the browser is reading (“parsing”) incoming HTML, and it writes something, the browser consumes it just as if it were initially there, in the HTML text. So it works blazingly fast, because there’s ^^no DOM modification^^ involved. It writes directly into the page text, while the DOM is not yet built.</br>
+    So if we need to add a lot of text into HTML dynamically, and we’re at page loading phase, and the speed matters, it may help. But in practice these requirements rarely come together. And usually we can see this method in scripts just because they are old.
+
+    !!! note "After the page is loaded such a call erases the document."
+
+#### Insertion and removal(“old school” methods)
+
++ ***parent*.appendChild(*node*)** -
++ ***parent*.insertBefore(*node*, nextSibling)** -
++ ***parent*.removeChild(*node*)** -
++ ***parent*.replaceChild(*newElement*, *node*)** -
+
+!!! note "All these methods return `node`."
 
 ### *CHANGING STYLES (the old way):*
 
