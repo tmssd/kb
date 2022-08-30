@@ -455,6 +455,124 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
             It’s so easy to make an error here: modify `#!js elem.outerHTML` and then continue to work with `#!js elem` as if it had the new content in it. But it doesn’t. `#!js elem.outerHTML = '...'` puts the ^^new HTML^^ in its place instead. We can get references to the ^^new elements^^ by querying the DOM.
 
++ ***textNode/commentNode*.data**, ***textNode/commentNode*.nodeValue**
+
+    !!! note "`#!js data` and `#!js nodeValue` properties are almost the same for practical use."
+
+        There are only minor specification differences. So we’ll use `#!js data`, because it’s shorter.
+
+    returns/modifies the content of a non-element node (text, comment):
+
+    ```html
+    <body>
+      Hello
+      <!-- Comment -->
+      <script>
+        let text = document.body.firstChild;
+        console.log(text.data); // Hello
+
+        text.data = 'Hello World!'
+        console.log(text.data); // Hello World!
+
+        let comment = text.nextSibling;
+        console.log(comment.data); // Comment
+
+        comment.data = 'New Comment';
+        console.log(comment.data); // New Comment
+      </script>
+    </body>
+    ```
+
+    !!! tip "Practical usgae of ***commentNode*.data**"
+
+        Sometimes developers embed information or template instructions into HTML in them, like this:
+
+        ```html
+        <!-- if isAdmin -->
+          <div>Welcome, Admin!</div>
+        <!-- /if -->
+        ```
+
+        …Then JavaScript can read it from `#!js data` property and process embedded instructions.
+
++ ***element*.textContent**
+
+    provides access to the text inside the element: only text, minus all `<tags>`
+
+    ```html
+    <!-- returning text content -->
+    <div id="news">
+      <h1>Headline!</h1>
+      <p>Martians attack people!</p>
+
+    </div>
+
+    <script>
+      let news = document.querySelector('#news');
+      // Headline! Martians attack people!
+      alert(news.textContent);
+    </script>
+    ```
+
+    ```html
+    <!-- modifying/writing to text content -->
+
+    <!-- this div gets the name “as HTML”: all tags become tags, so we see the bold name -->
+    <div id="elem1"></div>
+    <!-- this div gets the name “as text”, so we literally see <b>Winnie-the-Pooh!</b> -->
+    <div id="elem2"></div>
+    <script>
+      let name = prompt("What's your name?", "<b>Winnie-the-Pooh!</b>");
+
+      let elem1 = document.querySelector('#elem1')
+      let elem2 = document.querySelector('#elem2')
+      elem1.innerHTML = name;
+      elem2.textContent = name;
+    </script>
+    ```
+
+    !!! tip "Getting an input from a user."
+
+        In most cases, we expect the text from a user, and want to treat it as text. We don’t want unexpected HTML in our site. An assignment to `#!js textContent` does exactly that.
+
++ ***element*.hidden, `<tag hidden>...</tag>`**
+
+    The “hidden” attribute and the DOM property specifies whether the element is visible or not.</br>
+    Technically, hidden works the same as `#!css style="display:none"`. But it’s shorter to write.
+
+    Example of blinking element:
+
+    ```html
+    <div id="elem">A blinking element</div>
+
+    <script>
+      let elem = document.querySelector('#elem');
+      setInterval(() => elem.hidden = !elem.hidden, 1000);
+    </script>
+    ```
+
++ **more nodes's properties**
+
+    DOM nodes also have other properties depending on their class. For instance:
+
+    + `#!js value` – the value for `#!html <input>`, `#!html <select>` and `#!html <textarea>` (classes: `HTMLInputElement`, `HTMLSelectElement`…).
+
+    + `#!js href` – the “href” for `#!html <a href="...">` (`HTMLAnchorElement` class).
+
+    + `#!js id` – the value of “id” attribute, for all elements (`HTMLElement` class).
+
+    + …and much more…
+
+    !!! tip "HTML attributes vs DOM properties"
+
+        Most standard HTML attributes have the corresponding DOM property, and we can access it like that.
+
+        If we want to know the full list of supported properties for a given class, we can find them in the specification. For instance, HTMLInputElement is documented at [https://html.spec.whatwg.org/#htmlinputelement](https://html.spec.whatwg.org/#htmlinputelement).
+
+        Or if we’d like to get them fast or are interested in a concrete browser specification – we can always output the element using `console.dir(element)` and read the properties. Or explore “DOM properties” in the Elements tab of the browser developer tools.
+
+        !!! warning "However, HTML attributes and DOM properties are not always the same, see below."
+
 ### *CHANGING STYLES (the old way):*
 
 #### *element*.getAttribute
