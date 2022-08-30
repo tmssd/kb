@@ -133,7 +133,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
     !!! note "DOM collections and navigation properties are read-only"
 
-        We can’t replace a child by something else by assigning `#!js childNodes[i] = ...`. Changing DOM needs other methods, see [below]().
+        We can’t replace a child by something else by assigning `#!js childNodes[i] = ...`. Changing DOM needs other methods, see [below](#changing-the-dom).
 
 + Some types of DOM elements, provide additional *navigation properties* and *collections* to access their content, e.g.:
 
@@ -379,6 +379,82 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 ## Changing the DOM
 
++ ***element*.innerHTML**
+
+    ```js
+    // returns the HTML content(inner HTML) of an element as a string
+    document.querySelector("h1").innerHTML;
+    ```
+
+    ```js
+    // sets the HTML content(inner HTML) of an element
+    // DANGEROUS - it removes everything within the element(also other elements)
+    document.querySelector("h1").innerHTML = "<strong>!!!!!!</strong>";
+    ```
+
+    !!! note "`#!js element.innerHTML = "...";` typing errors automatically fixed by browser"
+
+        For example when we forgot to close the tag.
+
+    !!! note "`#!js element.innerHTML = "...";` don’t execute scripts"
+
+        When inserting a `#!html <script>` tag into the document – it becomes a part of HTML, but doesn’t execute.
+
+    ```js
+    //appends HTML to an element
+    elem.innerHTML += "...";
+    // is a shorter way to write:
+    elem.innerHTML = elem.innerHTML + "..."
+    // In other words, 'innerHTML+=' does this:
+    // 1. The old contents is removed.
+    // 2. The new 'innerHTML' is written instead (a concatenation of the old and the new one).
+    // DANGEROUS - becsause the old content is “zeroed-out” causing following side effects:
+    // - all images and other resources will be reloaded
+    // - if the existing text was selected with the mouse, then most browsers will remove the selection upon rewriting 'innerHTML'
+    // - if there was an <input> with a text entered by the visitor, then the text will be removed
+    // - and so on ...
+    ```
+
++ ***element*.outerHTML**
+
+    ```html
+    <!-- returns the full HTML of the element as a string, like 'innerHTML' plus the element itself -->
+    <div id="elem">Hello <b>World</b></div>
+    <script>
+      alert(elem.outerHTML); // <div id="elem">Hello <b>World</b></div>
+    </script>
+    ```
+
+    ```html
+    <!-- seting the full HTML of the element -->
+    <div>Hello, world!</div>
+    <script>
+      let elem = document.querySelector('div');
+
+      // replace elem.outerHTML with <p>...</p>
+      elem.outerHTML = '<p>A new element</p>'; // (*)
+
+      // Wow! 'elem' is still the same!
+      alert(elem.outerHTML); // <div>Hello, world!</div> (**)
+    </script>
+    ```
+
+    !!! warning "Regarding the codeblock above:</br>Unlike `#!js innerHTML`, writing to `#!js outerHTML` does not change the element. Instead, it replaces it in the DOM."
+
+        In the line `(*)` we replaced `#!js elem` with `#!html <p>A new element</p>`. In the ^^outer document^^ (the DOM and therefore the page content) we can see the new content instead of the `#!html <div>Hello, world!</div>`. But, as we can see in line `(**)`, the value of the old `#!js elem` variable hasn’t changed!
+
+        The `#!js outerHTML` *assignment* **does not modify** the ^^DOM element^^ (^^the object^^ referenced by, in this case, the variable `#!js elem`), but removes ^^it^^ from the DOM and inserts the new HTML in ^^its^^ place.
+
+        So what happened in `#!js elem.outerHTML=...` is:
+
+        + `#!js elem` was removed from the document
+        + another piece of HTML `#!html <p>A new element</p>` was inserted in its place
+        + `#!js elem` still has its old value and the new HTML(`#!html <p>A new element</p>`) wasn’t saved to any variable
+
+        !!! tip
+
+            It’s so easy to make an error here: modify `#!js elem.outerHTML` and then continue to work with `#!js elem` as if it had the new content in it. But it doesn’t. `#!js elem.outerHTML = '...'` puts the ^^new HTML^^ in its place instead. We can get references to the ^^new elements^^ by querying the DOM.
+
 ### *CHANGING STYLES (the old way):*
 
 #### *element*.getAttribute
@@ -456,20 +532,6 @@ document.querySelector("h1").classList = "coolTitle";
 document.querySelector("h1").classList.add("done");
 document.querySelector("h1").classList.remove("done");
 document.querySelector("h1").classList.toggle("done");
-```
-
-### *BONUS:*
-
-#### *element*.innerHTML
-
-```js
-// returns the HTML content (inner HTML) of an element
-document.querySelector("h1").innerHTML;
-```
-
-```js
-// sets the HTML content (inner HTML) of an element. DANGEROUS - becsause it removes everything within the element (also other elements).
-document.querySelector("h1").innerHTML = "<strong>!!!!!!</strong>";
 ```
 
 ## DOM Events
