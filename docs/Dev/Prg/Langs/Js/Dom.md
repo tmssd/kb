@@ -679,12 +679,36 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 #### Insertion and removal(“old school” methods)
 
-+ ***parent*.appendChild(*node*)** -
-+ ***parent*.insertBefore(*node*, nextSibling)** -
-+ ***parent*.removeChild(*node*)** -
-+ ***parent*.replaceChild(*newElement*, *node*)** -
++ ***parent*.appendChild(*node*)** - appends `node` as the ^^last child^^ of `parentElem`
++ ***parent*.insertBefore(*node*, nextSibling)** - inserts `node` ^^before^^ `nextSibling` into `parentElem`
 
-!!! note "All these methods return `node`."
+    ```html
+    <ol id="list">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+
+    </ol>
+    <!-- insert a new list item before the second <li> -->
+    <script>
+      let newLi = document.createElement('li');
+      newLi.innerHTML = 'Hello, world!';
+
+      list.insertBefore(newLi, list.children[1]);
+    </script>
+
+    <!--  insert 'newLi' as the first element -->
+    <script>
+      list.insertBefore(newLi, list.firstChild);
+    </script>
+    ```
+
++ ***parent*.removeChild(*node*)** - removes `node` from `parentElem` (assuming `node` is its child)
++ ***parent*.replaceChild(*newElement*, *node*)** - replaces `oldChild` with `node` among children of `parentElem`
+
+!!! note "All these methods return the inserted/removed `node`."
+
+    But usually the returned value is not used, we just run the method.
 
 ### *CHANGING STYLES (the old way):*
 
