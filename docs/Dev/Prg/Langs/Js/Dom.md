@@ -565,7 +565,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
     + …and much more…
 
-    !!! tip "HTML attributes vs DOM properties"
+    !!! tip "HTML attributes vs. DOM properties"
 
         Most standard HTML attributes have the corresponding DOM property, and we can access it like that.
 
@@ -759,10 +759,6 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 + ***element*.style.[*css-property*]** - corresponds to what’s written in the `#!html style` attribute
 
-    !!! note
-
-        This element property breaks the **separation of control** concept by adding ^^`style` attribute^^ to selected element. So it is recommneded to use following below selectors.
-
     !!! note "All elements on the web page have a 'style' attribute"
 
     ```js
@@ -857,7 +853,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
     !!! tip "This property is rarely used."
 
         Because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But we can safely use it for new elements, when we know we won’t delete an existing style.</br>
-        The code above can be accomplished by ^^setting an attribute^^(see below): `#!js div.setAttribute('style', 'color: red...')`
+        The code above can be accomplished by [==^^setting an attribute^^==](#html-attributes-vs-dom-properties): `#!js div.setAttribute('style', 'color: red...')`
 
 + **getComputedStyle(*element*, [pseudo])** - reads the resolved(= *resolved value* of the property, usually in `px` for geometry) styles(with respect to all classes, after all CSS is applied and final values are calculated)
 
@@ -894,9 +890,9 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
         JavaScript may not see the styles applied by `#!css :visited`. And also, there’s a limitation in CSS that forbids applying geometry-changing styles in `#!css :visited`. That’s to guarantee that there’s no side way for an evil page to test if a link was visited and hence to break the privacy.
 
-#### working with styles tips
+#### styles: working tips
 
-+ We should always prefer CSS classes to `#!js element.style`. The latter should only be used if classes “can’t handle it”.
++ We should always prefer CSS classes to `#!js element.style`, because the latter breaks the *separation of control* concept by adding ^^`style` attribute^^ to selected element. The `#!js element.style` should only be used if classes “can’t handle it”.
 
     For example, `#!js element.style` is acceptable if we calculate coordinates of an element dynamically and want to set them from JavaScript, like this:
 
@@ -925,22 +921,22 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
     console.log(paddingLeft); // e.g. 20
     ```
 
-### *CHANGING STYLES (the old way):*
+### HTML attributes vs. DOM properties
 
-#### *element*.getAttribute
++ *element*.getAttribute
 
-get the **value** of the attribute
+    get the **value** of the attribute
 
-```js
-document.querySelector("img").getAttribute("width");
-```
+    ```js
+    document.querySelector("img").getAttribute("width");
+    ```
 
-#### *element*.setAttribute
++ *element*.setAttribute
 
-can be used to change styles by changing value of 'class' atribute
+    can be used to change styles by changing value of 'class' atribute
 
-```js
-document.querySelector("img").setAttribute("width", "5px");
-```
+    ```js
+    document.querySelector("img").setAttribute("width", "5px");
+    ```
 
 ## DOM Events
