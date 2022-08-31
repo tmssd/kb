@@ -133,7 +133,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
     !!! note "DOM collections and navigation properties are read-only"
 
-        We can’t replace a child by something else by assigning `#!js childNodes[i] = ...`. Changing DOM needs other methods, see [below](#changing-the-dom).
+        We can’t replace a child by something else by assigning `#!js childNodes[i] = ...`. Changing DOM needs other methods, [==see below==](#changing-the-dom).
 
 + Some types of DOM elements, provide additional *navigation properties* and *collections* to access their content, e.g.:
 
@@ -710,6 +710,190 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
     But usually the returned value is not used, we just run the method.
 
+### Changing element properties: class, style
+
+#### class
+
++ ***element*.className** – corresponds to the `#!html class` attribute; the string value, good to manage the whole set of classes
+
+    ```js
+    // returns the class name(s) of an element as string
+    document.querySelector("h1").className;
+    ```
+
+    ```js
+    // sets the class name of an element (i.e. removes existing class names if any and then adds the new one)
+    document.querySelector("h1").className = "coolTitle";
+    ```
+
++ ***element*.classList**– the object with methods `add/remove/toggle/contains`, good for individual classes
+
+    ```js
+    // return a list of classes of the element as iterable,
+    document.querySelector("h1").classList;
+
+    // so we can list all classes with 'for..of' loop
+    for (let name of document.querySelector("h1").classList) {
+      console.log(name);
+    }
+    ```
+
+    ```js
+    // sets the class name of an element (i.e. removes existing class names if any and then adds the new one)
+    document.querySelector("h1").classList = "coolTitle";
+    ```
+
+    Methods of classList:
+
+    + ***element*.classList.add/remove("class")** – adds/removes the class
+    + ***element*.classList.toggle("class")** – adds the class if it doesn’t exist, otherwise removes it
+    + ***element*.classList.contains("class")** – checks for the given class, returns `true/false`
+
+    ```js
+    document.querySelector("h1").classList.add("done");
+    document.querySelector("h1").classList.remove("done");
+    document.querySelector("h1").classList.toggle("done");
+    ```
+
+#### style
+
++ ***element*.style.[*css-property*]** - corresponds to what’s written in the `#!html style` attribute
+
+    !!! note
+
+        This element property breaks the **separation of control** concept by adding ^^`style` attribute^^ to selected element. So it is recommneded to use following below selectors.
+
+    !!! note "All elements on the web page have a 'style' attribute"
+
+    ```js
+    // return the whole bunch of CSS properties of the element(a long list):
+    document.querySelector("h1").style
+    ```
+
+    ```js
+    // set background to yellow:
+    document.querySelector("h1").style.backgroud = "yellow";
+    ```
+
+    ``` html
+    <!-- the above is the exact thing as: -->
+    <h1 style="background: yellow"></h1>
+    ```
+
+    ```js
+    // two ways to reset style property, e.g. given:
+    document.body.style.background = 'red';
+
+    // 1. set the property to an empty string
+    document.body.style.background = "";
+
+    // 2. element.style.removeProperty('style property')
+    document.body.style.removeProperty('background');
+    ```
+
+    ```html
+    <!-- Don’t forget to add CSS units to values -->
+    <body>
+      <script>
+        // doesn't work!
+        document.body.style.margin = 20;
+        alert(document.body.style.margin); // '' (empty string, the assignment is ignored)
+
+        // now add the CSS unit (px) - and it works
+        document.body.style.margin = '20px';
+        alert(document.body.style.margin); // 20px
+
+        alert(document.body.style.marginTop); // 20px
+        alert(document.body.style.marginLeft); // 20px
+      </script>
+    </body>
+    <!-- Please note: the browser “unpacks” the property 'style.margin' in the last lines
+    and infers 'style.marginLeft' and 'style.marginTop' from it. -->
+    ```
+
+    !!! note "For multi-word property the camelCase is used (a dash `-` means upper case):"
+
+        | CSS property            | => | `#!js style` object property     |
+        | ----------------------- | -- | -------------------------------- |
+        | `background-color`      | => | elem.style.backgroundColor       |
+        | `z-index`               | => | elem.style.zIndex                |
+        | `border-left-width`     | => | elem.style.borderLeftWidth       |
+        | `-moz-border-radius`    | => | element.style.MozBorderRadius    |
+        | `-webkit-border-radius` | => | element.style.WebkitBorderRadius |
+
+        and so on...
+
+    !!! tip "How to apply other staff."
+
+        To see how to apply `important` and other rare stuff – there’s a list of methods at [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration).
+
+    !!! warning "The `#!js element.style` property operates only on the value of the ^^`"style"` attribute^^, without any CSS cascade."
+
+        To read anything that comes from CSS classes use `#!js getComputedStyle(element, [pseudo])`, see below.
+
+    *element*.style is an object, and it’s read-only,</br>
+    so we can’t set the full style like `#!js element.style="color: red; width: 100px"`.</br>
+    Instead `#!js element.style.cssText` below can be used.
+
++ ***element*.style.cssText** - corresponds to the whole "style" attribute, the full string of styles
+
+    ***element*.style.cssText = \`*css-property1: value1; css-property2: value2; ...*\`** - full style rewrite
+
+    ```html
+    <div id="div">Button</div>
+
+    <script>
+      // we can set special style flags like "important" here
+      div.style.cssText=`color: red !important;
+        background-color: yellow;
+        width: 100px;
+        text-align: center;
+      `;
+
+      alert(div.style.cssText);
+    </script>
+    ```
+
+    !!! tip "This property is rarely used."
+
+        Because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But we can safely use it for new elements, when we know we won’t delete an existing style.</br>
+        The code above can be accomplished by ^^setting an attribute^^(see below): `#!js div.setAttribute('style', 'color: red...')`
+
++ **getComputedStyle(*element*, [pseudo])** - reads the resolved(= *resolved value* of the property, usually in `px` for geometry) styles(with respect to all classes, after all CSS is applied and final values are calculated)
+
+    **[pseudo]** - a pseudo-element if required, for instance `#!css ::before`. An empty string or no argument means the element itself.
+
+    Returns the `#!js element.style`-like object. Read-only.
+
+    ```html
+    <head>
+      <style> body { color: red; margin: 5px } </style>
+    </head>
+    <body>
+
+      <script>
+        let computedStyle = getComputedStyle(document.body);
+
+        // now we can read the margin and the color from it
+        alert( computedStyle.marginTop ); // 5px
+        alert( computedStyle.color ); // rgb(255, 0, 0)
+      </script>
+
+    </body>
+    ```
+
+    !!! warning "`#!js getComputedStyle` requires the full property name"
+
+        We should always ask for the exact property that we want, like `paddingLeft` or `marginTop` or `borderTopWidth`. Otherwise the correct result is not guaranteed.
+
+    !!! note "Styles applied to `#!css :visited` links are hidden!"
+
+        Visited links may be colored using `#!css :visited` CSS pseudoclass.
+
+        But `#!js getComputedStyle` does not give access to that color, because otherwise an arbitrary page could find out whether the user visited a link by creating it on the page and checking the styles.
+
+        JavaScript may not see the styles applied by `#!css :visited`. And also, there’s a limitation in CSS that forbids applying geometry-changing styles in `#!css :visited`. That’s to guarantee that there’s no side way for an evil page to test if a link was visited and hence to break the privacy.
+
 ### *CHANGING STYLES (the old way):*
 
 #### *element*.getAttribute
@@ -726,67 +910,6 @@ can be used to change styles by changing value of 'class' atribute
 
 ```js
 document.querySelector("img").setAttribute("width", "5px");
-```
-
-### *CHANGING STYLES (this is the more common way to change styles):*
-
-#### *element*.style.{property} //ok
-
-all elements on the web page have a 'style' attribute
-
-```js
-// return the whole bunch of CSS properties of the element:
-document.querySelector("h1").style
-```
-
-```js
-// set background to yellow:
-document.querySelector("h1").style.backgroud = "yellow";
-```
-
-``` html
-<!-- the above is the exact thing as: -->
-<h1 style="background: yellow"></h1>
-```
-
-!!! note
-
-    This selector breaks the **separation of control** concept by adding `style` attribute to selected element. So it is recommneded to use following below selectors.
-
-#### *element*.className //best
-
-```js
-// returns the class name(s) of an element
-document.querySelector("h1").className;
-```
-
-```js
-// sets the class name of an element (i.e. removes existing class names if any and then adds the new one)
-document.querySelector("h1").className = "coolTitle";
-```
-
-#### *element*.classList //best
-
-```js
-// return a list of classes of the element as an array
-document.querySelector("h1").classList;
-```
-
-```js
-// sets the class name of an element (i.e. removes existing class names if any and then adds the new one)
-document.querySelector("h1").classList = "coolTitle";
-```
-
-#### *element*.classList.add
-
-#### *element*.classList.remove
-
-#### *element*.classList.toggle
-
-```js
-document.querySelector("h1").classList.add("done");
-document.querySelector("h1").classList.remove("done");
-document.querySelector("h1").classList.toggle("done");
 ```
 
 ## DOM Events
