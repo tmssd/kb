@@ -894,6 +894,37 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
         JavaScript may not see the styles applied by `#!css :visited`. And also, there’s a limitation in CSS that forbids applying geometry-changing styles in `#!css :visited`. That’s to guarantee that there’s no side way for an evil page to test if a link was visited and hence to break the privacy.
 
+#### working with styles tips
+
++ We should always prefer CSS classes to `#!js element.style`. The latter should only be used if classes “can’t handle it”.
+
+    For example, `#!js element.style` is acceptable if we calculate coordinates of an element dynamically and want to set them from JavaScript, like this:
+
+    ```js
+    let top = /* complex calculations */;
+    let left = /*complex calculations*/;
+
+    elem.style.left = left; // e.g '123px', calculated at run-time
+    elem.style.top = top; // e.g '456px'
+    ```
+
+    For other cases, like making the text red, adding a background icon – describe that in CSS and then add the class (JavaScript can do that). That’s more flexible and easier to support.
+
++ Converting string property value to number using `#!js parseInt()`, in order to do math with it later.
+
+    ```js
+    // get element
+    const elem = documant.querySelector('h1');
+
+    // element style
+    const elemStyle = getComputedStyle(elem);
+    console.log(elemStyle.paddingLeft); // e.g. 20px
+
+    // get number
+    const paddingLeft = parseInt(elemStyle.paddingLeft);
+    console.log(paddingLeft); // e.g. 20
+    ```
+
 ### *CHANGING STYLES (the old way):*
 
 #### *element*.getAttribute
