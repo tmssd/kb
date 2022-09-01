@@ -1062,7 +1062,7 @@ For instance, `HTMLInputElement` class is documented at [https://html.spec.whatw
 HTML attributes have the following features:
 
 + Their values are always strings.
-+ Their name is case-insensitive (`id` is same as `ID`).
++ Their name is case-insensitive (`id` is same as `ID`), but usually attributes are lowercased.
 
 ```html
 <body id="test" something="non-standard">
