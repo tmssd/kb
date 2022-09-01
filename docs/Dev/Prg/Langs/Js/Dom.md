@@ -373,13 +373,13 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
     </script>
     ```
 
-+ **elemA.contains(elemB)**
++ ***elemA*.contains(*elemB*)**
 
     checks for the child-parent relationship; returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`
 
 ## Changing the DOM
 
-### Changing inside nodes
+### Changing nodes content
 
 + ***element*.innerHTML**
 
@@ -552,28 +552,6 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
       setInterval(() => elem.hidden = !elem.hidden, 1000);
     </script>
     ```
-
-+ **more nodes's properties**
-
-    DOM nodes also have other properties depending on their class. For instance:
-
-    + `#!js value` – the value for `#!html <input>`, `#!html <select>` and `#!html <textarea>` (classes: `HTMLInputElement`, `HTMLSelectElement`…).
-
-    + `#!js href` – the “href” for `#!html <a href="...">` (`HTMLAnchorElement` class).
-
-    + `#!js id` – the value of “id” attribute, for all elements (`HTMLElement` class).
-
-    + …and much more…
-
-    !!! tip "HTML attributes vs. DOM properties"
-
-        Most standard HTML attributes have the corresponding DOM property, and we can access it like that.
-
-        If we want to know the full list of supported properties for a given class, we can find them in the specification. For instance, HTMLInputElement is documented at [https://html.spec.whatwg.org/#htmlinputelement](https://html.spec.whatwg.org/#htmlinputelement).
-
-        Or if we’d like to get them fast or are interested in a concrete browser specification – we can always output the element using `console.dir(element)` and read the properties. Or explore “DOM properties” in the Elements tab of the browser developer tools.
-
-        !!! warning "However, HTML attributes and DOM properties are not always the same, see below."
 
 ### Creation, insertion, removal of nodes
 
@@ -923,20 +901,111 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 ### HTML attributes vs. DOM properties
 
-+ *element*.getAttribute
+#### DOM properties
 
-    get the **value** of the attribute
+DOM nodes are regular JavaScript objects.
+
++ We can alter them.
++ They can have any value.
++ They are case-sensitive (write `#!js element.nodeType`, not `#!js element.NoDeTyPe`).
+
+```js
+// create a new property in document.body
+document.body.myData = {
+  name: 'Caesar',
+  title: 'Imperator'
+};
+alert(document.body.myData.title); // Imperator
+
+// add a method
+document.body.sayTagName = function() {
+  alert(this.tagName);
+};
+document.body.sayTagName(); // BODY (the value of "this" in the method is document.body)
+
+// modify built-in prototypes like Element.prototype and add new methods to all elements
+Element.prototype.sayHi = function() {
+  alert(`Hello, I'm ${this.tagName}`);
+};
+document.documentElement.sayHi(); // Hello, I'm HTML
+document.body.sayHi(); // Hello, I'm BODY
+```
+
+#### HTML attributes
+
+When the browser parses the HTML to create DOM objects for tags, it recognizes **standard** attributes and creates the corresponding DOM properties from them. But that doesn’t happen if the attribute is **non-standard**.
+
+Most **standard** HTML attributes have the corresponding DOM properties. They described in the specification for the corresponding element class(see [WHATWG: HTML Living Standard](https://html.spec.whatwg.org/)).</br>
+For instance, `HTMLInputElement` class is documented at [https://html.spec.whatwg.org/#htmlinputelement](https://html.spec.whatwg.org/#htmlinputelement).</br>
+
+!!! tip "Alternative way to get DOM properties"
+    If we’d like to get them fast or are interested in a concrete browser specification – we can always output the element using `console.dir(element)` and read the properties.</br>
+    Or explore “DOM properties” in the Elements tab of the browser developer tools.
+
+HTML attributes have the following features:
+
++ Their values are always strings.
++ Their name is case-insensitive (`id` is same as `ID`).
+
+```html
+<body id="test" something="non-standard">
+  <script>
+    alert(document.body.id); // test
+    // non-standard attribute does not yield a property
+    alert(document.body.something); // undefined
+  </script>
+</body>
+```
+
+A standard attribute for one element can be unknown for another one. For instance, "type" is standard for `#!html <input>`(`HTMLInputElement` specification class), but not for `#!html <body>` (`HTMLBodyElement` specification class).
+
+```html
+<body id="body" type="...">
+  <input id="input" type="text">
+  <script>
+    alert(input.type); // text
+    alert(body.type); // undefined: DOM property not created, because it's non-standard
+  </script>
+</body>
+```
+
+Examples of **standard** attributes and their corresponing DOM nodes properties(depending on their specification class):
+
++ `#!js id` – the value of “id” attribute, for all elements (`HTMLElement` class).
++ `#!js value` – the value for `#!html <input>`, `#!html <select>` and `#!html <textarea>` (classes: `HTMLInputElement`, `HTMLSelectElement`…).
++ `#!js href` – the “href” for `#!html <a href="...">` (`HTMLAnchorElement` class).
++ …and much more…
+
+^^All^^ attributes are accessible by using the following methods:
+
++ ***element*.attributes** - read all attributes and return a collection of objects that belong to a built-in [Attr](https://dom.spec.whatwg.org/#attr) class, with `name` and `value` properties
+
++ ***element*.hasAttribute("name")** – checks for existence
+
++ ***element*.getAttribute("name")** – gets the value
 
     ```js
     document.querySelector("img").getAttribute("width");
     ```
 
-+ *element*.setAttribute
+    ```html
+    <body something="non-standard">
+      <script>
+        alert(document.body.getAttribute('something')); // non-standard
+      </script>
+    </body>
+    ```
 
-    can be used to change styles by changing value of 'class' atribute
++ ***element*.setAttribute("name", "value")** – sets the value
 
     ```js
     document.querySelector("img").setAttribute("width", "5px");
     ```
+
+    !!! note "Can be used to change styles by changing value of 'class' atribute."
+
+        But this is the "old school" way as we have more advanced method to manipulate the style. See [==above==](#class).
+
++ ***element*.removeAttribute("name")** – removes the attribute
 
 ## DOM Events
