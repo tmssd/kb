@@ -62,6 +62,55 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 3. *text* nodes – contain text(*spaces* and *newlines* too!).
 4. *comment* nodes – sometimes we can put information there, it won’t be shown, but JS can read it from the DOM.
 
+***node*.nodeType** - “old-fashioned” way to get the “type” of a DOM node, read only:
+
++ `#!js node.nodeType == 9` for the 'document' object
++ `#!js node.nodeType == 8` for comment nodes
++ `#!js node.nodeType == 3` for text nodes
++ `#!js node.nodeType == 1` for element nodes
+
+```html
+<body><!-- this is a comment -->
+  <script>
+    let elem = document.body;
+
+    // let's examine: what type of node is in elem?
+    console.log(elem.nodeType); // 1 => element
+
+    // its first child is...
+    console.log(elem.firstChild.nodeType); // 8 => comment
+
+    // and its second childi is...
+    console.log(elem.childNodes[1].nodeType) // 3 => text
+
+    // for the document object, the type is 9
+    console.log( document.nodeType ); // 9
+  </script>
+</body>
+```
+
+In modern scripts, we can use `#!js instanceof` and other class-based tests to see the node type.
+
+***node*.nodeName** - returns:
+
++ for *element* nodes: `#!html <tag>` name(same as `#!js element.tagName` property [==do==](#additional-useful-methods))
++ for other node types (*text*, *comment*, etc.): string with the node type
+
+```html
+<body><!-- comment -->
+  <script>
+    // for <body> element
+    console.log(document.body.nodeName); // BODY
+
+    // for comment
+    console.log(document.body.firstChild.nodeName); // #comment
+
+    // for document
+    console.log(document.nodeName); // #document
+  </script>
+</body>
+```
+
 ## Walking the DOM
 
 + The topmost tree nodes are available directly as `document` properties:
@@ -314,7 +363,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
     document.querySelector("li");
     ```
 
-### Dom selectors summary table
+### DOM selectors summary table
 
 | Method                      |Searches by...| Retruns               | Can call on an element?                                                        | Live collection? |
 | --------------------------- | ------------ | --------------------- | ------------------------------------------------------------------------------ | ---------------- |
@@ -325,9 +374,9 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 | `getElementsByTagName`      |tag or `'*'`  | Collection of objects | :material-check:                                                               | :material-check: |
 | `getElementsByClassName`    |class         | Collection of objects | :material-check:                                                               | :material-check: |
 
-!!! tip
+!!! tip "It is important to CACHE selectors in variables."
 
-    **It is important to CACHE selectors in variables in order to reduce memory usage by js engine(by going to DOM each time when we use selector), e.g: `#!js var h1 = document.querySelector("h1");`**
+     This is in order to reduce memory usage by js engine(by going to DOM each time when we use selector), e.g: `#!js var h1 = document.querySelector("h1");`
 
 ### Additional useful methods
 
@@ -376,6 +425,33 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 + ***elemA*.contains(*elemB*)**
 
     checks for the child-parent relationship; returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`
+
++ ***element*.tagName**
+
+    returns `#!html <tag>` name
+
+    `#!js tagName` is only supported by *element* nodes (as it originates from `Element` class)
+
+    ```html
+    <body><!-- comment -->
+      <script>
+        // for <body> element
+        console.log(document.body.tagName); // BODY
+
+        // for comment
+        console.log(document.body.firstChild.tagName); // undefined (not an element)
+
+        // for document
+        console.log(document.tagName); // undefined (not an element)
+      </script>
+    </body>
+    ```
+
+    !!! note "The tag name is always uppercase except in XML mode."
+
+        The browser has two modes of processing documents: HTML and XML. Usually the HTML-mode is used for webpages. XML-mode is enabled when the browser receives an XML-document with the header: `Content-Type: application/xml+xhtml`.
+
+        In HTML mode `#!js tagName`(and `#!js nodeName`) is always uppercased: it’s `BODY` either for `#!html <body>` or `#!html <BoDy>`.
 
 ## Changing the DOM
 
@@ -913,6 +989,29 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 DOM nodes are regular JavaScript objects.
 
 + We can alter them.
+
+    ```js
+    // create a new property in document.body
+    document.body.myData = {
+      name: 'Caesar',
+      title: 'Imperator'
+    };
+    alert(document.body.myData.title); // Imperator
+
+    // add a method
+    document.body.sayTagName = function() {
+      alert(this.tagName);
+    };
+    document.body.sayTagName(); // BODY (the value of "this" in the method is document.body)
+
+    // modify built-in prototypes like Element.prototype and add new methods to all elements
+    Element.prototype.sayHi = function() {
+      alert(`Hello, I'm ${this.tagName}`);
+    };
+    document.documentElement.sayHi(); // Hello, I'm HTML
+    document.body.sayHi(); // Hello, I'm BODY
+    ```
+
 + They can have any value, i.e. they are typed(типизированные)
 
     ```html
@@ -948,28 +1047,6 @@ DOM nodes are regular JavaScript objects.
         Quite rarely, even if a DOM property type is a string, it may differ from the attribute. See [==note==](#html-attributes) about `href` attribute later on this page.
 
 + They are case-sensitive (write `#!js element.nodeType`, not `#!js element.NoDeTyPe`).
-
-```js
-// create a new property in document.body
-document.body.myData = {
-  name: 'Caesar',
-  title: 'Imperator'
-};
-alert(document.body.myData.title); // Imperator
-
-// add a method
-document.body.sayTagName = function() {
-  alert(this.tagName);
-};
-document.body.sayTagName(); // BODY (the value of "this" in the method is document.body)
-
-// modify built-in prototypes like Element.prototype and add new methods to all elements
-Element.prototype.sayHi = function() {
-  alert(`Hello, I'm ${this.tagName}`);
-};
-document.documentElement.sayHi(); // Hello, I'm HTML
-document.body.sayHi(); // Hello, I'm BODY
-```
 
 #### HTML attributes
 
