@@ -787,13 +787,13 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
     !!! note "For multi-word property the camelCase is used (a dash `-` means upper case):"
 
-        | CSS property            | => | `#!js style` object property     |
-        | ----------------------- | -- | -------------------------------- |
-        | `background-color`      | => | elem.style.backgroundColor       |
-        | `z-index`               | => | elem.style.zIndex                |
-        | `border-left-width`     | => | elem.style.borderLeftWidth       |
-        | `-moz-border-radius`    | => | element.style.MozBorderRadius    |
-        | `-webkit-border-radius` | => | element.style.WebkitBorderRadius |
+        | CSS property            | → | `#!js style` object property     |
+        | ----------------------- | - | -------------------------------- |
+        | `background-color`      | → | elem.style.backgroundColor       |
+        | `z-index`               | → | elem.style.zIndex                |
+        | `border-left-width`     | → | elem.style.borderLeftWidth       |
+        | `-moz-border-radius`    | → | element.style.MozBorderRadius    |
+        | `-webkit-border-radius` | → | element.style.WebkitBorderRadius |
 
         and so on...
 
@@ -901,12 +901,52 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 ### HTML attributes vs. DOM properties
 
+!!! tip "For most situations using DOM properties is preferable."
+
+    We should refer to attributes only when DOM properties do not suit us, when we need exactly attributes, for instance:
+
+    + We need a non-standard non-“data-*” attribute. See [==Non-standard attributes use cases==](#non-standard-attributes-use-cases)
+    + We want to read the value “as written” in HTML. For instanse: see [==note==](#html-attributes) about `href` attribute later on this page.
+
 #### DOM properties
 
 DOM nodes are regular JavaScript objects.
 
 + We can alter them.
-+ They can have any value.
++ They can have any value, i.e. they are typed(типизированные)
+
+    ```html
+    <!-- For instance, the element.input.checked property (for checkboxes) is a boolean -->
+    <input id="input" type="checkbox" checked> checkbox
+
+    <script>
+      let input = document.querySelecor("#input");
+
+      alert(input.getAttribute('checked')); // the attribute value is: empty string
+      alert(input.checked); // the property value is: true
+    </script>
+    ```
+
+    ```html
+    <!-- The "style" attribute is a string, but the 'style' property is an object. -->
+    <div id="div" style="color:red;font-size:120%">Hello</div>
+
+    <script>
+      let div = document.querySelecor("#div");
+
+      // string
+      alert(div.getAttribute('style')); // color:red;font-size:120%
+
+      // object
+      alert(div.style); // [object CSSStyleDeclaration]
+      alert(div.style.color); // red
+    </script>
+    ```
+
+    !!! note "Most properties are strings."
+
+        Quite rarely, even if a DOM property type is a string, it may differ from the attribute. See [==note==](#html-attributes) about `href` attribute later on this page.
+
 + They are case-sensitive (write `#!js element.nodeType`, not `#!js element.NoDeTyPe`).
 
 ```js
@@ -974,15 +1014,33 @@ Examples of **standard** attributes and their corresponing DOM nodes properties(
 + `#!js id` – the value of “id” attribute, for all elements (`HTMLElement` class).
 + `#!js value` – the value for `#!html <input>`, `#!html <select>` and `#!html <textarea>` (classes: `HTMLInputElement`, `HTMLSelectElement`…).
 + `#!js href` – the “href” for `#!html <a href="...">` (`HTMLAnchorElement` class).
+
+    !!! note "`#!js href` DOM property is always a ^^full URL^^."
+
+        Even if the attribute contains a relative URL or just a `#hash`.
+
+        ```html
+        <a id="a" href="#hello">link</a>
+        <script>
+          let a = document.querySelecor("#a");
+
+          // attribute
+          alert(a.getAttribute('href')); // #hello
+
+          // property
+          alert(a.href ); // full URL in the form http://site.com/page#hello
+        </script>
+        ```
+
 + …and much more…
 
 ^^All^^ attributes are accessible by using the following methods:
 
-+ ***element*.attributes** - read all attributes and return a collection of objects that belong to a built-in [Attr](https://dom.spec.whatwg.org/#attr) class, with `name` and `value` properties
++ ***element*.attributes** - read all attributes and return an iterable collection(can be iterated with `#!js for...of` loop) of objects that belong to a built-in [Attr](https://dom.spec.whatwg.org/#attr) class, with `name` and `value` properties
 
 + ***element*.hasAttribute("name")** – checks for existence
 
-+ ***element*.getAttribute("name")** – gets the value
++ ***element*.getAttribute("name")** – gets the value ^^as string^^ exactly as written in the HTML
 
     ```js
     document.querySelector("img").getAttribute("width");
@@ -991,12 +1049,13 @@ Examples of **standard** attributes and their corresponing DOM nodes properties(
     ```html
     <body something="non-standard">
       <script>
-        alert(document.body.getAttribute('something')); // non-standard
+        alert(document.body.getAttribute('Something')); // non-standard; the first letter is uppercase here,
+        // and in HTML it’s all lowercase. But that doesn’t matter: attribute names are case-insensitive.
       </script>
     </body>
     ```
 
-+ ***element*.setAttribute("name", "value")** – sets the value
++ ***element*.setAttribute("name", "value")** – sets the value ^^as string^^
 
     ```js
     document.querySelector("img").setAttribute("width", "5px");
@@ -1007,5 +1066,152 @@ Examples of **standard** attributes and their corresponing DOM nodes properties(
         But this is the "old school" way as we have more advanced method to manipulate the style. See [==above==](#class).
 
 + ***element*.removeAttribute("name")** – removes the attribute
+
+#### Property-attribute synchronization
+
+When a standard attribute changes, the corresponding property is auto-updated, and (with some exceptions) vice versa.
+
+In the example below id is modified as an attribute, and we can see the property changed too. And then the same backwards:
+
+```html
+<input>
+
+<script>
+  let input = document.querySelector('input');
+
+  // attribute => property
+  input.setAttribute('id', 'id');
+  alert(input.id); // id (updated)
+
+  // property => attribute
+  input.id = 'newId';
+  alert(input.getAttribute('id')); // newId (updated)
+</script>
+```
+
+But there are exclusions, for instance:
+
++ `#!js element.input.value` synchronizes only from attribute → property, but not back
+
+    ```html
+    <input>
+
+    <script>
+      let input = document.querySelector('input');
+
+      // attribute => property
+      input.setAttribute('value', 'text');
+      alert(input.value); // text
+
+      // NOT property => attribute
+      input.value = 'newValue';
+      alert(input.getAttribute('value')); // text (not updated!)
+    </script>
+    ```
+
+    !!! tip "That “feature” may actually come in handy."
+
+        Because the user actions may lead to `value` changes, and then after them, if we want to recover the “original” value from HTML, it’s in the attribute.
+
+#### Non-standard attributes use cases
+
++ To pass custom data from HTML to JavaScript.
++ To **“mark”** HTML-elements for JavaScript.
+
+    ```html
+    <!-- mark the div to show "name" here -->
+    <div show-info="name"></div>
+    <!-- and age here -->
+    <div show-info="age"></div>
+
+    <script>
+      // the code finds an element with the mark and shows what's requested
+      let user = {
+        name: "Pete",
+        age: 25
+      };
+
+      for(let div of document.querySelectorAll('[show-info]')) {
+        // insert the corresponding info into the field
+        let field = div.getAttribute('show-info');
+        div.innerHTML = user[field]; // first Pete into "name", then 25 into "age"
+      }
+    </script>
+    ```
+
++ To style an element.
+
+    ```html
+    <!--  For instance, here for the order state the attribute "order-state" is used:-->
+    <style>
+      /* styles rely on the custom attribute "order-state" */
+      .order[order-state="new"] {
+        color: green;
+      }
+
+      .order[order-state="pending"] {
+        color: blue;
+      }
+
+      .order[order-state="canceled"] {
+        color: red;
+      }
+    </style>
+
+    <div class="order" order-state="new">
+      A new order.
+    </div>
+
+    <div class="order" order-state="pending">
+      A pending order.
+    </div>
+
+    <div class="order" order-state="canceled">
+      A canceled order.
+    </div>
+    ```
+
+    Why would using an attribute be preferable to having classes like `#!css .order-state-new`, `#!css .order-state-pending`, `#!css .order-state-canceled`?</br>
+    Because an attribute is more convenient to manage. The state can be changed as easy as:
+
+    ```js
+    // a bit simpler than removing old/adding a new class
+    div.setAttribute('order-state', 'canceled');
+    ```
+
+#### `#!js dataset` DOM property
+
+Possible problem with custom(non-standard) attributes: they can appear in standard specifications in the future and therefore become unevailable for our use. To avoid conflicts, there exist ["data-*"](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes. They are actually a safe way to pass custom data.
+
+All attributes starting with **“data-”** are reserved for programmers’ use.</br>
+They are available in the ***element*.dataset.[“data-*“ attribute(with ommited “data-” part) in camelCase]** property.
+
+```html
+<style>
+  .order[data-order-state="new"] {
+    color: green;
+  }
+
+  .order[data-order-state="pending"] {
+    color: blue;
+  }
+
+  .order[data-order-state="canceled"] {
+    color: red;
+  }
+</style>
+
+<div id="order" class="order" data-order-state="new">
+  A new order.
+</div>
+
+<script>
+  // read
+  alert(order.dataset.orderState); // new
+
+  // modify
+  order.dataset.orderState = "pending"; // we can not only read, but also modify data-attributes
+</script>
+```
 
 ## DOM Events
