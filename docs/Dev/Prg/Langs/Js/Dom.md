@@ -1292,3 +1292,261 @@ They are available in the ***element*.dataset.[“data-*“ attribute(with ommit
 ```
 
 ## DOM Events
+
+An **event** is a signal that something has happened(user actions, document events, CSS events etc.). All DOM nodes generate such signals(but events are not limited to DOM).
+
+### Event handlers
+
+**Handler** - is a function that assigned to an event and runs when event happens.
+
+There are 3 ways to assign event handlers:
+
+1. HTML attribute: `on<event>="..."`(`...` - JavaScript code).
+
+    The browser reads it, creates a new function from the attribute content and writes it to the DOM property.
+
+    ```html
+    <!-- inside onclick we use single quotes, because the attribute itself is in double quotes -->
+    <input value="Click me" onclick="alert('Click!')" type="button">
+
+    <!-- An HTML-attribute is not a convenient place to write a lot of code,
+    so we’d better create a JavaScript function and call it there. -->
+    <script>
+      function countRabbits() {
+        for(let i=1; i<=3; i++) {
+          alert("Rabbit number " + i);
+        }
+      }
+    </script>
+
+    <input type="button" onclick="countRabbits()" value="Count rabbits!">
+    ```
+
+    Accessing the element using `#!js this`
+
+    ```js
+    // The value of 'this' inside a handler is the element. The one which has the handler on it.
+    <button onclick="alert(this.innerHTML)">Click me</button> // Click me
+    ```
+
+    !!! note "HTML attributes are used sparingly."
+
+        Because JavaScript in the middle of an HTML tag looks a little bit odd and alien. Also can’t write lots of code in there.
+
+2. DOM property: ***element*.on<event\> = function**.
+
+    ```html
+    <!-- we can’t assign more than one handler of the particular event -->
+    <input type="button" id="elem" onclick="alert('Before')" value="Click me">
+    <script>
+      let elem = document.querySelecor("#elem");
+      elem.onclick = function() { // overwrites the existing handler
+        alert('After'); // only this will be shown
+      };
+    </script>
+    ```
+
+    Set an existing function as a handler.
+
+    ```js
+    function sayThanks() {
+      alert('Thanks!');
+    }
+    // function should be assigned without parentheses
+    elem.onclick = sayThanks;
+    ```
+
+    ```html
+    <!-- On the other hand, in the markup we do need the parentheses -->
+    <input type="button" id="button" onclick="sayThanks()">
+    ```
+
+    ```js
+    /* When the browser reads the attribute, it creates a handler function
+    with body from the attribute content. So the markup generates this property: */
+    button.onclick = function() {
+      sayThanks(); // <-- the attribute content goes here
+    };
+    ```
+
+    To remove a handler – assign ***element*.on<event\> = null**
+
+3. Methods: ***element*.addEventListener(event, handler[, options])** to add handler,</br>
+   ***element*.removeEventListener(event, handler[, options])** to remove handler.
+
+    + `event` - Event name, e.g. `"click"`.
+    + `handler` - The handler function.
+    + `options` - An additional optional object with properties:
+
+        + `once`: if `true`, then the listener is automatically removed after it triggers.
+        + `capture`: the phase where to handle the event.</br>
+           For historical reasons, `options` can also be `false/true`, that’s the same as `{capture: false/true}`.
+        + `passive`: if `true`, then the handler will not call `#!js preventDefault()`, we’ll explain that later in Browser default actions.
+
+    To remove a handler we should pass exactly the same function as was assigned.
+
+    ```js
+    // The handler won’t be removed, because 'removeEventListener' gets another function
+    //  – with the same code, but that doesn’t matter, as it’s a different function object.
+    elem.addEventListener( "click" , () => alert('Thanks!'));
+    // ....
+    elem.removeEventListener( "click", () => alert('Thanks!'));
+
+    // Here’s the right way:
+    function handler() {
+      alert( 'Thanks!' );
+    }
+
+    input.addEventListener("click", handler);
+    // ....
+    input.removeEventListener("click", handler);
+    // Please note – if we don’t store the function in a variable, then we can’t remove it.
+    // There’s no way to “read back” handlers assigned by 'addEventListener'.
+    ```
+
+    ***element*.addEventListener(event, handler[, options])** allows to assign multiple handlers to one event.
+
+    ```html
+    <input id="elem" type="button" value="Click me"/>
+
+    <script>
+      function handler1() {
+        alert('Thanks!');
+      };
+
+      function handler2() {
+        alert('Thanks again!');
+      }
+
+      let elem = documnet.querySelecor("#elem");
+      elem.onclick = () => alert("Hello");
+      elem.addEventListener("click", handler1); // Thanks!
+      elem.addEventListener("click", handler2); // Thanks again!
+    </script>
+    <!-- We can set handlers both using a DOM-property and 'addEventListener'.
+    But generally we use only one of these ways. -->
+    ```
+
+    For some events, handlers only work with ***element*.addEventListener**
+
+    + `DOMContentLoaded` event - triggers when the document is loaded and DOM is built
+
+        ```js
+        // will never run
+        document.onDOMContentLoaded = function() {
+          alert("DOM built");
+        };
+
+        // this way it works
+        document.addEventListener("DOMContentLoaded", function() {
+          alert("DOM built");
+        });
+        ```
+
+      + `transitionend` event
+
+    Also ***element*.addEventListener** supports *objects* as event handlers. In that case the method `#!js handleEvent` is called in case of the event.
+
+    ```html
+    <button id="elem">Click me</button>
+
+    <script>
+      let obj = {
+        handleEvent(event) {
+          alert(event.type + " at " + event.currentTarget);
+        }
+      };
+
+      let elem = document.querySelecor("#elem");
+      elem.addEventListener('click', obj);
+    </script>
+    <!-- As we can see, when 'addEventListener' receives an object as the handler,
+    it calls 'obj.handleEvent(event)' in case of an event. -->
+    ```
+
+    We could also use a class for that:
+
+    ```html
+    <button id="elem">Click me</button>
+
+    <script>
+      class Menu {
+        handleEvent(event) {
+          switch(event.type) {
+            case 'mousedown':
+              elem.innerHTML = "Mouse button pressed";
+              break;
+            case 'mouseup':
+              elem.innerHTML += "...and released.";
+              break;
+          }
+        }
+      }
+
+      let menu = new Menu();
+      elem.addEventListener('mousedown', menu);
+      elem.addEventListener('mouseup', menu);
+    </script>
+    ```
+
+    Here the same object handles both events. Please note that we need to explicitly setup the events to listen using `#!js addEventListener`. The `#!js menu` object only gets `mousedown` and `mouseup` here, not any other types of events.
+
+    The method `#!js handleEvent` does not have to do all the job by itself. It can call other event-specific methods instead, like this:
+
+    ```html
+    <button id="elem">Click me</button>
+
+    <script>
+      class Menu {
+        handleEvent(event) {
+          // mousedown -> onMousedown
+          let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
+          this[method](event);
+        }
+
+        onMousedown() {
+          elem.innerHTML = "Mouse button pressed";
+        }
+
+        onMouseup() {
+          elem.innerHTML += "...and released.";
+        }
+        // Now event handlers are clearly separated, that may be easier to support.
+      }
+
+      let menu = new Menu();
+      elem.addEventListener('mousedown', menu);
+      elem.addEventListener('mouseup', menu);
+    </script>
+    ```
+
+### Event object
+
+No matter how you assign the handler – it gets an *event object* as the first argument. That object contains the details about what’s happened.
+
+Here’s an example of getting pointer coordinates from the event object:
+
+```html
+<input type="button" value="Click me" id="elem">
+
+<script>
+  elem.onclick = function(event) {
+    // show event type, element and coordinates of the click
+    alert(event.type + " at " + event.currentTarget);
+    alert("Coordinates: " + event.clientX + ":" + event.clientY);
+  };
+  // 'event.type' - Event type, here it’s "click".
+  /* 'event.currentTarget' - Element that handled the event. That’s exactly the same as 'this',
+  unless the handler is an arrow function, or its 'this' is bound(using 'bind') to something else,
+  then we can get the element from 'event.currentTarget'. */
+  // 'event.clientX / event.clientY' - Window-relative coordinates of the cursor, for pointer events.
+</script>
+```
+
+!!! note "The event object is also available in HTML handlers."
+
+    ```js
+    <input type="button" onclick="alert(event.type)" value="Event type">
+    ```
+
+    That’s possible because when the browser reads the attribute, it creates a handler like this: `#!js function(event) { alert(event.type) }`. That is: its first argument is called `event`, and the body is taken from the attribute.
