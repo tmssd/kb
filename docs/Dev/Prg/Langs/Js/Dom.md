@@ -1664,3 +1664,31 @@ Any event handler can **stop** the event capturing/bubbling by calling:
     3. Our analytic won’t work over the area where clicks are stopped by `stopPropagation`. Sadly, we’ve got a “dead zone”.
 
     There’s usually no real need to prevent the bubbling. A task that seemingly requires that may be solved by other means. One of them is to use custom events, we’ll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
+
+Bubbling and capturing lay the foundation for “event delegation” – an extremely powerful event handling pattern.
+
+### Event delegation
+
+*Event delegation* is of the most powerful event handling patterns.
+
+It’s often used to add the ^^same handling for many similar elements^^, but not only for that.
+
+^^same handling for many similar elements^^ - if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
+
+The algorithm:
+
+1. Put a single handler on the container.
+2. In the handler – check the source element `#!js event.target`.
+3. If the event happened inside an element that interests us, then handle the event.
+
+Benefits:
+
++ Simplifies initialization and saves memory: no need to add many handlers.
++ Less code: when adding or removing elements, no need to add/remove handlers.
++ DOM modifications: we can mass add/remove elements with `innerHTML` and the like.
+
+Limitations:
+
++ The event **must be bubbling**. Some events do not bubble.
++ Low-level handlers should not use `#!js event.stopPropagation()`.
++ The delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the ^^load is negligible^^, so **we don’t take it into account**.
