@@ -1379,30 +1379,37 @@ There are 3 ways to assign event handlers:
     + `options` - An additional optional object with properties:
 
         + `once`: if `true`, then the listener is automatically removed after it triggers.
-        + `capture`: the phase where to handle the event.</br>
+        + `capture`: the *phase* where to handle the event. See [==Bubbling and capturing==](#bubbling-and-capturing) point.</br>
            For historical reasons, `options` can also be `false/true`, that’s the same as `{capture: false/true}`.
         + `passive`: if `true`, then the handler will not call `#!js preventDefault()`, we’ll explain that later in Browser default actions.
 
-    To remove a handler we should pass exactly the same function as was assigned.
+    To remove a handler:
 
-    ```js
-    // The handler won’t be removed, because 'removeEventListener' gets another function
-    //  – with the same code, but that doesn’t matter, as it’s a different function object.
-    elem.addEventListener( "click" , () => alert('Thanks!'));
-    // ....
-    elem.removeEventListener( "click", () => alert('Thanks!'));
+    + we should pass exactly the same function as was assigned
 
-    // Here’s the right way:
-    function handler() {
-      alert( 'Thanks!' );
-    }
+        ```js
+        // The handler won’t be removed, because 'removeEventListener' gets another function
+        //  – with the same code, but that doesn’t matter, as it’s a different function object.
+        elem.addEventListener( "click" , () => alert('Thanks!'));
+        // ....
+        elem.removeEventListener( "click", () => alert('Thanks!'));
 
-    input.addEventListener("click", handler);
-    // ....
-    input.removeEventListener("click", handler);
-    // Please note – if we don’t store the function in a variable, then we can’t remove it.
-    // There’s no way to “read back” handlers assigned by 'addEventListener'.
-    ```
+        // Here’s the right way:
+        function handler() {
+          alert( 'Thanks!' );
+        }
+
+        input.addEventListener("click", handler);
+        // ....
+        input.removeEventListener("click", handler);
+        // Please note – if we don’t store the function in a variable, then we can’t remove it.
+        // There’s no way to “read back” handlers assigned by 'addEventListener'.
+        ```
+
+    + also the *phase* should be the same
+
+        If we `#!js addEventListener(..., true)`, then we should mention the same phase in</br>
+        `#!js removeEventListener(..., true)` to correctly remove the handler.
 
     ***element*.addEventListener(event, handler[, options])** allows to assign multiple handlers to one event.
 
@@ -1550,3 +1557,110 @@ Here’s an example of getting pointer coordinates from the event object:
     ```
 
     That’s possible because when the browser reads the attribute, it creates a handler like this: `#!js function(event) { alert(event.type) }`. That is: its first argument is called `event`, and the body is taken from the attribute.
+
+### Bubbling and capturing
+
+When an event happens – the most nested element where it happens gets labeled as the “target element” (`#!js event.target`). Then:
+
++ **Phase 1 - Capturing:** the event moves down from the `document` root to `#!js event.target`, ^^calling handlers^^ assigned with `addEventListener(..., true)` on the way (`true` is a shorthand for `{capture: true}`).
+
+    !!! note "*Capture* phase is *invisible* for handlers and they only run on the 2nd and 3rd phases when:"
+
+        they added using `on<event>`-property or using HTML attributes or using two-argument `#!js addEventListener(event, handler)`
+
+    !!! note "The *capturing phase* is used very rarely."
+
+        Usually we handle events on *bubbling*.
+
++ **Phase 2 - Target:** handlers(on both *capturing* and *bubbling* phases, i.e. this phase is ^^not handled separately^^) are called on the target element itself.
+
++ **Phase 3 - Bubbling:** the event bubbles up from `#!js event.target` to the root (till the `document` object, and some events even reach `window`), ^^calling handlers^^ assigned using `on<event>`, HTML attributes and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
+
+    **Almost** all events *bubble*. Here the list of those that don't:
+
+    + `focus` event
+
+Example of both *capturing* and *bubbling* in action:
+
+```html
+<style>
+  body * {
+    margin: 10px;
+    border: 1px solid blue;
+  }
+</style>
+
+<form>FORM
+  <div>DIV
+    <p>P</p>
+  </div>
+</form>
+
+<script>
+  for(let elem of document.querySelectorAll('*')) {
+    elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName}`), true);
+    elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName}`));
+  }
+</script>
+```
+
+The code sets click handlers on every element in the document to see which ones are working.
+
+If you click on `#!html <p>`, then the sequence is:
+
+1. `HTML` → `BODY` → `FORM` → `DIV` -> `P` (*capturing phase*, the first listener):
+2. `P` → `DIV` → `FORM` → `BODY` → `HTML` (*bubbling phase*, the second listener).
+
+Please note, the `P` shows up twice, because we’ve set two listeners: *capturing* and *bubbling*. The target triggers at the end of the first and at the beginning of the second phase.
+
+!!! note "Listeners on same element and same phase run in their set order."
+
+    If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
+
+    ```js
+    elem.addEventListener("click", e => alert(1)); // guaranteed to trigger first
+    elem.addEventListener("click", e => alert(2));
+    ```
+
+Each handler can access *event object* properties:
+
++ `#!js event.target` – the deepest element that originated the event.
++ `#!js event.currentTarget`(=`this`) – the current element that handles the event(the one that has the handler on it)
++ `#!js event.eventPhase` – the current phase (capturing=1, target=2, bubbling=3). It’s rarely used, because we usually know it in the handler.
+
+Any event handler can **stop** the event capturing/bubbling by calling:
+
++ `#!js event.stopPropagation()` - for a single handler of that event
+
+    That is if an element has multiple event handlers on a single event, then even if one of them stops the capturing/bubbling, the other ones still execute.</br>
+    In other words, `#!js event.stopPropagation()` ^^stops the move downwards/upwards^^, but on the **current element** ^^all other^^ handlers will run.
+
++ `#!js event.stopImmediatePropagation()` - for a multiple handlers of that event
+
+    This method ^^stops the capturing/bubbling^^ and prevents ^^handlers^^ on the **current element** from running. After it no other handlers execute.
+
+```html
+<!-- here 'body.onclick' doesn’t work if you click on <button> -->
+<body onclick="alert(`the bubbling doesn't reach here`)">
+  <button onclick="event.stopPropagation()">Click me</button>
+</body>
+```
+
+!!! note "The `event.stop[Immediate]Propagation()` during the *capturing* also prevents the *bubbling*."
+
+    In other words, normally the event goes first down (“capturing”) and then up (“bubbling”). But if `event.stop[Immediate]Propagation()` is called during the *capturing phase*, then the event travel stops, no *bubbling* will occur.
+
+!!! warning "Don’t stop bubbling without a need!"
+
+    Bubbling is convenient. Don’t stop it without a real need: obvious and architecturally well thought out.</br>
+    Всплытие – это удобно. Не прекращайте его без явной нужды, очевидной и архитектурно прозрачной.
+
+    Sometimes `event.stopPropagation()` creates hidden pitfalls that later may become problems.
+
+    For instance:
+
+    1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that the outer menu won’t trigger.
+    2. Later we decide to catch clicks on the whole window, to track users’ behavior (where people click). Some analytic systems do that. Usually the code uses `#!js document.addEventListener('click'…)` to catch all clicks.
+    3. Our analytic won’t work over the area where clicks are stopped by `stopPropagation`. Sadly, we’ve got a “dead zone”.
+
+    There’s usually no real need to prevent the bubbling. A task that seemingly requires that may be solved by other means. One of them is to use custom events, we’ll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
