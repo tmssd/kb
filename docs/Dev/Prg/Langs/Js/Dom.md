@@ -1870,3 +1870,123 @@ Limitations:
 
 As the result, we have a fast, efficient highlighting code, that doesn’t care about the total number of `#!html <td>` in the table.
 
+##### actions in markup
+
+действия в разметке
+
+Let’s say, we want to make a menu with buttons “Save”, “Load”, “Search” and so on. And there’s an object with methods `save`, `load`, `search`… How to match them?</br>
+The first idea may be to assign a separate handler to each button. But there’s a more elegant solution. We can add a handler for the whole menu and `data-action` attributes for buttons that has the method to call.</br>
+The handler reads the attribute and executes the method.
+
+```html
+<div id="menu">
+  <button data-action="save">Save</button>
+  <button data-action="load">Load</button>
+  <button data-action="search">Search</button>
+</div>
+
+<script>
+  class Menu {
+    constructor(elem) {
+      this._elem = elem;
+      elem.onclick = this.onClick.bind(this); // (*)
+    }
+
+    save() {
+      alert('saving');
+    }
+
+    load() {
+      alert('loading');
+    }
+
+    search() {
+      alert('searching');
+    }
+
+    onClick(event) {
+      let action = event.target.dataset.action;
+      if (action) {
+        this[action]();
+      }
+    };
+  }
+
+  new Menu(menu);
+</script>
+```
+
+Please note that `#!js this.onClick` is bound to `#!js this` in `(*)`. That’s important, because otherwise `#!js this` inside it would reference the DOM element(`#!js elem`), not the `#!js Menu` object, and `#!js this[action]` would not be what we need.
+
+So, what advantages does delegation give us here?
+
++ We don’t need to write the code to assign a handler to each button. Just make a method and put it in the markup.
++ The HTML structure is flexible, we can add/remove buttons at any time.
+
+We could also use classes `#!css .action-save`, `#!css .action-load`, but an attribute `data-action` is better semantically. And we can use it in CSS rules too.
+
+#### The “behavior” pattern
+
+We can also use event delegation to add “behaviors” to elements **declaratively**, with special attributes and classes.
+
+The pattern has two parts:
+
+1. We add a custom attribute to an element that describes its behavior.
+2. A ^^document-wide^^ handler tracks events, and if an event happens on an attributed element – performs the action.
+
+The “behavior” pattern can be an alternative to mini-fragments of JavaScript.
+
+##### example: counter
+
+Here the attribute `data-counter` adds a behavior: “increase value on click” to buttons:
+
+```html
+Counter: <input type="button" value="1" data-counter>
+One more counter: <input type="button" value="2" data-counter>
+
+<script>
+  document.addEventListener('click', function(event) {
+
+    if (event.target.dataset.counter != undefined) { // if the attribute exists...
+      event.target.value++;
+    }
+
+  });
+</script>
+```
+
+If we click a button – its value is increased. Not buttons, but the general approach is important here.</br>
+There can be as many attributes with `data-counter` as we want. We can add new ones to HTML at any moment. Using the *event delegation* we “extended” HTML, added an attribute that describes a new behavior.
+
+!!! warning "For document-level handlers – always use `#!js addEventListener`."
+
+    When we assign an event handler to the `document` object, we should always use `#!js addEventListener`, not `#!js document.on<event>`, because the latter will cause conflicts: new handlers overwrite old ones.</br>
+    For real projects it’s normal that there are many handlers on document set by different parts of the code.
+
+##### example: toggler
+
+A click on an element with the attribute `data-toggle-id` will show/hide the element with the given `id`:
+
+```html
+<button data-toggle-id="subscribe-mail">
+  Show the subscription form
+</button>
+
+<form id="subscribe-mail" hidden>
+  Your mail: <input type="email">
+</form>
+
+<script>
+  document.addEventListener('click', function(event) {
+    let id = event.target.dataset.toggleId;
+    if (!id) return;
+
+    let elem = document.getElementById(id);
+
+    elem.hidden = !elem.hidden;
+  });
+</script>
+```
+
+Now, to add toggling functionality to an element no need to write JavaScript for every such element. Just use the behavior, i.e. the attribute `data-toggle-id`. The ^^document-level^^ handler makes it work for any element of the page.</br>
+We can combine multiple behaviors on a single element as well.
