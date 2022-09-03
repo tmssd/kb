@@ -1692,3 +1692,181 @@ Limitations:
 + The event **must be bubbling**. Some events do not bubble.
 + Low-level handlers should not use `#!js event.stopPropagation()`.
 + The delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the ^^load is negligible^^, so **we don’t take it into account**.
+
+#### Delegation examples
+
+##### basic example: highlight a cell `<td>` on click
+
+```html
+<!DOCTYPE HTML>
+<html>
+
+<body>
+  <style>
+    #bagua-table th {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #bagua-table td {
+      width: 150px;
+      white-space: nowrap;
+      text-align: center;
+      vertical-align: bottom;
+      padding-top: 5px;
+      padding-bottom: 12px;
+    }
+
+    #bagua-table .nw {
+      background: #999;
+    }
+
+    #bagua-table .n {
+      background: #03f;
+      color: #fff;
+    }
+
+    #bagua-table .ne {
+      background: #ff6;
+    }
+
+    #bagua-table .w {
+      background: #ff0;
+    }
+
+    #bagua-table .c {
+      background: #60c;
+      color: #fff;
+    }
+
+    #bagua-table .e {
+      background: #09f;
+      color: #fff;
+    }
+
+    #bagua-table .sw {
+      background: #963;
+      color: #fff;
+    }
+
+    #bagua-table .s {
+      background: #f60;
+      color: #fff;
+    }
+
+    #bagua-table .se {
+      background: #0c3;
+      color: #fff;
+    }
+
+    #bagua-table .highlight {
+      background: red;
+    }
+  </style>
+
+  <table id="bagua-table">
+    <tr>
+      <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    </tr>
+    <tr>
+      <td class="nw"><strong>Northwest</strong>
+        <br>Metal
+        <br>Silver
+        <br>Elders
+      </td>
+      <td class="n"><strong>North</strong>
+        <br>Water
+        <br>Blue
+        <br>Change
+      </td>
+      <td class="ne"><strong>Northeast</strong>
+        <br>Earth
+        <br>Yellow
+        <br>Direction
+      </td>
+    </tr>
+    <tr>
+      <td class="w"><strong>West</strong>
+        <br>Metal
+        <br>Gold
+        <br>Youth
+      </td>
+      <td class="c"><strong>Center</strong>
+        <br>All
+        <br>Purple
+        <br>Harmony
+      </td>
+      <td class="e"><strong>East</strong>
+        <br>Wood
+        <br>Blue
+        <br>Future
+      </td>
+    </tr>
+    <tr>
+      <td class="sw"><strong>Southwest</strong>
+        <br>Earth
+        <br>Brown
+        <br>Tranquility
+      </td>
+      <td class="s"><strong>South</strong>
+        <br>Fire
+        <br>Orange
+        <br>Fame
+      </td>
+      <td class="se"><strong>Southeast</strong>
+        <br>Wood
+        <br>Green
+        <br>Romance
+      </td>
+    </tr>
+
+  </table>
+
+  <script>
+    let table = document.getElementById('bagua-table');
+
+    let selectedTd;
+
+    // code for basic explanation, see after this codeblock
+    table.onclick = function(event) {
+      let td = event.target.closest('td'); // (1)
+      if (!td) return; // (2)
+      if (!table.contains(td)) return; // (3)
+      highlight(td); // (4)
+    };
+
+    // more advaced code that do the same as 'table.oncklick = ...' block above
+    table.onclick = function(event) {
+      let target = event.target; // where was the click?
+      while (target != this) {
+        if (target.tagName == 'TD') {
+          highlight(target); // highlight it
+          return;
+        }
+        // while we are not on 'TD' we "level up" our target variable
+        // to the next 'parentNode' until it reaches 'TD' node
+        target = target.parentNode;
+      }
+    }
+
+    function highlight(node) {
+      if (selectedTd) { // remove the existing highlight if any
+        selectedTd.classList.remove('highlight');
+      }
+      selectedTd = node;
+      selectedTd.classList.add('highlight'); // highlight the new td
+    }
+  </script>
+
+</body>
+
+</html>
+```
+
+1. The method ***element*.closest(selector)** returns the nearest ancestor that matches the selector. In our case we look for `#!html <td>` on the way up from the source element.
+2. If `#!js event.target` is not inside any `#!html <td>`, then the call returns immediately, as there’s nothing to do.
+3. In case of nested tables, `#!js event.target` may be a `#!html <td>`, but lying outside of the current table. So we check if that’s actually **our table’s** `#!html <td>`.
+4. And, if it’s so, then highlight it.
+
+As the result, we have a fast, efficient highlighting code, that doesn’t care about the total number of `#!html <td>` in the table.
+
