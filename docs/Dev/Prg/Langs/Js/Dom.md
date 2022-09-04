@@ -1383,7 +1383,9 @@ There are 3 ways to assign event handlers:
            For historical reasons, `options` can also be `false/true`, that’s the same as `{capture: false/true}`.
         + `passive`: if `true`, then the handler will not call `#!js preventDefault()`(trying to do this will throw an error).</br>
         That’s useful for some mobile events, like `touchstart` and `touchmove`, to tell the browser that it should not wait for all handlers to finish before scrolling.</br>
-        See more about `#!js preventDefault()` in [==Browser default actions==](#browser-default-actions) point.
+        > For some browsers (Firefox, Chrome), `passive` is `true` by default for `touchstart` and `touchmove` events.
+
+            See more about `#!js preventDefault()` in [==Preventing browser actions==](#preventing-browser-actions) point.
 
     To remove a handler:
 
@@ -2006,11 +2008,36 @@ There are many default browser actions:
 + `keydown` – pressing a key may lead to adding a character into a field, or other actions.
 + …there are more…
 
+#### Preventing browser actions
+
 All the default actions can be prevented if we want to handle the event exclusively by JavaScript.
 
-To prevent a default action – use either `#!js event.preventDefault()` or `#!js return false`. The second method works only for handlers assigned with `on<event>`.
+To prevent a default action:
 
-If the default action was prevented, the value of `#!js event.defaultPrevented` becomes `true`, otherwise it’s `false`.
++ `#!js event.preventDefault()` - this is the main way
+
++ `#!js return false` - this way works only for handlers assigned with `on<event>` element method
+
+    !!! note "`#!js return false` is an exception."
+
+        The value returned by an event handler is usually ignored.
+
+        The only exception is `#!js return false` from a handler assigned using `on<event>`.
+
+        In all other cases, `#!js return` value is ignored. In particular, there’s no sense in returning `true`.
+
+```html
+<!-- a click on a link doesn’t lead to navigation; the browser doesn’t do anything -->
+<a href="/" onclick="return false">Click here</a>
+or
+<a href="/" onclick="event.preventDefault()">here</a>
+```
+
+!!! note "Follow-up events."
+
+    Certain events flow one into another. If we prevent the first event, there will be no second.
+
+    For instance, `mousedown` on an `#!html <input>` field leads to focusing in it, and the `focus` event. If we prevent the `mousedown` event, there’s no focus.
 
 !!! warning "Stay semantic, don’t abuse. Сохраняйте семантику, не злоупотребляйте."
 
@@ -2021,3 +2048,37 @@ If the default action was prevented, the value of `#!js event.defaultPrevented` 
     Besides being “just a good thing”, that makes your HTML better in terms of accessibility.
 
     Also if we consider the example with `#!html <a>`, then please note: a browser allows us to open such links in a new window (by right-clicking them and other means). And people like that. But if we make a button behave as a link using JavaScript and even look like a link using CSS, then `#!html <a>`-specific browser features still won’t work for it.
+
+    ```html
+    <input value="Focus works" onfocus="this.value=''">
+    <input onmousedown="return false" onfocus="this.value=''" value="Click me">
+    ```
+
+If the default action was prevented, the value of `#!js event.defaultPrevented` becomes `true`, otherwise it’s `false`.
+
+Sometimes we can use `#!js event.defaultPrevented` instead of using `#!js event.stopPropagation()`, to signal other event handlers that the event was handled.
+
+Example: Preventing default actions of `contextmenu` for `#!html <button>` element and also for whole `document`. The problem is that when we click on elem, we get two menus: the button-level and (the event bubbles up) the document-level menu. Here is the solution:
+
+```html
+<p>Right-click for the document menu (added a check for event.defaultPrevented)</p>
+<button id="elem">Right-click for the button menu</button>
+
+<script>
+  elem.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert("Button context menu");
+  };
+
+  document.oncontextmenu = function(event) {
+    // solution: check if the default action was prevented?
+    // If it is so, then the event was handled, and we don’t need to react on it.
+    if (event.defaultPrevented) return;
+
+    event.preventDefault();
+    alert("Document context menu");
+  };
+</script>
+```
+
+If we have nested elements, and each of them has a context menu of its own, that would also work. Just make sure to check for `#!js event.defaultPrevented` in each `contextmenu` handler.
