@@ -1379,9 +1379,11 @@ There are 3 ways to assign event handlers:
     + `options` - An additional optional object with properties:
 
         + `once`: if `true`, then the listener is automatically removed after it triggers.
-        + `capture`: the *phase* where to handle the event. See [==Bubbling and capturing==](#bubbling-and-capturing) point.</br>
+        + `capture`: the *phase* where to handle the event. See in [==Bubbling and capturing==](#bubbling-and-capturing) point.</br>
            For historical reasons, `options` can also be `false/true`, that’s the same as `{capture: false/true}`.
-        + `passive`: if `true`, then the handler will not call `#!js preventDefault()`, we’ll explain that later in Browser default actions.
+        + `passive`: if `true`, then the handler will not call `#!js preventDefault()`(trying to do this will throw an error).</br>
+        That’s useful for some mobile events, like `touchstart` and `touchmove`, to tell the browser that it should not wait for all handlers to finish before scrolling.</br>
+        See more about `#!js preventDefault()` in [==Browser default actions==](#browser-default-actions) point.
 
     To remove a handler:
 
@@ -1559,6 +1561,8 @@ Here’s an example of getting pointer coordinates from the event object:
     That’s possible because when the browser reads the attribute, it creates a handler like this: `#!js function(event) { alert(event.type) }`. That is: its first argument is called `event`, and the body is taken from the attribute.
 
 ### Bubbling and capturing
+
+Всплытие и погружение
 
 When an event happens – the most nested element where it happens gets labeled as the “target element” (`#!js event.target`). Then:
 
@@ -1990,3 +1994,30 @@ A click on an element with the attribute `data-toggle-id` will show/hide the ele
 
 Now, to add toggling functionality to an element no need to write JavaScript for every such element. Just use the behavior, i.e. the attribute `data-toggle-id`. The ^^document-level^^ handler makes it work for any element of the page.</br>
 We can combine multiple behaviors on a single element as well.
+
+### Browser default actions
+
+There are many default browser actions:
+
++ `mousedown` – starts the selection (move the mouse to select).
++ `click on` `#!html <input type="checkbox">` – checks/unchecks the input.
++ `contextmenu` – the event happens on a right-click, the action is to show the browser context menu.
++ `submit` – clicking an `#!html <input type="submit">` or hitting ++enter++ inside a form field causes this event to happen, and the browser submits the form after it.
++ `keydown` – pressing a key may lead to adding a character into a field, or other actions.
++ …there are more…
+
+All the default actions can be prevented if we want to handle the event exclusively by JavaScript.
+
+To prevent a default action – use either `#!js event.preventDefault()` or `#!js return false`. The second method works only for handlers assigned with `on<event>`.
+
+If the default action was prevented, the value of `#!js event.defaultPrevented` becomes `true`, otherwise it’s `false`.
+
+!!! warning "Stay semantic, don’t abuse. Сохраняйте семантику, не злоупотребляйте."
+
+    Technically, by preventing default actions and adding JavaScript we can customize the behavior of any elements. For instance, we can make a link `#!html <a>` work like a button, and a button `#!html <button>` behave as a link (redirect to another URL or so).
+
+    But we should generally keep the semantic meaning of HTML elements. For instance, `#!html <a>` should perform navigation, not a button.
+
+    Besides being “just a good thing”, that makes your HTML better in terms of accessibility.
+
+    Also if we consider the example with `#!html <a>`, then please note: a browser allows us to open such links in a new window (by right-clicking them and other means). And people like that. But if we make a button behave as a link using JavaScript and even look like a link using CSS, then `#!html <a>`-specific browser features still won’t work for it.
