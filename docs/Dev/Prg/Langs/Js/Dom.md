@@ -2082,3 +2082,43 @@ Example: Preventing default actions of `contextmenu` for `#!html <button>` eleme
 ```
 
 If we have nested elements, and each of them has a context menu of its own, that would also work. Just make sure to check for `#!js event.defaultPrevented` in each `contextmenu` handler.
+
+### Dispatching custom events
+
+Генерация пользовательских событий
+
+TODO: [https://javascript.info/dispatch-events](https://javascript.info/dispatch-events)
+
+## UI Events
+
+### Mouse events
+
+!!! note "Such events may come not only from “mouse devices”."
+
+    But are also from other devices, such as phones and tablets, where they are emulated for compatibility.
+
+Mouse event types:
+
++ `mousedown/mouseup` - Mouse button is clicked/released over an element.
++ `mouseover/mouseout` - Mouse pointer comes over/out from an element.
++ `mousemove` - Every mouse move over an element triggers that event.
++ `contextmenu` - Triggers when the **right mouse** button is pressed. There are other ways to open a context menu, e.g. using a special keyboard key, it triggers in that case also, so it’s not exactly the mouse event.
++ `click` - Triggers after `mousedown` and then `mouseup` over the same element if the **left mouse** button was used.
++ `dblclick` - Triggers after two clicks on the same element within a short timeframe. Rarely used nowadays.
+
+Mouse event properties:
+
++ **event.button** - returns the exact mouse button
+
+    Has following possible values:
+
+    + `0` - Left button (primary)
+    + `1` - Middle button (auxiliary)
+    + `2` - Right button (secondary)
+    + `3` - X1 button (back)
+    + `4` - X2 button (forward)
+
++ return all currently pressed buttons as an integer, one bit per button.</br>
+  In practice this property is very rarely used, you can find details at [MDN](https://developer.mozilla.org/en-US/docs/Web/api/MouseEvent/buttons) if you ever need it.
+
++ **event.which** - 
