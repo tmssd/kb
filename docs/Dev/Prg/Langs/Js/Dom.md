@@ -2106,7 +2106,9 @@ Mouse event types:
 + `click` - Triggers after `mousedown` and then `mouseup` over the same element if the **left mouse** button was used.
 + `dblclick` - Triggers after two clicks on the same element within a short timeframe. Rarely used nowadays.
 
-Mouse event properties:
+#### Mouse event properties
+
+##### mouse button
 
 + **event.button** - returns the exact mouse button
 
@@ -2118,7 +2120,96 @@ Mouse event properties:
     + `3` - X1 button (back)
     + `4` - X2 button (forward)
 
-+ return all currently pressed buttons as an integer, one bit per button.</br>
++ **event.buttons** - return all currently pressed buttons as an integer, one bit per button.</br>
   In practice this property is very rarely used, you can find details at [MDN](https://developer.mozilla.org/en-US/docs/Web/api/MouseEvent/buttons) if you ever need it.
 
-+ **event.which** - 
++ **event.which** - DEPRECATED! An old non-standard way of getting a button, with possible values:
+
+    + `event.which == 1` – Left button,
+    + `event.which == 2` – Middle button,
+    + `event.which == 3` – Right button.
+
+##### modifiers: shift, alt, ctrl and meta
+
++ `shiftKey`: ++shift++
++ `altKey`: ++alt++ (or ++opt++ for Mac)
++ `ctrlKey`: ++ctrl++
++ `metaKey`: ++cmd++ for Mac
+
+They are `true` if the corresponding key was pressed during the event.
+
+For instance, the button below only works on ++alt+shift+++ click:
+
+```html
+<button id="button">Alt+Shift+Click on me!</button>
+
+<script>
+  button.onclick = function(event) {
+    if (event.altKey && event.shiftKey) {
+      alert('Hooray!');
+    }
+  };
+</script>
+```
+
+!!! tip "Attention: on Mac it’s usually ++cmd++ instead of ++ctrl++."
+
+    Even if we’d like to force Mac users to ++ctrl+++click – that’s kind of difficult. The problem is: a left-click with ++ctrl++ is interpreted as a *right-click* on MacOS, and it generates the contextmenu event, not `click` like Windows/Linux.
+
+    So if we want users of all operating systems to feel comfortable, then together with `ctrlKey` we should check `metaKey`.
+
+    For JS-code it means that we should check `#!js if (event.ctrlKey || event.metaKey)`.
+
+##### coordinates
+
+All mouse events provide coordinates in two flavours:
+
+1. Window-relative: `clientX` and `clientY`.
+
+    Are counted from the ^^current^^ window left-upper corner. When the page is scrolled, they change.
+
+    For instance, if we have a window of the size 500x500, and the mouse is in the left-upper corner, then `clientX` and `clientY` are `0`, no matter how the page is scrolled.</br>
+    And if the mouse is in the center, then `clientX` and `clientY` are `250`, no matter what place in the document it is. They are similar to `#!css position:fixed` in that aspect.</br>
+    Move the mouse over the input field to see `clientX/clientY` (the example is in the `iframe`, so coordinates are relative to that `iframe`):
+
+    ```html
+    <input onmousemove="this.value=event.clientX+':'+event.clientY" value="Mouse over me">
+    ```
+
+2. Document-relative: `pageX` and `pageY`.
+
+    Are counted from the left-upper corner ^^of the document^^, and do not change when the page is scrolled.
+
+#### Preventing selection on mousedown
+
+Selection cases:
+
+1. **Left mouse holding pressing and moving:** makes the selection, often unwanted.</br>
+TODO: There are multiple ways to prevent the selection, that you can read in [https://javascript.info/selection-range](https://javascript.info/selection-range).
+
+2. **Double mouse click:** has a side effect that may be disturbing in some interfaces: it selects text.
+
+    To prevent selection in this case is to prevent the browser action on `mousedown`. It prevent first selection case too.
+
+    ```html
+    Before...
+    <b ondblclick="alert('Click!')" onmousedown="return false">
+      Double-click me
+    </b>
+    ...After
+    ```
+
+    Now the bold element is not selected on double clicks, and pressing the left button on it won’t start the selection.</br>
+    The text inside it is still selectable. However, the selection should start not on the text itself, but before or after it. Usually that’s fine for users.
+
+!!! note "Preventing copying."
+
+    If we want to disable selection to protect our page content from copy-pasting, then we can use another event: `oncopy`.
+
+    ```html
+    <div oncopy="alert('Copying forbidden!');return false">
+      Dear user,
+      The copying is forbidden for you.
+      If you know JS or HTML, then you can get everything from the page source though.
+    </div>
+    ```
