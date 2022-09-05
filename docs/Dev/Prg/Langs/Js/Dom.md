@@ -2083,7 +2083,7 @@ Example: Preventing default actions of `contextmenu` for `#!html <button>` eleme
 
 If we have nested elements, and each of them has a context menu of its own, that would also work. Just make sure to check for `#!js event.defaultPrevented` in each `contextmenu` handler.
 
-### Dispatching custom events
+### Dispatching custom events(TODO)
 
 Генерация пользовательских событий
 
@@ -2102,7 +2102,16 @@ Mouse event types:
 1. Simple events:
 
     + `mousedown/mouseup` - Mouse button is clicked/released over an element.
-    + `mouseover/mouseout` - Mouse pointer comes over/out from an element.
+    + `mouseover/mouseout` - Mouse pointer comes over/out from an element.</br>
+        They trigger even when we go from the parent element to a child element.</br>
+        The browser assumes that the mouse can be only over one element at one time – the deepest one.</br>
+        See more on [==mouseover/out==](#mouseoverout) point.
+
+    + `mouseenter/mouseleave` - Mouse pointer enters/leaves the element.</br>
+        They only trigger when the mouse comes in and out the element ^^as a whole^^.</br>
+        Also they do not bubble.</br>
+        See more on [==mouseenter/leave==](#mouseenterleave) point.
+
     + `mousemove` - Every mouse move over an element triggers that event.
 
         !!! note "A fast mouse move may skip intermediate elements."
@@ -2268,6 +2277,313 @@ According to the browser logic: **the mouse cursor may be only over a ^^single^^
 
 **`mouseover` when leaving for a child:**
 
-The `mouseover` event on a descendant ^^bubbles up^^. So, if `#parent` has mouseover handler, it triggers.
+The `mouseover` event on a descendant ^^bubbles up^^. So, if `#parent` has `mouseover` handler, it triggers.
+
+In the example below moving the mouse from `#parent` to `#child`, generates two events on `#parent`:
+
+1. `mouseout [target: parent]` (left the parent), then
+2. `mouseover [target: child]` (came to the child, bubbled).
+
+```html
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+  <style>
+    #parent {
+      background: #99C0C3;
+      width: 160px;
+      height: 120px;
+      position: relative;
+    }
+
+    #child {
+      background: #FFDE99;
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    textarea {
+      height: 140px;
+      width: 300px;
+      display: block;
+    }
+  </style>
+
+  <div id="parent" onmouseover="mouselog(event)" onmouseout="mouselog(event)">parent
+    <div id="child">child</div>
+  </div>
+
+  <textarea id="text"></textarea>
+  <input type="button" onclick="text.value=''" value="Clear">
+
+  <script>
+    function mouselog(event) {
+      let d = new Date();
+      text.value += `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} | ${event.type} [target: ${event.target.id}]\n`.replace(/(:|^)(\d\D)/, '$10$2');
+      text.scrollTop = text.scrollHeight;
+    }
+  </script>
+
+</body>
+
+</html>
+```
+
+If there are some actions upon leaving the parent element, e.g. an animation runs in `#!js parent.onmouseout`, we usually don’t want it when the pointer just goes deeper into `#parent`.</br>
+To avoid it, we can check `#!js event.relatedTarget` in the handler and, if the mouse is still inside the element, then ignore such event.</br>
+Alternatively we can use other events: `mouseenter` and `mouseleave`, see next point.
 
 ##### mouseenter/leave
+
+`mouseenter/mouseleave` like `mouseover/mouseout` trigger when the mouse pointer enters/leaves the element.
+
+But there are two important differences:
+
+1. Transitions inside the element, ^^to/from descendants^^, are **not counted**.
+2. Events `mouseenter/mouseleave` **do not bubble**.
+
+So if in the example form previous point above we'll change the events on top element `#!html <div id='parent' ... >`  from `mouseover/mouseout` to `mouseenter/mouseleave`, we'll see that he only generated events are the ones related to moving the pointer in and out of the top element. Nothing happens when the pointer goes to the child and back. Transitions between descendants are ignored.
+
+##### event delegation example
+
+Highlighting `TD` elements as the mouse travels across them:
+
+Beacuse of limitation of "not-bubbling" of the `mouseenter/mouseleave` events we use `mouseover/mouseout` events for "delegation" event handling pattern.
+
+In our case we’d like to handle transitions between table cells `#!html <td>`: entering a cell and leaving it. Other transitions, such as inside the cell or outside of any cells, don’t interest us. Let’s filter them out.
+
+Here’s what we can do:
+
++ Remember the currently highlighted `#!html <td>` in a variable, let’s call it `currentElem`.
++ On `mouseover` – ignore the event if we’re still inside the current `#!html <td>`.
++ On `mouseout` – ignore if we didn’t leave the current `#!html <td>`.
+
+```html
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <style>
+    #text {
+      display: block;
+      height: 100px;
+      width: 456px;
+    }
+
+    #table th {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #table td {
+      width: 150px;
+      white-space: nowrap;
+      text-align: center;
+      vertical-align: bottom;
+      padding-top: 5px;
+      padding-bottom: 12px;
+      cursor: pointer;
+    }
+
+    #table .nw {
+      background: #999;
+    }
+
+    #table .n {
+      background: #03f;
+      color: #fff;
+    }
+
+    #table .ne {
+      background: #ff6;
+    }
+
+    #table .w {
+      background: #ff0;
+    }
+
+    #table .c {
+      background: #60c;
+      color: #fff;
+    }
+
+    #table .e {
+      background: #09f;
+      color: #fff;
+    }
+
+    #table .sw {
+      background: #963;
+      color: #fff;
+    }
+
+    #table .s {
+      background: #f60;
+      color: #fff;
+    }
+
+    #table .se {
+      background: #0c3;
+      color: #fff;
+    }
+
+    #table .highlight {
+      background: red;
+    }
+  </style>
+
+  <table id="table">
+    <tr>
+      <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    </tr>
+    <tr>
+      <td class="nw"><strong>Northwest</strong>
+        <br>Metal
+        <br>Silver
+        <br>Elders
+      </td>
+      <td class="n"><strong>North</strong>
+        <br>Water
+        <br>Blue
+        <br>Change
+      </td>
+      <td class="ne"><strong>Northeast</strong>
+        <br>Earth
+        <br>Yellow
+        <br>Direction
+      </td>
+    </tr>
+    <tr>
+      <td class="w"><strong>West</strong>
+        <br>Metal
+        <br>Gold
+        <br>Youth
+      </td>
+      <td class="c"><strong>Center</strong>
+        <br>All
+        <br>Purple
+        <br>Harmony
+      </td>
+      <td class="e"><strong>East</strong>
+        <br>Wood
+        <br>Blue
+        <br>Future
+      </td>
+    </tr>
+    <tr>
+      <td class="sw"><strong>Southwest</strong>
+        <br>Earth
+        <br>Brown
+        <br>Tranquility
+      </td>
+      <td class="s"><strong>South</strong>
+        <br>Fire
+        <br>Orange
+        <br>Fame
+      </td>
+      <td class="se"><strong>Southeast</strong>
+        <br>Wood
+        <br>Green
+        <br>Romance
+      </td>
+    </tr>
+
+  </table>
+
+  <textarea id="text"></textarea>
+
+  <input type="button" onclick="text.value=''" value="Clear">
+
+  <script>
+    // <td> under the mouse right now (if any)
+    let currentElem = null;
+
+    table.onmouseover = function(event) {
+      // before entering a new element, the mouse always leaves the previous one
+      // if currentElem is set, we didn't leave the previous <td>,
+      // that's a mouseover inside it, ignore the event
+      if (currentElem) return;
+
+      let target = event.target.closest('td');
+
+      // we moved not into a <td> - ignore
+      if (!target) return;
+
+      // moved into <td>, but outside of our table (possible in case of nested tables)
+      // ignore
+      if (!table.contains(target)) return;
+
+      // hooray! we entered a new <td>
+      currentElem = target;
+      onEnter(currentElem);
+    };
+
+    table.onmouseout = function(event) {
+      // if we're outside of any <td> now, then ignore the event
+      // that's probably a move inside the table, but out of <td>,
+      // e.g. from <tr> to another <tr>
+      if (!currentElem) return;
+
+      // we're leaving the element – where to? Maybe to a descendant?
+      let relatedTarget = event.relatedTarget;
+
+      while (relatedTarget) {
+        // go up the parent chain and check – if we're still inside currentElem
+        // then that's an internal transition – ignore it
+        if (relatedTarget == currentElem) return;
+
+        relatedTarget = relatedTarget.parentNode;
+      }
+
+      // we left the <td>. really.
+      onLeave(currentElem);
+      currentElem = null;
+    };
+
+    // any functions to handle entering/leaving an element
+    function onEnter(elem) {
+      elem.style.background = 'pink';
+
+      // show that in textarea
+      text.value += `over -> ${currentElem.tagName}.${currentElem.className}\n`;
+      text.scrollTop = 1e6;
+    }
+
+    function onLeave(elem) {
+      elem.style.background = '';
+
+      // show that in textarea
+      text.value += `out <- ${elem.tagName}.${elem.className}\n`;
+      text.scrollTop = 1e6;
+    }
+  </script>
+
+</body>
+
+</html>
+```
+
+### Drag'n'Drop with mouse events(TODO)
+
+TODO: [https://javascript.info/mouse-drag-and-drop](https://javascript.info/mouse-drag-and-drop)
+
+### Pointer events(TODO)
+
+TODO: [https://javascript.info/pointer-events](https://javascript.info/pointer-events)
+
+### Keyboard: keydown and keyup
