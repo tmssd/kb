@@ -2099,12 +2099,25 @@ TODO: [https://javascript.info/dispatch-events](https://javascript.info/dispatch
 
 Mouse event types:
 
-+ `mousedown/mouseup` - Mouse button is clicked/released over an element.
-+ `mouseover/mouseout` - Mouse pointer comes over/out from an element.
-+ `mousemove` - Every mouse move over an element triggers that event.
-+ `contextmenu` - Triggers when the **right mouse** button is pressed. There are other ways to open a context menu, e.g. using a special keyboard key, it triggers in that case also, so it’s not exactly the mouse event.
-+ `click` - Triggers after `mousedown` and then `mouseup` over the same element if the **left mouse** button was used.
-+ `dblclick` - Triggers after two clicks on the same element within a short timeframe. Rarely used nowadays.
+1. Simple events:
+
+    + `mousedown/mouseup` - Mouse button is clicked/released over an element.
+    + `mouseover/mouseout` - Mouse pointer comes over/out from an element.
+    + `mousemove` - Every mouse move over an element triggers that event.
+
+        !!! note "A fast mouse move may skip intermediate elements."
+
+            `mousemove` **doesn't** trigger on every pixel. The browser checks the mouse position from time to time.</br>
+            That means that if the visitor is moving the mouse very fast then some DOM-elements may be skipped.
+
+            That’s good for performance, because there may be many intermediate elements. We don’t really want to process in and out of each one.
+
+    + `contextmenu` - Triggers when the **right mouse** button is pressed. There are other ways to open a context menu, e.g. using a special keyboard key, it triggers in that case also, so it’s not exactly the mouse event.
+
+2. Complex events(consist of several simple events):
+
+    + `click` - Triggers after `mousedown` and then `mouseup` over the same element if the **left mouse** button was used.
+    + `dblclick` - Triggers after two clicks on the same element within a short timeframe. Rarely used nowadays.
 
 #### Mouse event properties
 
@@ -2180,7 +2193,7 @@ All mouse events provide coordinates in two flavours:
 
     Are counted from the left-upper corner ^^of the document^^, and do not change when the page is scrolled.
 
-#### Preventing selection on mousedown
+#### Preventing selection on `mousedown`
 
 Selection cases:
 
@@ -2214,5 +2227,47 @@ TODO: There are multiple ways to prevent the selection, that you can read in [ht
     </div>
     ```
 
-#### Moving the mouse: mouseover/out, mouseenter/leave
+#### Moving the mouse
 
+##### mouseover/out
+
+The `mouseover` event occurs when a mouse pointer comes over an element, and `mouseout` – when it leaves.
+
+!!! note "If `mouseover` triggered, there must be `mouseout`."
+
+    In case of fast mouse movements, intermediate elements may be ignored, but one thing we know for sure: if the pointer “officially” entered an element (`mouseover` event generated), then upon leaving it we always get `mouseout`.
+
+These event have special property `#!js event.relatedTarget`
+
+For `mouseover`:
+
++ `#!js event.target` – is the element ^^where^^ the mouse came over.
++ `#!js event.relatedTarget` – is the element ^^from which^^ the mouse came (`relatedTarget` → `target`).
+
+For `mouseout` the reverse:
+
++ `#!js event.target` – is the element that the mouse ^^left^^.
++ `#!js event.relatedTarget` – is the new under-the-pointer element, that mouse ^^left for^^ (`target` → `relatedTarget`).
+
+!!! note "`#!js event.relatedTarget` can be null."
+
+    That’s normal and just means that the mouse came not from another element, but from out of the window. Or that it left the window.</br>
+    If we access `#!js event.relatedTarget.tagName`, then there will be an error.
+
+**`mouseout` when leaving for a child:**
+
+An important feature of `mouseout` – it triggers, when the pointer moves from an element to its ^^descendant^^(just the same as if it was moving ^^out of^^ the parent element itself), e.g. if we’re on `#parent` and then move the pointer deeper into `#child`, we get `mouseout` on `#parent` in this HTML:
+
+```html
+<div id="parent">
+  <div id="child">...</div>
+</div>
+```
+
+According to the browser logic: **the mouse cursor may be only over a ^^single^^ element at any time – the most nested one and top by z-index.** So if it goes to another element (**even a descendant**), then it leaves the previous one.
+
+**`mouseover` when leaving for a child:**
+
+The `mouseover` event on a descendant ^^bubbles up^^. So, if `#parent` has mouseover handler, it triggers.
+
+##### mouseenter/leave
