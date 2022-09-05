@@ -2213,3 +2213,6 @@ TODO: There are multiple ways to prevent the selection, that you can read in [ht
       If you know JS or HTML, then you can get everything from the page source though.
     </div>
     ```
+
+#### Moving the mouse: mouseover/out, mouseenter/leave
+
