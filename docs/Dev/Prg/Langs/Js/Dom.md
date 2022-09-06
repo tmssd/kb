@@ -2586,4 +2586,130 @@ TODO: [https://javascript.info/mouse-drag-and-drop](https://javascript.info/mous
 
 TODO: [https://javascript.info/pointer-events](https://javascript.info/pointer-events)
 
-### Keyboard: keydown and keyup
+### Keyboard events
+
+Pressing a key always generates a keyboard events:
+
++ `keypress`(legacy) – no need to use anymore!
++ `keydown` – on pressing the key (*auto-repeats*, i.e. triggers again and again if the key is pressed for long)
++ `keyup` – on releasing the key
+
+The only exception is ++fn++ key, because it’s often implemented on lower level than OS.
+
+Main keyboard event properties:
+
++ `#!js event.keyCode/charCode/which`(legacy) - no need to use anymore!
++ `#!js event.code` – the “key code” specific to the physical location of the key on keyboard. Key codes described in the [UI Events code specification](https://www.w3.org/TR/uievents-code/).
+
+    For instance:
+
+    + Letter keys have codes `Key<letter>`: `KeyA`, `KeyB` etc.
+
+        There are several widespread keyboard layouts, and the specification gives key codes for each of them.</br>
+        Read the [alphanumeric section of the spec](https://www.w3.org/TR/uievents-code/#key-alphanumeric-section) for more codes.
+
+    + Digit keys have codes: `Digit<number>`: `Digit0`, `Digit1` etc.
+
+    + Special keys are mostly coded by their names: `Enter`, `Backspace`, `Tab`,`ShiftRight` ,`ShiftLeft` , `F1` etc.
+
++ `#!js event.key` – the character (`"A"`, `"a"` and so on), for non-character keys, such as ++esc++, usually has the same value as `#!js event.code`.
+
+!!! tip "`#!js event.key` vs. `#!js event.code`"
+
+    To handle ^^keyboard layout-dependant^^ keys → `#!js event.key` is the way to go.</br>
+    Because same letters in different layouts may map to different physical keys, leading to different codes.</br>
+    See the full list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system).
+
+    To get a **hotkey** to work even after a ^^language^^ switch → `#!js event.code` may be better.
+
++ `#!js event.repeat` - for events triggered by *auto-repeat* this property set to `true`(defatul value is `fasle`)
+
+Examples:
+
++ Preventing default acitons on `keydown`:
+
+    We can cancel most of them, with the exception of OS-based special keys. For instance, on Windows ++alt+f4++ closes the current browser window. And there’s no way to stop it by preventing the default action in JavaScript.
+
+    For instance, the `#!html <input>` below expects a phone number, so it does not accept keys except digits, `+`, `()`, `-`, `Left`, `Right`, `Delete`, `Backspace`:
+
+    ```html
+    <script>
+    function checkPhoneKey(key) {
+      return (key >= '0' && key <= '9') ||
+        ['+','(',')','-','ArrowLeft','ArrowRight','Delete','Backspace'].includes(key);
+    }
+    </script>
+    <input onkeydown="return checkPhoneKey(event.key)" placeholder="Phone, please" type="tel">
+    ```
+
+    The onkeydown handler here uses checkPhoneKey to check for the key pressed. If it’s valid, then it returns `true`, otherwise `false`.</br>
+    As we know, the `false` value returned from the event handler, assigned using a DOM property or an attribute, such as above, prevents the default action, so nothing appears in the `#!html <input>` for keys that don’t pass the test. (The `true` value returned doesn’t affect anything, only returning `false` matters)
+
++ Text characters limit counter:
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+    </head>
+
+    <body>
+
+      <style>
+        .textarea {
+        }
+
+        .textarea__item {
+            width: 300px;
+            height: 150px;
+            padding: 10px;
+            font-size: 18px;
+            color: #fff;
+            background-color: rgb(44, 43, 43);
+        }
+
+        .textarea__counter {
+        }
+      </style>
+
+      <div class="textarea">
+        <textarea autocomplete="off" maxlength="30" name="form[]" class="textarea__item"></textarea>
+        <div class="textarea__counter">Осталось <span></span> символов</div>
+      </div>
+
+      <script>
+        const txtItem = document.querySelector('.textarea__item');
+        const txtItemLimit = txtItem.getAttribute('maxlength');
+        const txtCounter = document.querySelector('.textarea__counter span');
+        txtCounter.innerHTML = txtItemLimit;
+
+        txtItem.addEventListener("keyup", txtSetCounter);
+        txtItem.addEventListener("keydown", function (event) {
+          if (event.repeat) txtSetCounter();
+        });
+
+        function txtSetCounter() {
+          const txtCounterResult = txtItemLimit - txtItem.value.length;
+          txtCounter.innerHTML = txtCounterResult;
+        }
+      </script>
+
+    </body>
+
+    </html>
+    ```
+
+!!! warning "Not 100% reliable."
+
+    In the past, keyboard events were sometimes used to track user input in form fields. That’s not reliable, because the input can come from various sources(e.g. mobile keyboards formally known as IME(Input-Method Editor)). We have `input` and `change` events to handle any input (covered in [TODO: Events: change, input, cut, copy, paste](https://javascript.info/events-change-input)). They trigger after any kind of input, including copy-pasting or speech recognition.
+
+!!! tip "We should use keyboard events when we really want keyboard."
+
+    For example, to react on hotkeys or special keys.
+
+### Scrolling
