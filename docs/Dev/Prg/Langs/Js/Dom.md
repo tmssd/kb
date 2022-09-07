@@ -2741,3 +2741,140 @@ But we can prevent scrolling by `#!js event.preventDefault()` on an event that c
 If we add an event handler to these events and `#!js event.preventDefault()` in it, then the scroll won’t start.
 
 **BUT:** There are many ways to initiate a scroll, so it’s ^^more reliable^^ to use CSS, `#!css overflow: hidden;` property.
+
+## Document and resource loading
+
+### Page: `DOMContentLoaded`, `load`, `beforeunload`, `unload`
+
+Page load events:
+
++ `DOMContentLoaded` - triggers on `document` when the browser fully loaded HTML, and the DOM tree is built, but external resources like ^^pictures `#!html <img>`^^ and ^^stylesheets^^, etc. may not yet have loaded.
+
+    *Usage:* the handler can lookup DOM nodes, initialize the interface.
+
+    We must use `#!js addEventListener` to catch it:
+
+    ```html
+    <script>
+      function ready() {
+        alert('DOM is ready');
+
+        // image is not yet loaded (unless it was cached), so the size is 0x0
+        alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+      }
+      /*
+      The 'DOMContentLoaded' handler runs when the document is loaded,
+      so it can see all the elements, including <img> below.
+      But it doesn’t wait for the image to load. So 'alert' shows zero sizes.
+       */
+      document.addEventListener("DOMContentLoaded", ready);
+      // not "document.onDOMContentLoaded = ..."
+    </script>
+
+    <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+    ```
+
+    Peculiarities(особенности) regarding  `DOMContentLoaded` event running:
+
+    1. Script such as `#!html <script>...</script>` or `#!html <script src="..."></script>` block DOMContentLoaded.
+
+        When the browser processes an HTML-document and comes across a `#!html <script>` tag, it needs to execute before continuing building the DOM. That’s a precaution, as scripts may want to modify DOM, and even `#!js document.write` into it, so `DOMContentLoaded` has to wait.
+
+        ```html
+        <!-- we first see “Library loaded…”, and then “DOM ready!” (all scripts are executed) -->
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            alert("DOM ready!");
+          });
+
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+
+        <script>
+          alert("Library loaded, inline script executed");
+        </script>
+        ```
+
+        !!! warning "Scripts that don’t block DOMContentLoaded."
+
+            There are two exceptions from this rule:
+
+            1. Scripts with the `async` attribute, don’t block `DOMContentLoaded`. See [TODO: https://javascript.info/script-async-defer](https://javascript.info/script-async-defer)
+            2. Scripts that are generated dynamically with `#!js document.createElement('script')` and then added to the webpage also don’t block this event.
+
+    2. Images and other resources may also still continue loading.
+
+        External style sheets don’t affect DOM, so `DOMContentLoaded` does not wait for them.
+
+        **BUT:** If we have a script after the style, then that script must wait until the stylesheet loads:
+
+        ```html
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <script>
+          // the script doesn't execute until the stylesheet is loaded
+          alert(getComputedStyle(document.body).marginTop);
+        </script>
+        ```
+
+        The reason for this is that the script may want to get coordinates and other style-dependent properties of elements, like in the example above. Naturally, it has to wait for styles to load.</br>
+        As `DOMContentLoaded` waits for scripts, it now waits for styles before them as well.
+
+      1. Built-in browser autofill.
+
+          Firefox, Chrome and Opera autofill forms on `DOMContentLoaded`.
+
+          For instance, if the page has a form with login and password, and the browser remembered the values, then on `DOMContentLoaded` it may try to autofill them (if approved by the user).
+
+          So if `DOMContentLoaded` is postponed by long-loading scripts, then autofill also awaits – the login/password fields don’t get autofilled immediately, but there’s a delay till the page fully loads. That’s actually the delay until the `DOMContentLoaded` event.
+
++ `load` - triggers on `window` when the page and all external resources(images, styles etc.) are loaded.
+
+    *Usage:* external resources are loaded, so styles are applied, image sizes are known etc. We rarely use it, because there’s usually no need to wait for so long.
+
+    ```html
+    <!-- correctly shows image sizes, because 'window.onload' waits for all images: -->
+    <script>
+      window.onload = function() { // can also use window.addEventListener('load', (event) => {
+        alert('Page loaded');
+
+        // image is loaded at this time
+        alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+      };
+    </script>
+
+    <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
+    ```
+
++ `beforeunload` - triggers on `window` when the user wants to leave the page.
+
+    *Usage:* cancel the transition to another page - if we cancel the event, browser asks whether the user really wants to leave(e.g we have unsaved changes).
+
++ `unload` - triggers on `window` when the user is finally leaving
+
+      *Usage:* the user almost left and in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it’s rarely used. For instanse:
+
+      + we can close related popup windows
+      + we can send out a network request with a special `#!js navigator.sendBeacon(url, data)` method (described in the specification [https://w3c.github.io/beacon/](https://w3c.github.io/beacon/)), that contains e.g. the data about how the page is used: mouse clicks, scrolls, viewed page areas, and so on
+
+          `#!js sendBeacon` sends data in background without delaying the  transition to another page: the browser leaves the page, but still performs `#!js sendBeacon`. Here’s how to use it:
+
+          ```js
+          let analyticsData = { /* object with gathered data */ };
+
+          window.addEventListener("unload", function() {
+            navigator.sendBeacon("/analytics", JSON.stringify(analyticsData));
+          });
+          ```
+
+          1. the request is sent as POST
+          2. we can send not only a string, but also forms and other formats(see [Fetch](https://javascript.info/fetch)), but usually it’s a stringified object
+          3. the data is limited by 64kb
+
+          When the `#!js sendBeacon` request is finished, the browser probably has already left the document, so there’s no way to get server response (which is usually empty for analytics).</br>
+          There’s also a `keepalive` flag for doing such “after-page-left” requests in fetch method for generic network requests. You can find more information in the chapter [Fetch API](https://javascript.info/fetch-api).
+
++ `#!js document.readyState` is the current state of the document, changes can be tracked in the `readystatechange` event:
+    + `loading` – the document is loading.
+    + `interactive` – the document is parsed, happens at about the same time as `DOMContentLoaded`, but before it.
+    + `complete` – the document and resources are loaded, happens at about the same time as window.onload, but before it
