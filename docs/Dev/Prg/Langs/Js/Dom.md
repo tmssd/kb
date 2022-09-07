@@ -2713,3 +2713,31 @@ Examples:
     For example, to react on hotkeys or special keys.
 
 ### Scrolling
+
+`scroll` event - allows reacting to a page or element scrolling
+
+May be used for:
+
++ Show/hide additional controls or information depending on where in the document the user is.
++ Load more data when the user scrolls down till the end of the page.
+
+**BUT:** there is more interesting way to implement these(and many others) functionalitis by using *IntersectionObserver* which allows asynchronously watch for ^^intersection^^ of the element with his parent or visible document area.
+
+```js
+// a small function to show the current scroll:
+window.addEventListener('scroll', function() {
+  document.getElementById('showScroll').innerHTML = window.pageYOffset + 'px';
+});
+/*
+In action:
+  - The 'scroll' event works both on the 'window' and on scrollable elements.
+*/
+```
+
+#### Prevent scrolling
+
+We can’t prevent scrolling by using `#!js event.preventDefault()` in onscroll listener, because it triggers after the scroll has already happened.</br>
+But we can prevent scrolling by `#!js event.preventDefault()` on an event that causes the scroll, for instance `keydown` event for ++page-up++ and ++page-down++.</br>
+If we add an event handler to these events and `#!js event.preventDefault()` in it, then the scroll won’t start.
+
+**BUT:** There are many ways to initiate a scroll, so it’s ^^more reliable^^ to use CSS, `#!css overflow: hidden;` property.
