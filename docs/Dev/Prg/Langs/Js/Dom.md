@@ -2598,7 +2598,7 @@ The only exception is ++fn++ key, because it’s often implemented on lower leve
 
 Main keyboard event properties:
 
-+ `#!js event.keyCode/charCode/which`(legacy) - no need to use anymore!
++ `#!js event.keyCode/charCode/which`(legacy, they use [Javascript Char Codes (Key Codes)](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes) as their value) - no need to use anymore!
 + `#!js event.code` – the “key code” specific to the physical location of the key on keyboard. Key codes described in the [UI Events code specification](https://www.w3.org/TR/uievents-code/).
 
     For instance:
