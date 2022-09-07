@@ -2846,9 +2846,45 @@ Page load events:
     <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
     ```
 
-+ `beforeunload` - triggers on `window` when the user wants to leave the page.
++ `beforeunload` - triggers on `window` when the user initiated navigation away from the page or tries to close the window; in this case the handler asks for additional confirmation
 
-    *Usage:* cancel the transition to another page - if we cancel the event, browser asks whether the user really wants to leave(e.g we have unsaved changes).
+    *Usage:* cancel the transition to another page - if we ^^cancel the event^^, browser asks whether the user really wants to leave(e.g. we have unsaved changes).
+
+    ```js
+    window.onbeforeunload = function() {
+      return false;
+    };
+    ```
+
+    For historical reasons, returning a non-empty string also counts as *canceling the event*. Some time ago browsers used to show it as a message, but as the [modern specification](https://html.spec.whatwg.org/#unloading-documents) says, they shouldn’t.</br>
+    The behavior was changed, because some webmasters abused this event handler by showing misleading and annoying messages. So right now old browsers still may show it as a message, but aside of that – there’s no way to customize the message shown to the user.
+
+    ```js
+    window.onbeforeunload = function() {
+      return "There are unsaved changes. Leave now?";
+    };
+    ```
+
+    !!! warning "The `#!js event.preventDefault()` doesn’t work from a `beforeunload` handler"
+
+        That may sound weird, but most browsers ignore `#!js event.preventDefault()`.</br>
+        Which means, following code may not work:
+
+        ```js
+        window.addEventListener("beforeunload", (event) => {
+          // doesn't work, so this event handler doesn't do anything
+          event.preventDefault();
+        });
+        ```
+
+        Instead, in *such handlers* one should set `#!js event.returnValue` to a string to get the result similar to the code above:
+
+        ```js
+        window.addEventListener("beforeunload", (event) => {
+          // works, same as returning from window.onbeforeunload
+          event.returnValue = "There are unsaved changes. Leave now?";
+        });
+        ```
 
 + `unload` - triggers on `window` when the user is finally leaving
 
@@ -2874,7 +2910,33 @@ Page load events:
           When the `#!js sendBeacon` request is finished, the browser probably has already left the document, so there’s no way to get server response (which is usually empty for analytics).</br>
           There’s also a `keepalive` flag for doing such “after-page-left” requests in fetch method for generic network requests. You can find more information in the chapter [Fetch API](https://javascript.info/fetch-api).
 
-+ `#!js document.readyState` is the current state of the document, changes can be tracked in the `readystatechange` event:
-    + `loading` – the document is loading.
-    + `interactive` – the document is parsed, happens at about the same time as `DOMContentLoaded`, but before it.
-    + `complete` – the document and resources are loaded, happens at about the same time as window.onload, but before it
++ `readystatechange` - tracks the changes in value of the `#!js document.readyState` method(see below at this point)
+
+    It is an alternative mechanics of tracking the document loading state, it appeared long ago. ^^Nowadays, it is rarely used.^^
+
+    ```js
+    // current state
+    console.log(document.readyState); // prints 'loading'
+    // print state changes
+    document.addEventListener('readystatechange', () => console.log(document.readyState)); // prints 'interactive' and then 'complete'
+    ```
+
+***document*.readyState** - current state of the document, has 3 following values:
+
++ `loading` – the document is loading.
++ `interactive` – the document is parsed(= was fully read), happens at about the same time as `DOMContentLoaded`, but before it.
++ `complete` – the document and resources are loaded(= was fully read and all resources(like images) are loaded too), happens at about the same time as `window.onload`, but before it
+
+We can check `#!js document.readyState` and setup a handler or execute the code immediately if it’s ready, like this:
+
+```js
+function work() { /*...*/ }
+
+if (document.readyState == 'loading') {
+  // still loading, wait for the event
+  document.addEventListener('DOMContentLoaded', work);
+} else {
+  // DOM is ready!
+  work();
+}
+```
