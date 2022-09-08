@@ -2582,6 +2582,8 @@ Here’s what we can do:
 
 TODO: [https://javascript.info/mouse-drag-and-drop](https://javascript.info/mouse-drag-and-drop)
 
+<object data="../DOM_Drag-and-drop-events.pdf" type="application/pdf" class="pdf"></object>
+
 ### Pointer events(TODO)
 
 TODO: [https://javascript.info/pointer-events](https://javascript.info/pointer-events)
