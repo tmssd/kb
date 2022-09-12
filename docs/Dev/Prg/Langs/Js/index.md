@@ -227,6 +227,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
         // Boolean + Boolean -> addition
         false + false // 0
+        true + true   // 2
 
         // STRING CONCATENATION:
         // String + String -> CONCATENATION
@@ -265,6 +266,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
         // Boolean + Boolean -> addition
         baz += false // 1
+        baz += true  // 2
 
         // Number + String -> concatenation
         bar += 'foo' // "5foo"
@@ -392,7 +394,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + [`??`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) (*nullish coalescing operator*: returns its right-hand side operand when its left-hand side operand is `null` or `undefined`, and otherwise returns its left-hand side operand.)
 
-    + This can be contrasted with the logical OR (`||`) operator, which returns the right-hand side operand if the left operand is *any* falsy value(`null`, `NaN`, `0`, empty string: `""` or `''` or ` `` `, `undefined`), not only `null` or `undefined`. In other words, if you use `||` to provide some default value to another variable `foo`, you may encounter unexpected behaviors if you consider some falsy values as usable (e.g., `''` or `0`).
+    + This can be contrasted with the logical OR (`||`) operator, which returns the right-hand side operand if the left operand is ^^any^^ *falsy value*(`null`, `NaN`, `0`, empty string: `""` or `''` or ` `` `, `undefined`), not only `null` or `undefined`. In other words, if you use `||` to provide some default value to another variable `foo`, you may encounter unexpected behaviors if you consider some falsy values as usable (e.g., `''` or `0`).
 
     + <space>
 
@@ -556,7 +558,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
     There is also a function-like dynamic `import()`, which does not require scripts of `type="module"`.
 
-    Backward compatibility can be ensured using attribute nomodule on the `<script>` tag.
+    Backward compatibility can be ensured using attribute `nomodule` on the `#!html <script>` tag.
 
 ## Looping
 
@@ -658,8 +660,8 @@ So when we copy a variable into another variable - we copy the value and then cr
         }
     }
     /* apples
-        oranges
-        grapes */
+       oranges
+       grapes */
 
     const basket = ['apples', 'oranges', 'grapes'];
 
@@ -669,8 +671,8 @@ So when we copy a variable into another variable - we copy the value and then cr
         }
     }
     /* 0
-        1
-        2 */
+       1
+       2 */
     ```
 
 `for/of` : *Loops(**iterates**) through the values of an **iterable** object(array, string)*
@@ -688,8 +690,8 @@ So when we copy a variable into another variable - we copy the value and then cr
         console.log(item);
     }
     /* apples
-        oranges
-        grapes */
+       oranges
+       grapes */
     ```
 
 `forEach` : *Is the Array method. See below in the ==[Array](#array)== section.*
@@ -704,7 +706,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + It is **Function Scope variable**: Any time it is declared inside curly brackets **inside a function** it creates a **new scope**.
 
-+ Global variables defined with the **var** keyword **belong** to the window object.
++ Global variables defined with the **var** keyword **belong** to the `window` object.
 
     ```js
     // in console run firstly:
@@ -733,7 +735,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     console.log('outside', wizardLevel); // outside false
     ```
 
-+ Global variables defined with the **let** keyword **do not belong** to the window object.
++ Global variables defined with the **let** keyword **do not belong** to the `window` object.
 
     ```js
     // in console run firstly:
@@ -752,7 +754,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + It is **Block Scope constant**: Any time it is declared inside curly brackets **in any place**(function, if etc.) it creates a **new scope**.
 
-+ Global variables defined with the **const** keyword **do not belong** to the window object.
++ Global variables defined with the **const** keyword **do not belong** to the `window` object.
 
     ```js
     // in console run firstly:
@@ -765,7 +767,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 ### Function Basics
 
-**`function name() {}` : Function Declaration.**
+**`function name() {}` : Function Declaration, a.k.a. *Function Definition* or *Function Statement***
 
 **`var a = function name() {}` : Function Expression, *named function* is assigned to a variable.**
 
@@ -884,7 +886,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 ### Closure
 
-> reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)(very good explanation), [W3S](https://www.w3schools.com/js/js_function_closures.asp)(has interesting example at the end with self-invoking function)
+> reference: [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)(very good explanation), [W3S](https://www.w3schools.com/js/js_function_closures.asp)(has interesting example at the end with IIFE)
 
 + A **closure** is the combination of a function and the lexical environment within which that function was declared.
 
@@ -1103,10 +1105,10 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + **Find the index of an item in an Array, Find item in an Array**
 
-    **`indexOf()`** : *Search the array for an element and returns its position*
+    **`indexOf()`** : *Search the array for an element and returns its position*</br>
     Returns **-1** if the item is not found.
     If the item is present **more than once**, the indexOf method returns the position of the **first** occurence.
-    > **Tip:** this method suits for work with primitive data type.
+    > **Tip:** this method suits for work with primitive data type.</br>
     > **Tip:** if you want to search from end to start, use the [lastIndexOf()](https://www.w3schools.com/jsref/jsref_lastindexof_array.asp) method.
 
     ```js
@@ -1374,7 +1376,8 @@ So when we copy a variable into another variable - we copy the value and then cr
     ];
 
     // Wrong solution:
-    // It copies "items" arrays instead of cloning them. So in the new "answer" array "items" arrays actually passed by reference now, instead of being independed copies.
+    // It copies "items" arrays instead of cloning them.
+    // So in the new "answer" array "items" arrays actually passed by reference now, instead of being independed copies.
     const answer = array.map(user => {
         user.items = user.items.map(item => item + '!');
         return user;
