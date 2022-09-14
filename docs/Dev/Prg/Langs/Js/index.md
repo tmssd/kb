@@ -1642,6 +1642,8 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + **Shallow Clone**
 
+*Shallow* means that only the actual object gets copied. If the copied object contains nested objects — these nested objects ^^aren't get cloned^^.
+
     !!! info ""
 
         reference: [3 Ways to Shallow Clone Objects in JavaScript (w/ bonuses)](https://dmitripavlutin.com/javascript-shallow-clone-objects/)
@@ -1700,7 +1702,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     + Using *recursion*
 
         ```js
-        // workin for arrays only
+        // working for arrays only
         const clone = items => items.map(item => Array.isArray(item) ? clone(item) : item);
         ```
 
@@ -1775,6 +1777,8 @@ So when we copy a variable into another variable - we copy the value and then cr
         b,
         c
     }
+
+    console.log(obj); // {a: 'Simon', b: true, c: {…}}
     ```
 
 #### Context, `#!js this` keyword
@@ -2403,7 +2407,7 @@ Javascript as a **single threaded** language that can be **non-blocking**.
 
 And so we have  definition of **synchronous programming** that means line two of code gets executed only after line one finished. If a task takes a long time, then consequent tasks get freeze, so actually the first task **blocks** our single thread(call stack).
 
-**Non-blocking:** In order to not block the single thread, it can be *asynchronous* with callback functions and these callback functions gets run in the background, through the *callback queue* and then the *event loop*, to bring it back to the *call stack*. And that is **asynchronous programming**. To achive it we use asynchronous functions such as **setTimeOut()**.
+**Non-blocking:** In order to not block the single thread, it can be *asynchronous* with ^^callback functions^^ and these callback functions gets run in the background, through the *callback queue* and then the *event loop*, to bring it back to the *call stack*. And that is **asynchronous programming**. To achive it we use asynchronous functions such as **setTimeOut()**.
 
 `setTimeOut()` Window/WorkerGlobalScope method is a part of browser's Web API and it sets a timer which executes a function or specified piece of code once the timer expires([MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)).
 
@@ -2556,7 +2560,9 @@ callback()
 
     `.finally()` allows us to do something after a promise has finished. We add it usually at the end of the proise. The `finally()` block will be called regardless of whether `.then()` works or the promise is catches into an error. `.finally()` usually doesn't receive anything from the promise so it has no parameters.
 
-    ?> Finally is great for those times that you need to run a piece of code no matter what, e.g. sending an email to a user regardless of whether their request was successful or failed; or showing a little notification icon.
+    !!! tip "`.finally()` is great for those times that you need to run a piece of code no matter what."
+
+            For instanse sending an email to a user regardless of whether their request was successful or failed; or showing a little notification icon.
 
     ```js
     const urls = [
@@ -2808,7 +2814,7 @@ callback()
     // so there is no .then() calls anymore
     const getData = async function () {
     try {
-        const [users, posts, albums] = await Promise.all(
+        const [ users, posts, albums ] = await Promise.all(
         urls.map(async function (url) {
             const response = await fetch(url);
             return response.json();

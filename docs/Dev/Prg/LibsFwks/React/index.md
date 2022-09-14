@@ -539,7 +539,7 @@ React uses **JSX** language to build its own **VirtualDOM**. It looks like *java
 
 [Lifecycle Hooks(from official docs)](https://reactjs.org/docs/react-component.html)
 
-**mounting**: start the web page by checking `constructor()`, `componentWillMount()`, `render(),` `componentDidMount()`, these function are pre-built by react, and are called without parameters
+**mounting**: start the web page by checking `constructor()`, `componentWillMount()`, `render(),` `componentDidMount()`, these functions are pre-built by react, and are called without parameters
 
 **updating**: touch the web, it rerender component when receive new input
 
