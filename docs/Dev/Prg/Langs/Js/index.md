@@ -1055,6 +1055,18 @@ So when we copy a variable into another variable - we copy the value and then cr
     // bear
     ```
 
+    **`at()`** : *ES2022. takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item in the array. Returns `undefined` if the given index can not be found.*
+
+    ```js
+    const arr = [100, 200, 400, 50000, 10];
+    arr.at(-1); // as default '-1' is the last item
+    // 10
+    arr.at(-2);
+    // 50000
+    arr.at(0);
+    // 100
+    ```
+
 + **Loop over an Array**
 
     **`forEach()`** : *ES5. Calls a function for each array element*
