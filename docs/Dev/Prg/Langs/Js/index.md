@@ -2758,6 +2758,7 @@ race().then(console.log);
 // race is done: a
 // prallel is done: a b c
 // sequence is done: a b c
+
 ```
 
 #### async...await
