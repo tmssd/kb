@@ -2,25 +2,25 @@
 
 ## Js Learning Sources
 
-[MDN: JavaScript Guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)
+[MDN: JavaScript Guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide){target=_blank}
 
-[MDN: JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+[MDN: JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference){target=_blank}
 
-[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript){target=_blank}
 
-[Simplified Js Jargon](http://jargon.js.org/)
+[Simplified Js Jargon](http://jargon.js.org/){target=_blank}
 
-[Modern JavaScript Tutorial](https://javascript.info/)<sup> recommended in ZTM course</sup>
+[Modern JavaScript Tutorial](https://javascript.info/){target=_blank}<sup> recommended in ZTM course</sup>
 
-[Javascript-The-Core Book](http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition/)<sup> recommended in ZTM course</sup>
+[Javascript-The-Core Book](http://dmitrysoshnikov.com/ecmascript/javascript-the-core-2nd-edition/){target=_blank}<sup> recommended in ZTM course</sup>
 
-[You-Dont-Know-JS Book](https://github.com/getify/You-Dont-Know-JS)<sup> recommended in ZTM course</sup>
+[You-Dont-Know-JS Book](https://github.com/getify/You-Dont-Know-JS){target=_blank}<sup> recommended in ZTM course</sup>
 
-[ES Features](https://github.com/daumann/ECMAScript-new-features-list)<sup> recommended in ZTM course</sup>
+[ES Features](https://github.com/daumann/ECMAScript-new-features-list){target=_blank}<sup> recommended in ZTM course</sup>
 
 [Functional Programming Jargon](https://github.com/hemanth/functional-programming-jargon)
 
-[Elevator Saga - The elevator programming game](https://play.elevatorsaga.com/) - Try playing this game, read the documentation, and use the developer tools to "debug".
+[Elevator Saga - The elevator programming game](https://play.elevatorsaga.com/){target=_blank} - Try playing this game, read the documentation, and use the developer tools to "debug".
 
 **Books:**
 

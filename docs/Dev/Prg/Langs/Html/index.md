@@ -6,17 +6,28 @@ Reference: [W3S](https://www.w3schools.com/html/), [MDN](https://developer.mozil
 
 ### Syntax
 
+#### Common tags
+
+`#!html <h1>`...`#!html <h6>` - headings, ^^as a good practice:^^ each and every page should only have one `#!html <h1>` heading, i.e. only one primary heading
+
+`#!html <br>` - break<br>
+`#!html <hr>` - horizontal line
+
+`#!html <img src="post-img.jpg" alt="HTML code on a screen" width="500" height="200"/>` - image tag
+
++ `alt` attribute defines what the image is
++ we can only set `width` attribute and the image's aspect ratio is automatically maintained
+
+`#!html <a href="newpage.html">` - anchor tag<br>
+`#!html <a href="url" target="_blank">` - open a link in a new tab<br>
+`#!html <a href="#">Up</a>` - link that points to nowhere, actually clicking on it take us to the top of the page
+
+`#!html <div>` - allows divide up content to sections, each section can have its own style in css<br>
+`#!html <span>` - similar, but inline for specific element
+
+#### Form tag and its accompanying elements
+
 ```html
-<!-- the first one is better -->
-<strong> <!-- important text --> = <b>
-<em> <!-- emphasized text --> = <i>
-
-<br> break
-<hr> horizontal line
-alt=   define what the image is
-<a href="newpage.html">   anchor tag
-
-
 <!-- each field need to have a name attribute -->
 <form>
 	First name: <input type="text" name="firstname" required>
@@ -40,13 +51,7 @@ after submit this form, form automatically use an attribute method="GET" to send
 
 we might use method="POST" which hide your information in the web link
 
-`<div>` allows divide up content to sections, each section can have its own style in css
-
-`<span>` similar, but inline for specific element
-
-`<a href="url" target="_blank">` open a link in a new tab/browser window
-
-table elements
+#### Table tag and its child elements
 
 ```html
 <table>
@@ -61,6 +66,31 @@ table elements
   </tr>
 ```
 
-HTML5 latest evolution, not affect old version website
+#### HTML5 Semantics
 
-add new semantic element for crawler understand information `<header>`, `<nav>`,`<footer>`
+Adds new semantic elements, i.e. they have a meaning or a purpose attached to them. They don't affect old version websites.<br>
+So when we think about a certain HTML element, we should actually not think about what that element looks like as it's rendered on the page.But instead we should think about what that element actually means and what it stands for.<br>
+Not all elements are semantic. For instace `#!html <div>` is a generic container element. We should use such elements only when we don't want to attach a certain meaning to a certain part of the page.
+
+Good for:
+
++ SEO(Search Engine Optimization) - search engine such as Google will be able to understand the structure of our content. And therefore they will be better able to analyze what our content and what our webpage is all about.
++ Accessibilityand especially for people who rely on screen readers to consume on web pages.
+
+
+`#!html <strong>` - important(bold) text, same as deprecated `#!html <b>`<br>
+`#!html <em>` - emphasized(italic) text, same as deprecated `#!html <i>`
+
+`#!html <header>` - the top part of a web document(usually includes `#!html <h1>` and `#!html <nav>` in it) or a some smaller unit
+
+`#!html <nav>` - page navigation: couple of links at the top of a page
+
+`#!html <article>` - very common element that we can use for a written article: blog post, etc.
+
+`#!html <aside>` - usually used for some secondary information that ^^compliments^^ the information in the main part of the page. For instance if the main part of the page is the `#!html <article>` then the `#!html <aside>` is basically some related posts. *Visually* many times we use the `#!html <aside>` element as a sidebar.
+
+`#!html <footer>` - content that comes at the very end of the page, e.g.:
+
+`#!html <footer>Copyright &copy; by The Code Magazine.</footer>`: <footer>Copyright &copy; by The Code Magazine.</footer>
+
+`&copy;` is a HTML entity for the copyright sign. See the full list of HTML entities at [HTML Entity Reference by CSS-Tricks](https://css-tricks.com/snippets/html/glyphs/){target=_blank}
