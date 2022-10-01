@@ -10,6 +10,7 @@
 
 + [**Useful Resources for Developers**](https://zero-to-mastery.github.io/resources/) - A list of ZTM student-collated resources deemed to be useful for every developer and categorised.
 + [**Free Developer Resources**](https://zerotomastery.io/resources/?utm_source=github&utm_medium=resources) - Hand-picked list of Andrei Neagoe's (ZTM instuctor) favourite resources.
++ [**Jonas Schmedtmanns' resources page**](https://codingheroes.io/resources/) - Jonas' (a Udemy instructor) Resources for Hand-Crafting Beautiful and Performant Websites.
 + [**Cheatography**](https://cheatography.com/) - Over 4,000 Free Cheat Sheets, Revision Aids and Quick References!
 + [**DevDocs**](https://devdocs.io/) - Combines multiple API documentations.
 + [**Hyperpolyglot**](https://hyperpolyglot.org/) - Programming languages and tools comparison in a side-by-side format.
