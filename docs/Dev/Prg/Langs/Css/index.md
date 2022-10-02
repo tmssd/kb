@@ -16,7 +16,7 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 ### A CSS Rule
 
-**`#!css h1 { color: blue; }`** - this is the *CSS Rule*, where:
+**`h1 { color: blue; }`** - this is the *CSS Rule*, where:
 
 + `h1` - is a *Selector*
 + `{ color: blue; }` - is a *Decalration Block*
@@ -63,29 +63,34 @@ CSS consist of countless *properties* that developer use to format the content: 
 
     [W3S list of CSS selectors](https://www.w3schools.com/cssref/css_selectors.asp)
 
-`.class`
++ `.class` - selects the element by its `class` attribute value
 
-`#id`
++ `#id` - selects the element by its `id` attribute value
 
-`*`
+!!! note "`class` and `id` HTML attributes naming convention"
 
-`element`
+    If we have a Class or an ID name with multiple words, we separate these words by Dashes like this:<br>
+    `#!html <p class="related-author">By Jim Dillon</p>`
 
-`element, element`
++ `*`
 
-`element element`
++ `element` - *element selector* select the element by its name
 
-`element > element`
++ `element, element` - combining selectors into one list, so the *selector* here is now a *list selector*
 
-`element + element`
++ `element1 element2` - *descendant selector*, selects all the `element2` elements inside the `element1` elements
 
-`:hover`
++ `element > element`
 
-`:last-child`
++ `element + element`
 
-`:first-child`
++ `:hover`
 
-`!important` (not recommended)
++ `:last-child`
+
++ `:first-child`
+
++ `!important` (not recommended)
 
 What seletors win out in the cascade depends on:
 
@@ -104,7 +109,61 @@ What seletors win out in the cascade depends on:
 
 #### Styling text
 
++ `font-family: sans-serif;`
 
+    By default the font family of the html elements content is **serif**<br>
+    We cannot set font that we have in our computer because that wouldn't then work for all the users that are going to visit our page(unless they also have that font installed on their computer).<br>
+    Using `sans-serif` *keyword* here we are not actually specify a real font family but rather "tell" the browser to use any font family that is a "sans serif".
+
++ `font-size: 26px` - changes font size to 26px of the ^^physical screen^^
+
+    By default the font size of the html elements content(or `<li>` elements only ?) is **16px**
+
++ `font-weight: bold;`
+
++ `font-style: italic;`
+
++ `text-transform: uppercase;`
+
++ `text-align: center;` - puts element content at the center of its parent element
+
++ `line-height: 1.5;` - here the *value* is without the unit and it simply means that the line height will be 1.5 times the `font-size`
+
++ `color: #1098ad;` - defines the color of the element's content text
+
++ `background-color: #444;` - set the backgroud color of an element(`#444` is a shorthand of `#444444`)
+
+!!! note "Defining colors in CSS"
+
+    + RGB/RGBA Notation
+
+        `rgb(0, 255, 255)` - regular RGB model<br>
+        `rgb(0, 255, 255, 0.3)` - RGB with **trasparency(alpha)**
+
+    + Hexademical notation
+
+        Instead of using a scale from 0 to 255, we go from **0 to ff**(255 in hexademical numbers)<br>
+        `#00ffff` or `#off` for shorthand(only when al colors are identical pairs)
+
+    > In practice we mostly use **hexademical** colors, and **rgba** when we need transparency
+
+    **Shades of grey:**
+
+    When colors in all 3 channels(RGB) are the same, we get a **grey color**. There are 256 pure grays to choose from. There are some that worse to remember:<br>
+    `rgb(0, 0, 0)` / `#000` - black<br>
+    `rgb(69, 69, 69)` / `#444`<br>
+    `rgb(183, 183, 183)` / `#b7b7b7`<br>
+    `rgb(247, 247, 247)` / `#f7f7f7`<br>
+    `rgb(255, 255, 255)` / `#fff` - white
+
++ `list-style: none;` - removes the bullet point from the list elements(`<ul>` or `<ol>`)
+
+#### Shorthand properties
+
+Use one property for defining several different properties.
+
++ `border: 5px solid #1098ad;` - defines `border-width`, `border-style` and `border-color` properties
++ `border-top/rifht/bottom/left: 5px solid #1098ad;` - same as above, but defines border in specific direction
 
 ## Useful staff
 
