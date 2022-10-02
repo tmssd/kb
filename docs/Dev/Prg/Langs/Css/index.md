@@ -84,13 +84,38 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 + `element + element`
 
-+ `:hover`
-
-+ `:last-child`
-
-+ `:first-child`
-
 + `!important` (not recommended)
+
+#### Pseudo-classes
+
++ `elem:first-child` - selects every `elem` element that is the first child of its parent
+
++ `elem:last-child` - selects every `elem` element that is the last child of its parent
+
++ `elem:nth-child(n)` - selects every `elem` element that is the `n`th child of its parent
+
+    `n` can be a **number**, a *keyword* (**odd** or **even**), or a formula **an + b**, where **a** represents a cycle size, **n** is a counter (starts at 0), and **b** is an offset value.
+
+    ```css
+    /* Here, we specify a background color for all p elements whose index is a multiple of 3.
+    Then we subtract 1 (will select the second, fifth, eight, etc)  */
+    p:nth-child(3n-1) {
+      background: red;
+    }
+    ```
+
++ `:active` - select elements when mouse clicks them
+
+    !!! warning "`:active` MUST come after `:hover` (if present) in the CSS definition in order to be effective!"
+
++ `:hover` - select elements when mouse over them
+
+    !!! warning "`:hover` MUST come after `:link` and `:visited` (if they are present) in the CSS definition, in order to be effective!"
+
+Anchor elements(`#!html <a>`) should always be selected with following pseudo-classes that allow us to target different states:
+
++ `:link` - target all ^^unvisited^^ anchor elements that have an `href` attribute
++ `:visited` - target all ^^visited^^ anchor elements
 
 What seletors win out in the cascade depends on:
 
@@ -127,6 +152,8 @@ What seletors win out in the cascade depends on:
 
 + `text-align: center;` - puts element content at the center of its parent element
 
++ `text-decoration: none;` - decorations applied to font used for an element's text, a *shorthand property* for `text-decoration-line`, `text-decoration-style`, `text-decoration-color` and `text-decoration-thickness` properties
+
 + `line-height: 1.5;` - here the *value* is without the unit and it simply means that the line height will be 1.5 times the `font-size`
 
 + `color: #1098ad;` - defines the color of the element's content text
@@ -151,7 +178,7 @@ What seletors win out in the cascade depends on:
 
     When colors in all 3 channels(RGB) are the same, we get a **grey color**. There are 256 pure grays to choose from. There are some that worse to remember:<br>
     `rgb(0, 0, 0)` / `#000` - black<br>
-    `rgb(69, 69, 69)` / `#444`<br>
+    `rgb(69, 69, 69)` / `#444` - good for test color<br>
     `rgb(183, 183, 183)` / `#b7b7b7`<br>
     `rgb(247, 247, 247)` / `#f7f7f7`<br>
     `rgb(255, 255, 255)` / `#fff` - white
