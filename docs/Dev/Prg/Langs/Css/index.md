@@ -72,7 +72,7 @@ CSS consist of countless *properties* that developer use to format the content: 
     If we have a Class or an ID name with multiple words, we separate these words by Dashes like this:<br>
     `#!html <p class="related-author">By Jim Dillon</p>`
 
-+ `*`
++ `*` - universal selector: selects every single element on the page; this selecor has the lowest priority
 
 + `element` - *element selector* select the element by its name
 
@@ -84,7 +84,7 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 + `element + element`
 
-+ `!important` (not recommended)
++ `!important` (not recommended) - make the style more important than ^^all^^ the other ones, e.g. `#!css p { color: green !important; }`
 
 #### Pseudo-classes
 
