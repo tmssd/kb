@@ -180,10 +180,13 @@ What seletors win out in the cascade depends on:
     `rgb(0, 0, 0)` / `#000` - black<br>
     `rgb(69, 69, 69)` / `#444` - good for test color<br>
     `rgb(183, 183, 183)` / `#b7b7b7`<br>
+    `rgb(119, 119, 119)` / `#777`<br>
     `rgb(247, 247, 247)` / `#f7f7f7`<br>
     `rgb(255, 255, 255)` / `#fff` - white
 
 + `list-style: none;` - removes the bullet point from the list elements(`<ul>` or `<ol>`)
+
++ `cursor: pointer;` - set the cursor shape
 
 #### Shorthand properties
 
