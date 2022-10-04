@@ -65,7 +65,7 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 #### Element selectors
 
-+ `element` - *element selector* select the element by its name
++ `element` - *element selector*, selects the element by its name
 
 + `element, element` - combining selectors into one list, so the *selector* here is now a *list selector*
 
@@ -74,6 +74,28 @@ CSS consist of countless *properties* that developer use to format the content: 
 + `element > element`
 
 + `element + element`
+
++ `*` - *universal selector*, selects every single element on the page
+
+    !!! note "Inheritance and the Universal Selector"
+
+        *Inheritance* - is a mechanism by which some style properties gets their values inherited from parent elements to child elements.
+
+        Not all properties get inherited. It’s mostly ones related to **text**:<br>
+        `font-family`<br>
+        `font-size`<br>
+        `font-weight`<br>
+        `font-style`<br>
+        `color`<br>
+        `line-height`<br>
+        `letter-spacing`<br>
+        `text-align`<br>
+        `text-transform`<br>
+        `text-shadow`<br>
+        `list-style`<br>
+        etc.
+
+        If we actually want a certain style property, ^^which does not get inherited^^, applied to all elements we use the *universal selector*.
 
 #### Element naming selectors
 
@@ -85,10 +107,6 @@ CSS consist of countless *properties* that developer use to format the content: 
 
     If we have a Class or an ID name with multiple words, we separate these words by Dashes like this:<br>
     `#!html <p class="related-author">By Jim Dillon</p>`
-
-#### Inheritace and the universal selector
-
-+ `*` - universal selector: selects every single element on the page; this selecor has the lowest priority
 
 #### Pseudo-classes
 
@@ -138,6 +156,12 @@ What seletors win out in the cascade depends on:
 
     **4** - Inline style(`style` attribute in HTML)<br>
     !!! tip "Steps 5-4 should be used as a last resort only!"
+
+        Use it only in case you really, really cannot figure out what's happening in your code.<br>
+        **BUT** even then , instead of using the `important` keyword, write your selectors as simple as possible:<br>
+        - do not add too much nesting selectors<br>
+        - don't add too many IDs and Classes all in the same selector
+
     &darr;
 
     **3** - ID (`#`) selector
@@ -148,15 +172,15 @@ What seletors win out in the cascade depends on:
 
     &darr;
 
-    **1** - Element selector (`p` , `div`, `li`, etc.)<br>
-    !!! note "Selectors specificity (steps 3-1)"
+    **1** - Element Selector (`p` , `div`, `li`, etc.)<br>
+    !!! note "Selectors Specificity (steps 3-1)"
 
         Official Docs: [CSS specificity](https://www.w3.org/TR/selectors-3/#specificity)<br>
         Specificity Calculator: [https://specificity.keegan.st/](https://specificity.keegan.st)<br>
         When there are multiple **different** selectors ^^selecting the same element^^ that have ^^confilicting styles^^ then ^^all of them^^(all rules and properties) are applied! **BUT** only one wins out, i.e. gets active depending on its *specificity* value.
     &darr;
 
-    **0** - Universal selector (`*`)
+    **0** - Universal Selector (`*`)
 
 2. Source order
 
@@ -196,6 +220,10 @@ What seletors win out in the cascade depends on:
      `text-decoration-style`<br>
      `text-decoration-color`<br>
      `text-decoration-thickness`
+
++ `line-height: 1.5;` - here the *value* is without the unit and it simply means that the line height will be 1.5 times the `font-size`
+
++ `letter-spacing`
 
 #### CSS Box Model styles
 
@@ -268,8 +296,6 @@ What seletors win out in the cascade depends on:
 + `list-style: none;` - sets the bullet point for the list elements(`<li>`s inside the `<ul>` or `<ol>`)
 
 #### Other styles
-
-+ `line-height: 1.5;` - here the *value* is without the unit and it simply means that the line height will be 1.5 times the `font-size`
 
 + `cursor: pointer;` - sets the cursor shape
 
