@@ -75,6 +75,11 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 + `element + element`
 
+!!! tip "*Encoding the HTML structure* problem"
+
+    Usnig the selectors above encodes the HTML structure into our CSS selector. That is if in a certain point of time the HTML structure changes then our selector is no more applied as was intended.<br>
+    Therefore the good practice is to use *element naming selcetors* from the next paragraph below.
+
 + `*` - *universal selector*, selects every single element on the page
 
     !!! note "Inheritance and the Universal Selector"
@@ -107,6 +112,10 @@ CSS consist of countless *properties* that developer use to format the content: 
 
     If we have a Class or an ID name with multiple words, we separate these words by Dashes like this:<br>
     `#!html <p class="related-author">By Jim Dillon</p>`
+
+!!! tip "Prefer Class over ID"
+
+    In contrast to HTML `class` attribute the `id` attribute has to have unique value. Therefore having ID selector can be inconvenient when in a certain point of time we will want to add same as `id` attribute naming to another element.
 
 #### Pseudo-classes
 
