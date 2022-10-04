@@ -236,11 +236,23 @@ What seletors win out in the cascade depends on:
 
 #### CSS Box Model styles
 
+!!! note "The CSS Box Model"
+
+    + **Content:** Element's content: text, images, etc. Has **content width** and **content height**
+    + **Padding:** Invisible space around the *Content*, **inside** of the element
+    + **Fill area = Content + Padding:** Area that gets filled with `background-color` or `background-image`
+    + **Final element width** = left border + left padding + content width + right padding + right border
+    + **Final element height** = top border + top padding + content height + bottom padding + bottom border
+    + **Border:** A line around the element, still **inside** of the element
+    + **Margin:** Space **outside** of the element, between elements
+
++ height + bottom padding + bottom border
+
 + `padding` - a *shorthand* for:<br>
-    `padding-bottom`<br>
-    `padding-left`<br>
+    `padding-top`<br>
     `padding-right`<br>
-    `padding-top`
+    `padding-bottom`<br>
+    `padding-left`
 
     ```css
     padding: 5%;                /* All sides: 5% padding */
@@ -259,6 +271,44 @@ What seletors win out in the cascade depends on:
                                 /* bottom: 30px padding */
                                 /* left:   5px padding  */
     ```
+
+    !!! tip "Usage"
+
+        When we need some space **inside** of an element, mostly for applying a ^^background coloror^^ a ^^border^^ on the element.
+
++ `margin` - a *shorthand* for:<br>
+    `margin-top`<br>
+    `margin-right`<br>
+    `margin-bottom`<br>
+    `margin-left`
+
+    !!! warning "Collapsing Margins"
+
+        When we have two margins that occupied the same space, ^^the larger one^^ of them is actually visible on the page.
+
+    !!! tip "Usage"
+
+        When we need some space **outside** of an element, or also to create **space between** multiple elements.
+
+        In case of adding vertical space, ^^most of the time^^ stick to `margin-bottom`.
+
+!!! tip "Global Reset"
+
+    Before adding `marging`s and `padding`s to elements on the page we should remove all default instaces of these properties' values as follows:
+
+    ```css
+    * {
+        /* whenever we use zero, we do not specify any unit after it */
+        margin: 0;
+        padding: 0;
+    }
+    ```
+
+    Without doing this it is quite hard to style the page.
+
+    !!! note "Global Reset hides numbers and bullet poits of `<ol>`, `<ul>` lists"
+
+        In order to reveal them back we should set `margin-left` for them, e.g. `#!css ul, ol { margin-left: 50px; }`
 
 + `border: 5px solid #1098ad;` - a *shorthand* for:<br>
     `border-width`<br>
@@ -288,7 +338,7 @@ What seletors win out in the cascade depends on:
         Instead of using a scale from 0 to 255, we go from **0 to ff**(255 in hexademical numbers)<br>
         `#00ffff` or `#off` for shorthand(only when al colors are identical pairs)
 
-    > In practice we mostly use **hexademical** colors, and **rgba** when we need transparency
+    !!! tip "In practice we mostly use *hexademical* colors, and *rgba* when we need transparency"
 
     **Shades of grey:**
 
