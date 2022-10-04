@@ -61,18 +61,9 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 !!! info ""
 
-    [W3S list of CSS selectors](https://www.w3schools.com/cssref/css_selectors.asp)
+    [CSS selectors full list (W3S)](https://www.w3schools.com/cssref/css_selectors.asp)
 
-+ `.class` - selects the element by its `class` attribute value
-
-+ `#id` - selects the element by its `id` attribute value
-
-!!! note "`class` and `id` HTML attributes naming convention"
-
-    If we have a Class or an ID name with multiple words, we separate these words by Dashes like this:<br>
-    `#!html <p class="related-author">By Jim Dillon</p>`
-
-+ `*` - universal selector: selects every single element on the page; this selecor has the lowest priority
+#### Element selectors
 
 + `element` - *element selector* select the element by its name
 
@@ -84,7 +75,20 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 + `element + element`
 
-+ `!important` (not recommended) - make the style more important than ^^all^^ the other ones, e.g. `#!css p { color: green !important; }`
+#### Element naming selectors
+
++ `.class` - selects the element by its `class` attribute value
+
++ `#id` - selects the element by its `id` attribute value
+
+!!! note "`class` and `id` HTML attributes naming convention"
+
+    If we have a Class or an ID name with multiple words, we separate these words by Dashes like this:<br>
+    `#!html <p class="related-author">By Jim Dillon</p>`
+
+#### Inheritace and the universal selector
+
++ `*` - universal selector: selects every single element on the page; this selecor has the lowest priority
 
 #### Pseudo-classes
 
@@ -117,11 +121,27 @@ Anchor elements(`#!html <a>`) should always be selected with following pseudo-cl
 + `:link` - target all ^^unvisited^^ anchor elements that have an `href` attribute
 + `:visited` - target all ^^visited^^ anchor elements
 
+!!! tip "Anchors styling best practice"
+
+    Always style the different anchor states specifying ^^all^^ the four states in **LHVA**(`:link` &rarr; `:visited` &rarr; `:hover` &rarr; `:active`) order!
+
+### Conflicts between selectors
+
+When there are multiple **different** selectors selecting the same element that have **confilicting styles** then ^^all of them^^(all rules and properties) are applied! But only one wins out, i.e. gets active.
+
 What seletors win out in the cascade depends on:
 
-+ Specificity
++ Selectors specificity
+
+
+
 + Importance
+
+    `!important` flag - a `!` delimiter followed by the `important` *keyword* marks the style more important than ^^all^^ the other ones, e.g. `#!css p { color: green !important; }`
+
 + Source Order
+
+    When there are multiple **same** selectors then it is the last that gets applied
 
     ```css
     -moz-     /* Firefox and other browsers using Mozilla's browser engine */
@@ -152,9 +172,49 @@ What seletors win out in the cascade depends on:
 
 + `text-align: center;` - puts element content at the center of its parent element
 
-+ `text-decoration: none;` - decorations applied to font used for an element's text, a *shorthand property* for `text-decoration-line`, `text-decoration-style`, `text-decoration-color` and `text-decoration-thickness` properties
++ `text-decoration: none;` - decorations applied to font used for an element's text; a *shorthand* for:<br>
+     `text-decoration-line`<br>
+     `text-decoration-style`<br>
+     `text-decoration-color`<br>
+     `text-decoration-thickness`
 
-+ `line-height: 1.5;` - here the *value* is without the unit and it simply means that the line height will be 1.5 times the `font-size`
+#### CSS Box Model styles
+
++ `padding` - a *shorthand* for:<br>
+    `padding-bottom`<br>
+    `padding-left`<br>
+    `padding-right`<br>
+    `padding-top`
+
+    ```css
+    padding: 5%;                /* All sides: 5% padding */
+
+    padding: 10px;              /* All sides: 10px padding */
+
+    padding: 10px 20px;         /* top and bottom: 10px padding */
+                                /* left and right: 20px padding */
+
+    padding: 10px 3% 20px;      /* top:            10px padding */
+                                /* left and right: 3% padding   */
+                                /* bottom:         20px padding */
+
+    padding: 1em 3px 30px 5px;  /* top:    1em padding  */
+                                /* right:  3px padding  */
+                                /* bottom: 30px padding */
+                                /* left:   5px padding  */
+    ```
+
++ `border: 5px solid #1098ad;` - a *shorthand* for:<br>
+    `border-width`<br>
+    `border-style`<br>
+    `border-color`
+
++ `border-top/right/bottom/left: 5px solid #1098ad;` - same as above, but sets border in specific direction; a *shorthand* for:<br>
+  `border-top/rifht/bottom/left-width`<br>
+  `border-top/rifht/bottom/left-style`<br>
+  `border-top/rifht/bottom/left-color`
+
+#### Working with colors
 
 + `color: #1098ad;` - defines the color of the element's content text
 
@@ -184,16 +244,15 @@ What seletors win out in the cascade depends on:
     `rgb(247, 247, 247)` / `#f7f7f7`<br>
     `rgb(255, 255, 255)` / `#fff` - white
 
-+ `list-style: none;` - removes the bullet point from the list elements(`<ul>` or `<ol>`)
+#### Element specific styles
 
-+ `cursor: pointer;` - set the cursor shape
++ `list-style: none;` - sets the bullet point for the list elements(`<li>`s inside the `<ul>` or `<ol>`)
 
-#### Shorthand properties
+#### Other styles
 
-Use one property for defining several different properties.
++ `line-height: 1.5;` - here the *value* is without the unit and it simply means that the line height will be 1.5 times the `font-size`
 
-+ `border: 5px solid #1098ad;` - defines `border-width`, `border-style` and `border-color` properties
-+ `border-top/rifht/bottom/left: 5px solid #1098ad;` - same as above, but defines border in specific direction
++ `cursor: pointer;` - sets the cursor shape
 
 ## Useful staff
 
