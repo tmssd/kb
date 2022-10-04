@@ -52,7 +52,7 @@ CSS consist of countless *properties* that developer use to format the content: 
         <meta charset="UTF-8" />
         <title>The Basic Language of the Web: HTML</title>
 
-    <link href="style.css" rel="stylesheet" />
+        <link href="style.css" rel="stylesheet" />
 
     </head>
     ```
@@ -127,21 +127,32 @@ Anchor elements(`#!html <a>`) should always be selected with following pseudo-cl
 
 ### Conflicts between selectors
 
-When there are multiple **different** selectors selecting the same element that have **confilicting styles** then ^^all of them^^(all rules and properties) are applied! But only one wins out, i.e. gets active.
-
 What seletors win out in the cascade depends on:
 
-+ Selectors specificity
+1. Resolving conflicting declarations(styles) steps ordered by priority from **5-highest** to **0-lowest**:
 
+    **5** - Importance (styles marked with `#!css !important`)<br>
+    a `!` delimiter followed by the `important` *keyword* marks the style more important than ^^all^^ the other ones, e.g. `#!css p { color: green !important; }`<br>
+    &darr;<br>
+    **4** - Inline style(`style` attribure in HTML)<br>
+    &darr;<br>
+    **3** - ID (`#`) selector<br>
+    &darr;<br>
+    **2** - Class (`.`) or prsudo-class (`:`) selector<br>
+    &darr;<br>
+    **1** - Element selector (`p` , `div`, `li`, etc.)<br>
+    &darr;<br>
+    **0** - Universal selector (`*`)
 
+    !!! note "Selectors specificity (steps 3-1)"
 
-+ Importance
+        Official Docs: [CSS specificity](https://www.w3.org/TR/selectors-3/#specificity)<br>
+        Specificity Calculator: [https://specificity.keegan.st/](https://specificity.keegan.st)<br>
+        When there are multiple **different** selectors ^^selecting the same element^^ that have ^^confilicting styles^^ then ^^all of them^^(all rules and properties) are applied! **BUT** only one wins out, i.e. gets active depending on its *specificity* score.
 
-    `!important` flag - a `!` delimiter followed by the `important` *keyword* marks the style more important than ^^all^^ the other ones, e.g. `#!css p { color: green !important; }`
+2. Source Order
 
-+ Source Order
-
-    When there are multiple **same** selectors then it is the last that gets applied
+    + When there are multiple **same** selectors ^^selecting the same element^^ that have ^^confilicting styles^^ then ^^the last of them^^ gets applied!
 
     ```css
     -moz-     /* Firefox and other browsers using Mozilla's browser engine */
