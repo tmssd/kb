@@ -161,7 +161,7 @@ Elements that don't exist in the HTML, but that we can still select and style in
 + `::after` - creates a pseudo element, that will automatically be the very ^^last^^ child of the selected element
 + `::before` - creates a pseudo element, that will automatically be the very ^^first^^ child of the selected element
 
-!!! tip "`::after` and `::before` usage
+!!! tip "`::after` and `::before` usage"
 
     Can be very useful for some small cosmetic style for which we don't want to necessarily add a new element to the HTML"
 
