@@ -240,7 +240,7 @@ What seletors win out in the cascade depends on:
 
     + **Content:** Element's content: text, images, etc. Has **content width** and **content height**
     + **Padding:** Invisible space around the *Content*, **inside** of the element
-    + **Fill area = Content + Padding:** Area that gets filled with `background-color` or `background-image`
+    + **Fill width = Content + Padding:** height that gets filled with `background-color` or `background-image`
     + **Final element width** = left border + left padding + content width + right padding + right border
     + **Final element height** = top border + top padding + content height + bottom padding + bottom border
     + **Border:** A line around the element, still **inside** of the element
@@ -309,6 +309,57 @@ What seletors win out in the cascade depends on:
     !!! note "Global Reset hides numbers and bullet poits of `<ol>`, `<ul>` lists"
 
         In order to reveal them back we should set `margin-left` for them, e.g. `#!css ul, ol { margin-left: 50px; }`
+
++ `width: 100%;` - sets the width of the content width, padding width or border width (depending on `box-sizing`) of certain boxes
+
+    !!! note "Width measurement using the percentage unit = usually the percentage of the width of the parent container."
+
++ `height: 20px;` - sets the height of the content height, padding height or border height (depending on `box-sizing`) of certain boxes
+
+!!! note "Keeping aspect ratio of images"
+
+    If we **don't** specified `width` / `height` HTML attributes for the `#!html <img />` element then setting just one of the `width` or `height` CSS property will keep the aspect ratio. **BUT** if we **do** specified all or one of these HTML attributes then to keep aspect ratio while setting up just one of the `width` or `height` CSS property we will need to specify the remaining property to the value of `auto`, e.g.:
+
+    ```css
+    .post-img {
+        width: 800px;
+        height: auto;
+    }
+    ```
+
+!!! tip "Centering a page inside of the browser."
+
+    ```html title="index.htnl"
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link href="style.css" rel="stylesheet" />
+    </head>
+      <body>
+        <div class="container">
+            .
+            .
+            .
+        </div>
+      </body>
+    </html>
+    ```
+
+    ```css title="style.css"
+    .container {
+        /* we actually need to give this container a width because otherwise
+        there is not really anything to center, and so all the element inside
+        this container will able to have maximum this widh. And this is not
+        "inheritance" but a simple logic that the child element can never be wider than the parent element.*/
+        width: 800px;
+        /* centering container inside of the <body> element */
+        margin: 0 auto;
+    }
+    ```
 
 + `border: 5px solid #1098ad;` - a *shorthand* for:<br>
     `border-width`<br>
