@@ -8,7 +8,7 @@
 
     ![css(rus)](css(rus).png){: .zoom}
 
-## CSS Essentials
+## CSS Fundamentals
 
 **C**ascading **S**tyle **S**heets describes the ^^visual style and presentation^^ of the ^^content written in HTML.^^<br>
 CSS at the most basic level it indicates that the order of *CSS Rules* matter.<br>
@@ -69,11 +69,11 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 + `element, element` - combining selectors into one list, so the *selector* here is now a *list selector*
 
-+ `element1 element2` - *descendant selector*, selects all the `element2` elements inside the `element1` elements
++ `element1 element2` - *descendant(= the very next) selector*, selects ^^all^^ the `element2` elements **inside** the `element1` elements
 
 + `element > element`
 
-+ `element + element`
++ `element1 + element2` - *adjacent sibling selector*, selects the ^^first^^ `element2` element that is placed immediately **after** `element1` elements
 
 !!! tip "*Encoding the HTML structure* problem"
 
@@ -151,6 +151,33 @@ Anchor elements(`#!html <a>`) should always be selected with following pseudo-cl
 !!! tip "Anchors styling best practice"
 
     Always style the different anchor states specifying ^^all^^ the four states in **LHVA**(`:link` &rarr; `:visited` &rarr; `:hover` &rarr; `:active`) order!
+
+#### Pseudo-elements
+
+Elements that don't exist in the HTML, but that we can still select and style in CSS.
+
++ `::first-letter`
++ `::first-line`
++ `::after` - creates a pseudo element, that will automatically be the very ^^last^^ child of the selected element
++ `::before` - creates a pseudo element, that will automatically be the very ^^first^^ child of the selected element
+
+!!! tip "`::after` and `::before` usage
+
+    Can be very useful for some small cosmetic style for which we don't want to necessarily add a new element to the HTML"
+
+    ```css
+    h1::after {
+        content: "TOP"; /* this property is mandatory, can be an empty string */
+        background-color: #ffe70e;
+        font-size: 16px;
+        font-weight: bold;
+        display: inline-block; /* because by default it is inline element */
+        padding: 5px 10px;
+        position: absolute;
+        top: -10px;
+        right: -25px;
+    }
+    ```
 
 ### Conflicts between selectors
 
@@ -246,6 +273,54 @@ What seletors win out in the cascade depends on:
     + **Border:** A line around the element, still **inside** of the element
     + **Margin:** Space **outside** of the element, between elements
 
+!!! note "Type of Boxes"
+
+    Elements are formatted visually as **boxes**. Thera are 3 boxes(= elements) types:
+
+    1. Block-Level Boxes
+
+        + Elements are formatted visually as **blocks**.
+        + Elements occupy **100% of parent element’s width**, no matter the content.
+        + Elements are **stacked vertically** by default, one after another.
+        + The box-model **applies as showed** earlier in previous note.
+        + **Default elements:** `body`, `main`, `header`, `footer`, `section`, `nav`, `aside`, `div`, `h1-h6`, `p`, `ul`, `ol`, `li`, etc.
+        + CSS style to change from inline boxes to block-level boxes: `#!css display: block;`
+
+    2. Inline Boxes
+
+        + Occupies only the space **necessary for its content**.
+        + Causes **no line-breaks** after or before the element.
+        + Box model applies in a different way: **heights and widths do not apply**.
+        + **Paddings and margins** are applied **only horizontally** (left and right).<br>
+        That is the padding will be added to all sides expanding the *fill area* **BUT VISUALLY** the *content area* will move right/left only and stay on its place vertically(^^no new space^^ actually gets created on the page) unlike when we set padding on *block-level* boxes where the *content area* moves right/left and up/down also, affecting the content verticall alignment by actually creating a ^^new space^^ on the page.
+        + **Default elements:** `::any-pseudo-elements`, `a`, `strong`, `em`, etc.
+        + CSS style to change from block-level boxes to inline boxes: `#!css display: inline;`
+
+    3. Inline-Block Boxes
+
+        + Looks like *inline* from the **outside**, behaves like *block-level* on the **inside**.
+        + Occupies only the space **necessary for its content**.
+        + Causes **no line-breaks** after or before the element.
+        + The box-model **applies as showed** earlier in previous note.
+        + **Default elements:** `img`, `button`, etc.
+        + CSS style to change from block-level/inline boxes to inline-block boxes: `#!css display: inline-block;`
+
+        !!! tip "Good ^^old^^ technic to arrange links in navigation bar"
+
+            ```css
+            nav a:link {
+                margin-right: 30px;
+                margin-top: 10px;
+                display: inline-block;
+            }
+
+            nav a:link:last-child {
+                margin-right: 0;
+            }
+            ```
+
+            Nowadays there is more modern tools achieving this like *Flexbox* and *CSS Grid*.
+
 + height + bottom padding + bottom border
 
 + `padding` - a *shorthand* for:<br>
@@ -282,9 +357,10 @@ What seletors win out in the cascade depends on:
     `margin-bottom`<br>
     `margin-left`
 
-    !!! warning "Collapsing Margins"
+    !!! warning "Collapsing Margins of Block-Level elements"
 
-        When we have two margins that occupied the same space, ^^the larger one^^ of them is actually visible on the page.
+        **For Block-Level boxes only:** When we have two margins that occupied the same space, ^^the larger one^^ of them is actually visible on the page.<br>
+        Margins **aren't** collapsed in *Inline* and *Inline-Block* boxes.
 
     !!! tip "Usage"
 
@@ -370,6 +446,27 @@ What seletors win out in the cascade depends on:
   `border-top/rifht/bottom/left-width`<br>
   `border-top/rifht/bottom/left-style`<br>
   `border-top/rifht/bottom/left-color`
+
+#### CSS positioning modes
+
++ `position: relative;` - default positioning
++ `position: absolute;` - absolute positioning
+
+!!! note "Normal Flow Vs. Absolute Positioning"
+
+    1. Normal Flow
+
+        + Default positioning of element on the page.
+        + Element is “**in** flow”
+        + Elements are simply laid out according to their HTML code.
+
+    2. Absolute Positioning
+
+        + Element is removed from the normal flow: “**out of** flow”.
+        + No impact on surrounding elements, might overlap them.
+        + Use `top`, `bottom`, `left`, or `right` properties(can have negative values) to offset the element from its **relatively positioned container**.<br>
+        The ^^default^^ relatively positioned container is the **viewport(= visible part of the page after reloading)**.<br>
+        To position the *absolute displayed element*(that is set by `position: absolute;` style) in relation to specific element we need to style that element with `position: absolute;`.
 
 #### Working with colors
 
