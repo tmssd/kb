@@ -267,11 +267,21 @@ What seletors win out in the cascade depends on:
 
     + **Content:** Element's content: text, images, etc. Has **content width** and **content height**
     + **Padding:** Invisible space around the *Content*, **inside** of the element
-    + **Fill width = Content + Padding:** height that gets filled with `background-color` or `background-image`
-    + **Final element width** = left border + left padding + content width + right padding + right border
-    + **Final element height** = top border + top padding + content height + bottom padding + bottom border
+    + **Fill area = Content + Padding:** area that gets filled with `background-color` or `background-image`
     + **Border:** A line around the element, still **inside** of the element
     + **Margin:** Space **outside** of the element, between elements
+
+    **`width` / `height` properties behaviour** depends on `box-sizing` property value:
+
+    + `box-sizing: content-box;` - sets the ^^default^^ behaviour: the specified `width` and `height` (and respective `min` / `max` properties) apply to the width and height respectively of the *content box* of the element, and therefore:<br>
+    **final element width** = left border + left padding + content width(defined by `width`) + right padding + right border<br>
+    **final element height** = top border + top padding + content height(defined by `height`) + bottom padding + bottom border
+
+    + `box-sizing: border-box;` - sets the ^^alternative^^ behaviour: the specified `width` and `height` (and respective `min` / `max` properties) on the element determine the *border box* of the element, and therefore:<br>
+    **final element width** = defined by `width`<br>
+    **final element height** = defined by `height`
+
+        Padding and borders that we do specify will now reduce the inner width of the content area, but that's usually not a problem.
 
 !!! note "Type of Boxes"
 
@@ -280,7 +290,10 @@ What seletors win out in the cascade depends on:
     1. Block-Level Boxes
 
         + Elements are formatted visually as **blocks**.
-        + Elements occupy **100% of parent element’s width**, no matter the content.
+        + Elements are always start on a new line and occupy **100% of parent element’s width**, no matter the content.
+
+            !!! note "Browsers typically display the block-level element with a newline both ^^before^^ and ^^after^^ the element. "
+
         + Elements are **stacked vertically** by default, one after another.
         + The box-model **applies as showed** earlier in previous note.
         + **Default elements:** `body`, `main`, `header`, `footer`, `section`, `nav`, `aside`, `div`, `h1-h6`, `p`, `ul`, `ol`, `li`, etc.
@@ -320,8 +333,6 @@ What seletors win out in the cascade depends on:
             ```
 
             Nowadays there is more modern tools achieving this like *Flexbox* and *CSS Grid*.
-
-+ height + bottom padding + bottom border
 
 + `padding` - a *shorthand* for:<br>
     `padding-top`<br>
@@ -367,24 +378,6 @@ What seletors win out in the cascade depends on:
         When we need some space **outside** of an element, or also to create **space between** multiple elements.
 
         In case of adding vertical space, ^^most of the time^^ stick to `margin-bottom`.
-
-!!! tip "Global Reset"
-
-    Before adding `marging`s and `padding`s to elements on the page we should remove all default instaces of these properties' values as follows:
-
-    ```css
-    * {
-        /* whenever we use zero, we do not specify any unit after it */
-        margin: 0;
-        padding: 0;
-    }
-    ```
-
-    Without doing this it is quite hard to style the page.
-
-    !!! note "Global Reset hides numbers and bullet poits of `<ol>`, `<ul>` lists"
-
-        In order to reveal them back we should set `margin-left` for them, e.g. `#!css ul, ol { margin-left: 50px; }`
 
 + `width: 100%;` - sets the width of the content width, padding width or border width (depending on `box-sizing`) of certain boxes
 
@@ -437,6 +430,28 @@ What seletors win out in the cascade depends on:
     }
     ```
 
+!!! tip "Global Reset"
+
+    Before adding `marging`s and `padding`s to elements on the page we should remove all default instaces of these properties' values as follows:
+
+    ```css
+    * {
+        /* whenever we use zero, we do not specify any unit after it */
+        margin: 0;
+        padding: 0;
+        /* setting up an alternative box-model where `width` and `height`
+        (and respective `min` / `max` properties) on the element
+        determine the border box of the element */
+        box-sizing: border-box;
+    }
+    ```
+
+    Without doing this it is quite hard to style the page.
+
+    !!! note "Global Reset hides numbers and bullet poits of `<ol>`, `<ul>` lists"
+
+        In order to reveal them back we should set `margin-left` for them, e.g. `#!css ul, ol { margin-left: 50px; }`
+
 + `border: 5px solid #1098ad;` - a *shorthand* for:<br>
     `border-width`<br>
     `border-style`<br>
@@ -452,7 +467,7 @@ What seletors win out in the cascade depends on:
 + `position: relative;` - default positioning
 + `position: absolute;` - absolute positioning
 
-!!! note "Normal Flow Vs. Absolute Positioning"
+!!! note "Normal Flow vs. Absolute Positioning"
 
     1. Normal Flow
 
@@ -505,6 +520,87 @@ What seletors win out in the cascade depends on:
 #### Other styles
 
 + `cursor: pointer;` - sets the cursor shape
+
+### Layouts
+
+Layout:
+
++ Layout is the way text, images and other content is placed and arranged on a webpage.
++ Layout gives the page a visual structure, into which we place our content.
++ **Building a layout(верстка):** arranging page elements into a visual structure, instead of simply having them placed one after another (normal flow).
++ There are 2 types of layouts: **page layout** and **component layout**.
++ There are 3 ways of building layouts with css: **Float Layouts**, **Flexbox** and **CSS Grid**.
+
+#### Float Layouts
+
+The **old way of building layouts** of all sizes, using the `float` CSS property. Still used, but getting outdated fast.
+
+Float properties:
+
+`float: left;`, `float: right;`
+
++ Element is removed from the normal flow: “**out of** flow“(like *absolute positioning*).
+
++ Element's content ^^text^^ only (**not including** element's contetnt area, paddings or margins) and ^^inline elements^^ will **wrap around(float around)** the floated element.
+
+    !!! tip "Locating *wraped around* element right after the *floated element*"
+
+        If we want the whole *wraped around* element to start being located ^^right after^^(on the right/left) of the *floated element* we should also add `float` porperty to that *wraped around* element with the:<br>
+        - same direction value, if we want elements to be "sticked" to each other<br>
+        - oppozite direction value, if we want elements to be "devided"
+
++ The container element of the *floated element* will **not** adjust its height to that *floated element*. This phenomena when the container element's height has collapsed is called "collapsing elements".
+
+    !!! tip "Clearing Floats: Solving the "collapsing elements" issue."
+
+        Clearing Floats means ridding off the wrapping around the *floating element* by its first adjacent element(**= clearing the float** of that ajacent element). There are two technics to achieve this:
+
+        1. Adding an empty last child element with e.g. `clear` class to the container element and then style it with the `clear` property.
+
+            ```html title="index.html"
+            <header>  <!-- this is a container element -->
+                .  <!-- elements here are floating elements -->
+                .
+                .
+
+                <div class="clear"></div> <!-- last child empty element of the container -->
+            </header>
+            ```
+
+            ```css title="style.css"
+            .clear {
+                clear: both; /* other values are: left - for left float and right - for right float */
+            }
+            ```
+
+            This method is a bad practice because we could have many "collapsing element"(e.g. when we have a row container element with many columns elements in it) on the page and for each of them we would to add an emtpy container's last child element thereby cluttering our index.html file. Therefore the best practice is to use the second technic below.
+
+        2. The Clearfix Hack
+
+            ```html title="index.html"
+            <header class="clearfix">  <!-- this is a container element -->
+                .  <!-- elements here are floating elements -->
+                .
+                .
+            </header>
+            ```
+
+            ```css title="style.css"
+            .clearfix::after {  /* last child empty element of the container */
+                content: "";
+                display: block;
+                clear: both; /* other values are: left - for left float and right - for right float */
+            }
+            ```
+
+
+#### Flexbox
+
+Modern way of laying out elements in a 1-dimensional row without using floats. Perfect for *component layouts*.
+
+#### CSS Grid
+
+For laying out element in a fully-fledged **2-dimensional grid**. Perfect for *page layouts and complex components*.
 
 ## Useful staff
 
