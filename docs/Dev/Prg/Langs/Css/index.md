@@ -593,14 +593,81 @@ Float properties:
             }
             ```
 
-
 #### Flexbox
 
 Modern way of laying out elements in a 1-dimensional row without using floats. Perfect for *component layouts*.
 
++ Flexbox is a set of related **CSS properties** for **building 1-dimensional layouts**.
++ The main idea behind flexbox is that empty space inside a container element can be **automatically divided** by its child elements.
++ Flexbox makes it easy to automatically **align items to one another** inside a parent container, both horizontally and vertically.
++ Flexbox solves common problems such as **vertical centering** and creating **equal-height columns**.
++ Flexbox is perfect for **replacing floats**, allowing us to write fewer and cleaner HTML and CSS code.
+
+##### Flexbox Properties
+
+![flexbox-cheatsheet](flexbox-cheatsheet.png){: .zoom}
+
+`align-items` - pay attention that the ^^margins^^ of the flex itmes also taken in account when using this property!
+
+`flex-grow` - determines whether the element are allowed to grow as large as it can(to fill up the remaining **width** of the flex container) or not(in this the element would simply occupy the width that it need to fit its *content area*).<br>
+If `flex-grow: [amy number greater than 1];` set for ^^all flex items^^, then the remaining width of the flex container ^^devided evenly^^ between them, so this makes them to have the same witdh.<br>
+BUT if, for instance, when all flex items set to `flex-grow: 1;` exept one item that set to `flex-grow: 2;`, then it means that this item will have ^^double^^ of the devided remaining **width** of the flex container ^^comparing to^^ the devided remaining **width** of all other items.<br>
+Ussually we set `flex-grow: 1;` to all of the flex items to basically having all the elements expanding in order to fill the container's empty space.
+
+`flex-shrink` - determines whether flexbox is allowed to shrink element(in orfer to fit to the **width** of the flex container) if necessary or not. Ussually we don't need to change the default `1` value.
+
+`flex` - as a best practice we should ^^always^^ use this property instead of `flex-grow`, `flex-shrink` and `flex-basis`.
+
 #### CSS Grid
 
-For laying out element in a fully-fledged **2-dimensional grid**. Perfect for *page layouts and complex components*.
+For laying out element in a fully-fledged(полноценный) **2-dimensional grid**. Perfect for *page layouts and complex components*.
+
++ CSS Grid is a set of **CSS properties** for building **2-dimensional layouts**.
++ The main idea behind CSS Grid is that we **divide a container element into rows and columns** that can be filled with its child elements.
++ In two-dimensional contexts, CSS Grid allows us to write **less nested HTML** and **easier-to-read CSS**.
++ CSS Grid is **not meant to replace flexbox!** Instead, they work perfectly together. Need a **1D** layout? Use flexbox. Need a **2D** layout? Use CSS Grid.
+
+##### CSS Grid Properties
+
+![flexbox-cheatsheet](grid-cheatsheet.png){: .zoom}
+
+`display: grid;` - defines a grid container. By default CSS grid places its grid items into rows(one after another).
+
+`grid-template-rows/columns: <track-size>*;`
+
++ If one(or more) of the grid items has its own defined width/height and these dimension are higher then of the grid tracks' ones(`<track-size>`s), then the grid tracks' sizes will be defined by that grid items dimensions(or by highest dimensions among these items), otherwise they are defined wether by `<track-size>`s or by highest grid items' *content area* dimensions(when `<track-size>` < *content area* dimensions).
+
++ `fr` unit - stands for **fractional** or just **fraction**. When set the grid item width can be maximally shrinked to its *content area* width.
+
+    If, for instace, we set `grid-template-rows: 2fr 100px 100px 1fr;` then the first track width(`2fr`) will take ^^double^^ of the grid container's remaining width comaring to the last track width(`1fr`).
+
+    !!! tip "Usually the `fr` unit is actually more helpful on columns."
+
+        So in fact, in many situations, it's actually enough to only define columns and let the rows be filled automatically by whatever content they contain.
+
++ `auto` unit - set the track size to always fit the grid item's *conten area* size.
+
++ `repeat(<number of tracks>, <trakc size>);` - a shorhand to define similar sized tracks, e.g.:<br>
+  `grid-template-columns: repeat(4, 1fr);`
+
+`grid-column/row: <start line> / <end line> | span <number>;`
+
++ `<start line> / <end line>` - if `<end line>` > `<start line>` then we can ommit it, e.g.:<br>
+  `grid-column: 2 / 3;` &rarr; `grid-column: 2;`
+
++ Spanning item across multiple grid cells: when `<end line>` > `<start line>` more than by 1, then the grid item will span across `<end line> - <start line>` number of cells(the *span number*).
+
+    Instead of specifying the `<end line>` we can use a shorthand for this, e.g.:<br>
+    `grid-column: 1 / 4;` &rarr; `grid-column: 1 / span 3;` (`span 3` means *span across three cells*).
+
+    !!! tip "Spannig one elemnt all the way to the end."
+
+        In some situations, we might not even know how many columns there are in a grid, or we might simply not want to think about how many cells we need to span.<br>
+        For this we can use following trick: `grid-column: 1 / -1;`
+
+`justify-items` and `align-items`: aligning items inside cells - is all about moving items around inside cells.
+
+`justify-content` and `align-content`: aligning tracks inside of the grid container - is all about distributing containers' empty space.
 
 ## Useful staff
 
