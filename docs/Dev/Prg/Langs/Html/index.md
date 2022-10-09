@@ -77,7 +77,6 @@ Good for:
 + SEO(Search Engine Optimization) - search engine such as Google will be able to understand the structure of our content. And therefore they will be better able to analyze what our content and what our webpage is all about.
 + Accessibilityand especially for people who rely on screen readers to consume on web pages.
 
-
 `#!html <strong>` - important(bold) text, same as deprecated `#!html <b>`<br>
 `#!html <em>` - emphasized(italic) text, same as deprecated `#!html <i>`
 
