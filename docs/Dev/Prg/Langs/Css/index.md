@@ -669,6 +669,71 @@ For laying out element in a fully-fledged(полноценный) **2-dimensiona
 
 `justify-content` and `align-content`: aligning tracks inside of the grid container - is all about distributing containers' empty space.
 
+## Web Design
+
+### Rule #1: Typography
+
+!!! info ""
+
+    **Free fonts:**
+
+    + [Google Fonts](https://fonts.google.com/)
+
+    **Typeface frameworks:**
+
+    +
+
+Embedding free font:
+
+```html title="index.html"
+<head>
+    .
+    .
+    .
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    .
+    .
+    .
+</head>
+```
+
+```css title="style.css"
+body {
+  font-family: 'Inter', sans-serif; /* setting 'sans-serif' here as a backup font in case of issues with loading of 'Inter' font */
+}
+```
+
+Typeface framework for font size and spacing(best to be placed at the top of the CSS file for reference):
+
+```css title="style.css"
+/*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+```
+
+### Rule #2: Colors
+
+!!! info ""
+
+    **Color Schemes:**
+
+    + [Open-color](https://yeun.github.io/open-color)
+    + [Coolors](https://coolors.co/)
+
+    **Contrast checkers:**
+
+    + [Coolors](https://coolors.co/contrast-checker/112a46-acc8e5)
+
+### Rule #3: Images
+
+
+
 ## Useful staff
 
 ### CSS Tricks
