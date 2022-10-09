@@ -111,6 +111,8 @@ Good for:
 
 + `#!html <figure>` - represents self-contained content, potentially with an optional caption, which is specified using the `#!html <figcaption>` element. The figure, its caption, and its contents are referenced as a single unit.
 
+	!!! tip "Usage: `#!html <figure>` commonly used for a *product(or any other) carts* components."
+
 + `#!html <figcaption>` - represents a caption or legend describing the rest of the contents of its parent `#!html <figure>` element.
 
 ##### Inline text semantics

@@ -489,6 +489,10 @@ What seletors win out in the cascade depends on:
 
 + `background-color: #444;` - set the backgroud color of an element(`#444` is a shorthand of `#444444`)
 
++ `stroke: #087f5b;` - paints along(рисует по контурту) the outline of the given graphical element: used to set color for **outline icons**
+
++ `fill: #087f5b;` - paints the interior(рисует внутреннюю часть) of the given graphical element: used to set color for **fill icons**
+
 !!! note "Defining colors in CSS"
 
     + RGB/RGBA Notation
@@ -705,7 +709,7 @@ body {
 }
 ```
 
-Typeface framework for font size and spacing(best to be placed at the top of the CSS file for reference):
+Typeface framework for font size (best to be placed at the top of the CSS file for reference):
 
 ```css title="style.css"
 /*
@@ -730,9 +734,78 @@ FONT SIZE SYSTEM (px)
 
     + [Coolors](https://coolors.co/contrast-checker/112a46-acc8e5)
 
+Color system may be placed at the top of the CSS file for reference, e.g.:
+
+```css title="style.css"
+/*
+MAIN COLOR: #087f5b
+GREY COLOR: #343a40
+*/
+```
+
 ### Rule #3: Images
 
+### Rule #4: Icons
 
+!!! info ""
+
+    **Icon Packs:**
+
+    + [Heroicons](https://heroicons.com/)
+
+### Rule #5: Shadows
+
+Following properties used for setting shadows:
+
++ `#!css box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);` - used to set *box* shadow
+
+    More than one ^^comma separated^^ shadows can be created using this 5 values(from left to right):
+
+    + `0` - horizontal offset between the box and the shadow
+    + `20px` - vertical offset between the box and the shadow
+    + `30px` - blur of the shadow(larger value &rarr; more blur)
+    + `0` - scales the shadow up(optional)
+    + `rgba(0, 0, 0, 0.07)` - color of the shadow
+
++ `#!css text-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);` - used to set *text* shadow
+
+    More than one ^^comma separated^^ shadows can be created using this 4 values(from left to right):
+
+    + `0` - horizontal offset between the box and the shadow
+    + `5px` - vertical offset between the box and the shadow
+    + `5px` - blur of the shadow(larger value &rarr; more blur)
+    + `rgba(0, 0, 0, 0.2)` - color of the shadow
+
+    !!! tip "Usage: As ^^yet another technique^^ of handling texts on top of images."
+
+### Rule #6: Border-radius
+
+Following properties used for setting border-radius:
+
++ `#!css border-raius: 12px;` - a *shorthand* for:<br>
+   `border-bottom-left-radius`
+   `border-top-left-radius`
+   `border-bottom-right-radius`
+   `border-top-right-radius`
+
+    !!! tip "Setting completely rounded border-radius"
+
+        If an element is a **square:** `#!css border-raius: 50%;`
+
+        If an element is a **rectangle:** `#!css border-raius: 100px;` - the rule here is too use big enough value, so it is **bigger** than the `height` length of the element.
+
+### Rule #7: Whitespace
+
+Spacing framework for whitespace handling (best to be placed at the top of the CSS file for reference):
+
+```css title="style.css"
+/*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+```
+
+### Rule #8: Visual Hierarchy
 
 ## Useful staff
 
