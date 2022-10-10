@@ -432,7 +432,7 @@ What seletors win out in the cascade depends on:
 
 !!! tip "Global Reset"
 
-    Before adding `marging`s and `padding`s to elements on the page we should remove all default instaces of these properties' values as follows:
+    Before adding `marging`s,`padding`s and other properties to elements on the page we should remove all default instaces of these properties' values as follows:
 
     ```css
     * {
@@ -443,6 +443,15 @@ What seletors win out in the cascade depends on:
         (and respective `min` / `max` properties) on the element
         determine the border box of the element */
         box-sizing: border-box;
+
+    body {
+        /* setting font-family for our design(with fallback 'sans-serif'),
+        its color to be non-completely black
+        and reseting its predefined line-height to 1 */
+        font-family: "Inter", sans-serif;
+        color: #343a40;
+        line-height: 1;
+    }
     }
     ```
 
@@ -806,6 +815,205 @@ SPACING SYSTEM (px)
 ```
 
 ### Rule #8: Visual Hierarchy
+
+### Rule #9: User Experience (UX)
+
+### Rule #10: Components and Layouts
+
+#### Elements and Componenets
+
+??? Example "Accordion component"
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+      <title>Accordion Component</title>
+
+      <style>
+        /*
+        SPACING SYSTEM (px)
+        2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+        FONT SIZE SYSTEM (px)
+        10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+        */
+
+        /*
+        MAIN COLOR: #087f5b
+        GREY COLOR: #343a40
+        */
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Inter', sans-serif;
+          color: #343a40;
+          line-height: 1;
+        }
+
+        .accordion {
+          width: 700px;
+          margin: 100px auto;
+
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .item {
+          box-shadow: 0 0 32px rgba(0, 0, 0, 0.1);
+          padding: 24px;
+
+          display: grid;
+          grid-template-columns: auto 1fr auto;
+          column-gap: 24px;
+          row-gap: 32px;
+          align-items: center;
+        }
+
+        .number,
+        .text {
+          font-size: 24px;
+          font-weight: 500;
+          /* color: #087f5b; */
+        }
+
+        .number {
+          color: #ced4da;
+        }
+
+        .icon {
+          width: 24px;
+          height: 24px;
+          stroke: #087f5b;
+        }
+
+        .hidden-box {
+          grid-column: 2;
+          display: none;
+        }
+
+        .hidden-box p {
+          line-height: 1.6;
+          margin-bottom: 24px;
+        }
+
+        .hidden-box ul {
+          color: #868e96;
+          margin-left: 20px;
+
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        /* OPEN STATE */
+        .open {
+          border-top: 4px solid #087f5b;
+        }
+
+        .open .hidden-box {
+          display: block;
+        }
+
+        .open .number,
+        .open .text {
+          color: #087f5b;
+        }
+
+      </style>
+    </head>
+
+    <body>
+    <div class="accordion">
+        <div class="item">
+        <p class="number">01</p>
+        <p class="text">Where are these chairs assembled?</p>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+        <div class="hidden-box">
+            <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure blanditiis velit iste exercitationem accusantium
+            tenetur quidem odit aspernatur! Enim est quibusdam illo unde repudiandae, at tempore exercitationem sapiente
+            velit necessitatibus.
+            </p>
+            <ul>
+            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </li>
+            <li>Laudantium commodi nulla porro quasi error.</li>
+            <li>Harum veniam laborum sed dolorem nulla temporibus.</li>
+            <li>Praesentium dicta, reprehenderit nisi in quam eum.
+            </li>
+            </ul>
+        </div>
+        </div>
+        <div class="item open">
+        <p class="number">02</p>
+        <p class="text">How long do I have to return my chair?</p>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+        <div class="hidden-box">
+            <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure blanditiis velit iste exercitationem accusantium
+            tenetur quidem odit aspernatur! Enim est quibusdam illo unde repudiandae, at tempore exercitationem sapiente
+            velit necessitatibus.
+            </p>
+            <ul>
+            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </li>
+            <li>Laudantium commodi nulla porro quasi error.</li>
+            <li>Harum veniam laborum sed dolorem nulla temporibus.</li>
+            <li>Praesentium dicta, reprehenderit nisi in quam eum.
+            </li>
+            </ul>
+        </div>
+        </div>
+        <div class="item">
+        <p class="number">03</p>
+        <p class="text">Do you ship to countries outside the EU?</p>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+        <div class="hidden-box">
+            <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure blanditiis velit iste exercitationem accusantium
+            tenetur quidem odit aspernatur! Enim est quibusdam illo unde repudiandae, at tempore exercitationem sapiente
+            velit necessitatibus.
+            </p>
+            <ul>
+            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </li>
+            <li>Laudantium commodi nulla porro quasi error.</li>
+            <li>Harum veniam laborum sed dolorem nulla temporibus.</li>
+            <li>Praesentium dicta, reprehenderit nisi in quam eum.
+            </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+
+    </body>
+
+    </html>
+    ```
+
+#### Layout Patterns
 
 ## Useful staff
 
