@@ -106,6 +106,8 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 + `.class` - selects the element by its `class` attribute value
 
++ `.class1.class2` - *`and` selector* - selects all elements with both ^^class1^^ and ^^class2^^ set within its `class` attribute
+
 + `#id` - selects the element by its `id` attribute value
 
 !!! note "`class` and `id` HTML attributes naming convention"
@@ -419,6 +421,7 @@ What seletors win out in the cascade depends on:
     ```
 
     ```css title="style.css"
+    /* OPTION 1 */
     .container {
         /* we actually need to give this container a width because otherwise
         there is not really anything to center, and so all the element inside
@@ -427,6 +430,14 @@ What seletors win out in the cascade depends on:
         width: 800px;
         /* centering container inside of the <body> element */
         margin: 0 auto;
+
+        /* OPTION 2 */
+        /* Here we don't need to define width for the container.
+        The flexbox container width is defined by all the flex items' widths added together! */
+        .body {
+            display: flex;
+            justify-content: center;
+        }
     }
     ```
 
@@ -470,6 +481,19 @@ What seletors win out in the cascade depends on:
   `border-top/rifht/bottom/left-width`<br>
   `border-top/rifht/bottom/left-style`<br>
   `border-top/rifht/bottom/left-color`
+
++ `border-collapse: collapse` - being set on the parent element transforms neighboring borders of the child elements into **one** border, e.g.:
+
+    ```css
+    table {
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid #343a40;
+    }
+    ```
 
 #### CSS positioning modes
 
@@ -840,18 +864,6 @@ SPACING SYSTEM (px)
       <title>Accordion Component</title>
 
       <style>
-        /*
-        SPACING SYSTEM (px)
-        2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
-
-        FONT SIZE SYSTEM (px)
-        10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
-        */
-
-        /*
-        MAIN COLOR: #087f5b
-        GREY COLOR: #343a40
-        */
 
         * {
           margin: 0;
@@ -1011,6 +1023,431 @@ SPACING SYSTEM (px)
     </body>
 
     </html>
+    ```
+
+??? Example "Carousel(=Slider) component"
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <title>Carousel Component</title>
+
+    <style>
+
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: 'Inter', sans-serif;
+        color: #343a40;
+        line-height: 1;
+        }
+
+        .carousel {
+        width: 800px;
+        margin: 100px auto;
+        background: #087f5b;
+        padding: 32px 48px 32px 86px;
+        border-radius: 8px;
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        gap: 86px;
+        }
+
+        img {
+        height: 200px;
+        border-radius: 8px;
+        transform: scale(1.5);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .testimonial-text {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin-bottom: 32px;
+        color: #e6fcf5;
+        }
+
+        .testimonial-author {
+        font-size: 14px;
+        margin-bottom: 4px;
+        color: #e6fcf5;
+        }
+
+        .testimonial-job {
+        font-size: 12px;
+        color: #e6fcf5;
+        }
+
+        /*CONTROLS*/
+        .btn {
+        background: #fff;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position: absolute;
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .btn--left {
+        /*In relation to PARENT ELEMENT*/
+        left: 0;
+        top: 50%;
+
+        /*In relation to ELEMENT ITSELF*/
+        transform: translate(-50%, -50%);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn--right {
+        right: 0;
+        top: 50%;
+        transform: translate(50%, -50%);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-icon {
+        height: 24px;
+        width: 24px;
+        stroke: #087f5b;
+        }
+
+        .dots {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 32px);
+
+        display: flex;
+        gap: 12px;
+        }
+
+        .dot {
+        height: 12px;
+        width: 12px;
+        background-color: #fff;
+        border: 2px solid #087f5b;
+        border-radius: 50%;
+        cursor: pointer;
+        }
+
+        .dot--fill {
+        background-color: #087f5b;
+        }
+
+    </style>
+    </head>
+
+    <body>
+    <div class="carousel">
+        <img src="maria.jpg" alt="Maria de Almeida">
+        <blockquote class="testimonial">
+        <p class="testimonial-text">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam eligendi, quas a ab
+            fuga deleniti, cumque, illo reprehenderit numquam obcaecati corrupti et quibusdam".</p>
+        <p class="testimonial-author">Maria de Almeida</p>
+        <p class="testimonial-job">Senior Product Mananger ar EDP Comercial</p>
+        </blockquote>
+        <button class="btn btn--left">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="btn-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+        </button>
+        <button class="btn btn--right">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="btn-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+        </button>
+        <div class="dots">
+        <button class="dot dot--fill">&nbsp;</button>
+        <button class="dot">&nbsp;</button>
+        <button class="dot">&nbsp;</button>
+        <button class="dot">&nbsp;</button>
+        </div>
+    </div>
+    </body>
+
+    </html>
+    ```
+
+??? Example "Table component"
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <title> Component</title>
+
+    <style>
+
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: 'Inter', sans-serif;
+        color: #343a40;
+        line-height: 1;
+        display: flex;
+        justify-content: center;
+        }
+
+        table {
+        width: 800px;
+        margin-top: 100px;
+        font-size: 18px;
+        /*border: 1px solid #343a40;*/
+
+        /*
+        WE ALWAYS NEED TO SET THIS EVEN IF th, td BORDERS ARE NOT SET,
+        OTHERWISE THERE WILL BE VISIBLE GAPS BETWEEN CELLS!
+        */
+        border-collapse: collapse;
+        }
+
+        th,
+        td {
+        /*border: 1px solid #343a40;*/
+        padding: 16px 24px;
+        text-align: left;
+        }
+
+        /*TO STYLE ALL THE CELLS INDIVIDUALLY WE NEVER STYLE thead, tbody, tr BUT CELLS(th, td) ONLY!*/
+        thead th {
+        background-color: #087f5b;
+        color: #fff;
+        /*
+        TO SET ALL COLUMNS' WIDTH EQUAL WE SET THE CELLS' WIDTH
+        OF THE FIRST ROW TO BE EQUAL USIN THI FORMULA: (100% / NUM OF CELLS(=COLUMNS))%.
+        THEN THE ENTIRE TABLE WILL ADJUST ITSELF TO THESE DIMENSIONS.
+        */
+        width: 25%;
+        }
+
+        tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+        }
+
+        tbody tr:nth-child(even) {
+        background-color: #e9ecef;
+        }
+
+    </style>
+    </head>
+
+    <body>
+    <table>
+        <thead>
+        <tr>
+            <th>Chair</th>
+            <th>The Laid Back</th>
+            <th>The Worker Bee</th>
+            <th>The Chair 4/2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>Width</th>
+            <td>80 cm</td>
+            <td>60 cm</td>
+            <td>22 0cm</td>
+        </tr>
+        <tr>
+            <th>Heght</th>
+            <td>100 cm</td>
+            <td>110 cm</td>
+            <td>90 cm</td>
+        </tr>
+        <tr>
+            <th>Depth</th>
+            <td>70 cm</td>
+            <td>65 cm</td>
+            <td>80 cm</td>
+        </tr>
+        <tr>
+            <th>Weight</th>
+            <td>16 kg</td>
+            <td>22 kg</td>
+            <td>80 kg</td>
+        </tr>
+        </tbody>
+    </table>
+    </body>
+
+    </html>
+    ```
+
+??? Example "Pagination Component"
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <title> Component</title>
+
+    <style>
+
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: 'Inter', sans-serif;
+        color: #343a40;
+        line-height: 1;
+        display: flex;
+        justify-content: center;
+        }
+
+        .pagination {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 200px;
+        }
+
+        .page-link:link,
+        .page-link:visited {
+        font-size: 18px;
+        color: #343a40;
+        text-decoration: none;
+        /*WE CAN SPECIFY HERE WIDTH FOR ANCHOR ELEMENTS BECAUSE THEY ARE NOW BECAME BLOCK ELEMENTS
+    AS THEY ARE EACH IS A FLEX ELEMENT NOW AND FLEX ELEMENT IS ALWAYS A BLOCK ELEMENT!*/
+        height: 36px;
+        width: 36px;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .page-link:hover,
+        .page-link:active,
+        .page-link.page-link--current {
+        color: #fff;
+        background-color: #087f5b;
+        }
+
+        .btn {
+        /*border: none;*/
+        border: 1px solid #087f5b;
+        height: 48px;
+        width: 48px;
+        border-radius: 50%;
+        background: none;
+        cursor: pointer;
+        }
+
+        .btn:hover {
+        background-color: #087f5b;
+        }
+
+        .btn:hover .btn-icon {
+        stroke: #fff;
+        }
+
+        .btn-icon {
+        height: 24px;
+        width: 24px;
+        stroke: #087f5b;
+        }
+
+        .dots {
+        color: #868e96;
+        }
+
+    </style>
+    </head>
+
+    <body>
+    <div class="pagination">
+        <button class="btn btn--left">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="btn-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+        </button>
+        <a href="#" class="page-link">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link page-link--current">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">5</a>
+        <a href="#" class="page-link">6</a>
+        <span class="dots">...</span>
+        <a href="#" class="page-link">23</a>
+        <button class="btn btn--right">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="btn-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+        </button>
+    </div>
+    </body>
+
+    </html>
+    ```
+
+??? Example ""
+
+    ```html
+
+    ```
+
+??? Example ""
+
+    ```html
+
+    ```
+
+??? Example ""
+
+    ```html
+
     ```
 
 #### Layout Patterns
