@@ -381,11 +381,19 @@ What seletors win out in the cascade depends on:
 
         In case of adding vertical space, ^^most of the time^^ stick to `margin-bottom`.
 
-+ `width: 100%;` - sets the width of the content width, padding width or border width (depending on `box-sizing`) of certain boxes
++ `width: 100%;` - sets the width of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
 
     !!! note "Width measurement using the percentage unit = usually the percentage of the width of the parent container."
 
-+ `height: 20px;` - sets the height of the content height, padding height or border height (depending on `box-sizing`) of certain boxes
++ `height: 20px;` - sets the height of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
+
++ `max-width: 1000px` - constrain content width to a certain range:
+
+    a. if the parent container width is ^^larger^^ than the specified `max-width`, then the width of the element is **equal** the value that was specified for `max-width`
+
+    b. if the parent container width is ^^less^^ than the specified `max-width`, then the width of the element will be **100%** of the parent's container element width
+
++ `min-width: 400px` - constrain content width to a certain range
 
 !!! note "Keeping aspect ratio of images"
 
