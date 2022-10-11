@@ -87,6 +87,8 @@ Good for:
 
 + `#!html <nav>` - page navigation: couple of links at the top of a page.
 
++ `#!html <main>` - represents the dominant content of the body of a document. The main content area consists of content that is directly related to or expands upon the central topic of a document, or the central functionality of an application.
+
 + `#!html <article>` - very common element that we can use for a written article: blog post, etc.
 
 + `#!html <aside>` - usually used for some secondary information that ^^compliments^^ the information in the main part of the page. For instance if the main part of the page is the `#!html <article>` then the `#!html <aside>` is basically some related posts. *Visually* many times we use the `#!html <aside>` element as a sidebar.
@@ -106,6 +108,8 @@ Good for:
 		`&copy;` is a HTML entity for the copyright sign. See the full list of HTML entities at [HTML Entity Reference by CSS-Tricks](https://css-tricks.com/snippets/html/glyphs/){target=_blank}
 
 ##### Text content
+
++ `#!html <menu>` - semantic alternative to `#!html <ul>`, but treated by browsers (and exposed through the accessibility tree) as no different than `#!html <ul>`. It represents an unordered list of items (which are represented by `#!html <li>` elements).
 
 + `#!html <blockquote>` - indicates that the enclosed text is an extended quotation. Usually, this is rendered visually by indentation. A URL for the source of the quotation may be given using the `cite` attribute, while a text representation of the source can be given using the `#!html <cite>` element.
 

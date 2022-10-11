@@ -1356,7 +1356,7 @@ SPACING SYSTEM (px)
         color: #343a40;
         text-decoration: none;
         /*WE CAN SPECIFY HERE WIDTH FOR ANCHOR ELEMENTS BECAUSE THEY ARE NOW BECAME BLOCK ELEMENTS
-    AS THEY ARE EACH IS A FLEX ELEMENT NOW AND FLEX ELEMENT IS ALWAYS A BLOCK ELEMENT!*/
+    AS EACH OF THEM IS A FLEX ELEMENT NOW AND FLEX ELEMENT IS ALWAYS A BLOCK ELEMENT!*/
         height: 36px;
         width: 36px;
         border-radius: 50%;
@@ -1432,25 +1432,278 @@ SPACING SYSTEM (px)
     </html>
     ```
 
-??? Example ""
-
-    ```html
-
-    ```
-
-??? Example ""
-
-    ```html
-
-    ```
-
-??? Example ""
-
-    ```html
-
-    ```
-
 #### Layout Patterns
+
+??? Example "Hero Section"
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnifood Hero Section</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        html {
+        font-family: "Rubik", sans-serif;
+        color: #444;
+        }
+
+        .container {
+        margin: 0 auto;
+        width: 1800px;
+        }
+
+        header {
+        /* background-color: orangered; */
+        height: 100vh;
+        position: relative;
+
+        background-image: linear-gradient(rgba(34, 34, 34, 0.6), rgba(34, 34, 34, 0.6)), url(hero.jpg);
+        background-size: cover;
+        color: #fff;
+        }
+
+        nav {
+        font-size: 20px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 32px;
+        /* background-color: green; */
+        }
+
+        .header-container {
+        width: 1800px;
+        position: absolute;
+
+        /* In relation to PARENT size */
+        left: 50%;
+        top: 50%;
+        /* In relation to ELEMENT size */
+        transform: translate(-50%, -50%);
+
+        /* background-color: violet; */
+        }
+
+        .header-container-inner {
+        width: 50%;
+        }
+
+        h1 {
+        font-size: 52px;
+        margin-bottom: 32px;
+        line-height: 1.05;
+        }
+
+        p {
+        font-size: 20px;
+        line-height: 1.6;
+        margin-bottom: 48px;
+        }
+
+        .btn:link,
+        .btn:visited {
+        font-size: 20px;
+        font-weight: 600;
+        background-color: #e67e22;
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+        padding: 16px 32px;
+        border-radius: 9px;
+        }
+
+        h2 {
+        font-size: 44px;
+        margin-bottom: 48px;
+        }
+
+        section {
+        padding: 96px 0;
+        background-color: #f7f7f7;
+        }
+
+    </style>
+    </head>
+
+    <body>
+    <header>
+        <nav class="container">
+        <div>LOGO</div>
+        <div>NAVIGATION</div>
+        </nav>
+
+        <div class="header-container">
+        <div class="header-container-inner">
+            <h1>A healthy meal delivered to your door, every single day</h1>
+            <p>The smart 365-days-per-year food subscription that will make you eat healthy algain. Tailored to your
+            personal
+            tastes and nutritional needs</p>
+            <a href="#" class="btn">Start eating well</a>
+        </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+        <h2>Some random heading</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam fuga est necessitatibus! Eius similique
+            perspiciatis dignissimos officiis pariatur inventore. Rem quisquam tempora adipisci rerum illum magni excepturi
+            molestias nesciunt repellendus, eligendi aspernatur odio labore nisi, quos sunt! Consequatur, quidem, voluptatum
+            illo, fuga necessitatibus temporibus neque provident vero minima culpa ratione excepturi non. Deserunt, ex harum
+            perspiciatis deleniti ut labore eaque facere aliquid quo aut dolores consectetur molestiae debitis porro rem,
+            quia ullam minus magnam nobis! Ex aliquam assumenda ut non ipsa rem distinctio! A nobis earum perferendis culpa
+            tempora atque ea nam eos sequi neque, illum, delectus distinctio expedita accusamus.</p>
+        </div>
+    </section>
+    </body>
+
+    </html>
+    ```
+
+??? Example "Web App Layout"
+
+    Fake Email Application:
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Layout</title>
+
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: sans-serif;
+        color: #343a40;
+        font-size: 24px;
+        height: 100vh;
+        text-align: center;
+        font-weight: bold;
+
+        display: grid;
+        grid-template-columns: 80px 400px 1fr 250px;
+        grid-template-rows: 80px 1fr;
+        }
+
+        nav,
+        section,
+        main,
+        aside {
+        padding-top: 24px;
+        }
+
+        nav {
+        background-color: #343a40;
+        grid-row: 1 / -1;
+        color: #fff;
+        }
+
+        menu {
+        background-color: #7048e8;
+        grid-column: 2 / -1;
+
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 40px;
+        }
+
+        button {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #5f3dc4;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        padding: 8px 12px;
+        }
+
+        button:last-child {
+        background-color: #d6336c;
+        margin-left: auto;
+        }
+
+        section {
+        background-color: #e9ecef;
+        padding: 40px;
+
+        /*How elements that don't fit into container appear*/
+        overflow-y: scroll;
+
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        }
+
+        .email {
+        background-color: #adb6bd;
+        height: 96px;
+        /*Beacuse of flex we need to set this in order to
+    'overflow-y' in 'section' selector will take effect*/
+        flex-shrink: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        aside {
+        background-color: #e9ecef;
+        }
+
+    </style>
+    </head>
+
+    <body>
+    <nav>Nav</nav>
+    <menu>
+        <button>New</button>
+        <button>Reply</button>
+        <button>Forward</button>
+        <button>Mark unread</button>
+        <button>Trash</button>
+    </menu>
+    <section>
+        <div class="email">Email 1</div>
+        <div class="email">Email 2</div>
+        <div class="email">Email 3</div>
+        <div class="email">Email 4</div>
+        <div class="email">Email 5</div>
+        <div class="email">Email 6</div>
+        <div class="email">Email 7</div>
+        <div class="email">Email 8</div>
+        <div class="email">Email 9</div>
+        <div class="email">Email 10</div>
+    </section>
+    <main>Email view</main>
+    <aside>Additional info</aside>
+    </body>
+
+    </html>
+    ```
 
 ## Useful staff
 
