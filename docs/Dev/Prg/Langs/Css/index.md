@@ -454,6 +454,7 @@ What seletors win out in the cascade depends on:
         (and respective `min` / `max` properties) on the element
         determine the border box of the element */
         box-sizing: border-box;
+    }
 
     body {
         /* setting font-family for our design(with fallback 'sans-serif'),
@@ -462,7 +463,8 @@ What seletors win out in the cascade depends on:
         font-family: "Inter", sans-serif;
         color: #343a40;
         line-height: 1;
-    }
+        font-weight: 400;
+        color: #555;
     }
     ```
 
