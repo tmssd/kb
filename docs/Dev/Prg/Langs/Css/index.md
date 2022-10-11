@@ -756,10 +756,7 @@ Typeface framework for font size (best to be placed at the top of the CSS file f
 
 ```css title="style.css"
 /*
-SPACING SYSTEM (px)
-2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
-
-FONT SIZE SYSTEM (px)
+- Font sizes (px)
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
 */
 ```
@@ -843,7 +840,7 @@ Spacing framework for whitespace handling (best to be placed at the top of the C
 
 ```css title="style.css"
 /*
-SPACING SYSTEM (px)
+- Spacing system (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 */
 ```
@@ -1714,6 +1711,77 @@ SPACING SYSTEM (px)
 
     </html>
     ```
+
+### Responsive Design
+
+Responsive Web Design:
+
++ Design technique to make a webpage adjust its layout and visual style to **any possible screen size** (window or viewport size).
++ In practice, this means that responsive design makes websites usable on all devices, such as **desktop computers, tablets, and mobile phones**.
++ It’s a set of best practices and of techniques, **not a separate technology**. It’s all just CSS!
+
+Responsive Design Ingredients:
+
+1. FLUID LAYOUTS
+
+    + To allow webpage to adapt to the **current viewport** width (or even height).
+    + Use `%` (or `vh` / `vw`) unit instead of `px` for elements that should adapt to viewport(usually layout).
+    + Use `max-width` instead of `width`.
+
+    !!! note "*Flexbox* and *CSS grid*, which are **fluid** by default."
+
+2. RESPONSIVE UNITS
+
+    + Use `rem` unit instead of `px` for most lengths.
+
+        !!! note "`rem` unit"
+
+            **rem** means root(root of the document = `#!html <html>` element) element's font-size
+
+            `1rem` = `16px`(default browser font-size, unless the user does actually change it)
+
+    + To make it easy to **scale the entire layout down(or up)** automatically.
+
+    + **Helpful trick:** setting `1rem` to `10px` for easy calculations.
+
+        !!! tip "Setting `1rem` to `10px`"
+
+            :material-thumb-down: Incorrect way:
+
+            ```css
+            /* doing it like this, we will not respect the user's definition of the browser font-size */
+            html {
+                font-size: 10px;
+            }
+            ```
+
+            :material-thumb-up: Correct way:
+
+            ```css
+            /* Percentage of user's browser font-size setting! */
+            html {
+                font-size: 62.5%; /* 10px / 16px = 0.625 = 62.5%  */
+            }
+            ```
+
+3. FLEXIBLE IMAGES
+
+    + By default, images **don’t scale automatically** as we change the viewport, so we need to fix that.
+    + Always use `%` for image dimensions, together with the `max-width` property.
+
+4. MEDIA QUERIES
+
+    + Brings all the other ingredients together and realy brings responsive sites to life!
+    + Without media queries, responsive web design would not work at all.
+    + To change CSS styles on **certain viewport widths(called breakpoints)**, allowing to create different versions of a website for different types of devices.
+
+    !!! tip "We usually write media queries ^^only^^ at the end of building a certain page or a certain component."
+
+| DESKTOP FIRST DEVELOPMENT                                 | MOBILE FIRST DEVELOPMENT                                              |
+| :-------------------------------------------------------- | :-------------------------------------------------------------------- |
+| Start writing CSS for the desktop: **large screen**.      | Start writing CSS for mobile devices: **small screen**.               |
+| Then, media queries **shrink design** to smaller screens. | Then, media queries **expand design** to a large screen.              |
+|                                                           | Forces us to reduce websites and apps to the **absolute essentials**. |
 
 ## Useful staff
 
