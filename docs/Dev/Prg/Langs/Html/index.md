@@ -87,7 +87,7 @@ Good for:
 
 + `#!html <nav>` - page navigation: couple of links at the top of a page.
 
-+ `#!html <main>` - represents the dominant content of the body of a document. The main content area consists of content that is directly related to or expands upon the central topic of a document, or the central functionality of an application.
++ `#!html <main>` - represents the dominant content of the body of a document. The main content area consists of content that is ^^directly^^ related to or expands upon the central topic of a document, or the central functionality of an application. What it does not include is content that is repeated across multiple pages, like e.g. `#!html <header>` or `#!html <footer>` elements.
 
 + `#!html <article>` - very common element that we can use for a written article: blog post, etc.
 
