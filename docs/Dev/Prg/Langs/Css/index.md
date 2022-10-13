@@ -464,6 +464,11 @@ What seletors win out in the cascade depends on:
         box-sizing: border-box;
     }
 
+    /* Percentage of user's browser font-size setting! */
+    html {
+        font-size: 62.5%; /* 10px / 16px = 0.625 = 62.5%  */
+    }
+
     body {
         /* setting font-family for our design(with fallback 'sans-serif'),
         its color to be non-completely black
@@ -525,6 +530,33 @@ What seletors win out in the cascade depends on:
         + Use `top`, `bottom`, `left`, or `right` properties(can have negative values) to offset the element from its **relatively positioned container**.<br>
         The ^^default^^ relatively positioned container is the **viewport(= visible part of the page after reloading)**.<br>
         To position the *absolute displayed element*(that is set by `position: absolute;` style) in relation to specific element we need to style that element with `position: absolute;`.
+
++ `z-index:1;` - sets the z-order of a *positioned*(`position: relative/absolute/fixed/sticky;`) element and its descendants or flex items. Overlapping elements with a larger z-index cover those with a smaller one.
+
+    !!! note "Values:"
+
+        ```css
+        /* Keyword value */
+
+        z-index: auto;
+
+        /*<integer> values*/
+        z-index: 0;
+        z-index: 3;
+        z-index: 289;
+        z-index: -1; /*Negative values to lower the priority*/
+
+        /*Global values*/
+        z-index: inherit;
+        z-index: initial;
+        z-index: revert;
+        z-index: revert-layer;
+        z-index: unset;
+        ```
+
+        `auto` - The box does not establish a new local stacking context. The stack level of the generated box in the current stacking context is `0`.
+
+        `<integer>` - Is the stack level of the generated box in the current stacking context. The box also establishes a local stacking context. This means that the z-indexes of descendants are not compared to the z-indexes of elements outside this element.
 
 #### Working with colors
 
