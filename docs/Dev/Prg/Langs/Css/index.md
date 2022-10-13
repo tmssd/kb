@@ -342,23 +342,31 @@ What seletors win out in the cascade depends on:
     `padding-bottom`<br>
     `padding-left`
 
-    ```css
-    padding: 5%;                /* All sides: 5% padding */
+    !!! note "Syntax"
 
-    padding: 10px;              /* All sides: 10px padding */
+        ```css
+        padding: 5%;                /* All sides: 5% padding */
 
-    padding: 10px 20px;         /* top and bottom: 10px padding */
-                                /* left and right: 20px padding */
+        padding: 10px;              /* All sides: 10px padding */
 
-    padding: 10px 3% 20px;      /* top:            10px padding */
-                                /* left and right: 3% padding   */
-                                /* bottom:         20px padding */
+        padding: 10px 20px;         /* top and bottom: 10px padding */
+                                    /* left and right: 20px padding */
 
-    padding: 1em 3px 30px 5px;  /* top:    1em padding  */
-                                /* right:  3px padding  */
-                                /* bottom: 30px padding */
-                                /* left:   5px padding  */
-    ```
+        padding: 10px 3% 20px;      /* top:            10px padding */
+                                    /* left and right: 3% padding   */
+                                    /* bottom:         20px padding */
+
+        padding: 1em 3px 30px 5px;  /* top:    1em padding  */
+                                    /* right:  3px padding  */
+                                    /* bottom: 30px padding */
+                                    /* left:   5px padding  */
+        ```
+
+    !!! note "Values"
+
+        `<length>` - The size of the padding as a fixed value. Must be nonnegative.
+
+        `<percentage>` - The size of the padding as a percentage, relative to the inline size (`width` in a horizontal language, defined by [:simple-mdnwebdocs: writing-mode - property that sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode)) of the *containing block*(most often it is the *content area* of an element's nearest block-level ancestor, but this is not always the case(see [:simple-mdnwebdocs: Identifying the containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block))). Must be nonnegative.
 
     !!! tip "Usage"
 
@@ -379,11 +387,9 @@ What seletors win out in the cascade depends on:
 
         When we need some space **outside** of an element, or also to create **space between** multiple elements.
 
-        In case of adding vertical space, ^^most of the time^^ stick to `margin-bottom`.
+        In case of adding vertical space between elements across the whole page, we, ^^most of the time^^, should stick to `margin-bottom`.
 
 + `width: 100%;` - sets the width of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
-
-    !!! note "Width measurement using the percentage unit = usually the percentage of the width of the parent container."
 
 + `height: 20px;` - sets the height of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
 
@@ -394,6 +400,29 @@ What seletors win out in the cascade depends on:
     b. if the parent container width is ^^less^^ than the specified `max-width`, then the width of the element will be **100%** of the parent's container element width
 
 + `min-width: 400px` - constrain content width to a certain range
+
++ `aspect-ratio: auto/<ratio>;` - sets a ^^preferred aspect ratio^^ for the box, which will be used in the calculation of auto sizes and some other layout functions
+
+    !!! note "Syntax"
+
+        ```css
+        aspect-ratio: 1 / 1;
+
+        aspect-ratio: 1;
+
+        /*Global values*/
+        aspect-ratio: inherit;
+        aspect-ratio: initial;
+        aspect-ratio: revert;
+        aspect-ratio: revert-layer;
+        aspect-ratio: unset;
+        ```
+
+    !!! note "Values"
+
+        `auto` - [:simple-mdnwebdocs: Replaced elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element) with an intrinsic aspect ratio use that aspect ratio, otherwise the box has no preferred aspect ratio. Size calculations involving intrinsic aspect ratio always work with the *content box* dimensions.
+
+        `<ratio>` - The box's preferred aspect ratio is the specified ratio of `width / height`. If `height` and the preceding slash character are omitted, `height` defaults to `1`. Size calculations involving preferred aspect ratio work with the dimensions of the box specified by `box-sizing`.
 
 !!! note "Keeping aspect ratio of images"
 
@@ -557,6 +586,66 @@ What seletors win out in the cascade depends on:
         `auto` - The box does not establish a new local stacking context. The stack level of the generated box in the current stacking context is `0`.
 
         `<integer>` - Is the stack level of the generated box in the current stacking context. The box also establishes a local stacking context. This means that the z-indexes of descendants are not compared to the z-indexes of elements outside this element.
+
+#### Calculating percentage values from the containing block
+
+When *box model properties* and *offset properties* are given a ^^percentage value^^, the computed value depends on the element's *containing block*(most often it is the *content area* of an element's nearest block-level ancestor, but this is not always the case(see [:simple-mdnwebdocs: Identifying the containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block)):
+
+1. The `height`, `top`, and `bottom` properties compute percentage values from the `height` of the *containing block*.
+2. The `width`, `left`, `right`, `padding`, and `margin` properties compute percentage values from the `width` of the *containing block*.
+
+!!! tip "Square elelment inside the rectangle parent element"
+
+    Setting 3 squared(20px x 20px) elements(`div`, `anchor` and `::after`) insdide rectangle parent element(200px x 100px) using `padding-bottm` or `aspect-ratio` trick:
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+        .rectangle {
+            background-color: aqua;
+            width: 200px;
+            height: 100px;
+            margin: 100px auto;
+        }
+
+        .square-div {
+            background-color: blue;
+            width: 10%; /* 10% of parent's width */
+            /*height: 10%; --> will give us only 10px instead of desired 20px */
+            padding-bottom: 10%; /* 10% of parent's width; instead, 'aspect-ratio: 1' could also be used here */
+        }
+
+        .square-anchor:link,
+        .square-anchor:visited {
+            display: block; /* instead, 'inline-block' could also be used here */
+            background-color: magenta;
+            width: 10%;
+            padding-bottom: 10%; /* instead, 'aspect-ratio: 1' could also be used here */
+        }
+
+        .rectangle::after {
+            content: "";
+            display: block; /* instead, 'inline-block' could also be used here */
+            background-color: orange;
+            width: 10%;
+            padding-bottom: 10%; /* instead, 'aspect-ratio: 1' could also be used here */
+        }
+        </style>
+    </head>
+    <body>
+        <div class="rectangle">
+        <div class="square-div"></div>
+        <a href="#" class="square-anchor"></a>
+        </div>
+    </body>
+    </html>
+    ```
 
 #### Working with colors
 

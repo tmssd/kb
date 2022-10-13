@@ -51,6 +51,7 @@
         + :fontawesome-brands-github: - `:fontawesome-brands-github:`
         + :material-github: - `:material-github:`
         + :material-arch: - `:material-arch:`
+        + :simple-mdnwebdocs: - `:simple-mdnwebdocs:`
 
 + Personal customization to implement in the future:
     + [medium-zoom](https://github.com/francoischalifour/medium-zoom#selectors){target=_blank}, [medium-zoom docsify plugin](https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js){target=_blank}
