@@ -475,6 +475,40 @@ What seletors win out in the cascade depends on:
 
         `<integer>` - Is the stack level of the generated box in the current stacking context. The box also establishes a local stacking context. This means that the z-indexes of descendants are not compared to the z-indexes of elements outside this element.
 
++ `overflow: <keyword>;` - sets the desired behavior for an element's overflow — i.e. when an element's content is too big to fit in its [:simple-mdnwebdocs: block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context) — in both directions; a *shorthand* for:<br>
+    `overflow-x`<br>
+    `overflow-y`<br>
+
+    !!! note "Syntax"
+
+        ```css
+        /* Keyword values */
+
+        overflow: visible;
+        overflow: hidden;
+        overflow: clip;
+        overflow: scroll;
+        overflow: auto;
+        overflow: hidden visible;
+
+        /*Global values*/
+        overflow: inherit;
+        overflow: initial;
+        overflow: revert;
+        overflow: revert-layer;
+        overflow: unset;
+        ```
+
+    !!! note "Values"
+
+        `visible` - Content is not clipped and may be rendered outside the padding box.
+
+        `hidden` - Content is clipped if necessary to fit the padding box. No scrollbars are provided, and no support for allowing the user to scroll (such as by dragging or using a scroll wheel) is allowed. The content can be scrolled programmatically (for example, by setting the value of a property such as [:simple-mdnwebdocs: scrollLeft](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft) or the [:simple-mdnwebdocs: scrollTo()](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) method), so the element is still a scroll container.
+
+        `scroll` - Content is clipped if necessary to fit the padding box. Browsers always display scrollbars whether or not any content is actually clipped, preventing scrollbars from appearing or disappearing as content changes. Printers may still print overflowing content.
+
+        [:simple-mdnwebdocs: Other values](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#values)
+
 #### Dimensions
 
 + `width: 100%;` - sets the width of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
@@ -580,14 +614,6 @@ Relative:
 
 #### Colors
 
-+ `color: #1098ad;` - defines the color of the element's content text
-
-+ `background-color: #444;` - set the backgroud color of an element(`#444` is a shorthand of `#444444`)
-
-+ `stroke: #087f5b;` - paints along(рисует по контурту) the outline of the given graphical element: used to set color for **outline icons**
-
-+ `fill: #087f5b;` - paints the interior(рисует внутреннюю часть) of the given graphical element: used to set color for **fill icons**
-
 !!! note "Defining colors in CSS"
 
     + RGB/RGBA Notation
@@ -612,11 +638,88 @@ Relative:
     `rgb(247, 247, 247)` / `#f7f7f7`<br>
     `rgb(255, 255, 255)` / `#fff` - white
 
++ `color: #1098ad;` - defines the color of the element's content text
+
+    !!! note "`currentcolor` keyword"
+
+        Represents the value of an element's `color` property. This lets you use the color value on properties that do not receive it by default.
+
+        If `currentcolor` is used as the value of the `color` property, it instead takes its value from the ^^inherited value^^ of the `color` property.
+
++ `background-color: #444;` - set the backgroud color of an element(`#444` is a shorthand of `#444444`)
+
++ `stroke: #087f5b;` - paints along(рисует по контурту) the outline of the given graphical element: used to set color for **outline icons**
+
++ `fill: #087f5b;` - paints the interior(рисует внутреннюю часть) of the given graphical element: used to set color for **fill icons**
+
++ `box-shadow: [inset] <offset-x> <offset-y> <blur-radius> <spread-radius> [<color>];` - adds shadow effects around an element's frame. You can set multiple effects separated by commas. To specify multiple shadows, provide a comma-separated list of shadows.
+
+    !!! note "Syntax"
+
+        ```css
+        /* Keyword values */
+
+        box-shadow: none;
+
+        /*offset-x | offset-y | color*/
+        box-shadow: 60px -16px teal;
+
+        /*offset-x | offset-y | blur-radius | color*/
+        box-shadow: 10px 5px 5px black;
+
+        /*offset-x | offset-y | blur-radius | spread-radius | color*/
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+        /*inset | offset-x | offset-y | color*/
+        box-shadow: inset 5em 1em gold;
+
+        /*Any number of shadows, separated by commas*/
+        box-shadow: 3px 3px red, -1em 0 0.4em olive;
+
+        /*Global values*/
+        box-shadow: inherit;
+        box-shadow: initial;
+        box-shadow: revert;
+        box-shadow: revert-layer;
+        box-shadow: unset;
+        ```
+
+        Two, three, or four` <length>` values:
+
+        + If only two values are given, they are interpreted as `<offset-x>` and `<offset-y>` values.
+        + If a third value is given, it is interpreted as a `<blur-radius>`.
+        + If a fourth value is given, it is interpreted as a` <spread-radius>`.
+
+    !!! note "Values"
+
+        `inset` - If not specified (default), the shadow is assumed to be a drop shadow (as if the box were raised above the content). The presence of the `inset` keyword changes the shadow to one inside the frame (as if the content was debossed inside the box). Inset shadows are drawn inside the border (even transparent ones), above the background, but below content.
+
+        `<offset-x>`, `<offset-y>` - These are two `<length>`values to set the shadow offset. `<offset-x>` specifies the horizontal distance. Negative values place the shadow to the left of the element. `<offset-y>` specifies the vertical distance. Negative values place the shadow above the element. If both values are `0`, the shadow is placed behind the element (and may generate a blur effect if `<blur-radius>` and/or `<spread-radius>` is set).
+
+        `<blur-radius>` - This is a third `<length>` value. The larger this value, the bigger the blur, so the shadow becomes bigger and lighter. Negative values are not allowed. If not specified, it will be 0 (the shadow's edge is sharp).
+
+        `<spread-radius>` - This is a fourth` <length>` value. Positive values will cause the shadow to expand and grow bigger, negative values will cause the shadow to shrink. If not specified, it will be `0`(the shadow will be the same size as the element).
+
+        `<color>` - If not specified, it defaults to `currentcolor`.
+
+    !!! example "Setting 2 shadows for an element and its hover state"
+
+        ```css
+        .meal {
+            box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+        }
+        /* the hover shadow is darker, like in reality
+        when the object gets closer to the source of light */
+        .meal:hover {
+            box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+        }
+        ```
+
 #### Other
 
-+ `list-style: none;` - sets the bullet point for the list elements(`<li>`s inside the `<ul>` or `<ol>`)
-
 + `cursor: pointer;` - sets the cursor shape
+
++ `list-style: none;` - sets the bullet point for the list elements(`<li>`s inside the `<ul>` or `<ol>`)
 
 ### Layouts
 
@@ -824,7 +927,7 @@ If we **don't** specified `width` / `height` HTML attributes for the `#!html <im
 
 #### Global Reset
 
-Before adding `marging`s,`padding`s and other properties to elements on the page we should remove all default instaces of these properties' values as follows:
+Before adding `marging`s,`padding`s and other properties to elements on the page we should remove/set all default instaces of these properties' values as follows:
 
 ```css
 * {
@@ -847,10 +950,9 @@ body {
     its color to be non-completely black
     and reseting its predefined line-height to 1 */
     font-family: "Inter", sans-serif;
-    color: #343a40;
+    color: #555; /* or #343a40(more blueish from Open Color) */
     line-height: 1;
     font-weight: 400;
-    color: #555;
 }
 ```
 
