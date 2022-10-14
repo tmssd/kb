@@ -509,6 +509,192 @@ What seletors win out in the cascade depends on:
 
         [:simple-mdnwebdocs: Other values](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#values)
 
++ `transform: <transform-function>` - lets ^^rotate^^, ^^scale^^, ^^skew^^, or ^^translate^^ an element. It modifies the coordinate space of the CSS [:simple-mdnwebdocs: visual formatting model](https://developer.mozilla.org/en-US/docs/Web/CSS/Visual_formatting_model).
+
+    If the property has a value different than `none`, a [:simple-mdnwebdocs: stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context) will be created. In that case, the element will act as a *containing block* for any `position: fixed;` or `position: absolute;` elements that it contains.
+
+    !!! warning "Only transformable elements can be `transform`ed."
+
+        That is, all elements whose layout is governed by the CSS box model except for: *non-replaced inline boxes*, [:simple-mdnwebdocs: *table-column boxes*](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col), and [:simple-mdnwebdocs: *table-column-group boxes*](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup).
+
+    !!! note "Syntax"
+
+        ```css
+        /* Keyword values */
+        transform: none;
+
+        /*Function values*/
+        transform: matrix(1, 2, 3, 4, 5, 6);
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        transform: perspective(17px);
+        transform: rotate(0.5turn);
+        transform: rotate3d(1, 2, 3, 10deg);
+        transform: rotateX(10deg);
+        transform: rotateY(10deg);
+        transform: rotateZ(10deg);
+        transform: translate(12px, 50%);
+        transform: translate3d(12px, 50%, 3em);
+        transform: translateX(2em);
+        transform: translateY(3in);
+        transform: translateZ(2px);
+        transform: scale(2, 0.5);
+        transform: scale3d(2.5, 1.2, 0.3);
+        transform: scaleX(2);
+        transform: scaleY(0.5);
+        transform: scaleZ(0.3);
+        transform: skew(30deg, 20deg);
+        transform: skewX(30deg);
+        transform: skewY(1.07rad);
+
+        /*Multiple function values*/
+        transform: translateX(10px) rotate(10deg) translateY(5px);
+        transform: perspective(500px) translate(10px, 0, 20px) rotateY(3deg);
+
+        /*Global values*/
+        transform: inherit;
+        transform: initial;
+        transform: revert;
+        transform: revert-layer;
+        transform: unset;
+        ```
+
+        The `transform` property may be specified as either the keyword value `none` or as one or more `<transform-function>` values.
+
+        If `perspective()` is one of multiple function values, it must be listed first.
+
+    !!! note "Values"
+
+        `none` - Specifies that no transform should be applied.
+
+        `<transform-function>` - One or more of the CSS transform functions to be applied. The transform functions are multiplied in order from left to right, meaning that composite transforms are effectively applied in order from right to left.
+
+        6 categories of *transform functions*(click on links below to see all possible functions for each category):
+
+        1. [:simple-mdnwebdocs: Matrix transformation](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#matrix_transformation)
+
+        2. [:simple-mdnwebdocs: Perspective](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#perspective)
+
+        3. [:simple-mdnwebdocs: Rotation](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#rotation)
+
+        4. [:simple-mdnwebdocs: Scaling (resizing)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#scaling_resizing)
+
+        5. [:simple-mdnwebdocs: Skewing (distortion)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#skewing_distortion)
+
+        6. [:simple-mdnwebdocs: Translation (moving)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#translation_moving)
+
+            + `translate(<length-percentage>, <length-percentage>?)` - Translates an element on the 2D plane, i.e. repositions an element in the horizontal and/or vertical directions.
+
+                !!! note "Syntax"
+
+                    ```css
+                    /* Single <length-percentage> values */
+                    transform: translate(200px);
+                    transform: translate(50%);
+
+                    /*Double <length-percentage> values*/
+                    transform: translate(100px, 200px);
+                    transform: translate(100px, 50%);
+                    transform: translate(30%, 200px);
+                    transform: translate(30%, 50%);
+                    ```
+
+                !!! note "Values"
+
+                    Single `<length-percentage>` values - a `<length>` or `<percentage>` representing the abscissa (horizontal, x-coordinate) of the translating vector. The ordinate (vertical, y-coordinate) of the translating vector will be set to `0`.<br>
+                    A percentage value refers to the width of the reference box defined by the `transform-box`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-box)) property.
+
+                    Double `<length-percentage>` values - describes two `<length>` or `<percentage>` values representing both the abscissa (x-coordinate) and the ordinate (y-coordinate) of the translating vector.<br>
+                    A percentage as first value refers to the width, as second part to the height of the reference box defined by the `transform-box`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-box)) property.
+
+                !!! tip "Place ^^absolute-positioned^^ child element in the middle of its parent element"
+
+                    ```css
+                    /* parent element */
+                    .step-img-box {
+                        position: relative;
+                    }
+
+                    /* absolute-positioned child element */
+                    .step-img-box::before {
+                        content: "";
+                        display: block;
+
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                    ```
+
++ `transition: all 0s ease 0s;`(initial values) - enable you to define the transition between two states of an element; a *shorthand* for:<br>
+  `transition-property` - sets the CSS properties to which a [:simple-mdnwebdocs: *transition effect*](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions) should be applied([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property)).<br>
+  `transition-duration` - sets the length of time a transition animation should take to complete. By default, the value is `0s`, meaning that no animation will occur([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration)).<br>
+  `transition-timing-function` - sets how intermediate values are calculated for CSS properties being affected by a *transition effect*([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function)).<br>
+  `transition-delay` - specifies the duration to wait before starting a property's *transition effect* when its value changes([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay)).
+
+    Transitions enable you to define the transition between two states of an element. Different states may be defined using pseudo-classes like `:hover` or `:active` or dynamically set using JavaScript.
+
+    !!! warning "ALWAYS set `transition` on the ^^original state^^ of an element"
+
+        ```css
+        /* original state */
+        .link:link,
+        .link:visited {
+            display: inline-block;
+            color: #e67e22;
+            text-decoration: none;
+            border-bottom: 1px solid currentcolor;
+            padding-bottom: 2px;
+
+            transition: all 0.3s;
+        }
+
+        /* transitioned state */
+        .link:hover,
+        .link:active {
+            color: #cf7111;
+            border-bottom: 1px solid transparent;
+        }
+        ```
+
+    !!! note "Syntax"
+
+        ```css
+        /* Apply to 1 property */
+        /*property name | duration*/
+        transition: margin-right 4s;
+
+        /*property name | duration | delay*/
+        transition: margin-right 4s 1s;
+
+        /*property name | duration | easing function*/
+        transition: margin-right 4s ease-in-out;
+
+        /*property name | duration | easing function | delay*/
+        transition: margin-right 4s ease-in-out 1s;
+
+        /*Apply to 2 properties*/
+        transition: margin-right 4s, color 1s;
+
+        /*Apply to all changed properties*/
+        transition: all 0.5s ease-out;
+
+        /*Global values*/
+        transition: inherit;
+        transition: initial;
+        transition: revert;
+        transition: revert-layer;
+        transition: unset;
+        ```
+
+        The `transition` property is specified as one or more single-property transitions, separated by commas.<br>
+        Each single-property transition describes the transition that should be applied to a single property (or the special values `all` and `none`).
+
+    !!! tip "Design tips"
+
+        + for average elements set `transition-duration` to `0.3s` &rarr; `transition: all 0.3s;`
+        + for bigger elements set bigger `transition-duration`
+
 #### Dimensions
 
 + `width: 100%;` - sets the width of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
@@ -712,6 +898,17 @@ Relative:
         when the object gets closer to the source of light */
         .meal:hover {
             box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+        }
+        ```
+
+    !!! example "Add border ^^inside^^ of a button"
+
+        ```css
+        .btn--outline:hover,
+        .btn--outline:active {
+            /* border: 3px solid #fff;*/ /* --> this will not work
+            as expected, becaus it wiil create NEW space in the document */
+            box-shadow: inset 0 0 0 3px #fff;
         }
         ```
 
