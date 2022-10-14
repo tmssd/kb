@@ -57,7 +57,7 @@ CSS consist of countless *properties* that developer use to format the content: 
     </head>
     ```
 
-### Most commonly used selectors
+### Selectors (the most used ones)
 
 !!! info ""
 
@@ -187,12 +187,17 @@ What seletors win out in the cascade depends on:
 
 1. Resolving conflicting declarations(styles) steps ordered by priority from **5-highest** to **0-lowest**:
 
-    **5** - Importance (styles marked with `#!css !important`)<br>
-    a `!` delimiter followed by the `important` *keyword* marks the style more important than ^^all^^ the other ones, e.g. `#!css p { color: green !important; }`
+    !!! Quote ""
+
+        **5** - Importance (styles marked with `#!css !important`)<br>
+        a `!` delimiter followed by the `important` *keyword* marks the style more important than ^^all^^ the other ones, e.g. `#!css p { color: green !important; }`
 
     &darr;
 
-    **4** - Inline style(`style` attribute in HTML)<br>
+    !!! Quote ""
+
+        **4** - Inline style(`style` attribute in HTML)
+
     !!! tip "Steps 5-4 should be used as a last resort only!"
 
         Use it only in case you really, really cannot figure out what's happening in your code.<br>
@@ -202,23 +207,33 @@ What seletors win out in the cascade depends on:
 
     &darr;
 
-    **3** - ID (`#`) selector
+    !!! Quote ""
+
+        **3** - ID (`#`) selector
 
     &darr;
 
-    **2** - Class (`.`) or pseudo-class (`:`) selector
+    !!! Quote ""
+
+        **2** - Class (`.`) or pseudo-class (`:`) selector
 
     &darr;
 
-    **1** - Element Selector (`p` , `div`, `li`, etc.)<br>
+    !!! Quote ""
+
+        **1** - Element Selector (`p` , `div`, `li`, etc.)
+
     !!! note "Selectors Specificity (steps 3-1)"
 
         Official Docs: [CSS specificity](https://www.w3.org/TR/selectors-3/#specificity)<br>
         Specificity Calculator: [https://specificity.keegan.st/](https://specificity.keegan.st)<br>
         When there are multiple **different** selectors ^^selecting the same element^^ that have ^^confilicting styles^^ then ^^all of them^^(all rules and properties) are applied! **BUT** only one wins out, i.e. gets active depending on its *specificity* value.
+
     &darr;
 
-    **0** - Universal Selector (`*`)
+    !!! Quote ""
+
+        **0** - Universal Selector (`*`)
 
 2. Source order
 
@@ -231,9 +246,9 @@ What seletors win out in the cascade depends on:
     -ms-      /* Internet Explorer (but not always) */
     ```
 
-### Most commonly used style properties
+### Properties (the most used ones)
 
-#### Styling text
+#### Text
 
 + `font-family: sans-serif;`
 
@@ -263,7 +278,7 @@ What seletors win out in the cascade depends on:
 
 + `letter-spacing`
 
-#### CSS Box Model styles
+#### Boxes
 
 !!! note "The CSS Box Model"
 
@@ -389,133 +404,6 @@ What seletors win out in the cascade depends on:
 
         In case of adding vertical space between elements across the whole page, we, ^^most of the time^^, should stick to `margin-bottom`.
 
-+ `width: 100%;` - sets the width of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
-
-+ `height: 20px;` - sets the height of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
-
-+ `max-width: 1000px` - constrain content width to a certain range:
-
-    a. if the parent container width is ^^larger^^ than the specified `max-width`, then the width of the element is **equal** the value that was specified for `max-width`
-
-    b. if the parent container width is ^^less^^ than the specified `max-width`, then the width of the element will be **100%** of the parent's container element width
-
-+ `min-width: 400px` - constrain content width to a certain range
-
-+ `aspect-ratio: auto/<ratio>;` - sets a ^^preferred aspect ratio^^ for the box, which will be used in the calculation of auto sizes and some other layout functions
-
-    !!! note "Syntax"
-
-        ```css
-        aspect-ratio: 1 / 1;
-
-        aspect-ratio: 1;
-
-        /*Global values*/
-        aspect-ratio: inherit;
-        aspect-ratio: initial;
-        aspect-ratio: revert;
-        aspect-ratio: revert-layer;
-        aspect-ratio: unset;
-        ```
-
-    !!! note "Values"
-
-        `auto` - [:simple-mdnwebdocs: Replaced elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element) with an intrinsic aspect ratio use that aspect ratio, otherwise the box has no preferred aspect ratio. Size calculations involving intrinsic aspect ratio always work with the *content box* dimensions.
-
-        `<ratio>` - The box's preferred aspect ratio is the specified ratio of `width / height`. If `height` and the preceding slash character are omitted, `height` defaults to `1`. Size calculations involving preferred aspect ratio work with the dimensions of the box specified by `box-sizing`.
-
-!!! note "Keeping aspect ratio of images"
-
-    If we **don't** specified `width` / `height` HTML attributes for the `#!html <img />` element then setting just one of the `width` or `height` CSS property will keep the aspect ratio. **BUT** if we **do** specified all or one of these HTML attributes then to keep aspect ratio while setting up just one of the `width` or `height` CSS property we will need to specify the remaining property to the value of `auto`, e.g.:
-
-    ```css
-    .post-img {
-        width: 800px;
-        height: auto;
-    }
-    ```
-
-!!! tip "Centering a page inside of the browser."
-
-    ```html title="index.htnl"
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
-      <link href="style.css" rel="stylesheet" />
-    </head>
-      <body>
-        <div class="container">
-            .
-            .
-            .
-        </div>
-      </body>
-    </html>
-    ```
-
-    ```css title="style.css"
-    /* OPTION 1 */
-    .container {
-        /* we actually need to give this container a width because otherwise
-        there is not really anything to center, and so all the element inside
-        this container will able to have maximum this widh. And this is not
-        "inheritance" but a simple logic that the child element can never be wider than the parent element.*/
-        width: 800px;
-        /* centering container inside of the <body> element */
-        margin: 0 auto;
-
-        /* OPTION 2 */
-        /* Here we don't need to define width for the container.
-        The flexbox container width is defined by all the flex items' widths added together! */
-        .body {
-            display: flex;
-            justify-content: center;
-        }
-    }
-    ```
-
-!!! tip "Global Reset"
-
-    Before adding `marging`s,`padding`s and other properties to elements on the page we should remove all default instaces of these properties' values as follows:
-
-    ```css
-    * {
-        /* whenever we use zero, we do not specify any unit after it */
-        margin: 0;
-        padding: 0;
-        /* setting up an alternative box-model where `width` and `height`
-        (and respective `min` / `max` properties) on the element
-        determine the border box of the element */
-        box-sizing: border-box;
-    }
-
-    /* Percentage of user's browser font-size setting! */
-    html {
-        font-size: 62.5%; /* 10px / 16px = 0.625 = 62.5%  */
-    }
-
-    body {
-        /* setting font-family for our design(with fallback 'sans-serif'),
-        its color to be non-completely black
-        and reseting its predefined line-height to 1 */
-        font-family: "Inter", sans-serif;
-        color: #343a40;
-        line-height: 1;
-        font-weight: 400;
-        color: #555;
-    }
-    ```
-
-    Without doing this it is quite hard to style the page.
-
-    !!! note "Global Reset hides numbers and bullet poits of `<ol>`, `<ul>` lists"
-
-        In order to reveal them back we should set `margin-left` for them, e.g. `#!css ul, ol { margin-left: 50px; }`
-
 + `border: 5px solid #1098ad;` - a *shorthand* for:<br>
     `border-width`<br>
     `border-style`<br>
@@ -539,7 +427,7 @@ What seletors win out in the cascade depends on:
     }
     ```
 
-#### CSS positioning modes
+#### Positioning
 
 + `position: relative;` - default positioning
 + `position: absolute;` - absolute positioning
@@ -587,67 +475,110 @@ What seletors win out in the cascade depends on:
 
         `<integer>` - Is the stack level of the generated box in the current stacking context. The box also establishes a local stacking context. This means that the z-indexes of descendants are not compared to the z-indexes of elements outside this element.
 
-#### Calculating percentage values from the containing block
+#### Dimensions
 
-When *box model properties* and *offset properties* are given a ^^percentage value^^, the computed value depends on the element's *containing block*(most often it is the *content area* of an element's nearest block-level ancestor, but this is not always the case(see [:simple-mdnwebdocs: Identifying the containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block)):
++ `width: 100%;` - sets the width of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
 
-1. The `height`, `top`, and `bottom` properties compute percentage values from the `height` of the *containing block*.
-2. The `width`, `left`, `right`, `padding`, and `margin` properties compute percentage values from the `width` of the *containing block*.
++ `height: 20px;` - sets the height of the *content area*, *padding area* or *border area* (depending on `box-sizing`) of certain boxes
 
-!!! tip "Square elelment inside the rectangle parent element"
++ `max-width: 1000px` - constrain content width to a certain range:
 
-    Setting 3 squared(20px x 20px) elements(`div`, `anchor` and `::after`) insdide rectangle parent element(200px x 100px) using `padding-bottm` or `aspect-ratio` trick:
+    a. if the parent container width is ^^larger^^ than the specified `max-width`, then the width of the element is **equal** the value that was specified for `max-width`
 
-    ```html
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <style>
-        .rectangle {
-            background-color: aqua;
-            width: 200px;
-            height: 100px;
-            margin: 100px auto;
-        }
+    b. if the parent container width is ^^less^^ than the specified `max-width`, then the width of the element will be **100%** of the parent's container element width
 
-        .square-div {
-            background-color: blue;
-            width: 10%; /* 10% of parent's width */
-            /*height: 10%; --> will give us only 10px instead of desired 20px */
-            padding-bottom: 10%; /* 10% of parent's width; instead, 'aspect-ratio: 1' could also be used here */
-        }
++ `min-width: 400px;` - constrain content width to a certain range
 
-        .square-anchor:link,
-        .square-anchor:visited {
-            display: block; /* instead, 'inline-block' could also be used here */
-            background-color: magenta;
-            width: 10%;
-            padding-bottom: 10%; /* instead, 'aspect-ratio: 1' could also be used here */
-        }
++ `aspect-ratio: auto/<ratio>;` - sets a ^^preferred aspect ratio^^ for the box, which will be used in the calculation of auto sizes and some other layout functions
 
-        .rectangle::after {
-            content: "";
-            display: block; /* instead, 'inline-block' could also be used here */
-            background-color: orange;
-            width: 10%;
-            padding-bottom: 10%; /* instead, 'aspect-ratio: 1' could also be used here */
-        }
-        </style>
-    </head>
-    <body>
-        <div class="rectangle">
-        <div class="square-div"></div>
-        <a href="#" class="square-anchor"></a>
-        </div>
-    </body>
-    </html>
-    ```
+    !!! note "Syntax"
 
-#### Working with colors
+        ```css
+        aspect-ratio: 1 / 1;
+
+        aspect-ratio: 1;
+
+        /*Global values*/
+        aspect-ratio: inherit;
+        aspect-ratio: initial;
+        aspect-ratio: revert;
+        aspect-ratio: revert-layer;
+        aspect-ratio: unset;
+        ```
+
+    !!! note "Values"
+
+        `auto` - [:simple-mdnwebdocs: Replaced elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element) with an intrinsic aspect ratio use that aspect ratio, otherwise the box has no preferred aspect ratio. Size calculations involving intrinsic aspect ratio always work with the *content box* dimensions.
+
+        `<ratio>` - The box's preferred aspect ratio is the specified ratio of `width / height`. If `height` and the preceding slash character are omitted, `height` defaults to `1`. Size calculations involving preferred aspect ratio work with the dimensions of the box specified by `box-sizing`.
+
+##### units
+
+Relative:
+
++ `%` - percentage
+
+    !!! note "Calculating percentage values from the containing block"
+
+        When *box model properties* and *offset properties* are given a ^^percentage value^^, the computed value depends on the element's *containing block*(most often it is the *content area* of an element's nearest block-level ancestor, but this is not always the case(see [:simple-mdnwebdocs: Identifying the containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block)):
+
+        1. The `height`, `top`, and `bottom` properties compute percentage values from the `height` of the *containing block*.
+        2. The `width`, `left`, `right`, `padding`, and `margin` properties compute percentage values from the `width` of the *containing block*.
+
+        !!! tip "Square elelment inside the rectangle parent element"
+
+            Setting 3 squared(20px x 20px) elements(`div`, `anchor` and `::after`) insdide rectangle parent element(200px x 100px) using `padding-bottm` or `aspect-ratio` trick:
+
+            ```html
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>Document</title>
+                <style>
+                .rectangle {
+                    background-color: aqua;
+                    width: 200px;
+                    height: 100px;
+                    margin: 100px auto;
+                }
+
+                .square-div {
+                    background-color: blue;
+                    width: 10%; /* 10% of parent's width */
+                    /*height: 10%; --> will give us only 10px instead of desired 20px */
+                    padding-bottom: 10%; /* 10% of parent's width; instead, 'aspect-ratio: 1' could also be used here */
+                }
+
+                .square-anchor:link,
+                .square-anchor:visited {
+                    display: block; /* instead, 'inline-block' could also be used here */
+                    background-color: magenta;
+                    width: 10%;
+                    padding-bottom: 10%; /* instead, 'aspect-ratio: 1' could also be used here */
+                }
+
+                .rectangle::after {
+                    content: "";
+                    display: block; /* instead, 'inline-block' could also be used here */
+                    background-color: orange;
+                    width: 10%;
+                    padding-bottom: 10%; /* instead, 'aspect-ratio: 1' could also be used here */
+                }
+                </style>
+            </head>
+            <body>
+                <div class="rectangle">
+                <div class="square-div"></div>
+                <a href="#" class="square-anchor"></a>
+                </div>
+            </body>
+            </html>
+            ```
+
+#### Colors
 
 + `color: #1098ad;` - defines the color of the element's content text
 
@@ -681,11 +612,9 @@ When *box model properties* and *offset properties* are given a ^^percentage val
     `rgb(247, 247, 247)` / `#f7f7f7`<br>
     `rgb(255, 255, 255)` / `#fff` - white
 
-#### Element specific styles
+#### Other
 
 + `list-style: none;` - sets the bullet point for the list elements(`<li>`s inside the `<ul>` or `<ol>`)
-
-#### Other styles
 
 + `cursor: pointer;` - sets the cursor shape
 
@@ -836,6 +765,100 @@ For laying out element in a fully-fledged(полноценный) **2-dimensiona
 `justify-items` and `align-items`: aligning items inside cells - is all about moving items around inside cells.
 
 `justify-content` and `align-content`: aligning tracks inside of the grid container - is all about distributing containers' empty space.
+
+### Tips & Tricks
+
+#### Keeping aspect ratio of images
+
+If we **don't** specified `width` / `height` HTML attributes for the `#!html <img />` element then setting just one of the `width` or `height` CSS property will keep the aspect ratio. **BUT** if we **do** specified all or one of these HTML attributes then to keep aspect ratio while setting up just one of the `width` or `height` CSS property we will need to specify the remaining property to the value of `auto`, e.g.:
+
+```css
+.post-img {
+    width: 800px;
+    height: auto;
+}
+```
+
+#### Centering a page inside of the browser
+
+```html title="index.htnl"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+    <body>
+    <div class="container">
+        .
+        .
+        .
+    </div>
+    </body>
+</html>
+```
+
+```css title="style.css"
+/* OPTION 1 */
+.container {
+    /* we actually need to give this container a width because otherwise
+    there is not really anything to center, and so all the element inside
+    this container will able to have maximum this widh. And this is not
+    "inheritance" but a simple logic that the child element can never be wider than the parent element.*/
+    width: 800px;
+    /* centering container inside of the <body> element */
+    margin: 0 auto;
+
+    /* OPTION 2 */
+    /* Here we don't need to define width for the container.
+    The flexbox container width is defined by all the flex items' widths added together! */
+    .body {
+        display: flex;
+        justify-content: center;
+    }
+}
+```
+
+#### Global Reset
+
+Before adding `marging`s,`padding`s and other properties to elements on the page we should remove all default instaces of these properties' values as follows:
+
+```css
+* {
+    /* whenever we use zero, we do not specify any unit after it */
+    margin: 0;
+    padding: 0;
+    /* setting up an alternative box-model where `width` and `height`
+    (and respective `min` / `max` properties) on the element
+    determine the border box of the element */
+    box-sizing: border-box;
+}
+
+/* Percentage of user's browser font-size setting! */
+html {
+    font-size: 62.5%; /* 10px / 16px = 0.625 = 62.5%  */
+}
+
+body {
+    /* setting font-family for our design(with fallback 'sans-serif'),
+    its color to be non-completely black
+    and reseting its predefined line-height to 1 */
+    font-family: "Inter", sans-serif;
+    color: #343a40;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+}
+```
+
+Without doing this it is quite hard to style the page.
+
+!!! note "Global Reset hides numbers and bullet poits of `<ol>`, `<ul>` lists"
+
+    In order to reveal them back we should set `margin-left` for them, e.g. `#!css ul, ol { margin-left: 50px; }`
 
 ## Web Design
 
