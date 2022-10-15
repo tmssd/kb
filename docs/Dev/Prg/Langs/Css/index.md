@@ -316,6 +316,10 @@ What seletors win out in the cascade depends on:
         + **Default elements:** `body`, `main`, `header`, `footer`, `section`, `nav`, `aside`, `div`, `h1-h6`, `p`, `ul`, `ol`, `li`, etc.
         + CSS style to change from inline boxes to block-level boxes: `#!css display: block;`
 
+            !!! tip "Getting rid of little gaps between inline/inline-block elements"
+
+                This is useful for a stack of images especially, e.g. `#!css .gallery img { display: block; }`
+
     2. Inline Boxes
 
         + Occupies only the space **necessary for its content**.
