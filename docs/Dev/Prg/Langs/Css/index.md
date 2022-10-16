@@ -944,12 +944,12 @@ Relative:
 
             !!! note "Syntax"
 
-                Each background image is specified either as the keyword none or as an <image> value.<br>
+                Each background image is specified either as the keyword none or as an`<image>` value.<br>
                 To specify multiple background images, supply multiple values, separated by a comma:
 
                 ```css
-                background-image: linear-gradient(
-                    to bottom,
+                background-image: linear-gradient( /* see note below about this function */
+                    to right bottom,
                     rgba(255, 255, 0, 0.5),
                     rgba(0, 0, 255, 0.5)
                 ), url("catfront.png");
@@ -967,6 +967,72 @@ Relative:
                 `none` - Is a keyword denoting the absence of images.
 
                 `<image>` - Is an `<image>` denoting the image to display. There can be several of them, separated by commas, as [:simple-mdnwebdocs: multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds) are supported.
+
+            !!! note "Image-related functions([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image#see_also))"
+
+                + `cross-fade()`
+                + `element()`
+                + `image()`
+                + `image-set()`
+                + `paint()`
+                + `url()`
+
+                Gradient:
+
+                !!! info ""
+
+                    [Using CSS gradients(:simple-mdnwebdocs:)](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients)
+
+                + `linear-gradient()` - creates an image consisting of a progressive transition between two or more colors along a straight line. Its result is an object of the `<gradient>` data type, which is a special kind of `<image>`. See more at [:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient)
+
+                    !!! note "Syntax"
+
+                        ```css
+                        /* A gradient tilted 45 degrees,
+                        starting blue and finishing red */
+                        linear-gradient(45deg, blue, red);
+
+                        /* A gradient going from the bottom right to the top left corner,
+                        starting blue and finishing red */
+                        linear-gradient(to left top, blue, red);
+
+                        /* Color stop: A gradient going from the bottom to top,
+                        starting blue, turning green at 40% of its length,
+                        and finishing red */
+                        linear-gradient(0deg, blue, green 40%, red);
+
+                        /* Color hint: A gradient going from the left to right,
+                        starting red, getting to the midpoint color
+                        10% of the way across the length of the gradient,
+                        taking the rest of the 90% of the length to change to blue */
+                        linear-gradient(.25turn, red, 10%, blue);
+
+                        /* Multi-position color stop: A gradient tilted 45 degrees,
+                        with a red bottom-left half and a blue top-right half,
+                        with a hard line where the gradient changes from red to blue */
+                        linear-gradient(45deg, red 0 50%, blue 50% 100%);
+                        ```
+
+                    !!! note "Values"
+
+                        `<side-or-corner>` - The position of the gradient line's starting point. If specified, it consists of the word `to` and up to two keywords: one indicates the horizontal side (`left` or `right`), and the other the vertical side (`top` or `bottom`). The order of the side keywords does not matter. If unspecified, it defaults to `to bottom`.
+
+                        The values` to top`, `to bottom`, `to left`, and `to right` are equivalent to the angles `0deg`, `180deg`, `270deg`, and `90deg`, respectively. The other values are translated into an angle.
+
+                        `<angle>` - The gradient line's angle of direction. A value of `0deg` is equivalent to `to top`; increasing values rotate clockwise from there.
+
+                        `<linear-color-stop>` - A color-stop's `<color>` value, followed by one or two optional stop positions, (each being either a `<percentage>` or a `<length>` along the gradient's axis).
+
+                        `<color-hint>` - An interpolation hint defining how the gradient progresses between adjacent color stops. The length defines at which point between two color stops the gradient color should reach the midpoint of the color transition. If omitted, the midpoint of the color transition is the midpoint between two color stops.
+
+                + `radial-gradient()`
+                + `conic-gradient()`
+                + `repeating-linear-gradient()`
+                + `repeating-radial-gradient()`
+                + `repeating-conic-gradient()`
+
+
+
 
         + `<position>` - See [:simple-mdnwebdocs: `background-position: 0% 0%;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position){target=_blank}.
 
