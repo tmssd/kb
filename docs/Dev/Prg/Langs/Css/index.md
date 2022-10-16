@@ -929,6 +929,10 @@ Relative:
 
         `<color>` - If not specified, it defaults to `currentcolor`.
 
+    !!! tip "Design tip"
+
+        The darker the background is, then the more dark the shadow also needs to be.
+
     !!! example "Setting 2 shadows for an element and its hover state"
 
         ```css
