@@ -934,6 +934,50 @@ Relative:
 
         + `<background-color>` - See[ :simple-mdnwebdocs: `background-color: transparent;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color){target=_blank}.
 
+            `background-color` - sets the background color of an element.
+
+            !!! note "Syntax"
+
+                The `background-color` property is specified as a single `<color>` value. It is rendered behind any `background-image` that is specified, although the color will still be visible through any transparency in the image.
+
+                ```css
+                /* Keyword values */
+                background-color: red;
+                background-color: indigo;
+
+                /*Hexadecimal value*/
+                background-color: #bbff00; /*Fully opaque*/
+                background-color: #bf0; /*Fully opaque shorthand*/
+                background-color: #11ffee00; /*Fully transparent*/
+                background-color: #1fe0; /*Fully transparent shorthand*/
+                background-color: #11ffeeff; /*Fully opaque*/
+                background-color: #1fef; /*Fully opaque shorthand*/
+
+                /*RGB value*/
+                background-color: rgb(255, 255, 128); /*Fully opaque*/
+                background-color: rgba(117, 190, 218, 0.5); /*50% transparent*/
+
+                /*HSL value*/
+                background-color: hsl(50, 33%, 25%); /*Fully opaque*/
+                background-color: hsla(
+                    50,
+                    33%,
+                    25%,
+                    0.75
+                ); /*75% opaque, i.e. 25% transparent*/
+
+                /*Special keyword values*/
+                background-color: currentcolor;
+                background-color: transparent;
+
+                /*Global values*/
+                background-color: inherit;
+                background-color: initial;
+                background-color: revert;
+                background-color: revert-layer;
+                background-color: unset;
+                ```
+
         + `<bg-image>` - See [:simple-mdnwebdocs: `background-image: none;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image){target=_blank}.
 
             `background-image` - sets one or more background images on an element.
@@ -1030,9 +1074,6 @@ Relative:
                 + `repeating-linear-gradient()`
                 + `repeating-radial-gradient()`
                 + `repeating-conic-gradient()`
-
-
-
 
         + `<position>` - See [:simple-mdnwebdocs: `background-position: 0% 0%;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position){target=_blank}.
 
