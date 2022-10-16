@@ -921,26 +921,155 @@ Relative:
         + The `<bg-size>` value may only be included immediately after` <position>`, separated with the `/` character, like this: `center/80%`.
 
         + The `<box>` value may be included zero, one, or two times.<br>
-            If included **once**, it sets both `background-origin`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin)) and `background-clip`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip)).<br>
+            If included **once**, it sets both `background-origin`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin){target=_blank}) and `background-clip`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip){target=_blank}).<br>
             If it is included **twice**, the first occurrence sets `background-origin`, and the second sets `background-clip`.
 
         + The `<background-color>` value may only be included in the last layer specified.
 
     !!! note "Values"
 
-        `<attachment>` - See [:simple-mdnwebdocs: `background-attachment: scroll;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment).
+        + `<attachment>` - See [:simple-mdnwebdocs: `background-attachment: scroll;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment){target=_blank}.
 
-        `<box>` - See [:simple-mdnwebdocs: `background-clip: border-box;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip) and [:simple-mdnwebdocs: `background-origin: padding-box;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin).
+        + `<box>` - See [:simple-mdnwebdocs: `background-clip: border-box;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip){target=_blank} and [:simple-mdnwebdocs: `background-origin: padding-box;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin){target=_blank}.
 
-        `<background-color>` - See[ :simple-mdnwebdocs: `background-color: transparent;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color).
+        + `<background-color>` - See[ :simple-mdnwebdocs: `background-color: transparent;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color){target=_blank}.
 
-        `<bg-image>` - See [:simple-mdnwebdocs: `background-image: none;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image).
+        + `<bg-image>` - See [:simple-mdnwebdocs: `background-image: none;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image){target=_blank}.
 
-        `<position>` - See [:simple-mdnwebdocs: `background-position: 0% 0%;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position).
+            `background-image` - sets one or more background images on an element.
 
-        `<repeat-style>` - See [:simple-mdnwebdocs: `background-repeat: repeat;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat).
+            The background images are drawn on stacking context layers on top of each other. The first layer specified is drawn as if it is closest to the user.
 
-        `<bg-size>` - See [:simple-mdnwebdocs: `background-size: auto auto;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size).
+            The `border`s of the element are then drawn on top of them, and the `background-color` is drawn beneath them. How the images are drawn relative to the box and its borders is defined by the `background-clip` and `background-origin` CSS properties.
+
+            !!! note "Syntax"
+
+                Each background image is specified either as the keyword none or as an <image> value.<br>
+                To specify multiple background images, supply multiple values, separated by a comma:
+
+                ```css
+                background-image: linear-gradient(
+                    to bottom,
+                    rgba(255, 255, 0, 0.5),
+                    rgba(0, 0, 255, 0.5)
+                ), url("catfront.png");
+
+                /*Global values*/
+                background-image: inherit;
+                background-image: initial;
+                background-image: revert;
+                background-image: revert-layer;
+                background-image: unset;
+                ```
+
+            !!! note "Values"
+
+                `none` - Is a keyword denoting the absence of images.
+
+                `<image>` - Is an `<image>` denoting the image to display. There can be several of them, separated by commas, as [:simple-mdnwebdocs: multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds) are supported.
+
+        + `<position>` - See [:simple-mdnwebdocs: `background-position: 0% 0%;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position){target=_blank}.
+
+            `background-position` - sets the initial position for each background image. The position is relative to the position layer set by `background-origin`.
+
+            !!! "Syntax"
+
+                ```css
+                /* Keyword values */
+                background-position: top;
+                background-position: bottom;
+                background-position: left;
+                background-position: right;
+                background-position: center;
+
+                /*<percentage> values*/
+                background-position: 25% 75%;
+
+                /*<length> values*/
+                background-position: 0 0;
+                background-position: 1cm 2cm;
+                background-position: 10ch 8em;
+
+                /*Multiple images*/
+                background-position: 0 0, center;
+
+                /*Edge offsets values*/
+                background-position: bottom 10px right 20px;
+                background-position: right 3em bottom 10px;
+                background-position: bottom 10px right;
+                background-position: top right 10px;
+
+                /*Global values*/
+                background-position: inherit;
+                background-position: initial;
+                background-position: revert;
+                background-position: revert-layer;
+                background-position: unset;
+                ```
+
+            !!! "Value - [:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position#values)"
+
+                `center` - is the frquently used value, which centers the image.
+
+        + `<repeat-style>` - See [:simple-mdnwebdocs: `background-repeat: repeat;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat){target=_blank}.
+
+        + `<bg-size>` - See [:simple-mdnwebdocs: `background-size: auto auto;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size){target=_blank}.
+
+            `background-size` - sets the size of the element's background image. The image can be left to its natural size, stretched, or constrained to fit the available space.
+
+            !!! note "Syntax"
+
+                ```css
+                /* Keyword values */
+                background-size: cover;
+                background-size: contain;
+
+                /*One-value syntax*/
+                /*the width of the image (height becomes 'auto')*/
+                background-size: 50%;
+                background-size: 3.2em;
+                background-size: 12px;
+                background-size: auto;
+
+                /*Two-value syntax*/
+                /*first value: width of the image, second value: height*/
+                background-size: 50% auto;
+                background-size: 3em 25%;
+                background-size: auto 6px;
+                background-size: auto auto;
+
+                /*Multiple backgrounds*/
+                background-size: auto, auto; /*Not to be confused with `auto auto`*/
+                background-size: 50%, 25%, 25%;
+                background-size: 6px, auto, contain;
+
+                /*Global values*/
+                background-size: inherit;
+                background-size: initial;
+                background-size: revert;
+                background-size: revert-layer;
+                background-size: unset;
+                ```
+
+                The `background-size` property is specified in one of the following ways:
+
+                + Using the keyword values `contain` or `cover`.
+                + Using a width value only, in which case the height defaults to `auto`.
+                + Using both a width and a height value, in which case the first sets the width and the second sets the height. Each value can be a `<length>`, a `<percentage>`, or `auto`.
+
+                To specify the size of multiple background images, separate the value for each one with a comma.
+
+            !!! note "Values"
+
+                `contain` - Scales the image as large as possible within its container without cropping or stretching the image. If the container is larger than the image, this will result in image tiling, unless the `background-repeat` property is set to` no-repeat`.
+
+                `cover` - Scales the image (while preserving its ratio) to the smallest possible size to fill the container (that is: both its height and width completely cover the container), leaving no empty space. If the proportions of the background differ from the element, the image is cropped either vertically or horizontally.
+
+                `auto` - Scales the background image in the corresponding direction such that its [:simple-mdnwebdocs: intrinsic proportions](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size#intrinsic_dimensions_and_proportions) are maintained.
+
+                `<length>` - Stretches the image in the corresponding dimension to the specified length. Negative values are not allowed.
+
+                `<percentage>` - Stretches the image in the corresponding dimension to the specified percentage of the *background positioning area*. The background positioning area is determined by the value of `background-origin` (by default, the padding box). However, if the background's `background-attachment` value is `fixed`, the positioning area is instead the entire viewport. Negative values are not allowed.
 
 + `background-color: #444;` - set the backgroud color of an element(`#444` is a shorthand of `#444444`)
 
