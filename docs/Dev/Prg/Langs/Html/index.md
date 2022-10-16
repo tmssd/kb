@@ -15,8 +15,27 @@ Reference: [W3S](https://www.w3schools.com/html/), [MDN](https://developer.mozil
 
 `#!html <img src="post-img.jpg" alt="HTML code on a screen" width="500" height="200"/>` - image tag
 
-+ `alt` attribute defines what the image is
++ `alt` attribute defines what the image is, this is a **must have** for the accessibility
 + we can only set `width` attribute and the image's aspect ratio is automatically maintained
++ when the image set as decoration through the css style:
+
+	!!! tip "use of `role` and `aria-label` attributes for the accessibility"
+
+		```html title="index.html"
+		<div
+			class="cta-img-box"
+			role="img"
+			aria-label="Women enjoing food"
+		></div>
+		```
+
+		```css title="style.css"
+		.cta-img-box {
+			background-image: url(../img/eating.jpg);
+			background-size: cover;
+			background-position: center;
+		}
+		```
 
 `#!html <a href="newpage.html">` - anchor tag<br>
 `#!html <a href="url" target="_blank">` - open a link in a new tab<br>

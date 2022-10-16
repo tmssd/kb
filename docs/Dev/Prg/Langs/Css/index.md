@@ -839,7 +839,7 @@ Relative:
             </html>
             ```
 
-#### Colors
+#### Colors and Images
 
 !!! note "Defining colors in CSS"
 
@@ -872,6 +872,75 @@ Relative:
         Represents the value of an element's `color` property. This lets you use the color value on properties that do not receive it by default.
 
         If `currentcolor` is used as the value of the `color` property, it instead takes its value from the ^^inherited value^^ of the `color` property.
+
++ `background` - sets all background style properties at once; a *shorthand* for:<br>
+  `background-attachment`<br>
+  `background-clip`<br>
+  `background-color`<br>
+  `background-image`<br>
+  `background-origin`<br>
+  `background-position`<br>
+  `background-repeat`<br>
+  `background-size`
+
+    !!! note "Syntax"
+
+        ```css
+        /* Using a <background-color> */
+        background: green;
+
+        /*Using a <bg-image> and <repeat-style>*/
+        background: url("test.jpg") repeat-y;
+
+        /*Using a <box> and <background-color>*/
+        background: border-box red;
+
+        /*A single image, centered and scaled*/
+        background: no-repeat center/80% url("../img/image.png");
+
+        /*Global values*/
+        background: inherit;
+        background: initial;
+        background: revert;
+        background: revert-layer;
+        background: unset;
+        ```
+
+        The `background` property is specified as one or more ^^background layers^^, separated by commas.
+
+        The syntax of each layer is as follows:
+
+        + Each layer may include zero or one occurrences of any of the following values:
+
+            + `<attachment>`
+            + `<bg-image>`
+            + `<position>`
+            + `<bg-size>`
+            + `<repeat-style>`
+
+        + The `<bg-size>` value may only be included immediately after` <position>`, separated with the `/` character, like this: `center/80%`.
+
+        + The `<box>` value may be included zero, one, or two times.<br>
+            If included **once**, it sets both `background-origin`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin)) and `background-clip`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip)).<br>
+            If it is included **twice**, the first occurrence sets `background-origin`, and the second sets `background-clip`.
+
+        + The `<background-color>` value may only be included in the last layer specified.
+
+    !!! note "Values"
+
+        `<attachment>` - See [:simple-mdnwebdocs: `background-attachment: scroll;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment).
+
+        `<box>` - See [:simple-mdnwebdocs: `background-clip: border-box;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip) and [:simple-mdnwebdocs: `background-origin: padding-box;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin).
+
+        `<background-color>` - See[ :simple-mdnwebdocs: `background-color: transparent;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-color).
+
+        `<bg-image>` - See [:simple-mdnwebdocs: `background-image: none;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image).
+
+        `<position>` - See [:simple-mdnwebdocs: `background-position: 0% 0%;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position).
+
+        `<repeat-style>` - See [:simple-mdnwebdocs: `background-repeat: repeat;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat).
+
+        `<bg-size>` - See [:simple-mdnwebdocs: `background-size: auto auto;`(init value)](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size).
 
 + `background-color: #444;` - set the backgroud color of an element(`#444` is a shorthand of `#444444`)
 
