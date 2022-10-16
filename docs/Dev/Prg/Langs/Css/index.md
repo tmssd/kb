@@ -137,11 +137,11 @@ CSS consist of countless *properties* that developer use to format the content: 
     }
     ```
 
-+ `:active` - select elements when mouse clicks them
++ `:active` - selects elements when mouse clicks them
 
     !!! warning "`:active` MUST come after `:hover` (if present) in the CSS definition in order to be effective!"
 
-+ `:hover` - select elements when mouse over them
++ `:hover` - selects elements when mouse over them
 
     !!! warning "`:hover` MUST come after `:link` and `:visited` (if they are present) in the CSS definition, in order to be effective!"
 
@@ -153,6 +153,16 @@ Anchor elements(`#!html <a>`) should always be selected with following pseudo-cl
 !!! tip "Anchors styling best practice"
 
     Always style the different anchor states specifying ^^all^^ the four states in **LHVA**(`:link` &rarr; `:visited` &rarr; `:hover` &rarr; `:active`) order!
+
++ `:not(<selector>)` - selects every element that is not a `<selector>` element
+
+    !!! example "Setting element's bottom margin everytime except when it is a last one."
+
+        ```css
+        .grid:not(:last-child) {
+            margin-bottom: 9.6rem;
+        }
+        ```
 
 #### Pseudo-elements
 
