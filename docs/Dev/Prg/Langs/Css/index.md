@@ -479,7 +479,7 @@ What seletors win out in the cascade depends on:
 
         `<integer>` - Is the stack level of the generated box in the current stacking context. The box also establishes a local stacking context. This means that the z-indexes of descendants are not compared to the z-indexes of elements outside this element.
 
-+ `overflow: <keyword>;` - sets the desired behavior for an element's overflow — i.e. when an element's content is too big to fit in its [:simple-mdnwebdocs: block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context) — in both directions; a *shorthand* for:<br>
++ `overflow: <keyword>;` - sets the desired behavior for a ^^parent^^ element's overflow — i.e. when its ^^child^^ elements' content is too big to fit in its [:simple-mdnwebdocs: block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context) — in both directions; a *shorthand* for:<br>
     `overflow-x`<br>
     `overflow-y`<br>
 
@@ -487,7 +487,6 @@ What seletors win out in the cascade depends on:
 
         ```css
         /* Keyword values */
-
         overflow: visible;
         overflow: hidden;
         overflow: clip;
@@ -512,6 +511,34 @@ What seletors win out in the cascade depends on:
         `scroll` - Content is clipped if necessary to fit the padding box. Browsers always display scrollbars whether or not any content is actually clipped, preventing scrollbars from appearing or disappearing as content changes. Printers may still print overflowing content.
 
         [:simple-mdnwebdocs: Other values](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#values)
+
+    !!! example "Setting the 45 degree rotated badge(child) over the card element(parent)."
+
+        ```css
+        /* parent(card) element */
+        .pricing-plan--complete {
+            background-color: #fdf2e9;
+            padding: 4.8rem;
+            position: relative;
+            overflow: hidden; /* hides the corners of the rectangle 'after' element */
+        }
+
+        /* child(badge) element */
+        .pricing-plan--complete::after {
+            content: "Best value";
+            position: absolute;
+            top: 6%;
+            right: -18%;
+
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            background-color: #ffd43b;
+            padding: 0.8rem 8rem;
+            transform: rotate(45deg);
+        }
+        ```
 
 + `transform: <transform-function>` - lets ^^rotate^^, ^^scale^^, ^^skew^^, or ^^translate^^ an element. It modifies the coordinate space of the CSS [:simple-mdnwebdocs: visual formatting model](https://developer.mozilla.org/en-US/docs/Web/CSS/Visual_formatting_model).
 
