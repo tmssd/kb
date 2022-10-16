@@ -972,7 +972,7 @@ Relative:
 
             `background-position` - sets the initial position for each background image. The position is relative to the position layer set by `background-origin`.
 
-            !!! "Syntax"
+            !!! note "Syntax"
 
                 ```css
                 /* Keyword values */
@@ -1007,7 +1007,7 @@ Relative:
                 background-position: unset;
                 ```
 
-            !!! "Value - [:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position#values)"
+            !!! note "Value - [:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position#values)"
 
                 `center` - is the frquently used value, which centers the image.
 
