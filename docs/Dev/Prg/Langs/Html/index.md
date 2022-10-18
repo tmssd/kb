@@ -145,3 +145,22 @@ Good for:
 + `#!html <strong>` - important(bold) text, same as deprecated `#!html <b>`<br>
 
 + `#!html <em>` - emphasized(italic) text, same as deprecated `#!html <i>`
+
+##### Embedded content
+
++ `#!html <picture>` - contains zero or more `<source />` elements and one `<img />` element to offer alternative versions of an image for different display/device scenarios.
+
+	!!! example "Using image with `.webp` file extension for suitable browsers and `.png` image for all ohther browsers as a fallback"
+
+		```html
+		<picture>
+			<source srcset="img/hero.webp" type="image/webp" />
+			<source srcset="img/hero-min.png" type="image/png" />
+
+			<img
+				src="img/hero-min.png"
+				class="hero-img"
+				alt="Woman enjoying food, meals in storage container, and food bowls on a table"
+			/>
+		</picture>
+		```
