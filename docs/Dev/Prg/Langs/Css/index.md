@@ -235,8 +235,8 @@ What seletors win out in the cascade depends on:
 
     !!! note "Selectors Specificity (steps 3-1)"
 
-        Official Docs: [CSS specificity](https://www.w3.org/TR/selectors-3/#specificity)<br>
-        Specificity Calculator: [https://specificity.keegan.st/](https://specificity.keegan.st)<br>
+        Official Docs: [CSS specificity](https://www.w3.org/TR/selectors-3/#specificity){target=_blank}<br>
+        Specificity Calculator: [https://specificity.keegan.st/](https://specificity.keegan.st){target=_blank}<br>
         When there are multiple **different** selectors ^^selecting the same element^^ that have ^^confilicting styles^^ then ^^all of them^^(all rules and properties) are applied! **BUT** only one wins out, i.e. gets active depending on its *specificity* value.
 
     &darr;
@@ -253,7 +253,7 @@ What seletors win out in the cascade depends on:
 
 !!! warning "Properties' browser support and vendor prefixes"
 
-    1. When using new(in a sense of timeline) CSS properties that may be not yet implemented in all browsers we must check their compatibility on this resoure: [caniuse.com](https://caniuse.com).
+    1. When using new(in a sense of timeline) CSS properties that may be not yet implemented in all browsers we must check their compatibility on this resoure: [caniuse.com](https://caniuse.com){target=_blank}.
 
     2. Some of the "newly presented" properties can be availabe in specific browser only using its *vendor prefix* by writing it in front of the property.<br>
 
@@ -1025,9 +1025,9 @@ Relative:
 
                 `none` - Is a keyword denoting the absence of images.
 
-                `<image>` - Is an `<image>` denoting the image to display. There can be several of them, separated by commas, as [:simple-mdnwebdocs: multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds) are supported.
+                `<image>` - Is an `<image>` denoting the image to display. There can be several of them, separated by commas, as [:simple-mdnwebdocs: multiple backgrounds](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Using_multiple_backgrounds){target=_blank} are supported.
 
-            !!! note "Image-related functions([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image#see_also))"
+            !!! note "Image-related functions([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-image#see_also){target=_blank})"
 
                 + `cross-fade()`
                 + `element()`
@@ -1040,9 +1040,9 @@ Relative:
 
                 !!! info ""
 
-                    [Using CSS gradients(:simple-mdnwebdocs:)](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients)
+                    [Using CSS gradients(:simple-mdnwebdocs:)](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients){target=_blank}
 
-                + `linear-gradient()` - creates an image consisting of a progressive transition between two or more colors along a straight line. Its result is an object of the `<gradient>` data type, which is a special kind of `<image>`. See more at [:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient)
+                + `linear-gradient()` - creates an image consisting of a progressive transition between two or more colors along a straight line. Its result is an object of the `<gradient>` data type, which is a special kind of `<image>`. See more at [:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient){target=_blank}
 
                     !!! note "Syntax"
 
@@ -1129,7 +1129,7 @@ Relative:
                 background-position: unset;
                 ```
 
-            !!! note "Value - [:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position#values)"
+            !!! note "Value - [:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position#values){target=_blank}"
 
                 `center` - is the frquently used value, which centers the image.
 
@@ -1187,7 +1187,7 @@ Relative:
 
                 `cover` - Scales the image (while preserving its ratio) to the smallest possible size to fill the container (that is: both its height and width completely cover the container), leaving no empty space. If the proportions of the background differ from the element, the image is cropped either vertically or horizontally.
 
-                `auto` - Scales the background image in the corresponding direction such that its [:simple-mdnwebdocs: intrinsic proportions](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size#intrinsic_dimensions_and_proportions) are maintained.
+                `auto` - Scales the background image in the corresponding direction such that its [:simple-mdnwebdocs: intrinsic proportions](https://developer.mozilla.org/en-US/docs/Web/CSS/background-size#intrinsic_dimensions_and_proportions){target=_blank} are maintained.
 
                 `<length>` - Stretches the image in the corresponding dimension to the specified length. Negative values are not allowed.
 
@@ -1315,7 +1315,7 @@ Relative:
 
         `none` - No filter is applied to the backdrop.
 
-        `<filter-function-list>` - A space-separated list of `<filter-function>`s([:simple-mdnwebdocs:)](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function) or an SVG filter([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter)) that will be applied to the backdrop.
+        `<filter-function-list>` - A space-separated list of `<filter-function>`s([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function)){target=_blank} or an SVG filter([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter){target=_blank}) that will be applied to the backdrop.
 
         The `<filter-function>` data type is specified using one of the filter functions listed below. Each function requires an argument which, if invalid, results in no filter being applied.
 
@@ -1628,7 +1628,7 @@ Without doing this it is quite hard to style the page.
 
     **Free fonts:**
 
-    + [Google Fonts](https://fonts.google.com/)
+    + [Google Fonts](https://fonts.google.com/){target=_blank}
 
     **Typeface frameworks:**
 
@@ -1671,12 +1671,12 @@ Typeface framework for font size (best to be placed at the top of the CSS file f
 
     **Color Schemes:**
 
-    + [Open-color](https://yeun.github.io/open-color)
-    + [Coolors](https://coolors.co/)
+    + [Open-color](https://yeun.github.io/open-color){target=_blank}
+    + [Coolors](https://coolors.co/){target=_blank}
 
     **Contrast checkers:**
 
-    + [Coolors](https://coolors.co/contrast-checker/112a46-acc8e5)
+    + [Coolors](https://coolors.co/contrast-checker/112a46-acc8e5){target=_blank}
 
 Color system may be placed at the top of the CSS file for reference, e.g.:
 
@@ -1695,7 +1695,7 @@ GREY COLOR: #343a40
 
     **Icon Packs:**
 
-    + [Heroicons](https://heroicons.com/)
+    + [Heroicons](https://heroicons.com/){target=_blank}
 
 ### Rule #5: Shadows
 
@@ -2691,17 +2691,17 @@ Responsive Design Ingredients:
 
 ### CSS Tricks
 
-+ [Using @font-face](https://css-tricks.com/snippets/css/using-font-face/)
++ [Using @font-face](https://css-tricks.com/snippets/css/using-font-face/){target=_blank}
 
 ### Code snippets
 
-+ [Converting Color Spaces in JavaScript](https://css-tricks.com/converting-color-spaces-in-javascript/)
-+ [Stackoverflow: Javascript function to convert color names to hex codes](https://stackoverflow.com/questions/1573053/javascript-function-to-convert-color-names-to-hex-codes)
++ [Converting Color Spaces in JavaScript](https://css-tricks.com/converting-color-spaces-in-javascript/){target=_blank}
++ [Stackoverflow: Javascript function to convert color names to hex codes](https://stackoverflow.com/questions/1573053/javascript-function-to-convert-color-names-to-hex-codes){target=_blank}
 
 ### Fonts
 
-+ [CUFON Fonts](https://www.cufonfonts.com/)
++ [CUFON Fonts](https://www.cufonfonts.com/){target=_blank}
 
 ## SCSS
 
-[What is SCSS?](https://stackoverflow.com/questions/46400443/what-is-the-difference-between-css-and-scss)
+[What is SCSS?](https://stackoverflow.com/questions/46400443/what-is-the-difference-between-css-and-scss){target=_blank}
