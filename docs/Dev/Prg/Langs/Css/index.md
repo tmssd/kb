@@ -2,9 +2,9 @@
 
 !!! info ""
 
-    + [CSS Tricks](https://css-tricks.com/almanac/)
-    + [Learn CSS](https://web.dev/learn/css/)
-    + [Шпаргалка по CSS](https://www.exlab.net/tools/sheets/css.html)
+    + [CSS Tricks](https://css-tricks.com/almanac/){target=_blank}
+    + [Learn CSS](https://web.dev/learn/css/){target=_blank}
+    + [Шпаргалка по CSS](https://www.exlab.net/tools/sheets/css.html){target=_blank}
 
     ![css(rus)](css(rus).png){: .zoom}
 
@@ -61,7 +61,7 @@ CSS consist of countless *properties* that developer use to format the content: 
 
 !!! info ""
 
-    [CSS selectors full list (W3S)](https://www.w3schools.com/cssref/css_selectors.asp)
+    [CSS selectors full list (W3S)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank}
 
 #### Element selectors
 
@@ -410,7 +410,7 @@ What seletors win out in the cascade depends on:
 
         `<length>` - The size of the padding as a fixed value. Must be nonnegative.
 
-        `<percentage>` - The size of the padding as a percentage, relative to the inline size (`width` in a horizontal language, defined by [:simple-mdnwebdocs: writing-mode - property that sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode)) of the *containing block*(most often it is the *content area* of an element's nearest block-level ancestor, but this is not always the case(see [:simple-mdnwebdocs: Identifying the containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block))). Must be nonnegative.
+        `<percentage>` - The size of the padding as a percentage, relative to the inline size (`width` in a horizontal language, defined by [:simple-mdnwebdocs: writing-mode - property that sets whether lines of text are laid out horizontally or vertically, as well as the direction in which blocks progress](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode){target=_blank}) of the *containing block*(most often it is the *content area* of an element's nearest block-level ancestor, but this is not always the case(see [:simple-mdnwebdocs: Identifying the containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block){target=_blank})). Must be nonnegative.
 
     !!! tip "Usage"
 
@@ -504,7 +504,7 @@ What seletors win out in the cascade depends on:
 
         `<integer>` - Is the stack level of the generated box in the current stacking context. The box also establishes a local stacking context. This means that the z-indexes of descendants are not compared to the z-indexes of elements outside this element.
 
-+ `overflow: <keyword>;` - sets the desired behavior for a ^^parent^^ element's overflow — i.e. when its ^^child^^ elements' content is too big to fit in its [:simple-mdnwebdocs: block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context) — in both directions; a *shorthand* for:<br>
++ `overflow: <keyword>;` - sets the desired behavior for a ^^parent^^ element's overflow — i.e. when its ^^child^^ elements' content is too big to fit in its [:simple-mdnwebdocs: block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context){target=_blank} — in both directions; a *shorthand* for:<br>
     `overflow-x`<br>
     `overflow-y`<br>
 
@@ -531,11 +531,11 @@ What seletors win out in the cascade depends on:
 
         `visible` - Content is not clipped and may be rendered outside the padding box.
 
-        `hidden` - Content is clipped if necessary to fit the padding box. No scrollbars are provided, and no support for allowing the user to scroll (such as by dragging or using a scroll wheel) is allowed. The content can be scrolled programmatically (for example, by setting the value of a property such as [:simple-mdnwebdocs: scrollLeft](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft) or the [:simple-mdnwebdocs: scrollTo()](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) method), so the element is still a scroll container.
+        `hidden` - Content is clipped if necessary to fit the padding box. No scrollbars are provided, and no support for allowing the user to scroll (such as by dragging or using a scroll wheel) is allowed. The content can be scrolled programmatically (for example, by setting the value of a property such as [:simple-mdnwebdocs: scrollLeft](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollLeft){target=_blank} or the [:simple-mdnwebdocs: scrollTo()](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo){target=_blank} method), so the element is still a scroll container.
 
         `scroll` - Content is clipped if necessary to fit the padding box. Browsers always display scrollbars whether or not any content is actually clipped, preventing scrollbars from appearing or disappearing as content changes. Printers may still print overflowing content.
 
-        [:simple-mdnwebdocs: Other values](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#values)
+        [:simple-mdnwebdocs: Other values](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#values){target=_blank}
 
     !!! example "Setting the 45 degree rotated badge(child) over the card element(parent)."
 
@@ -565,13 +565,13 @@ What seletors win out in the cascade depends on:
         }
         ```
 
-+ `transform: <transform-function>` - lets ^^rotate^^, ^^scale^^, ^^skew^^, or ^^translate^^ an element. It modifies the coordinate space of the CSS [:simple-mdnwebdocs: visual formatting model](https://developer.mozilla.org/en-US/docs/Web/CSS/Visual_formatting_model).
++ `transform: <transform-function>` - lets ^^rotate^^, ^^scale^^, ^^skew^^, or ^^translate^^ an element. It modifies the coordinate space of the CSS [:simple-mdnwebdocs: visual formatting model](https://developer.mozilla.org/en-US/docs/Web/CSS/Visual_formatting_model){target=_blank}.
 
-    If the property has a value different than `none`, a [:simple-mdnwebdocs: stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context) will be created. In that case, the element will act as a *containing block* for any `position: fixed;` or `position: absolute;` elements that it contains.
+    If the property has a value different than `none`, a [:simple-mdnwebdocs: stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context){target=_blank} will be created. In that case, the element will act as a *containing block* for any `position: fixed;` or `position: absolute;` elements that it contains.
 
     !!! warning "Only transformable elements can be `transform`ed."
 
-        That is, all elements whose layout is governed by the CSS box model except for: *non-replaced inline boxes*, [:simple-mdnwebdocs: *table-column boxes*](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col), and [:simple-mdnwebdocs: *table-column-group boxes*](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup).
+        That is, all elements whose layout is governed by the CSS box model except for: *non-replaced inline boxes*, [:simple-mdnwebdocs: *table-column boxes*](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col){target=_blank}, and [:simple-mdnwebdocs: *table-column-group boxes*](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup){target=_blank}.
 
     !!! note "Syntax"
 
@@ -626,17 +626,17 @@ What seletors win out in the cascade depends on:
 
         6 categories of *transform functions*(click on links below to see all possible functions for each category):
 
-        1. [:simple-mdnwebdocs: Matrix transformation](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#matrix_transformation)
+        1. [:simple-mdnwebdocs: Matrix transformation](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#matrix_transformation){target=_blank}
 
-        2. [:simple-mdnwebdocs: Perspective](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#perspective)
+        2. [:simple-mdnwebdocs: Perspective](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#perspective){target=_blank}
 
-        3. [:simple-mdnwebdocs: Rotation](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#rotation)
+        3. [:simple-mdnwebdocs: Rotation](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#rotation){target=_blank}
 
-        4. [:simple-mdnwebdocs: Scaling (resizing)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#scaling_resizing)
+        4. [:simple-mdnwebdocs: Scaling (resizing)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#scaling_resizing){target=_blank}
 
-        5. [:simple-mdnwebdocs: Skewing (distortion)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#skewing_distortion)
+        5. [:simple-mdnwebdocs: Skewing (distortion)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#skewing_distortion){target=_blank}
 
-        6. [:simple-mdnwebdocs: Translation (moving)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#translation_moving)
+        6. [:simple-mdnwebdocs: Translation (moving)](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#translation_moving){target=_blank}
 
             + `translate(<length-percentage>, <length-percentage>?)` - Translates an element on the 2D plane, i.e. repositions an element in the horizontal and/or vertical directions.
 
@@ -657,10 +657,10 @@ What seletors win out in the cascade depends on:
                 !!! note "Values"
 
                     Single `<length-percentage>` values - a `<length>` or `<percentage>` representing the abscissa (horizontal, x-coordinate) of the translating vector. The ordinate (vertical, y-coordinate) of the translating vector will be set to `0`.<br>
-                    A percentage value refers to the width of the reference box defined by the `transform-box`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-box)) property.
+                    A percentage value refers to the width of the reference box defined by the `transform-box`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-box){target=_blank}) property.
 
                     Double `<length-percentage>` values - describes two `<length>` or `<percentage>` values representing both the abscissa (x-coordinate) and the ordinate (y-coordinate) of the translating vector.<br>
-                    A percentage as first value refers to the width, as second part to the height of the reference box defined by the `transform-box`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-box)) property.
+                    A percentage as first value refers to the width, as second part to the height of the reference box defined by the `transform-box`([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-box){target=_blank}) property.
 
                 !!! tip "Place ^^absolute-positioned^^ child element in the middle of its parent element"
 
@@ -683,10 +683,10 @@ What seletors win out in the cascade depends on:
                     ```
 
 + `transition: all 0s ease 0s;`(initial values) - enable you to define the transition between two states of an element; a *shorthand* for:<br>
-  `transition-property` - sets the CSS properties to which a [:simple-mdnwebdocs: *transition effect*](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions) should be applied([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property)).<br>
-  `transition-duration` - sets the length of time a transition animation should take to complete. By default, the value is `0s`, meaning that no animation will occur([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration)).<br>
-  `transition-timing-function` - sets how intermediate values are calculated for CSS properties being affected by a *transition effect*([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function)).<br>
-  `transition-delay` - specifies the duration to wait before starting a property's *transition effect* when its value changes([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay)).
+  `transition-property` - sets the CSS properties to which a [:simple-mdnwebdocs: *transition effect*](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions){target=_blank} should be applied([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property){target=_blank}).<br>
+  `transition-duration` - sets the length of time a transition animation should take to complete. By default, the value is `0s`, meaning that no animation will occur([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration){target=_blank}).<br>
+  `transition-timing-function` - sets how intermediate values are calculated for CSS properties being affected by a *transition effect*([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function){target=_blank}).<br>
+  `transition-delay` - specifies the duration to wait before starting a property's *transition effect* when its value changes([:simple-mdnwebdocs: see more](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay){target=_blank}).
 
     Transitions enable you to define the transition between two states of an element. Different states may be defined using pseudo-classes like `:hover` or `:active` or dynamically set using JavaScript.
 
@@ -784,7 +784,7 @@ What seletors win out in the cascade depends on:
 
     !!! note "Values"
 
-        `auto` - [:simple-mdnwebdocs: Replaced elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element) with an intrinsic aspect ratio use that aspect ratio, otherwise the box has no preferred aspect ratio. Size calculations involving intrinsic aspect ratio always work with the *content box* dimensions.
+        `auto` - [:simple-mdnwebdocs: Replaced elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element){target=_blank} with an intrinsic aspect ratio use that aspect ratio, otherwise the box has no preferred aspect ratio. Size calculations involving intrinsic aspect ratio always work with the *content box* dimensions.
 
         `<ratio>` - The box's preferred aspect ratio is the specified ratio of `width / height`. If `height` and the preceding slash character are omitted, `height` defaults to `1`. Size calculations involving preferred aspect ratio work with the dimensions of the box specified by `box-sizing`.
 
@@ -796,7 +796,7 @@ Relative:
 
     !!! note "Calculating percentage values from the containing block"
 
-        When *box model properties* and *offset properties* are given a ^^percentage value^^, the computed value depends on the element's *containing block*(most often it is the *content area* of an element's nearest block-level ancestor, but this is not always the case(see [:simple-mdnwebdocs: Identifying the containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block)):
+        When *box model properties* and *offset properties* are given a ^^percentage value^^, the computed value depends on the element's *containing block*(most often it is the *content area* of an element's nearest block-level ancestor, but this is not always the case(see [:simple-mdnwebdocs: Identifying the containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block){target=_blank}):
 
         1. The `height`, `top`, and `bottom` properties compute percentage values from the `height` of the *containing block*.
         2. The `width`, `left`, `right`, `padding`, and `margin` properties compute percentage values from the `width` of the *containing block*.
