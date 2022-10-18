@@ -1315,7 +1315,7 @@ Relative:
 
         `none` - No filter is applied to the backdrop.
 
-        `<filter-function-list>` - A space-separated list of `<filter-function>`s([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function)){target=_blank} or an SVG filter([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter){target=_blank}) that will be applied to the backdrop.
+        `<filter-function-list>` - A space-separated list of `<filter-function>`s([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function){target=_blank}) or an SVG filter([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter){target=_blank}) that will be applied to the backdrop.
 
         The `<filter-function>` data type is specified using one of the filter functions listed below. Each function requires an argument which, if invalid, results in no filter being applied.
 
