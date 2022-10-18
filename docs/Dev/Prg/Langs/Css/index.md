@@ -249,14 +249,29 @@ What seletors win out in the cascade depends on:
 
     + When there are multiple **same** selectors ^^selecting the same element^^ that have ^^confilicting styles^^ then ^^the last of them^^ gets applied!
 
-    ```css
-    -moz-     /* Firefox and other browsers using Mozilla's browser engine */
-    -webkit-  /* Safari, Chrome and browsers using the Webkit engine */
-    -o-       /* Opera */
-    -ms-      /* Internet Explorer (but not always) */
-    ```
-
 ### Properties (the most used ones)
+
+!!! warning "Properties' browser support and vendor prefixes"
+
+    1. When using new(in a sense of timeline) CSS properties that may be not yet implemented in all browsers we must check their compatibility on this resoure: [caniuse.com](https://caniuse.com).
+
+    2. Some of the "newly presented" properties can be availabe in specific browser only using its *vendor prefix* by writing it in front of the property.<br>
+
+        List of nowadays used *vendor prefixes* for modern browsers:
+
+        + `-webkit-` - Chrome, Safari, Opera, Edge and browsers using the Webkit engine
+        + `-moz-` - Firefox and other browsers using Mozilla's browser engine
+        + `-o-`(deprecated) - Opera
+        + `-ms-` - Internet Explorer(but not always)
+
+        ```css
+        /* to support specific browser write its vendor prefix in from of desired property */
+        .main-nav {
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* to support safari browser */
+        }
+        ```
 
 #### Text
 
