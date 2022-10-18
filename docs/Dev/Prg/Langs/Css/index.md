@@ -197,14 +197,14 @@ What seletors win out in the cascade depends on:
 
 1. Resolving conflicting declarations(styles) steps ordered by priority from **5-highest** to **0-lowest**:
 
-    !!! Quote ""
+    !!! quote ""
 
         **5** - Importance (styles marked with `#!css !important`)<br>
         a `!` delimiter followed by the `important` *keyword* marks the style more important than ^^all^^ the other ones, e.g. `#!css p { color: green !important; }`
 
     &darr;
 
-    !!! Quote ""
+    !!! quote ""
 
         **4** - Inline style(`style` attribute in HTML)
 
@@ -217,19 +217,19 @@ What seletors win out in the cascade depends on:
 
     &darr;
 
-    !!! Quote ""
+    !!! quote ""
 
         **3** - ID (`#`) selector
 
     &darr;
 
-    !!! Quote ""
+    !!! quote ""
 
         **2** - Class (`.`) or pseudo-class (`:`) selector
 
     &darr;
 
-    !!! Quote ""
+    !!! quote ""
 
         **1** - Element Selector (`p` , `div`, `li`, etc.)
 
@@ -241,7 +241,7 @@ What seletors win out in the cascade depends on:
 
     &darr;
 
-    !!! Quote ""
+    !!! quote ""
 
         **0** - Universal Selector (`*`)
 
@@ -1262,11 +1262,103 @@ Relative:
         }
         ```
 
++ `backdrop-filter: none;` - lets you apply graphical effects such as blurring or color shifting to the area behind an element. Because it applies to everything behind the element, to see the effect you must make the element or its background at least partially transparent.
+
+    !!! note "Syntax"
+
+        ```css
+        /* Keyword value */
+        backdrop-filter: none;
+
+        /*URL to SVG filter*/
+        backdrop-filter: url(commonfilters.svg#filter);
+
+        /*<filter-function> values*/
+        backdrop-filter: blur(2px);
+        backdrop-filter: brightness(60%);
+        backdrop-filter: contrast(40%);
+        backdrop-filter: drop-shadow(4px 4px 10px blue);
+        backdrop-filter: grayscale(30%);
+        backdrop-filter: hue-rotate(120deg);
+        backdrop-filter: invert(70%);
+        backdrop-filter: opacity(20%);
+        backdrop-filter: sepia(90%);
+        backdrop-filter: saturate(80%);
+
+        /*Multiple filters*/
+        backdrop-filter: url(filters.svg#filter) blur(4px) saturate(150%);
+
+        /*Global values*/
+        backdrop-filter: inherit;
+        backdrop-filter: initial;
+        backdrop-filter: revert;
+        backdrop-filter: revert-layer;
+        backdrop-filter: unset;
+        ```
+
+    !!! note "Values"
+
+        `none` - No filter is applied to the backdrop.
+
+        `<filter-function-list>` - A space-separated list of `<filter-function>`s([:simple-mdnwebdocs:)](https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function) or an SVG filter([:simple-mdnwebdocs:](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter)) that will be applied to the backdrop.
+
+        The `<filter-function>` data type is specified using one of the filter functions listed below. Each function requires an argument which, if invalid, results in no filter being applied.
+
+        + `blur()` - Blurs the image.
+
+            ```css
+            .main-nav {
+                background-color: rgba(255, 255, 255, 0.75);
+                backdrop-filter: blur(10px);
+            }
+            ```
+
+        + `brightness()` - Makes the image brighter or darker.
+        + `contrast()` - Increases or decreases the image's contrast.
+        + `drop-shadow()` - Applies a drop shadow behind the image.
+        + `grayscale()` - Converts the image to grayscale.
+        + `hue-rotate()` - Changes the overall hue of the image.
+        + `invert()` - Inverts the colors of the image.
+        + `opacity()` - Makes the image transparent.
+        + `saturate()` - Super-saturates or desaturates the input image.
+        + `sepia()` - Converts the image to sepia.
+
+
 #### Other
 
 + `cursor: pointer;` - sets the cursor shape
 
 + `list-style: none;` - sets the bullet point for the list elements(`<li>`s inside the `<ul>` or `<ol>`)
+
++ `scroll-behavior: auto;` - sets the behavior for a scrolling box when scrolling is triggered by the navigation or CSSOM scrolling APIs.
+
+    !!! warning "Note that:"
+
+        + any other scrolls, such as those performed by the user, are not affected by this property
+        + when this property is specified on the root element, it applies to the viewport instead
+        + this property specified on the body element will not propagate to the viewport
+        + user agents are allowed to ignore this property
+
+    !!! note "Syntax"
+
+        ```css
+        /* Keyword values */
+        scroll-behavior: auto;
+        scroll-behavior: smooth;
+
+        /*Global values*/
+        scroll-behavior: inherit;
+        scroll-behavior: initial;
+        scroll-behavior: revert;
+        scroll-behavior: revert-layer;
+        scroll-behavior: unset;
+        ```
+
+    !!! note "Values"
+
+        `auto` - The scrolling box scrolls instantly.
+
+        `smooth` - The scrolling box scrolls in a smooth fashion using a user-agent-defined timing function over a user-agent-defined period of time. User agents should follow platform conventions, if any.
 
 ### Layouts
 
@@ -1490,6 +1582,10 @@ Before adding `marging`s,`padding`s and other properties to elements on the page
 /* Percentage of user's browser font-size setting! */
 html {
     font-size: 62.5%; /* 10px / 16px = 0.625 = 62.5%  */
+    /* disabling page sidewise scrolling,
+    useful to hide elements triggered by event, e.g. 'mobile navigation' */
+    overflow-x: hidden;
+    scroll-behavior: smooth; /* sets the viewport to scroll in a smooth fashion */
 }
 
 body {
