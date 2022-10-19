@@ -8,6 +8,67 @@ Reference: [W3S](https://www.w3schools.com/html/), [MDN](https://developer.mozil
 
 #### Common tags
 
+`#!html <head>` - contains machine-readable information (metadata) about the document, like its title(`#!html <title>`), scripts(`#!html <script>`), and style sheets(`#!html <style>`)
+
+`#!html <meta>` - represents Metadata that cannot be represented by other HTML meta-related elements, like `#!html <base>`, `#!html <link />`, `#!html <script>`, `#!html <style>` or `#!html <title>`
+
+`#!html <link />` - specifies relationships between the current document and an external resource. This element is most commonly used to link to CSS, but is also used to establish site icons (both "favicon" style icons and icons for the home screen and apps on mobile devices) among other things.
+
+`#!html <title>` - defines the document's title that is shown in a Browser's title bar or a page's tab. It only contains text; tags within the element are ignored.
+
+`#!html <style>` - contains style information for a document, or part of a document. It contains CSS, which is applied to the contents of the document containing the `#!html <style>` element. But usually we specify stlyles in stanalone files and then connect them to the document using `#!html <link />` tag.
+
+`#!html <body>` - represents the content of an HTML document. There can be only one `#!html <body>` element in a document.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- This line is MUST HAVE in order the resposive design to work!!! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Description of the site. MUST HAVE for SEO! -->
+    <meta
+      name="description"
+      content="Omnifood is an AI-powered food subscription that will make you eat healthy again, 365 days per year. It's tailored to your personal tastes and nutritional needs."
+    />
+
+    <link rel="icon" href="img/favicon.png" />
+
+    <!-- Enabling ability to set site's shortcut on phone screen  -->
+    <!-- iPhone -->
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <!-- Android -->
+    <link rel="manifest" href="manifest.webmanifest" />
+
+    <!-- Connecting google fonts to the document -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Connecting styles to the document -->
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/queries.css" />
+
+    <!-- Setting document's title -->
+    <title>Omnifood &mdash; Never cook again!</title>
+  </head>
+
+  <body>
+		.
+		.
+		.
+	  </body>
+</html>
+```
+
 `#!html <h1>`...`#!html <h6>` - headings, ^^as a good practice:^^ each and every page should only have one `#!html <h1>` heading, i.e. only one primary heading
 
 `#!html <br>` - break<br>
