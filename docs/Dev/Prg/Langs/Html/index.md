@@ -39,9 +39,9 @@ Reference: [W3S](https://www.w3schools.com/html/), [MDN](https://developer.mozil
     <link rel="icon" href="img/favicon.png" />
 
     <!-- Enabling ability to set site's shortcut on phone screen  -->
-    <!-- iPhone -->
+    <!-- iPhone(image dimensions should be 192x192 px) -->
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
-    <!-- Android -->
+    <!-- Android(2 images shold be used: 192x192 px and 512x512 px) -->
     <link rel="manifest" href="manifest.webmanifest" />
 
     <!-- Connecting google fonts to the document -->
@@ -67,6 +67,23 @@ Reference: [W3S](https://www.w3schools.com/html/), [MDN](https://developer.mozil
 		.
 	  </body>
 </html>
+```
+
+```json title="manifest.webmanifest"
+{
+  "icons": [
+    {
+      "src": "img/favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "img/favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
 ```
 
 `#!html <h1>`...`#!html <h6>` - headings, ^^as a good practice:^^ each and every page should only have one `#!html <h1>` heading, i.e. only one primary heading
