@@ -2590,6 +2590,28 @@ callback()
     .finally(() => console.log('extra'))
     ```
 
+    ***.any()***
+
+    `.any()` resolves if any of the supplied promises is resolved. When none of the promises resolve then error is thrown.
+
+    ```js
+    const p1 = new Promise((resolve, reject) => {
+      setTimeout(() => resolve("A"), Math.floor(Math.random() * 1000));
+    });
+    const p2 = new Promise((resolve, reject) => {
+      setTimeout(() => resolve("B"), Math.floor(Math.random() * 1000));
+    });
+    const p3 = new Promise((resolve, reject) => {
+      setTimeout(() => resolve("C"), Math.floor(Math.random() * 1000));
+    });
+
+    // Out of p1, p2 and p3, whichever resolves first is taken by `.any()`
+    (async function () {
+      const result = await Promise.any([p1, p2, p3]);
+      console.log(result); // Prints "A", "B" or "C"
+    })();
+    ```
+
 + **Promise usage - Static methods:**
 
     **Promise.resolve**
