@@ -498,7 +498,6 @@ So when we copy a variable into another variable - we copy the value and then cr
                     whatHappens = "please enter a valid direction";
             }
             return whatHappens;
-                weight: 6,
         }
         ```
 
@@ -628,6 +627,7 @@ So when we copy a variable into another variable - we copy the value and then cr
         console.log('while', counterOne);
         counterOne++;
     }
+    // undefined
 
     let counterTwo = 10;
     do {
@@ -635,6 +635,7 @@ So when we copy a variable into another variable - we copy the value and then cr
         counterTwo++;
     } while (counterTwo < 10);
     // do while 10
+
     /* we see that 'do while' ran while 'while' never did
     because of condition position in each loop */
     ```
@@ -801,7 +802,7 @@ So when we copy a variable into another variable - we copy the value and then cr
       function Multiply(a,b)
       {
           // debugger;
-      var sum = a*b;
+          var sum = a*b;
           return sum
       }
 
@@ -851,7 +852,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     const add = (a, b) => a + b;
     ```
 
-### IFFE
+### IIFE
 
 + reference: [Medium](https://vvkchandra.medium.com/essential-javascript-mastering-immediately-invoked-function-expressions-67791338ddc6)
 
@@ -932,10 +933,10 @@ So when we copy a variable into another variable - we copy the value and then cr
     const multiplyBy5  = curriedMultiply(5);
     multiplyBy5(11); //55
 
-    const area = length => width => height => length * width * height;
-    area(5); // width => height => length * width * height
-    area(5)(4); // height => length * width * height
-    area(5)(4)(3); // 60
+    const volume = length => width => height => length * width * height;
+    volume(5); // width => height => length * width * height
+    volume(5)(4); // height => length * width * height
+    volume(5)(4)(3); // 60
     ```
 
 ### Compose
@@ -1083,7 +1084,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     **`push()`** : *Adds new elements to the end of an array, and returns the new length*
 
     ```js
-    let newLength = fruits.push('Orange')
+    let newLength = fruits.push('Orange') // add to the end, 'newLength' value is 3
     // ["Apple", "Banana", "Orange"]
 
     ```
@@ -1093,7 +1094,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     **`pop()`** : *Removes the last element of an array, and returns that element*
 
     ```js
-    let last = fruits.pop() // remove Orange (from the end)
+    let last = fruits.pop() // remove Orange from the end and return it so 'last' value is 'Orange'
     // ["Apple", "Banana"]
     ```
 
@@ -1102,7 +1103,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     **`shift()`** :	*Removes the first element of an array, and returns that element*
 
     ```js
-    let first = fruits.shift() // remove Apple from the front
+    let first = fruits.shift() // remove Apple from the front and return it so 'first' value is 'Apple'
     // ["Banana"]
     ```
 
@@ -1111,7 +1112,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     **`unshift()`** : *Adds new elements to the beginning of an array, and returns the new length*
 
     ```js
-    let newLength = fruits.unshift('Strawberry') // add to the front
+    let newLength = fruits.unshift('Strawberry') // add to the front, 'newLength' value is 2
     // ["Strawberry", "Banana"]
     ```
 
@@ -1582,7 +1583,7 @@ So when we copy a variable into another variable - we copy the value and then cr
        username2 Mr. Grinch */
     ```
 
-+ `Object.values()`: returns an **array** of a given object's own enumerable property values, in the same order as that provided by a `for...in` loop. (The only difference is that a `for...in` loop enumerates properties in the prototype chain as well.) The ordering of the properties is the same as that given by looping over the property values of the object manually.
++ `Object.values()`: returns an **array** of a given object's own enumerable property **values**, in the same order as that provided by a `for...in` loop. (The only difference is that a `for...in` loop enumerates properties in the prototype chain as well.) The ordering of the properties is the same as that given by looping over the property values of the object manually.
 
     ```js
     const object1 = {
@@ -1609,17 +1610,15 @@ So when we copy a variable into another variable - we copy the value and then cr
     };
 
     console.log(Object.entries(object1));
-    // ["a", "somestring"]
-    // ["b", 42]
+    // [["a", "somestring"], ["b", 42]]
 
     for (const [key, value] of Object.entries(object1)) {
     console.log(`${key}: ${value}`);
     }
 
-    // expected output:
+    // expected output(order is not guaranteed!):
     // "a: somestring"
     // "b: 42"
-    // order is not guaranteed
     ```
 
     Usage Example:
@@ -1654,42 +1653,42 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + **Shallow Clone**
 
-*Shallow* means that only the actual object gets copied. If the copied object contains nested objects — these nested objects ^^aren't get cloned^^.
+    *Shallow* means that only the actual object gets copied. If the copied object contains nested objects — these nested objects ^^aren't get cloned^^.
 
-    !!! info ""
+        !!! info ""
 
-        reference: [3 Ways to Shallow Clone Objects in JavaScript (w/ bonuses)](https://dmitripavlutin.com/javascript-shallow-clone-objects/)
+            reference: [3 Ways to Shallow Clone Objects in JavaScript (w/ bonuses)](https://dmitripavlutin.com/javascript-shallow-clone-objects/)
 
-    + Using `#!js Object.assign`
+        + Using `#!js Object.assign`
 
-        `Object.assign(param1,param2)`: clones the elements of an object param2 in an object param1.
+            `Object.assign(param1,param2)`: clones the elements of an object param2 in an object param1.
 
-        ```js
-        const obj = {a: 'a', b: 'b', c: 'c'};
-        const clone = Object.assign({}, obj);
-        ```
+            ```js
+            const obj = {a: 'a', b: 'b', c: 'c'};
+            const clone = Object.assign({}, obj);
+            ```
 
-    + Using *SPREAD* Operator
+        + Using *SPREAD* Operator
 
-        `...`: allows iterables( arrays / objects / strings ) to be expanded into single arguments/elements.
+            `...`: allows iterables( arrays / objects / strings ) to be expanded into single arguments/elements.
 
-        ```js
-        const obj = {a: 'a', b: 'b', c: 'c'};
-        const clone = {...obj};
-        ```
+            ```js
+            const obj = {a: 'a', b: 'b', c: 'c'};
+            const clone = {...obj};
+            ```
 
-    + Using *REST* Parameter
+        + Using *REST* Parameter
 
-        `...`: collects all remaining elements into an array.
+            `...`: collects all remaining elements into an array.
 
-        ```js
-        const obj = {a: 'a', b: 'b', c: 'c'};
-        const { ...clone } = obj;
-        ```
+            ```js
+            const obj = {a: 'a', b: 'b', c: 'c'};
+            const { ...clone } = obj;
+            ```
 
-        !!! note
+            !!! note
 
-            **Rest/Spread Operator:** The **rest** operator which is the same as the **spread** operator is a powerful syntactic sugar. Combined with object destructuring it means, *I don't care about the other property names. Just push everything else into a variable which is called rest which has all other properties*.
+                **Rest/Spread Operator:** The **rest** operator which is the same as the **spread** operator is a powerful syntactic sugar. Combined with object destructuring it means, *I don't care about the other property names. Just push everything else into a variable which is called rest which has all other properties*.
 
 + **Deep Clone**
 
