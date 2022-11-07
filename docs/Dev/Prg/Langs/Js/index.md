@@ -2013,8 +2013,6 @@ return true;
 
 + **Child Scope**
 
-    + **?** When we declare varibale in *child scope* with the same name as existing *parent scope* variable, we won't have access to the *parent scope* variable inside *child scope* anymore and this is called **naming conflict**.
-
     + **Function-level** scope
 
         !!! note
@@ -2063,16 +2061,21 @@ return true;
             console.log(b); // hello
             ```
 
+        + When we declare varibale(using `var`, `const` or `let`) in *child scope* with the same name as existing *parent scope* variable, we won't have access to the *parent scope* variable inside *child scope* anymore and this is called **naming conflict**.
+
             ```js
-            // Root Scope (window)
+            // Root Scope(window):
             var fun = 5;
 
             function funFunction() {
-                //Child Scope
+                //Child Scope:
                 var fun = 'hellooo';
                 console.log(fun);
             }
+
+            // Naming conflict:
             funFunction(); // hellooo
+            console.log(fun); // 5
             ```
 
     + **Block-level scope**
