@@ -1740,8 +1740,8 @@ So when we copy a variable into another variable - we copy the value and then cr
     let wizardLevel = obj.wizardLevel;
 
     // accessing properties using distructuring:
-    const {player, experience, age: playerAge = 30} = obj; // age:undefined --> playerAge: 30 (here property name changed + default value assigned(it is possible only when object property value is `undefined`))
-    let {wizardLevel} = obj;
+    const { player, experience, age: playerAge = 30 } = obj; // age:undefined --> playerAge: 30 (here property name changed + default value assigned(it is possible only when object property value is `undefined`))
+    let { wizardLevel } = obj;
     ```
 
 #### Dynamic property names
@@ -1768,7 +1768,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
 + When 'property name' = 'value' we can use following syntax:
 
-    **`property: value as a beforehand declared variable name that matches the property name`**
+    **`object { property name that is the value of the beforehand declared variable name that matches it }`**
 
     ```js
     const a = "Simon";
@@ -1854,7 +1854,7 @@ If the function “bar” were executed in the global scope, then `this` refers 
 
     *super()* -  is a javscript function which gets used with the class pattern. That means, calling `super()` inside of the constructor with no arguments will just initialize the class and if you have arguments in the super function, you can use these arguments also in the constructor itself.
 
-+ **Create Class Object syntax:**
++ **Create Object from the Class syntax:**
 
     ```js
     new Classname(param1,param2)
@@ -1866,7 +1866,7 @@ If the function “bar” were executed in the global scope, then `this` refers 
     class Player {
         // a class must have a constructor
         constructor(name, type) {
-            console.log(this);  // Wizard {} - this will be result of `new Wizard` wich in turn calls Player constructor.
+            console.log(this, "from the Player class");  // Wizard {} - this will be result of `new Wizard` wich in turn calls Player constructor.
             this.name = name;
             this.type = type;
         }
@@ -1883,7 +1883,7 @@ If the function “bar” were executed in the global scope, then `this` refers 
             the parent class so we can work with the properties of the parent class */
             super(name, type);
             this.spell = spell;
-            console.log(this);  // Wizard {name: "Shelly", type: "Healer", spell: "Healing"} - this will be result of `new Wizard`. Can only call this after `super`.
+            console.log(this, "from the Wizard class");  // Wizard {name: "Shelly", type: "Healer", spell: "Healing"} - this will be result of `new Wizard`. Can only call this after `super`.
         }
         play() {
             console.log(`WEEEEEEE I'm a ${this.type}, and my spell is: ${this.spell}.`);
@@ -2004,12 +2004,12 @@ return true;
 
 + **Root Scope** is the *window object* and this is the **default scope** in which is our code.
 
-  ```js
-  function aa() {
-      console.log('test');
-  }
-  window.aa(); // test
-  ```
+    ```js
+    function aa() {
+        console.log('test');
+    }
+    window.aa(); // test
+    ```
 
 + **Child Scope**
 
