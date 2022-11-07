@@ -74,7 +74,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 
         + **Number**
 
-            + Can be a *floating-point* or *infinity(/-infinity)* value
+            + Can be a *floating-point* or `Infinity` / `-Infinity` value
 
             + <space>
 
