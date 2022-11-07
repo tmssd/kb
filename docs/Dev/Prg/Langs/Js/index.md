@@ -1655,40 +1655,40 @@ So when we copy a variable into another variable - we copy the value and then cr
 
     *Shallow* means that only the actual object gets copied. If the copied object contains nested objects — these nested objects ^^aren't get cloned^^.
 
-        !!! info ""
+    !!! info ""
 
-            reference: [3 Ways to Shallow Clone Objects in JavaScript (w/ bonuses)](https://dmitripavlutin.com/javascript-shallow-clone-objects/)
+        reference: [3 Ways to Shallow Clone Objects in JavaScript (w/ bonuses)](https://dmitripavlutin.com/javascript-shallow-clone-objects/)
 
-        + Using `#!js Object.assign`
+    + Using `#!js Object.assign`
 
-            `Object.assign(param1,param2)`: clones the elements of an object param2 in an object param1.
+        `Object.assign(param1,param2)`: clones the elements of an object param2 in an object param1.
 
-            ```js
-            const obj = {a: 'a', b: 'b', c: 'c'};
-            const clone = Object.assign({}, obj);
-            ```
+        ```js
+        const obj = {a: 'a', b: 'b', c: 'c'};
+        const clone = Object.assign({}, obj);
+        ```
 
-        + Using *SPREAD* Operator
+    + Using *SPREAD* Operator
 
-            `...`: allows iterables( arrays / objects / strings ) to be expanded into single arguments/elements.
+        `...`: allows iterables( arrays / objects / strings ) to be expanded into single arguments/elements.
 
-            ```js
-            const obj = {a: 'a', b: 'b', c: 'c'};
-            const clone = {...obj};
-            ```
+        ```js
+        const obj = {a: 'a', b: 'b', c: 'c'};
+        const clone = {...obj};
+        ```
 
-        + Using *REST* Parameter
+    + Using *REST* Parameter
 
-            `...`: collects all remaining elements into an array.
+        `...`: collects all remaining elements into an array.
 
-            ```js
-            const obj = {a: 'a', b: 'b', c: 'c'};
-            const { ...clone } = obj;
-            ```
+        ```js
+        const obj = {a: 'a', b: 'b', c: 'c'};
+        const { ...clone } = obj;
+        ```
 
-            !!! note
+        !!! note
 
-                **Rest/Spread Operator:** The **rest** operator which is the same as the **spread** operator is a powerful syntactic sugar. Combined with object destructuring it means, *I don't care about the other property names. Just push everything else into a variable which is called rest which has all other properties*.
+            **Rest/Spread Operator:** The **rest** operator which is the same as the **spread** operator is a powerful syntactic sugar. Combined with object destructuring it means, *I don't care about the other property names. Just push everything else into a variable which is called rest which has all other properties*.
 
 + **Deep Clone**
 
