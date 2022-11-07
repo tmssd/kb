@@ -45,7 +45,7 @@ Inside `<body> </body>` at the **bottom**:
 ### Primitives
 
 + Primitives are **non-reference types** i.e. they **passed by value**(when we assign one variable to another) and defined by programming language.
-So when we copy a variable into another variable - we copy the value and then create that value somewhere else in memory(heap? or stack?).
+So when we copy a variable into another variable - we copy the value and then create that value somewhere else in the heap memory.
 
     ```js
     let a = 5; // "a" now has an address of where this primitive value "5" sits in memory.
