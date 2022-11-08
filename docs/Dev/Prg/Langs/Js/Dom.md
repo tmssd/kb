@@ -1323,8 +1323,8 @@ There are 3 ways to assign event handlers:
 
     Accessing the element using `#!js this`
 
-    ```js
-    // The value of 'this' inside a handler is the element. The one which has the handler on it.
+    ```html
+    <!-- The value of 'this' inside a handler is the element. The one which has the handler on it. -->
     <button onclick="alert(this.innerHTML)">Click me</button> <!-- Click me -->
     ```
 
