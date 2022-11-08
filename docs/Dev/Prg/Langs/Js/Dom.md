@@ -21,7 +21,7 @@ Here’s a bird’s-eye view of what we have when JavaScript runs in a web brows
 + **window:**
     1. **DOM:** document, ...
     2. **BOM:** navigator, screen, location, frames, history, XMLHttpRequest
-    3. **JavsScript:** Object, Array, Function, ...
+    3. **JavaScript:** Object, Array, Function, ...
 
 There’s a “root” object called *window*. It has two roles:
 
@@ -80,11 +80,11 @@ There are [12 node types](https://dom.spec.whatwg.org/#node){target=_blank}. In 
     // its first child is...
     console.log(elem.firstChild.nodeType); // 8 => comment
 
-    // and its second childi is...
-    console.log(elem.childNodes[1].nodeType) // 3 => text
+    // and its second child is...
+    console.log(elem.childNodes[1].nodeType) // 3 => text(newline)
 
     // for the document object, the type is 9
-    console.log( document.nodeType ); // 9
+    console.log(document.nodeType); // 9
   </script>
 </body>
 ```
@@ -357,7 +357,7 @@ In modern scripts, we can use `#!js instanceof` and other class-based tests to s
 
 + ***element*.querySelector**
 
-    returns the *first* element that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank} in the document, i.e. the result(only!) is the same as `#!js element.querySelectorAll[css](0)`, but the latter is ^^looking for all^^ elements and picking one, while `#!js element.querySelector` just ^^looks for one^^, so it’s faster and also shorter to write
+    returns the *first* element that matches a specified [CSS selector(s)](https://www.w3schools.com/cssref/css_selectors.asp){target=_blank} in the document, i.e. the result(only!) is the same as `#!js element.querySelectorAll(css)[0]`, but the latter is ^^looking for all^^ elements and picking one, while `#!js element.querySelector` just ^^looks for one^^, so it’s faster and also shorter to write
 
     ```js
     document.querySelector("li");
@@ -439,10 +439,10 @@ In modern scripts, we can use `#!js instanceof` and other class-based tests to s
         console.log(document.body.tagName); // BODY
 
         // for comment
-        console.log(document.body.firstChild.tagName); // undefined (not an element)
+        console.log(document.body.firstChild.tagName); // undefined (not an element node)
 
         // for document
-        console.log(document.tagName); // undefined (not an element)
+        console.log(document.tagName); // undefined (not an element node)
       </script>
     </body>
     ```
@@ -582,7 +582,6 @@ In modern scripts, we can use `#!js instanceof` and other class-based tests to s
     <div id="news">
       <h1>Headline!</h1>
       <p>Martians attack people!</p>
-
     </div>
 
     <script>
@@ -741,8 +740,8 @@ In modern scripts, we can use `#!js instanceof` and other class-based tests to s
       <li>0</li>
       <li>1</li>
       <li>2</li>
-
     </ol>
+
     <!-- insert a new list item before the second <li> -->
     <script>
       let newLi = document.createElement('li');
@@ -964,7 +963,7 @@ In modern scripts, we can use `#!js instanceof` and other class-based tests to s
 
     ```js
     // get element
-    const elem = documant.querySelector('h1');
+    const elem = document.querySelector('h1');
 
     // element style
     const elemStyle = getComputedStyle(elem);
@@ -1012,7 +1011,7 @@ DOM nodes are regular JavaScript objects.
     document.body.sayHi(); // Hello, I'm BODY
     ```
 
-+ They can have any value, i.e. they are typed(типизированные)
++ They can have any value and they are not always strings, i.e. they are typed(типизированные)
 
     ```html
     <!-- For instance, the element.input.checked property (for checkboxes) is a boolean -->
@@ -1044,7 +1043,7 @@ DOM nodes are regular JavaScript objects.
 
     !!! note "Most properties are strings."
 
-        Quite rarely, even if a DOM property type is a string, it may differ from the attribute. See [==note==](#html-attributes) about `href` attribute later on this page.
+        Quite rarely, even if a DOM property type is a string, its valur may differ from the attribute's value. See [==note==](#html-attributes) about `href` attribute later on this page.
 
 + They are case-sensitive (write `#!js element.nodeType`, not `#!js element.NoDeTyPe`).
 
@@ -1258,7 +1257,7 @@ But there are exclusions, for instance:
 
 #### `#!js dataset` DOM property
 
-Possible problem with custom(non-standard) attributes: they can appear in standard specifications in the future and therefore become unevailable for our use. To avoid conflicts, there exist ["data-*"](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes){target=_blank} attributes. They are actually a safe way to pass custom data.
+Possible problem with custom(non-standard) attributes: they can appear in standard specifications in the future and therefore become unavailable for our use. To avoid conflicts, there exist ["data-*"](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes){target=_blank} attributes. They are actually a safe way to pass custom data.
 
 All attributes starting with **“data-”** are reserved for programmers’ use.</br>
 They are available in the ***element*.dataset.[“data-*“ attribute(with ommited “data-” part) in camelCase]** property.
