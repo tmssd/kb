@@ -2141,7 +2141,7 @@ JavaScript only hoists declarations, not initializations.
 
 #### *Function Expression* Hoisting
 
-+ The *left hand side* (var bar) is a *Variable Declaration*. *Variable Declarations* get hoisted but their *Assignment Expressions* don’t. So when **bar** is hoisted the interpreter initially sets `var bar = undefined`. The *function definition* itself is not hoisted.
++ The *left hand side* (`var bar`) is a *Variable Declaration*. *Variable Declarations* get hoisted but their *Assignment Expressions* don’t. So when `bar` is hoisted the interpreter initially sets `var bar = undefined`. The *function definition* itself is not hoisted.
 
     !!! note ""
 
@@ -2206,7 +2206,7 @@ JavaScript only hoists declarations, not initializations.
         //return its invocation
         return bar(); //8
     }
-    alert(foo());
+    alert(foo()); // 8
     ```
 
 ### Strict Mode
@@ -2269,7 +2269,7 @@ var moduleName = (function(globalScopeVar) {
 
 Even though modules help us to contain and organize code, there are still problems that can arise. There can be naming conflicts if you don't use *const* to declare the module. Also, there are dependency issues if scripts are placed in the wrong order, such as jQuery needing to be called before it can be used. Because of these problems, people started developing libraries to solve them. Before ES6 we had 2 ways to implement modules in JavaScript **CommonJS** and **AMD**.
 
-+ **CommonJS** - uses the keywords **require** and **exports** to interact with the module system. Require is a function used to import from another module and exports is an object where functions get exported from. These are run synchronously where we wait on one module to load before another can start and this is not ideal for browsers. However, this code may look familiar because NodeJS still uses this library. There are other packages such as *Browserify* and *Webpack* that aid in bundling scripts with CommonJS to be used in the browsers.
++ **CommonJS** - uses the keywords **require** and **exports** to interact with the module system. `require` is a function used to import from another module and `exports` is an object where functions get exported from. These are run synchronously where we wait on one module to load before another can start and this is not ideal for browsers. However, this code may look familiar because NodeJS still uses this library. There are other packages such as *Browserify* and *Webpack* that aid in bundling scripts with CommonJS to be used in the browsers.
 
 + **Asynchronous Module Definition (AMD)** - as in the name, AMD loads modules asynchronously. This was great for browsers early on before packages that bundled code.
 `#!js define(['module1', 'module2'], function(module1, module2) {console.log(module1.setName());});`
@@ -2484,7 +2484,7 @@ callback()
     A promise is something that we have now that we can use around our code even though we don't have the value just yet. We can just assign it to a variable.
 
     ```js
-    // creating promise instance from the Promise class constractor
+    // creating promise instance from the Promise class constructor
     const promise = new Promise((resolve, reject) => {
         if (true) {
             resolve('Stuff Worked');
@@ -2572,7 +2572,7 @@ callback()
 
     ***.finally()***
 
-    `.finally()` allows us to do something after a promise has finished. We add it usually at the end of the proise. The `finally()` block will be called regardless of whether `.then()` works or the promise is catches into an error. `.finally()` usually doesn't receive anything from the promise so it has no parameters.
+    `.finally()` allows us to do something after a promise has finished. We add it usually at the end of the promise. The `finally()` block will be called regardless of whether `.then()` works or the promise is catches into an error. `.finally()` usually doesn't receive anything from the promise so it has no parameters.
 
     !!! tip "`.finally()` is great for those times that you need to run a piece of code no matter what."
 
@@ -2590,28 +2590,6 @@ callback()
     .then(results => results.map(((result,i) => console.log(++i, result))))
     .catch(() => console.log('error'))
     .finally(() => console.log('extra'))
-    ```
-
-    ***.any()***
-
-    `.any()` resolves if any of the supplied promises is resolved. When none of the promises resolve then error is thrown.
-
-    ```js
-    const p1 = new Promise((resolve, reject) => {
-      setTimeout(() => resolve("A"), Math.floor(Math.random() * 1000));
-    });
-    const p2 = new Promise((resolve, reject) => {
-      setTimeout(() => resolve("B"), Math.floor(Math.random() * 1000));
-    });
-    const p3 = new Promise((resolve, reject) => {
-      setTimeout(() => resolve("C"), Math.floor(Math.random() * 1000));
-    });
-
-    // Out of p1, p2 and p3, whichever resolves first is taken by `.any()`
-    (async function () {
-      const result = await Promise.any([p1, p2, p3]);
-      console.log(result); // Prints "A", "B" or "C"
-    })();
     ```
 
 + **Promise usage - Static methods:**
@@ -2720,6 +2698,28 @@ callback()
     // It just checks for 6 sec. until all the promises are returned.
     Promise.allSettled([promiseOne, promiseTwo]).then(data => console.log(data))
         .catch(e => console.log('something failed', e));
+    ```
+
+    **Promise.any**
+
+    `.any()` resolves if any of the supplied promises is resolved. When none of the promises resolve then error is thrown.
+
+    ```js
+    const p1 = new Promise((resolve, reject) => {
+      setTimeout(() => resolve("A"), Math.floor(Math.random() * 1000));
+    });
+    const p2 = new Promise((resolve, reject) => {
+      setTimeout(() => resolve("B"), Math.floor(Math.random() * 1000));
+    });
+    const p3 = new Promise((resolve, reject) => {
+      setTimeout(() => resolve("C"), Math.floor(Math.random() * 1000));
+    });
+
+    // Out of p1, p2 and p3, whichever resolves first is taken by `.any()`
+    (async function () {
+      const result = await Promise.any([p1, p2, p3]);
+      console.log(result); // Prints "A", "B" or "C"
+    })();
     ```
 
 + Promises serve the same purpose as callbacks.
