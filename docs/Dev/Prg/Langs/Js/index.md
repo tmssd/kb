@@ -2599,7 +2599,7 @@ callback()
     `Promise.resolve(value)` - Returns a new `Promise` object that is resolved with the given value. If the value is a thenable (i.e. has a `then` method), the returned promise will "follow" that thenable, adopting its eventual state; otherwise, the returned promise will be fulfilled with the value.
 
     ```js
-    // creating promise using Promise constractor method
+    // creating promise using Promise constructor method
     const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve("success");
@@ -2866,7 +2866,7 @@ callback()
     Promise.all(urls.map(url =>
         fetch(url).then(resp => resp.json())
     )).then(array => {
-        console.log('uaers', array[0])
+        console.log('users', array[0])
         console.log('posts' , array[1])
         console.log('albums' , array[2])
     }).catch(() => console.log('oops'))

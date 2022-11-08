@@ -6,7 +6,7 @@ title: DOM
 
 ## Preface: Browser environment, specs
 
-Read more from [source](https://javascript.info/browser-environment).
+Read more from [source](https://javascript.info/browser-environment){target=_blank}.
 
 The JavaScript language was initially created for web browsers. Since then, it has evolved into a language with many uses and platforms.
 
@@ -30,11 +30,11 @@ There’s a “root” object called *window*. It has two roles:
 
 ### Specs
 
-+ [DOM specification](https://dom.spec.whatwg.org) - Describes the document structure, manipulations, and events.
-+ [CSSOM specification](https://www.w3.org/TR/cssom-1/) - Describes stylesheets and style rules, manipulations with them, and their binding to documents.</br>
++ [DOM specification](https://dom.spec.whatwg.org){target=_blank} - Describes the document structure, manipulations, and events.
++ [CSSOM specification](https://www.w3.org/TR/cssom-1/){target=_blank} - Describes stylesheets and style rules, manipulations with them, and their binding to documents.</br>
   The CSSOM is used together with the DOM when we modify style rules for the document. In practice though, the CSSOM is rarely required, because we rarely need to modify CSS rules from JavaScript (usually we just add/remove CSS classes, not modify their CSS rules), but that’s also possible.
-+ [HTML specification](https://html.spec.whatwg.org) - Describes the HTML language (e.g. tags) and also the BOM (browser object model) – various browser functions: `setTimeout`, `alert`, `location` and so on. It takes the DOM specification and extends it with many additional properties and methods.
-+ Additionally, some classes are described separately at [https://spec.whatwg.org/](https://spec.whatwg.org/).
++ [HTML specification](https://html.spec.whatwg.org){target=_blank} - Describes the HTML language (e.g. tags) and also the BOM (browser object model) – various browser functions: `setTimeout`, `alert`, `location` and so on. It takes the DOM specification and extends it with many additional properties and methods.
++ Additionally, some classes are described separately at [https://spec.whatwg.org/](https://spec.whatwg.org/){target=_blank}.
 
 ## DOM Essentials
 
@@ -55,7 +55,7 @@ Document Object Model, or DOM for short, represents all ^^page content^^ as obje
 
 ## DOM Tree
 
-There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usually work with 4 of them:
+There are [12 node types](https://dom.spec.whatwg.org/#node){target=_blank}. In practice we usually work with 4 of them:
 
 1. `document` object - the main “entry point” to the page(= into DOM), represents the whole document.
 2. *element* nodes – HTML-tags, the tree building blocks.
@@ -710,7 +710,7 @@ In modern scripts, we can use `#!js instanceof` and other class-based tests to s
     </script>
     ```
 
-+ [**DocumentFragment**](https://javascript.info/modifying-document#document-fragment) - a special DOM node that serves as a wrapper to pass around lists of nodes. It is rarely used explicitly.
++ [**DocumentFragment**](https://javascript.info/modifying-document#document-fragment){target=_blank} - a special DOM node that serves as a wrapper to pass around lists of nodes. It is rarely used explicitly.
 
     `DocumentFragment` mentioned here mainly because there are some concepts on top of it, like `#!html <template></template>` element.
 
@@ -875,7 +875,7 @@ In modern scripts, we can use `#!js instanceof` and other class-based tests to s
 
     !!! tip "How to apply other staff."
 
-        To see how to apply `important` and other rare stuff – there’s a list of methods at [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration).
+        To see how to apply `important` and other rare stuff – there’s a list of methods at [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration){target=_blank}.
 
     !!! warning "The `#!js element.style` property operates only on the value of the ^^`"style"` attribute^^, without any CSS cascade."
 
@@ -1052,8 +1052,8 @@ DOM nodes are regular JavaScript objects.
 
 When the browser parses the HTML to create DOM objects for tags, it recognizes **standard** attributes and creates the corresponding DOM properties from them. But that doesn’t happen if the attribute is **non-standard**.
 
-Most **standard** HTML attributes have the corresponding DOM properties. They described in the specification for the corresponding element class(see [WHATWG: HTML Living Standard](https://html.spec.whatwg.org/)).</br>
-For instance, `HTMLInputElement` class is documented at [https://html.spec.whatwg.org/#htmlinputelement](https://html.spec.whatwg.org/#htmlinputelement).</br>
+Most **standard** HTML attributes have the corresponding DOM properties. They described in the specification for the corresponding element class(see [WHATWG: HTML Living Standard](https://html.spec.whatwg.org/){target=_blank}).</br>
+For instance, `HTMLInputElement` class is documented at [https://html.spec.whatwg.org/#htmlinputelement](https://html.spec.whatwg.org/#htmlinputelement){target=_blank}.</br>
 
 !!! tip "Alternative way to get DOM properties"
     If we’d like to get them fast or are interested in a concrete browser specification – we can always output the element using `console.dir(element)` and read the properties.</br>
@@ -1113,7 +1113,7 @@ Examples of **standard** attributes and their corresponing DOM nodes properties(
 
 ^^All^^ attributes are accessible by using the following methods:
 
-+ ***element*.attributes** - read all attributes and return an iterable collection(can be iterated with `#!js for...of` loop) of objects that belong to a built-in [Attr](https://dom.spec.whatwg.org/#attr) class, with `name` and `value` properties
++ ***element*.attributes** - read all attributes and return an iterable collection(can be iterated with `#!js for...of` loop) of objects that belong to a built-in [Attr](https://dom.spec.whatwg.org/#attr){target=_blank} class, with `name` and `value` properties
 
 + ***element*.hasAttribute("name")** – checks for existence
 
@@ -1258,7 +1258,7 @@ But there are exclusions, for instance:
 
 #### `#!js dataset` DOM property
 
-Possible problem with custom(non-standard) attributes: they can appear in standard specifications in the future and therefore become unevailable for our use. To avoid conflicts, there exist ["data-*"](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes. They are actually a safe way to pass custom data.
+Possible problem with custom(non-standard) attributes: they can appear in standard specifications in the future and therefore become unevailable for our use. To avoid conflicts, there exist ["data-*"](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes){target=_blank} attributes. They are actually a safe way to pass custom data.
 
 All attributes starting with **“data-”** are reserved for programmers’ use.</br>
 They are available in the ***element*.dataset.[“data-*“ attribute(with ommited “data-” part) in camelCase]** property.
@@ -2087,7 +2087,7 @@ If we have nested elements, and each of them has a context menu of its own, that
 
 Генерация пользовательских событий
 
-TODO: [https://javascript.info/dispatch-events](https://javascript.info/dispatch-events)
+TODO: [https://javascript.info/dispatch-events](https://javascript.info/dispatch-events){target=_blank}
 
 ## UI Events
 
@@ -2143,7 +2143,7 @@ Mouse event types:
     + `4` - X2 button (forward)
 
 + **event.buttons** - return all currently pressed buttons as an integer, one bit per button.</br>
-  In practice this property is very rarely used, you can find details at [MDN](https://developer.mozilla.org/en-US/docs/Web/api/MouseEvent/buttons) if you ever need it.
+  In practice this property is very rarely used, you can find details at [MDN](https://developer.mozilla.org/en-US/docs/Web/api/MouseEvent/buttons){target=_blank} if you ever need it.
 
 + **event.which** - DEPRECATED! An old non-standard way of getting a button, with possible values:
 
@@ -2207,7 +2207,7 @@ All mouse events provide coordinates in two flavours:
 Selection cases:
 
 1. **Left mouse holding pressing and moving:** makes the selection, often unwanted.</br>
-TODO: There are multiple ways to prevent the selection, that you can read in [https://javascript.info/selection-range](https://javascript.info/selection-range).
+TODO: There are multiple ways to prevent the selection, that you can read in [https://javascript.info/selection-range](https://javascript.info/selection-range){target=_blank}.
 
 2. **Double mouse click:** has a side effect that may be disturbing in some interfaces: it selects text.
 
@@ -2580,13 +2580,13 @@ Here’s what we can do:
 
 ### Drag'n'Drop with mouse events(TODO)
 
-TODO: [https://javascript.info/mouse-drag-and-drop](https://javascript.info/mouse-drag-and-drop)
+TODO: [https://javascript.info/mouse-drag-and-drop](https://javascript.info/mouse-drag-and-drop){target=_blank}
 
 <object data="../DOM_Drag-and-drop-events.pdf" type="application/pdf" class="pdf"></object>
 
 ### Pointer events(TODO)
 
-TODO: [https://javascript.info/pointer-events](https://javascript.info/pointer-events)
+TODO: [https://javascript.info/pointer-events](https://javascript.info/pointer-events){target=_blank}
 
 ### Keyboard events
 
@@ -2600,15 +2600,15 @@ The only exception is ++fn++ key, because it’s often implemented on lower leve
 
 Main keyboard event properties:
 
-+ `#!js event.keyCode/charCode/which`(legacy, they use [Javascript Char Codes (Key Codes)](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes) as their value) - no need to use anymore!
-+ `#!js event.code` – the “key code” specific to the physical location of the key on keyboard. Key codes described in the [UI Events code specification](https://www.w3.org/TR/uievents-code/).
++ `#!js event.keyCode/charCode/which`(legacy, they use [Javascript Char Codes (Key Codes)](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes){target=_blank} as their value) - no need to use anymore!
++ `#!js event.code` – the “key code” specific to the physical location of the key on keyboard. Key codes described in the [UI Events code specification](https://www.w3.org/TR/uievents-code/){target=_blank}.
 
     For instance:
 
     + Letter keys have codes `Key<letter>`: `KeyA`, `KeyB` etc.
 
         There are several widespread keyboard layouts, and the specification gives key codes for each of them.</br>
-        Read the [alphanumeric section of the spec](https://www.w3.org/TR/uievents-code/#key-alphanumeric-section) for more codes.
+        Read the [alphanumeric section of the spec](https://www.w3.org/TR/uievents-code/#key-alphanumeric-section){target=_blank} for more codes.
 
     + Digit keys have codes: `Digit<number>`: `Digit0`, `Digit1` etc.
 
@@ -2620,7 +2620,7 @@ Main keyboard event properties:
 
     To handle ^^keyboard layout-dependant^^ keys → `#!js event.key` is the way to go.</br>
     Because same letters in different layouts may map to different physical keys, leading to different codes.</br>
-    See the full list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system).
+    See the full list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system){target=_blank}.
 
     To get a **hotkey** to work even after a ^^language^^ switch → `#!js event.code` may be better.
 
@@ -2708,7 +2708,7 @@ Examples:
 
 !!! warning "Not 100% reliable."
 
-    In the past, keyboard events were sometimes used to track user input in form fields. That’s not reliable, because the input can come from various sources(e.g. mobile keyboards formally known as IME(Input-Method Editor)). We have `input` and `change` events to handle any input (covered in [TODO: Events: change, input, cut, copy, paste](https://javascript.info/events-change-input)). They trigger after any kind of input, including copy-pasting or speech recognition.
+    In the past, keyboard events were sometimes used to track user input in form fields. That’s not reliable, because the input can come from various sources(e.g. mobile keyboards formally known as IME(Input-Method Editor)). We have `input` and `change` events to handle any input (covered in [TODO: Events: change, input, cut, copy, paste](https://javascript.info/events-change-input){target=_blank}). They trigger after any kind of input, including copy-pasting or speech recognition.
 
 !!! tip "We should use keyboard events when we really want keyboard."
 
@@ -2802,7 +2802,7 @@ Page load events:
 
             There are two exceptions from this rule:
 
-            1. Scripts with the `async` attribute, don’t block `DOMContentLoaded`. See [TODO: https://javascript.info/script-async-defer](https://javascript.info/script-async-defer)
+            1. Scripts with the `async` attribute, don’t block `DOMContentLoaded`. See [TODO: https://javascript.info/script-async-defer](https://javascript.info/script-async-defer){target=_blank}
             2. Scripts that are generated dynamically with `#!js document.createElement('script')` and then added to the webpage also don’t block this event.
 
     2. Images and other resources may also still continue loading.
@@ -2858,7 +2858,7 @@ Page load events:
     };
     ```
 
-    For historical reasons, returning a non-empty string also counts as *canceling the event*. Some time ago browsers used to show it as a message, but as the [modern specification](https://html.spec.whatwg.org/#unloading-documents) says, they shouldn’t.</br>
+    For historical reasons, returning a non-empty string also counts as *canceling the event*. Some time ago browsers used to show it as a message, but as the [modern specification](https://html.spec.whatwg.org/#unloading-documents){target=_blank} says, they shouldn’t.</br>
     The behavior was changed, because some webmasters abused this event handler by showing misleading and annoying messages. So right now old browsers still may show it as a message, but aside of that – there’s no way to customize the message shown to the user.
 
     ```js
@@ -2893,7 +2893,7 @@ Page load events:
       *Usage:* the user almost left and in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it’s rarely used. For instanse:
 
       + we can close related popup windows
-      + we can send out a network request with a special `#!js navigator.sendBeacon(url, data)` method (described in the specification [https://w3c.github.io/beacon/](https://w3c.github.io/beacon/)), that contains e.g. the data about how the page is used: mouse clicks, scrolls, viewed page areas, and so on
+      + we can send out a network request with a special `#!js navigator.sendBeacon(url, data)` method (described in the specification [https://w3c.github.io/beacon/](https://w3c.github.io/beacon/){target=_blank}), that contains e.g. the data about how the page is used: mouse clicks, scrolls, viewed page areas, and so on
 
           `#!js sendBeacon` sends data in background without delaying the  transition to another page: the browser leaves the page, but still performs `#!js sendBeacon`. Here’s how to use it:
 
@@ -2906,11 +2906,11 @@ Page load events:
           ```
 
           1. the request is sent as POST
-          2. we can send not only a string, but also forms and other formats(see [Fetch](https://javascript.info/fetch)), but usually it’s a stringified object
+          2. we can send not only a string, but also forms and other formats(see [Fetch](https://javascript.info/fetch){target=_blank}), but usually it’s a stringified object
           3. the data is limited by 64kb
 
           When the `#!js sendBeacon` request is finished, the browser probably has already left the document, so there’s no way to get server response (which is usually empty for analytics).</br>
-          There’s also a `keepalive` flag for doing such “after-page-left” requests in fetch method for generic network requests. You can find more information in the chapter [Fetch API](https://javascript.info/fetch-api).
+          There’s also a `keepalive` flag for doing such “after-page-left” requests in fetch method for generic network requests. You can find more information in the chapter [Fetch API](https://javascript.info/fetch-api){target=_blank}.
 
 + `readystatechange` - tracks the changes in value of the `#!js document.readyState` method(see below at this point)
 
