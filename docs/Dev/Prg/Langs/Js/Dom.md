@@ -1894,7 +1894,7 @@ The handler reads the attribute and executes the method.
 <script>
   class Menu {
     constructor(elem) {
-      this._elem = elem;
+      this._elem = elem; // underscore in '_this.elem' is a naming convention for private vatiables
       elem.onclick = this.onClick.bind(this); // (*)
     }
 
@@ -1913,7 +1913,7 @@ The handler reads the attribute and executes the method.
     onClick(event) {
       let action = event.target.dataset.action;
       if (action) {
-        this[action]();
+        this[action](); // (**)
       }
     };
   }
@@ -1922,7 +1922,7 @@ The handler reads the attribute and executes the method.
 </script>
 ```
 
-Please note that `#!js this.onClick` is bound to `#!js this` in `(*)`. That’s important, because otherwise `#!js this` inside it would reference the DOM element(`#!js elem`), not the `#!js Menu` object, and `#!js this[action]` would not be what we need.
+Please note that `#!js this.onClick` is bound to `#!js this` in `(*)`. That’s important, because otherwise `#!js this` inside it would reference the DOM element(`#!js elem`), not the `#!js Menu` object, and `#!js this[action]` in (**) would not be what we need.
 
 So, what advantages does delegation give us here?
 
@@ -2002,7 +2002,7 @@ We can combine multiple behaviors on a single element as well.
 There are many default browser actions:
 
 + `mousedown` – starts the selection (move the mouse to select).
-+ `click on` `#!html <input type="checkbox">` – checks/unchecks the input.
++ `click` on `#!html <input type="checkbox">` – checks/unchecks the input.
 + `contextmenu` – the event happens on a right-click, the action is to show the browser context menu.
 + `submit` – clicking an `#!html <input type="submit">` or hitting ++enter++ inside a form field causes this event to happen, and the browser submits the form after it.
 + `keydown` – pressing a key may lead to adding a character into a field, or other actions.
