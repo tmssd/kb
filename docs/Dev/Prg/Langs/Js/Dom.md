@@ -1393,13 +1393,13 @@ There are 3 ways to assign event handlers:
         ```js
         // The handler won’t be removed, because 'removeEventListener' gets another function
         //  – with the same code, but that doesn’t matter, as it’s a different function object.
-        elem.addEventListener( "click" , () => alert('Thanks!'));
+        elem.addEventListener("click" , () => alert('Thanks!'));
         // ....
-        elem.removeEventListener( "click", () => alert('Thanks!'));
+        elem.removeEventListener("click", () => alert('Thanks!'));
 
         // Here’s the right way:
         function handler() {
-          alert( 'Thanks!' );
+          alert('Thanks!');
         }
 
         input.addEventListener("click", handler);
@@ -1509,9 +1509,10 @@ There are 3 ways to assign event handlers:
     <script>
       class Menu {
         handleEvent(event) {
-          // mousedown -> onMousedown
+          // mousedown -> onMousedown OR mouseup -> onMouseup, etc.
           let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
-          this[method](event);
+          // call one of the methods that defined below(onMousedown() OR onMouseup(), etc.)
+          this[method]();
         }
 
         onMousedown() {
@@ -1613,7 +1614,7 @@ The code sets click handlers on every element in the document to see which ones 
 
 If you click on `#!html <p>`, then the sequence is:
 
-1. `HTML` → `BODY` → `FORM` → `DIV` -> `P` (*capturing phase*, the first listener):
+1. `HTML` → `BODY` → `FORM` → `DIV` → `P` (*capturing phase*, the first listener):
 2. `P` → `DIV` → `FORM` → `BODY` → `HTML` (*bubbling phase*, the second listener).
 
 Please note, the `P` shows up twice, because we’ve set two listeners: *capturing* and *bubbling*. The target triggers at the end of the first and at the beginning of the second phase.
@@ -1678,7 +1679,7 @@ Bubbling and capturing lay the foundation for “event delegation” – an extr
 
 It’s often used to add the ^^same handling for many similar elements^^, but not only for that.
 
-^^same handling for many similar elements^^ - if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
+> ^^same handling for many similar elements^^ - if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
 
 The algorithm:
 
