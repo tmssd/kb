@@ -36,7 +36,7 @@ Inside `<body> </body>` at the **bottom**:
 <script type="text/javascript" src="script.js"></script>
 ```
 
-## Js Types
+## Data Types
 
 !!! info ""
 
