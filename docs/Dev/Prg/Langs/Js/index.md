@@ -2332,7 +2332,7 @@ Originally, the only way to submit some form data to a server was through the `<
 
 **Service workers** enable applications to control network requests, cache those requests to improve performance, and provide offline access to cached content.
 
-### Asynchrony
+### asynchronicity
 
 !!! info "Learning Sources"
 
