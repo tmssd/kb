@@ -2,24 +2,30 @@
 
 !!! info ""
 
-    + [Linux Handbook](https://linuxhandbook.com/)
+    + [Linux Handbook](https://linuxhandbook.com/){target=_blank}
 
 ## Applications
 
 !!! info ""
 
-    - [ ] [The Linux User's Toolkit for Discovering New Apps](https://www.makeuseof.com/tag/linux-users-toolkit-discovering-new-apps/)
+    - [ ] [The Linux User's Toolkit for Discovering New Apps](https://www.makeuseof.com/tag/linux-users-toolkit-discovering-new-apps/){target=_blank}
 
-Cron Jobs
+## Cron
 
 !!! info ""
 
-    [How to Set Up a Cron Job in Linux](https://phoenixnap.com/kb/set-up-cron-job-linux)
+    [How to Set Up a Cron Job in Linux](https://phoenixnap.com/kb/set-up-cron-job-linux){target=_blank}
+
+## Systemd timer
+
+!!! info ""
+
+    [CRON.D больше НЕ НУЖЕН. Как пользоваться SYSTEMD TIMER? :fontawesome-brands-youtube:](https://youtu.be/kfQEPxigNY4), [:material-github:](https://github.com/pavlenko-at/worlditech/tree/main/kfQEPxigNY4){target=_blank}
 
 ## Namespace
 
-+ [ ] [Углубленное знакомство с пространствами имен Linux. Часть 1(Habr)](https://habr.com/ru/company/ruvds/blog/592057/)
-+ [ ] [Углубленное знакомство с пространствами имен Linux. Часть 2(Habr)](https://habr.com/ru/company/ruvds/blog/593335/)
++ [ ] [Углубленное знакомство с пространствами имен Linux. Часть 1(Habr)](https://habr.com/ru/company/ruvds/blog/592057/){target=_blank}
++ [ ] [Углубленное знакомство с пространствами имен Linux. Часть 2(Habr)](https://habr.com/ru/company/ruvds/blog/593335/){target=_blank}
 
 ## Tutorials
 
@@ -71,8 +77,8 @@ Cron Jobs
 
 !!! info ""
 
-    + [Detached LUKS header full disk encryption with encrypted keyfile inside a passphrase-protected bootable keydisk using direct UEFI secure boot, encrypted swap, unbound with DNSCrypt and DNSSEC, and system hardening](https://www.reddit.com/r/archlinux/comments/7np36m/detached_luks_header_full_disk_encryption_with/)
-    + [YubiKey Full Disk Encryption](https://github.com/agherzan/yubikey-full-disk-encryption)
+    + [Detached LUKS header full disk encryption with encrypted keyfile inside a passphrase-protected bootable keydisk using direct UEFI secure boot, encrypted swap, unbound with DNSCrypt and DNSSEC, and system hardening](https://www.reddit.com/r/archlinux/comments/7np36m/detached_luks_header_full_disk_encryption_with/){target=_blank}
+    + [YubiKey Full Disk Encryption](https://github.com/agherzan/yubikey-full-disk-encryption){target=_blank}
 
 #### Step 1 - Creating KeyDisk(s)
 

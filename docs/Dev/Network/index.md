@@ -39,7 +39,7 @@ Router ⮕ Modem of the house ⮕ ISP ⮕internet backbone (physical cable) ⮕ 
 
 #### HTTP, HTTPS
 
-Reference: [W3S](https://www.w3schools.com/tags/ref_httpmethods.asp)
+Reference: [W3S](https://www.w3schools.com/tags/ref_httpmethods.asp){target=_blank}
 
 HTTP(Hypertext Transfer Protocol) works as a request-response protocol between a client and server.
 
@@ -66,7 +66,7 @@ Example: A client (browser) sends an HTTP **request** to the server; then the se
 
 + *Status*
 
-    [List of all HTTP Status Messages(W3S)](https://www.w3schools.com/tags/ref_httpmessages.asp)
+    [List of all HTTP Status Messages(W3S)](https://www.w3schools.com/tags/ref_httpmessages.asp){target=_blank}
 
 !!! note ""
     HTTPS: communication between client(browser) and server is **encryted**.

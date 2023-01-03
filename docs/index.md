@@ -53,6 +53,8 @@
         + :material-github: - `:material-github:`
         + :material-arch: - `:material-arch:`
         + :simple-mdnwebdocs: - `:simple-mdnwebdocs:`
+        + :fontawesome-brands-medium: - `:fontawesome-brands-medium:`
+        + :simple-medium: - `:simple-medium:`
         + :simple-digitalocean: - `:simple-digitalocean:`
         + :fontawesome-brands-digital-ocean: - `:fontawesome-brands-digital-ocean:`
         + :material-digital-ocean: - `:material-digital-ocean:`

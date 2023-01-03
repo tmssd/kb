@@ -2,11 +2,11 @@
 
 !!! info ""
 
-    [Traefik Docs](https://doc.traefik.io/traefik)
+    [Traefik Docs](https://doc.traefik.io/traefik){target=_blank}
 
 ## Tutorials
 
-### kb-tpl-docker-traefik [:material-github:](https://github.com/tmssd/kb-tpl-docker-traefik)
+### kb-tpl-docker-traefik [:material-github:](https://github.com/tmssd/kb-tpl-docker-traefik){target=_blank}
 
 About ports:
 
@@ -18,6 +18,6 @@ labels:
   - "traefik.http.services.<service_name>.loadbalancer.server.port=8080" # 8080 is the port we proxy to
 ```
 
-### How To Use Traefik v2 as a Reverse Proxy for Docker Containers on Ubuntu 20.04 [:material-digital-ocean:](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-v2-as-a-reverse-proxy-for-docker-containers-on-ubuntu-20-04)
+### How To Use Traefik v2 as a Reverse Proxy for Docker Containers on Ubuntu 20.04 [:material-digital-ocean:](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-v2-as-a-reverse-proxy-for-docker-containers-on-ubuntu-20-04){target=_blank}
 
-### Ultimate Traefik Docker Compose Guide [2022] with LetsEncrypt [:material-web:](https://www.smarthomebeginner.com/traefik-docker-compose-guide-2022/),     [:material-github:](https://github.com/htpcBeginner/docker-traefik)
+### Ultimate Traefik Docker Compose Guide [2022] with LetsEncrypt [:material-web:](https://www.smarthomebeginner.com/traefik-docker-compose-guide-2022/),     [:material-github:](https://github.com/htpcBeginner/docker-traefik){target=_blank}
