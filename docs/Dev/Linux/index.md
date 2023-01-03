@@ -10,6 +10,12 @@
 
     - [ ] [The Linux User's Toolkit for Discovering New Apps](https://www.makeuseof.com/tag/linux-users-toolkit-discovering-new-apps/)
 
+Cron Jobs
+
+!!! info ""
+
+    [How to Set Up a Cron Job in Linux](https://phoenixnap.com/kb/set-up-cron-job-linux)
+
 ## Namespace
 
 + [ ] [Углубленное знакомство с пространствами имен Linux. Часть 1(Habr)](https://habr.com/ru/company/ruvds/blog/592057/)
