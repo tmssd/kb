@@ -8,10 +8,6 @@
 
 ## Tutorials
 
-### Nextcloud Docker
+### kb-tpl-docker-nextcloud [:material-github:](https://github.com/tmssd/kb-tpl-docker-nextcloud)
 
-[kb-tpl-docker-nextcloud :material-github:](https://github.com/tmssd/kb-tpl-docker-nextcloud)
-
-### ISP Mail Tutorial
-
-[ISP Mail Tutorial (Caramel Edition)](https://123qwe.com/)
+### ISP Mail Tutorial [:material-web:](https://123qwe.com/)

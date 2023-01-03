@@ -46,12 +46,16 @@
         + :fontawesome-regular-file-word: - `:fontawesome-regular-file-word:`
         + :fontawesome-solid-file-powerpoint: - `:fontawesome-solid-file-powerpoint:`
         + :fontawesome-regular-file-powerpoint: - `:fontawesome-regular-file-powerpoint:`
+        + :material-web: - `:material-web:`
         + :octicons-logo-github-16: - `:octicons-logo-github-16:`
         + :octicons-mark-github-16: - `:octicons-mark-github-16:`
         + :fontawesome-brands-github: - `:fontawesome-brands-github:`
         + :material-github: - `:material-github:`
         + :material-arch: - `:material-arch:`
         + :simple-mdnwebdocs: - `:simple-mdnwebdocs:`
+        + :simple-digitalocean: - `:simple-digitalocean:`
+        + :fontawesome-brands-digital-ocean: - `:fontawesome-brands-digital-ocean:`
+        + :material-digital-ocean: - `:material-digital-ocean:`
 
 + Personal customization to implement in the future:
     + [medium-zoom](https://github.com/francoischalifour/medium-zoom#selectors){target=_blank}, [medium-zoom docsify plugin](https://cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js){target=_blank}
