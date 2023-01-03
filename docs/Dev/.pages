@@ -1,4 +1,11 @@
 nav:
+  - 'Blockchain'
+  - 'CI/CD': 'Cicd'
+  - 'Cloud'
+  - 'Containerization'
+  - 'Cs'
+  - 'Db'
+  - 'Network'
   - ...
   - 'Linux'
   - 'Windows'
