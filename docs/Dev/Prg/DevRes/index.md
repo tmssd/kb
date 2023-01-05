@@ -46,7 +46,16 @@
 ### Online Utilities
 
 + [**Transform**](https://transform.tools/){target=_blank} - Tool for transforming between variable languages,.e.g. from HTML to JSX.
-+ [{JSON} Placeholder](https://jsonplaceholder.typicode.com/){target=_blank}, [Mirror](https://jsonplaceholder.cypress.io/){target=_blank}
++ [**{JSON} Placeholder**](https://jsonplaceholder.typicode.com/){target=_blank}**,** [**Mirror**](https://jsonplaceholder.cypress.io/){target=_blank}
++ **Icons sets:**
+
+    [iconify.design](https://iconify.design/) - icons in `svg` format to set and download. Allows to ^^set **color**, **size**, flip and rotate the icon!^^
+
++ **Favicons generators:**
+
+    [redketchup.io/favicon-generator](https://redketchup.io/favicon-generator) - generates ^^full set of favicons^^(+ HTML code snippet to embed them into `index.html`) from text and image(png, jpg, webp, heic, svg, gif, ico, bmp, tiff)
+
+    [realfavicongenerator.net](https://realfavicongenerator.net/) - generates favicons from image(png, jpg, gif, svg). For `svg` allows to ^^set background color and resize the icon inside it!^^
 
 ## WebDev
 

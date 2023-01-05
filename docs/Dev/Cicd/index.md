@@ -26,6 +26,49 @@ For many languages and frameworks, you can deploy your app from zero, with the f
 
 Made for any language, for projects big and small. Railway is the cloud that takes the complexity out of shipping software.
 
+#### Heroku(paid)[:material-web:](https://www.heroku.com/){target=_blank}
+
+??? quote "How to"
+
+    ##### Heroku CLI commands
+
+    ```bash
+    # create an app in heroku server, with url
+    heroku create
+
+    #  deploy the app
+    git push heroku master
+
+    # login to new app
+    heroku login # being in the projects' root path
+
+    #  open app on browser
+    heroku open
+
+    #  print log
+    heroku logs --tail
+
+    #  check whether database is installed
+    heroku addons
+
+    #  connect and enter to psql cli
+    heroku pg:psql
+
+    # get database info, url
+    heroku pg:info
+    heroku config
+    ```
+
+    ##### Frontend
+
+    [Deploying Production Build of React App to Heroku :simple-medium:](https://medium.com/quick-code/deploying-production-build-of-react-app-to-heroku-2548d8bf6936){target=_blank}
+
+    ##### Backend
+
+    [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs){target=_blank}
+
+    [Deploying with Git](https://devcenter.heroku.com/articles/git){target=_blank}
+
 ## Tutorials
 
 ### Dockerization
