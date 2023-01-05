@@ -3,6 +3,7 @@ repo_url: https://github.com/tmssd/kb
 repo_name: tmssd/kb
 edit_uri: edit/main/docs/
 theme:
+  favicon: assets/favicon.svg
   icon:
       logo: material/book-open-page-variant
       repo: fontawesome/brands/github
@@ -33,7 +34,7 @@ plugins:
   # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
   - awesome-pages
   # https://github.com/apenwarr/mkdocs-exclude
-  # https://github.com/timvink/mkdocs-git-revision-date-localized-plugin 
+  # https://github.com/timvink/mkdocs-git-revision-date-localized-plugin
   # - git-revision-date:
       # enabled_if_env: CI
   - git-revision-date-localized:
