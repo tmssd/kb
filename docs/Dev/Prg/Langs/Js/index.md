@@ -24,6 +24,8 @@
 
 [101 вопрос по JavaScript (с ответами) шпаргалка к собеседованию + 15 практических задач](https://teletype.in/@day0now/7mpAXOPCeTd)
 
+[ ] IT-Incubator: [Sandbox](https://sandbox.it-incubator.io/), [Front-end course](https://it-incubator.io/education/front-end), [Back-end coursehttps://it-incubator.io/education/back-end](https://it-incubator.io/education/back-end)
+
 **Books:**
 
 + Eloquent JavaScript
