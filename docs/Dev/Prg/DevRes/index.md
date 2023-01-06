@@ -57,6 +57,52 @@
 
     [realfavicongenerator.net](https://realfavicongenerator.net/) - generates favicons from image(png, jpg, gif, svg). For `svg` allows to ^^set background color and resize the icon inside it!^^
 
++ **AI Tools:**
+
+    [OpenAI(ChatGPT)](https://chat.openai.com/auth/login)
+
+    A chat bot that you can ask anything, and get an excellent response.
+
+    It's great for:
+
+    -> Writing code for you / debugging your code
+    -> Inspiring topics to write about
+    -> Writing for you. It does 80% of the work, you do 20%.
+    -> So. Much. More.
+
+    [MidJourney](https://midjourney.gitbook.io/docs/)
+
+    A text-to-image generator. You "imagine" something and.. 30 seconds later, like MAGIC, you see a visual representation of it.
+
+    It's great for:
+
+    -> Concept Art
+    -> Replacing stock images
+    -> Logo Design
+    -> HAVING FUN
+
+    Images made by MidJourney
+
+    [Mem](https://get.mem.ai/)
+
+    Mem is a self described, self-organizing workspace. It seems extremely powerful. I say seems b/c I have only just started using it myself.
+
+    As someone who struggles with organization, I am extremely excited to see what AI can do to help.
+
+    [Hypefury](https://hypefury.com/)
+
+    Hypefury will help schedule your tweets, but will also give you inspiration for what to tweet.
+
+    It doesn't write for you (and I wouldn't want it to), but it's insanely helpful. If you want to up your Twitter game, Hypefury is a must imo.
+
+    [Hemingway](https://hemingwayapp.com/)
+
+    This is actually my favourite. It's SO simple.
+
+    You start typing and it helps make your writing more succinct. Hemingway is one of the greatest writers of all time, and he used short, digestible sentences.
+
+    Hemingway helps you do that too.
+
 ## WebDev
 
 ### WebDev resources and docs
