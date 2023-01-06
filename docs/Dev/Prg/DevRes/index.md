@@ -112,6 +112,10 @@
 
 ## Job Hunting
 
+### LinkedIn stuff
+
+[Industry Codes V2 - job definitions and their codes by Microsoft(helpful for defining jobs in portfolio)](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2)
+
 ### Interview Reference
 
 Resources suggested by ZTM-WevDev-Zero-to-Matery course:
