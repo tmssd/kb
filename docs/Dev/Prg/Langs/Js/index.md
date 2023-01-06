@@ -22,6 +22,8 @@
 
 [Elevator Saga - The elevator programming game](https://play.elevatorsaga.com/){target=_blank} - Try playing this game, read the documentation, and use the developer tools to "debug".
 
+[101 вопрос по JavaScript (с ответами) шпаргалка к собеседованию + 15 практических задач](https://teletype.in/@day0now/7mpAXOPCeTd)
+
 **Books:**
 
 + Eloquent JavaScript
