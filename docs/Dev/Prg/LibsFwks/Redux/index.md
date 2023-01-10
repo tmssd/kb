@@ -16,5 +16,5 @@
 
 !!! info ""
 
-+ [Redux Docs - Writing Logic with Thunks](https://redux.js.org/usage/writing-logic-thunks)
-+ [What the heck is a 'thunk'?](https://daveceddia.com/what-is-a-thunk/)
+    + [Redux Docs - Writing Logic with Thunks](https://redux.js.org/usage/writing-logic-thunks)
+    + [What the heck is a 'thunk'?](https://daveceddia.com/what-is-a-thunk/)
