@@ -8,6 +8,8 @@
 
     + [Official website](https://reactjs.org/){target=_blank}
 
+    + [React/Redux Links :material-github:](https://github.com/markerikson/react-redux-links){target=_blank}
+
     + [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react#basic-rules){target=_blank}
 
     + Learn React JS - Full Course for Beginners - Tutorial 2019 (by freeCodeCamp.org)
