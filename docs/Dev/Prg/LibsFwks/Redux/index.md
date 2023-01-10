@@ -12,6 +12,10 @@
 
     + [Redux docs in Russian(old docs)](https://rajdee.gitbooks.io/redux-in-russian)
 
+### Definition
+
++ Redux - is a global state management library.
+
 ## Thunk
 
 !!! info ""
