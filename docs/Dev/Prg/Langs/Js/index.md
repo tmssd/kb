@@ -1805,7 +1805,7 @@ So when we copy a variable into another variable - we copy the value and then cr
     console.log(obj); // {a: 'Simon', b: true, c: {…}}
     ```
 
-#### Context, `#!js this` keyword
+#### Context, `this` keyword
 
 + *Context* tells you, where we are within the object, i.e. what is the **object environment** that we're in right now.
 
