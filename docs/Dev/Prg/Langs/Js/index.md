@@ -987,6 +987,8 @@ So when we copy a variable into another variable - we copy the value and then cr
 
     ```js
     // Recursion function:
+
+    // as function declaration
     function fac(num) {
         // emergency termination condition
         if (num < 0) return
@@ -996,6 +998,9 @@ So when we copy a variable into another variable - we copy the value and then cr
         // recursion - the function calls itself
         return num * fac(num - 1)
     }
+
+    // as arrow function
+    const fac = num => num < 0 ? undefined : num === 1 ? num : num * fac(num - 1);
     ```
 
 ## Data Structures
