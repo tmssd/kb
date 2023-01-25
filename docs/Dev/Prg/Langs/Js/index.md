@@ -2111,46 +2111,46 @@ JavaScript only hoists declarations, not initializations.
 
     To avoid bugs, always declare all variables at the beginning of every scope. Since this is how JavaScript interprets the code, it is always a good rule.
 
-+ The `var` keyword.
+The `var` keyword.
 
-    + In the example below: when we re-declare the `fun` variable in *line 8* (`var fun = 20;`) after assigning a new value in *line 6* (`fun = 10;`), the new var declaration in *line 5* (caused by interpreter's hoisting mechanism) will **override the reference** ^^inside of the function scope^^ and the root `var fun`defined in *line 1* is like we never touched it.
++ In the example below: when we re-declare the `fun` variable in *line 8* (`var fun = 20;`) after assigning a new value in *line 6* (`fun = 10;`), the new var declaration in *line 5* (caused by interpreter's hoisting mechanism) will **override the reference** ^^inside of the function scope^^ and the root `var fun`defined in *line 1* is like we never touched it.
 
-        ```js linenums="1"
-        var fun = 5;
+    ```js linenums="1"
+    var fun = 5;
 
-        function funFunction() {
-            // hoisting happens here
-            // var fun;       <-- This code gets added here by javascript interpreter. We will never see it, but this happens.
-            fun = 10;
-            console.log(fun); // The 'fun' variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
-            var fun = 20;     // fun = 20; <-- Instead, this code actually generated here by javascript interpreter. We will never see it, but this happens.
-            console.log(fun); // The 'fun' variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
-        }
+    function funFunction() {
+        // hoisting happens here
+        // var fun;       <-- This code gets added here by javascript interpreter. We will never see it, but this happens.
+        fun = 10;
+        console.log(fun); // The 'fun' variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
+        var fun = 20;     // fun = 20; <-- Instead, this code actually generated here by javascript interpreter. We will never see it, but this happens.
+        console.log(fun); // The 'fun' variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
+    }
 
-        console.log(fun); //5
-        funFunction(); //10, 20
-        console.log(fun); //5
-        ```
+    console.log(fun); //5
+    funFunction(); //10, 20
+    console.log(fun); //5
+    ```
 
-+ The `let` and `const` keywords.
+The `let` and `const` keywords.
 
-    + Variables defined with `let` and `const` are hoisted to the top of the block, but not *initialized*. Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.
++ Variables defined with `let` and `const` are hoisted to the top of the block, but not *initialized*. Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.
 
-    + Using a `let` variable before it is declared will result in a `ReferenceError`. The variable is in a "temporal dead zone" from the start of the block until it is declared:
++ Using a `let` variable before it is declared will result in a `ReferenceError`. The variable is in a "temporal dead zone" from the start of the block until it is declared:
 
-        ```js
-        carName = "Volvo";
-        let carName;
-        // Uncaught ReferenceError: Cannot access 'carName' before initialization
-        ```
+    ```js
+    carName = "Volvo";
+    let carName;
+    // Uncaught ReferenceError: Cannot access 'carName' before initialization
+    ```
 
-    + Using a `const` variable before it is declared, is a syntax errror, so the code will simply not run:
++ Using a `const` variable before it is declared, is a syntax errror, so the code will simply not run:
 
-        ```js
-        carName = "Volvo";
-        const carName;
-        // Uncaught SyntaxError: Missing initializer in const declaration
-        ```
+    ```js
+    carName = "Volvo";
+    const carName;
+    // Uncaught SyntaxError: Missing initializer in const declaration
+    ```
 
 #### *Function Expression* Hoisting
 
