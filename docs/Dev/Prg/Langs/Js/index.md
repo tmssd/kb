@@ -1151,11 +1151,11 @@ So when we copy a variable into another variable - we copy the value and then cr
 
         + Otherwise it returns **-1**
 
-        > **Note:**
-        >
-        >`findIndex()` does not execute the function for array elements without values.
-        >
-        >`findIndex()` does not change the original array.
+        !!! note ""
+
+            `findIndex()` does not execute the function for array elements without values.
+
+            `findIndex()` does not change the original array.
 
         !!! tip
 
@@ -1169,9 +1169,11 @@ So when we copy a variable into another variable - we copy the value and then cr
 
         + Otherwise it returns **undefined**
 
-        >`find()` does not execute the function for empty arrays.
-        >
-        >`find()` does not change the original array.
+        !!! note ""
+
+            `find()` does not execute the function for empty arrays.
+
+            `find()` does not change the original array.
 
         !!! tip
 
