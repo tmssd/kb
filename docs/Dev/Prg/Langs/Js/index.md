@@ -2122,9 +2122,9 @@ JavaScript only hoists declarations, not initializations.
             // hoisting happens here
             // var fun;       <-- This code gets added here by javascript interpreter. We will never see it, but this happens.
             fun = 10;
-            console.log(fun); // The fun variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
+            console.log(fun); // The 'fun' variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
             var fun = 20;     // fun = 20; <-- Instead, this code actually generated here by javascript interpreter. We will never see it, but this happens.
-            console.log(fun); // The fun variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
+            console.log(fun); // The 'fun' variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
         }
 
         console.log(fun); //5
