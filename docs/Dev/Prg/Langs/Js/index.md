@@ -2119,12 +2119,12 @@ JavaScript only hoists declarations, not initializations.
         var fun = 5;
 
         function funFunction() {
-            //hoisting happens here
-            //var fun;      <-- this line gets generated from javascript, we will never see it, but this happens
+            // hoisting happens here
+            // var fun;       <-- This code gets added here by javascript emgine. We will never see it, but this happens.
             fun = 10;
-            console.log(fun);
-            var fun = 20;    // fun = 20; <-- this line gets generated from javascript, we will never see it, but this happens
-            console.log(fun);
+            console.log(fun); // The fun variable here is function scoped beacuse of 'var' keyword that declared it in line 5. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
+            var fun = 20;     // fun = 20; <-- Instead, this code actually generated here by javascript engine. We will never see it, but this happens.
+            console.log(fun); // The fun variable here is function scoped beacuse of 'var' keyword that declared it in line 5. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
         }
 
         console.log(fun); //5
