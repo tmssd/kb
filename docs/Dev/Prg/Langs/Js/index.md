@@ -153,7 +153,7 @@ So when we copy a variable into another variable - we copy the value and then cr
 + **Object**
 
     Objects are **reference types**, i.e. they **passed by reference**(when we assign one object to another) and defined by a programmer.
-    So when we assign "object1" to "object2" we don't copy the values like we did with primitive types. We simply address "object2" to the same place in memory where is "object1" is.
+    So when we assign "object1" to "object2" we don't copy the values like we did with primitive types. We simply address "object2" to the same place in memory heap where is "object1" is.
 
     :material-thumb-up: *Pros:* By just having one object we're saving space and memory. We're not copying and cloning the object creating multiple version. We simply save memory reference(just one location!) instead of just loading up our memory heap.
 
