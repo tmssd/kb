@@ -2102,7 +2102,7 @@ return true;
     reference: [W3S](https://www.w3schools.com/js/js_hoisting.asp){target=_blank}, [JavaScript Scoping and Hoisting](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html){target=_blank}, [Function Declarations vs. Function Expressions](https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/){target=_blank}, [:fontawesome-brands-youtube:](https://www.youtube.com/watch?v=ppMlvGMT2qE){target=_blank}
 
 **Hoisting** is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).
-^^Function declarations^^ and ^^variables declarations^^ are **always moved (‘hoisted’) to the top** of their JavaScript scope by the JavaScript interpreter.
+*Variables declarations* and *Functions declarations* are **always moved (‘hoisted’) to the top** of their JavaScript scope by the JavaScript interpreter.
 JavaScript only hoists declarations, not initializations.
 
 #### *Variable Declaration* Hoisting
