@@ -332,7 +332,7 @@ So when we copy a variable into another variable - we copy the value and then cr
         const b = -a;
 
         console.log(b);
-    // expected output: -4
+        // expected output: -4
     ```
 
 ### Chaining operators
