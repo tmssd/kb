@@ -2113,17 +2113,17 @@ JavaScript only hoists declarations, not initializations.
 
 + The `var` keyword.
 
-    + In the example below: when we re-declare the variable after assigning to the var from the root scope another value, the new var declaration will override the reference inside of the scope and the root var *fun* is like we never touched it.
+    + In the example below: when we re-declare the `fun` variable(`var fun = 20;`, line 8) after assigning new value to this var from the root scope another value(`fun = 10;`, line 6), the new var declaration(line 5) will **override the reference** ^^inside of the function scope^^ and the root var *fun* is like we never touched it.
 
-        ```js
+        ```js linenums="1"
         var fun = 5;
 
         function funFunction() {
             //hoisting happens here
-            //var fun;      <= this line gets generated from javascript, we will never see it, but this happens
+            //var fun;      <-- this line gets generated from javascript, we will never see it, but this happens
             fun = 10;
             console.log(fun);
-            var fun = 20;    // fun = 20; <== this line gets generated from javascript, we will never see it, but this happens
+            var fun = 20;    // fun = 20; <-- this line gets generated from javascript, we will never see it, but this happens
             console.log(fun);
         }
 
