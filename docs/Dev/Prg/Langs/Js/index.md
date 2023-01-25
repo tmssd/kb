@@ -2102,7 +2102,7 @@ return true;
     reference: [W3S](https://www.w3schools.com/js/js_hoisting.asp){target=_blank}, [JavaScript Scoping and Hoisting](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html){target=_blank}, [Function Declarations vs. Function Expressions](https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/){target=_blank}, [:fontawesome-brands-youtube:](https://www.youtube.com/watch?v=ppMlvGMT2qE){target=_blank}
 
 **Hoisting** is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).
-^^Function declarations^^ and ^^function variables declarations^^ are **always moved (‘hoisted’) to the top** of their JavaScript scope by the JavaScript interpreter.
+^^Function declarations^^ and ^^variables declarations^^ are **always moved (‘hoisted’) to the top** of their JavaScript scope by the JavaScript interpreter.
 JavaScript only hoists declarations, not initializations.
 
 #### *Variable Declaration* Hoisting
@@ -2111,7 +2111,7 @@ JavaScript only hoists declarations, not initializations.
 
     To avoid bugs, always declare all variables at the beginning of every scope. Since this is how JavaScript interprets the code, it is always a good rule.
 
-The `var` keyword.
+The `var` keyword:
 
 + In the example below: when we re-declare the `fun` variable in *line 8* (`var fun = 20;`) after assigning a new value in *line 6* (`fun = 10;`), the new var declaration in *line 5* (caused by interpreter's hoisting mechanism) will **override the reference** ^^inside of the function scope^^ and the root `var fun`defined in *line 1* is like we never touched it.
 
@@ -2132,7 +2132,7 @@ The `var` keyword.
     console.log(fun); //5
     ```
 
-The `let` and `const` keywords.
+The `let` and `const` keywords:
 
 + Variables defined with `let` and `const` are hoisted to the top of the block, but not *initialized*. Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.
 
