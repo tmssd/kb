@@ -1266,7 +1266,9 @@ So when we copy a variable into another variable - we copy the value and then cr
             console.log(nestedArray); //  [1, [ 2 ], 3 ]
             ```
 
-            > **Note:** It doesn't work with values not compatible with JSON. It only work with *Number* and *String* and *Object literal without function or Symbol properties*.
+            !!! Warning "It doesn't work with values not compatible with JSON."
+
+                It only work with *Number* and *String* and *Object literal without function or Symbol properties*.
 
         + Using `#!js _.cloneDeep(value)` *Lodash library* [method](https://lodash.com/docs/4.17.15#cloneDeep)
 
