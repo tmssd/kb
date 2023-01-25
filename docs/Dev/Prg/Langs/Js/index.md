@@ -2102,7 +2102,7 @@ return true;
     reference: [W3S](https://www.w3schools.com/js/js_hoisting.asp){target=_blank}, [JavaScript Scoping and Hoisting](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html){target=_blank}, [Function Declarations vs. Function Expressions](https://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/){target=_blank}, [:fontawesome-brands-youtube:](https://www.youtube.com/watch?v=ppMlvGMT2qE){target=_blank}
 
 **Hoisting** is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).
-Function declarations and function variables are always moved (‘hoisted’) to the top of their JavaScript scope by the JavaScript interpreter.
+^^Function declarations^^ and ^^function variables declarations^^ are **always moved (‘hoisted’) to the top** of their JavaScript scope by the JavaScript interpreter.
 JavaScript only hoists declarations, not initializations.
 
 #### *Variable Declaration* Hoisting
@@ -2120,10 +2120,10 @@ JavaScript only hoists declarations, not initializations.
 
         function funFunction() {
             // hoisting happens here
-            // var fun;       <-- This code gets added here by javascript emgine. We will never see it, but this happens.
+            // var fun;       <-- This code gets added here by javascript interpreter. We will never see it, but this happens.
             fun = 10;
             console.log(fun); // The fun variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
-            var fun = 20;     // fun = 20; <-- Instead, this code actually generated here by javascript engine. We will never see it, but this happens.
+            var fun = 20;     // fun = 20; <-- Instead, this code actually generated here by javascript interpreter. We will never see it, but this happens.
             console.log(fun); // The fun variable here is function scoped beacuse of 'var' keyword that declared it in line 8. Without the 'var' keyword there was only an assignment to the global soped 'fun' variable('fun = 20')
         }
 
