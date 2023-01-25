@@ -1266,9 +1266,9 @@ So when we copy a variable into another variable - we copy the value and then cr
             console.log(nestedArray); //  [1, [ 2 ], 3 ]
             ```
 
-            !!! Warning "It doesn't work with values not compatible with JSON."
+            !!! warning "It doesn't work with values not compatible with JSON."
 
-                It only work with *Number* and *String* and *Object literal without function or Symbol properties*.
+                It only work with ^^Number^^, ^^String^^ and ^^Object literal^^ without *function* or *symbol* properties.
 
         + Using `#!js _.cloneDeep(value)` *Lodash library* [method](https://lodash.com/docs/4.17.15#cloneDeep)
 
@@ -1719,9 +1719,9 @@ So when we copy a variable into another variable - we copy the value and then cr
         const clone = JSON.parse(JSON.stringify(obj));
         ```
 
-        !!! warning
+        !!! warning "It doesn't work with values not compatible with JSON."
 
-            It doesn't work with values not compatible with JSON. It only work with ^^Number^^, ^^String^^ and ^^Object literal^^ without *function* or *symbol* properties.
+            It only work with ^^Number^^, ^^String^^ and ^^Object literal^^ without *function* or *symbol* properties.
 
     + Using *recursion*
 
