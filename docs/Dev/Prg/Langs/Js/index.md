@@ -2484,7 +2484,7 @@ callback()
 
 + ES6.
 
-+ A promise is an object that may produce a **single value** sometime in the future: either a *resolved value*, or a *reason that it's not resolved(rejected)*.
++ A promise is an object that may produce a **single value** sometime in the future: either a *resolved value*(`Promise {<fulfilled>: resolved-value}`), or a *reason that it's not resolved*(`Promise {<rejected>: resolved-value-as-rejected-reason}`).
 
 + A promise maybe in one of three possible *states* **fulfilled(resolved)**, **rejected** or **pending**.
 
