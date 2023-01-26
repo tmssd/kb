@@ -2486,7 +2486,7 @@ callback()
 
 + A promise is an object that may produce a **single value** sometime in the future: either a *resolved value*(`Promise {<fulfilled>: resolved-value}`), or a *reason that it's not resolved*(`Promise {<rejected>: resolved-value-as-rejected-reason}`).
 
-+ A promise maybe in one of three possible *states* **fulfilled(resolved)**, **rejected** or **pending**.
++ A promise maybe in one of three possible *states*(`[[PromiseState]]`): `<fulfilled>`(resolved), `<rejected>` or `<pending>`.
 
 + So at their most basic promises are a bit like *event listeners* except a promise can only succeed or fail **once**. It cannot succeed or fail twice.
 
