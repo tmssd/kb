@@ -1,0 +1,3515 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../LibsFwks/Redux/">
+      
+      
+        <link rel="next" href="../../VCS/Git/">
+      
+      <link rel="icon" href="../../../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>NodeJs - tskb</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nodejs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="tskb" class="md-header__button md-logo" aria-label="tskb" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tskb
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              NodeJs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tmssd/kb" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tmssd/kb
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Blockchain/" class="md-tabs__link md-tabs__link--active">
+        Dev
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="tskb" class="md-nav__button md-logo" aria-label="tskb" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+
+    </a>
+    tskb
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tmssd/kb" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tmssd/kb
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Dev
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Dev" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Dev
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Blockchain/">Blockchain</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Blockchain" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Blockchain
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cicd/">CI/CD</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="CI/CD" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          CI/CD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" tabindex="0" aria-expanded="false">
+          Cloud
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cloud" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Cloud
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3_1" type="checkbox" id="__nav_2_3_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cloud/Aws/">Aws</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Aws" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Aws
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cloud/Nextcloud/">Nextcloud</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Nextcloud" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Nextcloud
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3_3" type="checkbox" id="__nav_2_3_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cloud/Vps/">Vps</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Vps" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Vps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Containerization/">Containerization</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Containerization" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Containerization
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cs/">Cs</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Cs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Cs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Db/">Db</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Db" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Db
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_7" type="checkbox" id="__nav_2_7" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Network/">Network</a>
+          
+            <label for="__nav_2_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Network" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Network
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_7_2" type="checkbox" id="__nav_2_7_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Network/Nginx/">Nginx</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Nginx" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Nginx
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_7_3" type="checkbox" id="__nav_2_7_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Network/Traefik/">Traefik</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Traefik" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Traefik
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_8" type="checkbox" id="__nav_2_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8" tabindex="0" aria-expanded="true">
+          Prg
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Prg" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          Prg
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_1" type="checkbox" id="__nav_2_8_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../DevRes/">Dev Resources</a>
+          
+            <label for="__nav_2_8_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Dev Resources" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Dev Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DevRes/Dev-roadmaps/" class="md-nav__link">
+        Dev Roadmaps
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_2" type="checkbox" id="__nav_2_8_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_2" tabindex="0" aria-expanded="false">
+          Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concepts" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_2_1" type="checkbox" id="__nav_2_8_2_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Concepts/Authentication/">Authentication</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_2_2" type="checkbox" id="__nav_2_8_2_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Concepts/General-concepts/">General concepts</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="General concepts" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          General concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_3" type="checkbox" id="__nav_2_8_3" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_3" tabindex="0" aria-expanded="false">
+          Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Design" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_3_1" type="checkbox" id="__nav_2_8_3_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Design/WebDesign/">Web Design</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Web Design" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Web Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_4" type="checkbox" id="__nav_2_8_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_4" tabindex="0" aria-expanded="false">
+          IDE
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="IDE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_4">
+          <span class="md-nav__icon md-icon"></span>
+          IDE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_4_1" type="checkbox" id="__nav_2_8_4_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../IDE/VSCode/">VSCode</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="VSCode" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          VSCode
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5" type="checkbox" id="__nav_2_8_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_5" tabindex="0" aria-expanded="false">
+          Langs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Langs" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_5">
+          <span class="md-nav__icon md-icon"></span>
+          Langs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_1" type="checkbox" id="__nav_2_8_5_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Css/">Css</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Css" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_2" type="checkbox" id="__nav_2_8_5_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Html/">Html</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Html" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Html
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_3" type="checkbox" id="__nav_2_8_5_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Js/">Js</a>
+          
+            <label for="__nav_2_8_5_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Js" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Js
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Langs/Js/Dom/" class="md-nav__link">
+        DOM
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_4" type="checkbox" id="__nav_2_8_5_4" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Md/">Md</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Md" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Md
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_5" type="checkbox" id="__nav_2_8_5_5" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Shell/">Shell</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Shell" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_6" type="checkbox" id="__nav_2_8_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_6" tabindex="0" aria-expanded="false">
+          Libs & Fwks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Libs & Fwks" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_6">
+          <span class="md-nav__icon md-icon"></span>
+          Libs & Fwks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_6_1" type="checkbox" id="__nav_2_8_6_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../LibsFwks/LibsFwks_Css/">Libs & Fwks for Css</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Libs & Fwks for Css" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          Libs & Fwks for Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_6_2" type="checkbox" id="__nav_2_8_6_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../LibsFwks/React/">React</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="React" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          React
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_6_3" type="checkbox" id="__nav_2_8_6_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../LibsFwks/Redux/">Redux</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Redux" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Redux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_8_7" type="checkbox" id="__nav_2_8_7" checked>
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_7" tabindex="0" aria-expanded="true">
+          Runtime
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Runtime" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_7">
+          <span class="md-nav__icon md-icon"></span>
+          Runtime
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_8_7_1" type="checkbox" id="__nav_2_8_7_1" checked>
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index md-nav__link--active">
+          <a href="./">NodeJs</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="NodeJs" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          NodeJs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_8" type="checkbox" id="__nav_2_8_8" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_8" tabindex="0" aria-expanded="false">
+          VCS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="VCS" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_8">
+          <span class="md-nav__icon md-icon"></span>
+          VCS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_8_1" type="checkbox" id="__nav_2_8_8_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../VCS/Git/">Git</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Git" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Git
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9" type="checkbox" id="__nav_2_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_9" tabindex="0" aria-expanded="false">
+          Soft
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Soft" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          Soft
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_1" type="checkbox" id="__nav_2_9_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/PostgreSQL/">PostgreSQL</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PostgreSQL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_1">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_2" type="checkbox" id="__nav_2_9_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Ranger/">Ranger</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Ranger" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ranger
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_3" type="checkbox" id="__nav_2_9_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Rsync/">Rsync</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Rsync" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_3">
+          <span class="md-nav__icon md-icon"></span>
+          Rsync
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_4" type="checkbox" id="__nav_2_9_4" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Vim/">Vim</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Vim" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_4">
+          <span class="md-nav__icon md-icon"></span>
+          Vim
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_5" type="checkbox" id="__nav_2_9_5" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Zsh/">Zsh</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Zsh" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_5">
+          <span class="md-nav__icon md-icon"></span>
+          Zsh
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_6" type="checkbox" id="__nav_2_9_6" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Whatsapp/">Whatsapp</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Whatsapp" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_6">
+          <span class="md-nav__icon md-icon"></span>
+          Whatsapp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Linux/">Linux</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_11" type="checkbox" id="__nav_2_11" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Windows/">Windows</a>
+          
+            <label for="__nav_2_11">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Windows" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_11">
+          <span class="md-nav__icon md-icon"></span>
+          Windows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_11_2" type="checkbox" id="__nav_2_11_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Windows/MsExcel/">MsExcel</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="MsExcel" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          MsExcel
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_12" type="checkbox" id="__nav_2_12" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_12" tabindex="0" aria-expanded="false">
+          Hardware
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Hardware" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_12">
+          <span class="md-nav__icon md-icon"></span>
+          Hardware
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_12_1" type="checkbox" id="__nav_2_12_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Hardware/Easy2Boot%28OSes%20Installatiion%29/">Easy2Boot(OSes Installatiion)</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Easy2Boot(OSes Installatiion)" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_12_1">
+          <span class="md-nav__icon md-icon"></span>
+          Easy2Boot(OSes Installatiion)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nodejs-essentials" class="md-nav__link">
+    NodeJs Essentials
+  </a>
+  
+    <nav class="md-nav" aria-label="NodeJs Essentials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodejs-basics" class="md-nav__link">
+    NodeJs Basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodejs-built-in-modules" class="md-nav__link">
+    NodeJs built-in modules
+  </a>
+  
+    <nav class="md-nav" aria-label="NodeJs built-in modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-system-module" class="md-nav__link">
+    File System module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-module" class="md-nav__link">
+    Http module
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodejs-useful-npm-modules" class="md-nav__link">
+    NodeJs useful npm modules
+  </a>
+  
+    <nav class="md-nav" aria-label="NodeJs useful npm modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nodemon-module" class="md-nav__link">
+    Nodemon module
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expressjs-library" class="md-nav__link">
+    Express.js library
+  </a>
+  
+    <nav class="md-nav" aria-label="Express.js library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expressjs-essentials" class="md-nav__link">
+    Express.js Essentials
+  </a>
+  
+    <nav class="md-nav" aria-label="Express.js Essentials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#expressjs-basics" class="md-nav__link">
+    Express.js Basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expressjs-routing-and-restful-api" class="md-nav__link">
+    Express.js routing and RESTful API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expressjs-middleware" class="md-nav__link">
+    Express.js Middleware
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-frontend-to-backend" class="md-nav__link">
+    Connect frontend to backend
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knexjs-library" class="md-nav__link">
+    Knex.js library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#npm-node-package-manager" class="md-nav__link">
+    NPM (Node Package Manager)
+  </a>
+  
+    <nav class="md-nav" aria-label="NPM (Node Package Manager)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#npm-essentials" class="md-nav__link">
+    Npm Essentials
+  </a>
+  
+    <nav class="md-nav" aria-label="Npm Essentials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies-packagejson-file" class="md-nav__link">
+    Dependencies: package.json file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#useful-npm-packages" class="md-nav__link">
+    Useful Npm packages
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful Npm packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lodash" class="md-nav__link">
+    Lodash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-server" class="md-nav__link">
+    Live-server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browserify-outdated-used-for-old-browsers-that-doesnt-support-es6-modules" class="md-nav__link">
+    Browserify outdated - used for old browsers that doesn't support ES6 Modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bcrypt" class="md-nav__link">
+    Bcrypt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotenv" class="md-nav__link">
+    Dotenv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serve" class="md-nav__link">
+    Serve
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npx-execute-npm-package-binaries" class="md-nav__link">
+    NPX (Execute NPM Package Binaries)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvm-node-version-manager" class="md-nav__link">
+    NVM (Node Version Manager)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="nodejs">NodeJs</h1>
+<div class="admonition info">
+<p><strong>Reference:</strong></p>
+<p><a href="https://nodejs.org/en/docs/">Official Docs</a></p>
+<p><a href="https://zerotomastery.io/cheatsheets/node-js-cheat-sheet/">Node JS Cheat Sheet(by ZTM)</a></p>
+<p><div class="video-container"><iframe src="https://www.youtube.com/embed/3aGSqasVPsI" style="width: 24vw; height: 15vw" frameborder="0" allowfullscreen></iframe></div></p>
+<p>Руководство по Node.js:</p>
+<p><object data="./flavio-copes_rukovodstvo-po-node.js-2018.pdf" type="application/pdf" class="pdf"></object></p>
+<p><strong>Installation:</strong></p>
+<p><a href="https://nodejs.org/en/">Official website</a></p>
+</div>
+<h2 id="nodejs-essentials">NodeJs Essentials</h2>
+<h3 id="nodejs-basics">NodeJs Basics</h3>
+<p>NodeJs allows computer to run JavaScript in a server, which is outside of the browser(it has a javascript engine V8).</p>
+<ul>
+<li>enter node mode in terminal: <code>node</code>;</li>
+<li>check function in node: <code>global.functionName</code>, e.g.: <code>global.setTimeout</code>;</li>
+<li>exit node: <code>process.exit()</code>;</li>
+<li>run script in node: <code>node script.js</code>;</li>
+<li>get directory name: <code>__dirname</code></li>
+<li>
+<p>import/export modules</p>
+<ol>
+<li>
+<p><strong>using the <em>CommonJS</em> old way:</strong></p>
+<ol>
+<li>
+<p><em>created by ourselves modules</em></p>
+<ul>
+<li>
+<p>export variable:<code>module.exports = {property: value}</code>, e.g. in <em>script2.js</em> file: <code>module.exports = {largeNumber: largeNumber}</code></p>
+<p><code>module</code> is a global object that we have access to(<code>global.module</code>). It has <code>exports</code> empty object property:</p>
+<div class="highlight"><pre><span></span><code>Module {
+  id: &#39;&lt;repl&gt;&#39;,
+  path: &#39;.&#39;,
+  exports: {},
+  filename: null,
+  loaded: false,
+  children: [],
+  paths: [
+    .
+    .
+    .
+  ]
+}
+</code></pre></div>
+<p>We can add to this object any entities we want like variables, functions, objects etc. so they become availabe through this object in the file where this object imported(<em>as a global object</em>) to.</p>
+</li>
+<li>
+<p>import variable: <code>require()</code>, e.g. in <em>script.js</em> file: <code>const script2 =  require('./script2')</code> and <code>const script2</code> here is the name(which can be whatever we want) of the imported global object <code>require('./script2)</code></p>
+</li>
+<li>use imported variable: <code>importName.variableName</code>, e.g. in <em>script.js</em> file: <code>const a = script2.largeNumber</code></li>
+</ul>
+</li>
+<li>
+<p><em>built-in modules</em></p>
+<ul>
+<li>import only: <code>require('moduleName')</code></li>
+</ul>
+</li>
+<li>
+<p><em>npm modules</em></p>
+<ul>
+<li>
+<p>import only: like built-in modules or by setting configuration in package.json file, e.g.:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nodemon server.js&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>using <em>ES6</em> new way:</strong></p>
+<p>in order to be able to use this way we need either change the extension of each <em>.js</em> file to <em>.mjs</em> or insert <code>"type": "module"</code> line into the <em>package.json</em> file</p>
+</li>
+</ol>
+</li>
+<li>
+<p><code>JSON.stringify()</code> converts JavaScript objects into strings. When sending data to a web server the data has to be a string.</p>
+</li>
+</ul>
+<h3 id="nodejs-built-in-modules">NodeJs built-in modules</h3>
+<p>These modules come already pre-installed with Node.</p>
+<h4 id="file-system-module">File System module</h4>
+<p>Allows operations with a file.</p>
+<p><code class="highlight"><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span></code></p>
+<ul>
+<li>
+<p>read file content</p>
+<p><code class="highlight"><span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="o">/</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;filePath&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{...})</span></code></p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+
+<span class="c1">// async with call back function: read code line by line and after finish reading file content, will callback to pass the data to the function</span>
+<span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">&#39;./hello.txt&#39;</span><span class="p">,(</span><span class="nx">err</span><span class="p">,</span><span class="nx">data</span><span class="p">)=&gt;{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;err!!&#39;</span><span class="p">)}</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="nx">data</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span><span class="w"> </span><span class="c1">// need to have encoding by toString(&#39;ENCODING&#39;), default ENCODING is &#39;utf8&#39; wich cover many languages</span>
+<span class="p">})</span>
+
+<span class="c1">// sync, only read the next line if this line finished, so for large file, the program need to wait long time until it finish to continue</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;./hello.txt&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="nx">file</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
+
+<span class="c1">// output 2 1</span>
+</code></pre></div>
+</li>
+<li>
+<p>add text to the file(create a file in advance if it did not exist)</p>
+<p><code class="highlight"><span class="nx">fs</span><span class="p">.</span><span class="nx">appendFile</span><span class="p">(</span><span class="s1">&#39;filePath&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Content&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;{...})</span></code></p>
+</li>
+<li>
+<p>create text file and write to it</p>
+<p><code class="highlight"><span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="s1">&#39;filePath&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Content&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{...})</span></code></p>
+</li>
+<li>
+<p>delete file</p>
+<p><code class="highlight"><span class="nx">fs</span><span class="p">.</span><span class="nx">unlink</span><span class="p">(</span><span class="s1">&#39;filePath&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{...})</span></code></p>
+</li>
+</ul>
+<h4 id="http-module">Http module</h4>
+<p>Allows build a server.</p>
+<p><code class="highlight"><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span></code></p>
+<p>Simple example of building a server written inside <em>server.js</em> file:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">http</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span><span class="w"> </span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;headers&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">headers</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">method</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">hobby</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Skating&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">user</span><span class="p">));</span>
+<span class="p">})</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="nodejs-useful-npm-modules">NodeJs useful npm modules</h3>
+<h4 id="nodemon-module">Nodemon module</h4>
+<p>Allows changing in js file reflect in terminal instantly.</p>
+<p><code class="highlight">npm<span class="w"> </span>install<span class="w"> </span>nodemon<span class="w"> </span>--save-dev</code> or <code class="highlight">npm<span class="w"> </span>install<span class="w"> </span>-D<span class="w"> </span>nodemon</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nodemon server.js&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="expressjs-library">Express.js library</h2>
+<div class="admonition info">
+<p><strong>Reference:</strong></p>
+<p><a href="https://expressjs.com/" target="_blank">Official Website</a></p>
+<p><div class="video-container"><iframe src="https://www.youtube.com/embed/9EtkpCzqZu0" style="width: 24vw; height: 15vw" frameborder="0" allowfullscreen></iframe></div></p>
+<p><strong>Installation:</strong></p>
+<p><code>npm install express</code></p>
+</div>
+<h3 id="expressjs-essentials">Express.js Essentials</h3>
+<h4 id="expressjs-basics">Express.js Basics</h4>
+<p>A node.js library to help build a server.</p>
+<p><code>npm install express</code></p>
+<p>Define server using just this 3 lines of code:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">);</span><span class="w"> </span><span class="c1">// port</span>
+</code></pre></div>
+<h4 id="expressjs-routing-and-restful-api">Express.js routing and RESTful API</h4>
+<p><strong>Routing:</strong></p>
+<p>Express relies on routing to determine how an application responds to a client request to a particular <em>endpoint</em>, which is a <a href="https://developer.mozilla.org/en-US/docs/Glossary/URI" target="_blank"><strong>U</strong>niform <strong>R</strong>esource <strong>I</strong>dentifier</a> (or path) and a specific HTTP request method (e.g., GET, POST, etc.).  Each route can have one or more handler functions, which are executed when the route is matched.</p>
+<p>Routes follow the syntax below:</p>
+<p><em>app.METHOD(PATH, HANDLER)</em> e.g. <code>app.get('/', (req, res) =&gt; {...})</code></p>
+<ul>
+<li><strong>app</strong>(<code>app</code>) is an instance of Express</li>
+<li>
+<p><strong>METHOD</strong>(<code>.get</code>) is an HTTP request method(GET, POST, PUT, DELETE etc.), in lowercase</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol>
+<li>Everything entered into the <strong>adressbar</strong> will always be a <strong>GET</strong> request.</li>
+<li><strong>POST</strong> method can be used with a <code>fetch()</code> call or within a html form by defining <code>method="post"</code>.</li>
+<li>All other methods can be accessed programmatically only. GET and POST can be accessed programmatically too.</li>
+<li>Programmatically means using terminal or e.g. using <a href="https://www.postman.com/" target="_blank">Postman</a> - a tool for API Development and testing server before connecting to front-end.</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>PATH</strong>(<code>'/'</code>) is a path on the server</p>
+</li>
+<li><strong>HANDLER</strong>(<code>(req, res) =&gt; {...}</code>) is the function executed when the route is matched<ul>
+<li><code>req</code> (<em>Request</em>) and <code>res</code> (<em>Response</em>) are actually objects (and can be named whatever we want, although <strong>req</strong> and <strong>res</strong> are conventions).</li>
+<li><strong>"Request"</strong> is an object containing all the information about the request that was made and which triggered the route.</li>
+<li><strong>"Response"</strong> is an object containing all of the data that the server is going to respond with.</li>
+</ul>
+</li>
+</ul>
+<p><strong>RESTful API:</strong></p>
+<ul>
+<li>
+<p>An API that defines a set of functions which developers can perform: <em>requests</em> and <em>receive responses</em> via a HTTP protocol using methods such as <em>GET</em>, <em>POST</em>, <em>PUT</em>, <em>DELETE</em> and it uses these methods as follows:</p>
+<ul>
+<li>GET to receive a resource</li>
+<li>POST to create a resource</li>
+<li>PUT to change the state or update a resource</li>
+<li>DELETE to remove a resource</li>
+</ul>
+</li>
+<li>
+<p>REST APis are <strong>stateless</strong> - meaning that calls can be made independently of one another and each call contains all the data necessary to complete itself successfully. A server doesn't need to keep memorizing things, i.e. each request that comes in has enough information that the server can respond with, so each request sent to a server is a independent property of the <em>"Request"</em> object.</p>
+</li>
+<li>
+<p>The most used properties of <em>Request</em> object:</p>
+<ul>
+<li>
+<p><code>req.query</code></p>
+<p>use in GET request, e.g. <code>localhost:3000/?name=andrei&amp;age=31</code>. <strong>?</strong> is for query</p>
+</li>
+<li>
+<p><code>req.body</code></p>
+<p>use in POST request with middleware(like bodyparser or new express.js methods passed through the genereic app.use() middleware) to receive data(urlencoded or json) sent in request body, e.g <code>req.body.email</code></p>
+</li>
+<li>
+<p><code>req.headers</code></p>
+<p>use in GET request to get all headers and the input</p>
+</li>
+<li>
+<p><code>req.params</code></p>
+<p>use in GET request to get the parameters in the url(e.g. localhost:8000/12345), e.g. <code>app.get('/:id',(req,res)=&gt;{const {id} = req.params})</code>, <code>app.get('/:id',(req,res) =&gt; console.log(req.params)</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>The most used properties of <em>Response</em> object:</p>
+<ul>
+<li>
+<p><code>res.send()</code>, e.g. <code>app.get('/',(req,res) =&gt; res.send('getting root')</code></p>
+</li>
+<li>
+<p><code>res.status()</code>, e.g. <code>res.status(404).send('not found')</code> to set the response status of the request</p>
+</li>
+</ul>
+</li>
+<li>
+<p>RESTful routing can be described as an <em>architectural style(an approach to communications)</em>  that provides a map between HTTP verbs (e.g., GET, POST, etc.) and CRUD (create, read, update, delete) actions.  There are seven RESTful route conventions:</p>
+<p><img alt="RESTful-routs.png" class="zoom" src="RESTful-routs.png" /></p>
+</li>
+</ul>
+<h4 id="expressjs-middleware">Express.js Middleware</h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Middleware is a type of computer software that provides services to software applications beyond those available from the operating system. It can be described as "software glue"(<a href="https://en.wikipedia.org/wiki/Middleware" target="_blank">Wikipedia</a>).</p>
+</div>
+<ul>
+<li>
+<p><code>app.use()</code> - generic Express middleware(универсальное промежуточное программное обеспечение). It receives ahead of time before we get to the routes, <strong>the request</strong>, modifies it and then passes the <code>next()</code> callback function to keep it going and "trickle down" the <strong>modifiyed request</strong> to <em>apt.get/post/put/delete</em> etc.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">,</span><span class="nx">next</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">()</span>
+<span class="w">  </span><span class="nx">next</span><span class="p">();</span><span class="w"> </span><span class="c1">// allow express to run after this</span>
+<span class="p">})</span>
+</code></pre></div>
+</li>
+<li>
+<p>In order to get <code>req.body</code>(the body of our request, e.g. form data that user submitted through the <code>&lt;form&gt;&lt;/from&gt;</code> tag using POST method OR raw JSON data that was sent in the request body) we can use the <em>body-parser(<a href="https://www.npmjs.com/package/body-parser">npm</a>)</em> middleware(the old way) or the <em>express built-in methods</em>(the new way):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// the old way</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bodyParser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;body-parser&#39;</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span><span class="nx">extended</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}));</span><span class="w"> </span><span class="c1">// to get the form input</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span><span class="w">  </span><span class="c1">// to get JSON data sent in the request body</span>
+
+<span class="c1">// the new way</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span><span class="nx">extended</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}));</span><span class="w"> </span><span class="c1">// to get the form input</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span><span class="w">  </span><span class="c1">// to get JSON data sent in the request body</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above middleware packages, already implement the <code>next()</code> within them. We only add the <code>next()</code> when we implement <strong>our own</strong> middleware.</p>
+</div>
+</li>
+<li>
+<p>To serve <strong>static assets</strong>, i.e. <em>index.html</em>, <em>css file</em> and <em>js file</em> we put'em in the <em>public</em> folder within our project folder and get Express to send these file using its following middleware: <code>app.user(express.static(__dirname + '/public'))</code></p>
+<p>So the server(server.js file) that serves simple static assets will look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="k">static</span><span class="p">(</span><span class="nx">__dirname</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;/public&#39;</span><span class="p">))</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">);</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>CORS</strong>(<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">mdn</a>) - to allow cross-origin request we use following npm package: <code>npm install cors</code> by calling it through generic Express.js middleware, e.g.:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">user</span><span class="p">(</span><span class="nx">cors</span><span class="p">())</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">);</span>
+</code></pre></div>
+</li>
+</ul>
+<h3 id="connect-frontend-to-backend">Connect frontend to backend</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// code from Signin.js react component of face-recognition-brain app</span>
+<span class="nx">onSubmitSignIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:3000/signin&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;post&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">signInEmail</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">signInPassword</span><span class="p">,</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">        </span><span class="c1">// get the response from server: res.json()</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// does the user exist? Did we receive a user with a property of id?</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">loadUser</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">onRouteChange</span><span class="p">(</span><span class="s1">&#39;home&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="knexjs-library">Knex.js library</h2>
+<p>SQL query builder library for Postgres, MSSQL, MySQL, MariaDB, SQLite3, Oracle, and Amazon Redshift.</p>
+<div class="admonition info">
+<p><strong>Reference:</strong></p>
+<p><a href="https://knexjs.org/" target="_blank">Official Website</a></p>
+<p><strong>Installation:</strong></p>
+<ol>
+<li>instal postgreSQL database package: <code>npm install pg</code></li>
+<li>install knex: <code>npm i knex</code></li>
+</ol>
+</div>
+<p><strong>Connect server to database(code from server.js file):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">knex</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">client</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;pg&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">connection</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">host</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">user</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tms&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">database</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;smart-brain&#39;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// signin by checking password match in login table and return user info in users table</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/signin&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hash&#39;</span><span class="p">).</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">bcrypt</span><span class="p">.</span><span class="nx">compareSync</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">hash</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isValid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">).</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>
+<span class="w">                    </span><span class="p">})</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">400</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;wrong credentials&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">        </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">400</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;unable to get user&#39;</span><span class="p">))</span>
+<span class="p">})</span>
+
+<span class="c1">// transaction + insert into two tables with foreign key</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/register&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hashSync</span><span class="p">(</span><span class="nx">password</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">transaction</span><span class="p">(</span><span class="nx">trx</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// we create a transaction when we have to do more than two things at once and thus we use transaction object &#39;trx&#39; instead of &#39;db&#39;</span>
+<span class="w">        </span><span class="nx">trx</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">hash</span><span class="o">:</span><span class="w"> </span><span class="nx">hash</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">into</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">returning</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">loginEmail</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">trx</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="nx">returning</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span>
+<span class="w">                        </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="nx">loginEmail</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span>
+<span class="w">                        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">joined</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="p">(</span><span class="nb">Date</span><span class="p">),</span>
+<span class="w">                    </span><span class="p">})</span>
+<span class="w">                    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span><span class="w">  </span><span class="c1">// knex returns us an array of inserted to db rows, so we use here &#39;user[0]&#39; and it only means, that we don&#39;t want to get it as an array, we want the response to be the object only instead</span>
+<span class="w">                    </span><span class="p">})</span>
+<span class="w">            </span><span class="p">})</span>
+<span class="w">            </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">trx</span><span class="p">.</span><span class="nx">commit</span><span class="p">)</span>
+<span class="w">            </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">trx</span><span class="p">.</span><span class="nx">rollback</span><span class="p">)</span>
+<span class="w">     </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">400</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;unable to register&#39;</span><span class="p">))</span>
+<span class="p">})</span>
+
+<span class="c1">// get data</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/profile/:id&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">).</span><span class="kr">from</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">).</span><span class="nx">where</span><span class="p">({</span><span class="nx">id</span><span class="p">})</span><span class="w"> </span><span class="c1">// {id} - here we use ES6 object property declaration shortcut</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">user</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">400</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;Not found&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">        </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">404</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;error getting user&#39;</span><span class="p">))</span>
+<span class="p">})</span>
+
+<span class="c1">// update/increment</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;/image&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">db</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">).</span><span class="nx">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">increment</span><span class="p">(</span><span class="s1">&#39;entries&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">returning</span><span class="p">(</span><span class="s1">&#39;entries&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">entries</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">entries</span><span class="p">[</span><span class="mf">0</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">400</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;unable to get entries&#39;</span><span class="p">))</span>
+<span class="p">})</span>
+<span class="o">****</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;app is running on port 3000...&#39;</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre></div>
+<h2 id="npm-node-package-manager">NPM (Node Package Manager)</h2>
+<p><strong>Reference:</strong></p>
+<p><a href="https://www.npmjs.com/" target="_blank">Official website</a></p>
+<div class="admonition info">
+<p><strong>Installation:</strong></p>
+<p>NPM is installed with Node.js</p>
+<p><strong>Upgrading(<a href="https://docs.npmjs.com/try-the-latest-stable-version-of-npm" target="_blank">according to official docs</a>):</strong></p>
+<ul>
+<li>
+<p>to the latest version: <code>npm install -g npm@latest</code></p>
+</li>
+<li>
+<p>to the most recent version: <code>npm install -g npm@next</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may need to prefix these commands with <code>sudo</code>, especially on Linux, or OS X if you installed Node using its default installer.</p>
+</div>
+</li>
+</ul>
+<p><strong>Common commands:</strong></p>
+<ul>
+<li><code>npm init</code> create <em>package.json</em> file in your repo</li>
+<li><code>npm install packageName</code> only install in a project</li>
+<li><code>npm install -g packageName</code> will install globally, which can use in terminal</li>
+<li><code>npm run built</code> create a optimized js file that can put on the internet</li>
+<li><code>--save-dev</code> means the dependencies only use in development by you</li>
+<li>run command in <code>scripts:{}</code> will look for file in <code>.bin</code></li>
+</ul>
+</div>
+<h3 id="npm-essentials">Npm Essentials</h3>
+<h4 id="dependencies-packagejson-file">Dependencies: package.json file</h4>
+<ul>
+<li>
+<p>Created after runnung <code>npm init</code>. Gets populated with git repo info, scripts and <em>dependecies</em>(locally installed NPM packages for our project)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Dependencies</em>: a new person can install all dependencies when start the  project by <code>npm install</code></p>
+</div>
+</li>
+<li>
+<p>Script: run commands in a script by <code>npm run scriptName</code> e.g.:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// first define new script in package.json file like this:</span>
+<span class="s2">&quot;script&quot;</span><span class="o">:</span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;build&quot;</span><span class="o">:</span><span class="s2">&quot;browserify script.js &gt; bundle.js &amp;&amp; live-server&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># then run it in terminal:</span>
+npm<span class="w"> </span>run<span class="w"> </span>build
+</code></pre></div>
+</li>
+<li>
+<p>Check the version of packages you need to update to: <a href="https://semver.npmjs.com/" target="_blank">NPM Semver</a></p>
+</li>
+</ul>
+<h3 id="useful-npm-packages">Useful Npm packages</h3>
+<h4 id="lodash">Lodash</h4>
+<div class="admonition info">
+<p><a href="https://lodash.com/" target="_blank">Official website</a>, <a href="https://www.npmjs.com/package/lodash" target="_blank">NPM</a></p>
+<p><code>npm install lodash</code></p>
+</div>
+<h4 id="live-server">Live-server</h4>
+<div class="admonition info">
+<p><a href="https://www.npmjs.com/package/live-server" target="_blank">NPM</a></p>
+<p><code>npm install -g live-server</code></p>
+</div>
+<h4 id="browserify-outdated-used-for-old-browsers-that-doesnt-support-es6-modules">Browserify <mark><small>outdated - used for old browsers that doesn't support ES6 Modules</small></mark></h4>
+<div class="admonition info">
+<p><a href="https://www.npmjs.com/package/browserify" target="_blank">NPM</a></p>
+<p><code>npm install -g browserify</code></p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="c1">// browserify syntax</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lodash&#39;</span><span class="p">)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;answer&#39;</span><span class="p">,</span><span class="nx">_</span><span class="p">.</span><span class="nx">without</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span><span class="mf">3</span><span class="p">))</span><span class="w"> </span><span class="c1">//without is a function in lodash</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># use broswerify to combine js files in terminal</span>
+browserify<span class="w"> </span>script.js<span class="w"> </span>&gt;<span class="w"> </span>bundle.js
+</code></pre></div>
+<h4 id="bcrypt">Bcrypt</h4>
+<div class="admonition info">
+<p><a href="https://www.npmjs.com/package/bcrypt" target="_blank">NPM</a></p>
+<p><code>npm install bcrypt</code></p>
+</div>
+<p>To securily store sensitive data like passwords we store it in hashes:</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
+<span class="cm">* You can copy and run the code below to play around with bcrypt</span>
+<span class="cm">* However this is for demonstration purposes only. Use these concepts</span>
+<span class="cm">* to adapt to your own project needs.</span>
+<span class="cm">*/</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nx">bcrypt</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;bcrypt&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">saltRounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="c1">// increase this if you want more iterations</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">userPassword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;supersecretpassword&#39;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">randomPassword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;fakepassword&#39;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">storeUserPassword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">password</span><span class="p">,</span><span class="w"> </span><span class="nx">salt</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">  </span><span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">password</span><span class="p">,</span><span class="w"> </span><span class="nx">salt</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">storeHashInDatabase</span><span class="p">)</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">storeHashInDatabase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">hash</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Store the hash in your password DB</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">hash</span><span class="w"> </span><span class="c1">// For now we are returning the hash for testing at the bottom</span>
+<span class="p">}</span>
+
+<span class="c1">// Returns true if user password is correct, returns false otherwise</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">checkUserPassword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">enteredPassword</span><span class="p">,</span><span class="w"> </span><span class="nx">storedPasswordHash</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">  </span><span class="nx">bcrypt</span><span class="p">.</span><span class="nx">compare</span><span class="p">(</span><span class="nx">enteredPassword</span><span class="p">,</span><span class="w"> </span><span class="nx">storedPasswordHash</span><span class="p">)</span>
+
+
+<span class="c1">// This is for demonstration purposes only.</span>
+<span class="nx">storeUserPassword</span><span class="p">(</span><span class="nx">userPassword</span><span class="p">,</span><span class="w"> </span><span class="nx">saltRounds</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">hash</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">    </span><span class="c1">// change param userPassword to randomPassword to get false</span>
+<span class="w">    </span><span class="nx">checkUserPassword</span><span class="p">(</span><span class="nx">userPassword</span><span class="p">,</span><span class="w"> </span><span class="nx">hash</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>United States National Institute for Standards and Technology (NIST) recommendations for password management:</p>
+<ul>
+<li>Password length: 8-64 characters</li>
+<li>Do accept both ASCII and UNICODE characters and encourage people to set long passwords with high entropy (upper case letters, lower case letters, digits, special characters).</li>
+<li>Don’t allow password hints.</li>
+<li>Avoid security questions.</li>
+<li>Use 2FA (2 factor authentication) if you want an extra layer of security in your application, but avoid using SMS as this can be easily hacked to have the attackers phone receive the confirmation code.</li>
+<li>Once the user has registered, there are two things to keep in mind:<ol>
+<li>Don’t let the user know the password was incorrect when logging in. Instead, mention that the username and password combination is incorrect.</li>
+<li>The only time passwords should be reset by an administrator is when they suspect that an account has been compromised. Otherwise, passwords should only be reset by a user when he or she has forgotten their credentials.</li>
+</ol>
+</li>
+</ul>
+</div>
+<h4 id="dotenv">Dotenv</h4>
+<div class="admonition info">
+<p><a href="https://www.npmjs.com/package/dotenv" target="_blank">NPM</a></p>
+<p><code>npm i dotenv</code></p>
+</div>
+<p>As early as possible in your application, require and configure dotenv.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;dotenv&#39;</span><span class="p">).</span><span class="nx">config</span><span class="p">()</span>
+</code></pre></div>
+<p>Create a <code>.env</code> file in the root directory of your project. Add environment-specific variables on new lines in the form of NAME=VALUE. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="na">PORT</span><span class="o">=</span><span class="s">3050</span>
+
+<span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
+<span class="na">DB_USER</span><span class="o">=</span><span class="s">root</span>
+<span class="na">DB_PASS</span><span class="o">=</span><span class="s">s1mpl3</span>
+</code></pre></div>
+<p><code>process.env</code> now has the keys and values you defined in your <code>.env</code> file.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">3000</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`app is running on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb">...`</span><span class="p">);</span>
+<span class="p">})</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">host</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_HOST</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_USER</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_PASS</span>
+<span class="p">})</span>
+</code></pre></div>
+<h4 id="serve">Serve</h4>
+<div class="admonition info">
+<p><a href="https://www.npmjs.com/package/serve" target="_blank">NPM</a></p>
+<p><code>npm i serve</code></p>
+</div>
+<p>Used to serve a static site, single page application or just a static file (no matter if on your device or on the local network).</p>
+<p>In particular to serve a react spa pass this script into package.json <code class="highlight"><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;serve -s build&quot;</span><span class="w"> </span><span class="p">}</span></code>. This is the preffered way of deployment according to CRA(Create React App) documentation.</p>
+<h3 id="npx-execute-npm-package-binaries">NPX (Execute NPM Package Binaries)</h3>
+<p>NPX it's a package runner tool that comes with npm 5.2+</p>
+<div class="admonition info">
+<p><strong>Refernce:</strong></p>
+<p><a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b" target="_blank">Medium</a></p>
+<p><strong>Installation:</strong></p>
+<p>NPX is installed with Node.js</p>
+</div>
+<h2 id="nvm-node-version-manager">NVM (Node Version Manager)</h2>
+<p>Allows to install multiple versions of NodeJs and change between them.</p>
+<div class="admonition info">
+<p><a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank">Official GitHub</a>, <a href="https://www.sitepoint.com/quick-tip-multiple-versions-node-nvm/" target="_blank">Unofficial tutorial</a></p>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-26T18:33:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-26</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../../../js/timeago.min.js"></script>
+      
+        <script src="../../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

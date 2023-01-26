@@ -1,0 +1,3118 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Authentication/">
+      
+      
+        <link rel="next" href="../../Design/WebDesign/">
+      
+      <link rel="icon" href="../../../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>General Concepts - tskb</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#general-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="tskb" class="md-header__button md-logo" aria-label="tskb" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tskb
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              General Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tmssd/kb" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tmssd/kb
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Blockchain/" class="md-tabs__link md-tabs__link--active">
+        Dev
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="tskb" class="md-nav__button md-logo" aria-label="tskb" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>
+
+    </a>
+    tskb
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tmssd/kb" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tmssd/kb
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Dev
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Dev" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Dev
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Blockchain/">Blockchain</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Blockchain" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Blockchain
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cicd/">CI/CD</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="CI/CD" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          CI/CD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" tabindex="0" aria-expanded="false">
+          Cloud
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cloud" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Cloud
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3_1" type="checkbox" id="__nav_2_3_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cloud/Aws/">Aws</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Aws" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Aws
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cloud/Nextcloud/">Nextcloud</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Nextcloud" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Nextcloud
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3_3" type="checkbox" id="__nav_2_3_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cloud/Vps/">Vps</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Vps" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Vps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Containerization/">Containerization</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Containerization" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Containerization
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Cs/">Cs</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Cs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Cs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Db/">Db</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Db" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Db
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_7" type="checkbox" id="__nav_2_7" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Network/">Network</a>
+          
+            <label for="__nav_2_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Network" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Network
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_7_2" type="checkbox" id="__nav_2_7_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Network/Nginx/">Nginx</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Nginx" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Nginx
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_7_3" type="checkbox" id="__nav_2_7_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Network/Traefik/">Traefik</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Traefik" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Traefik
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_8" type="checkbox" id="__nav_2_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8" tabindex="0" aria-expanded="true">
+          Prg
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Prg" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          Prg
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_1" type="checkbox" id="__nav_2_8_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../DevRes/">Dev Resources</a>
+          
+            <label for="__nav_2_8_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Dev Resources" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Dev Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DevRes/Dev-roadmaps/" class="md-nav__link">
+        Dev Roadmaps
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_8_2" type="checkbox" id="__nav_2_8_2" checked>
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_2" tabindex="0" aria-expanded="true">
+          Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concepts" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          Concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_2_1" type="checkbox" id="__nav_2_8_2_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../Authentication/">Authentication</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_8_2_2" type="checkbox" id="__nav_2_8_2_2" checked>
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index md-nav__link--active">
+          <a href="./">General concepts</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="General concepts" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          General concepts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_3" type="checkbox" id="__nav_2_8_3" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_3" tabindex="0" aria-expanded="false">
+          Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Design" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_3_1" type="checkbox" id="__nav_2_8_3_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Design/WebDesign/">Web Design</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Web Design" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Web Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_4" type="checkbox" id="__nav_2_8_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_4" tabindex="0" aria-expanded="false">
+          IDE
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="IDE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_4">
+          <span class="md-nav__icon md-icon"></span>
+          IDE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_4_1" type="checkbox" id="__nav_2_8_4_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../IDE/VSCode/">VSCode</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="VSCode" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          VSCode
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5" type="checkbox" id="__nav_2_8_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_5" tabindex="0" aria-expanded="false">
+          Langs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Langs" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_5">
+          <span class="md-nav__icon md-icon"></span>
+          Langs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_1" type="checkbox" id="__nav_2_8_5_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Css/">Css</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Css" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_2" type="checkbox" id="__nav_2_8_5_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Html/">Html</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Html" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Html
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_3" type="checkbox" id="__nav_2_8_5_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Js/">Js</a>
+          
+            <label for="__nav_2_8_5_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Js" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Js
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Langs/Js/Dom/" class="md-nav__link">
+        DOM
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_4" type="checkbox" id="__nav_2_8_5_4" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Md/">Md</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Md" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Md
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_5_5" type="checkbox" id="__nav_2_8_5_5" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Langs/Shell/">Shell</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Shell" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Shell
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_6" type="checkbox" id="__nav_2_8_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_6" tabindex="0" aria-expanded="false">
+          Libs & Fwks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Libs & Fwks" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_6">
+          <span class="md-nav__icon md-icon"></span>
+          Libs & Fwks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_6_1" type="checkbox" id="__nav_2_8_6_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../LibsFwks/LibsFwks_Css/">Libs & Fwks for Css</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Libs & Fwks for Css" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          Libs & Fwks for Css
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_6_2" type="checkbox" id="__nav_2_8_6_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../LibsFwks/React/">React</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="React" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          React
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_6_3" type="checkbox" id="__nav_2_8_6_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../LibsFwks/Redux/">Redux</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Redux" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Redux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_7" type="checkbox" id="__nav_2_8_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_7" tabindex="0" aria-expanded="false">
+          Runtime
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Runtime" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_7">
+          <span class="md-nav__icon md-icon"></span>
+          Runtime
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_7_1" type="checkbox" id="__nav_2_8_7_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../Runtime/NodeJs/">NodeJs</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="NodeJs" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          NodeJs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_8" type="checkbox" id="__nav_2_8_8" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_8_8" tabindex="0" aria-expanded="false">
+          VCS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="VCS" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_8">
+          <span class="md-nav__icon md-icon"></span>
+          VCS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_8_8_1" type="checkbox" id="__nav_2_8_8_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../VCS/Git/">Git</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Git" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Git
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9" type="checkbox" id="__nav_2_9" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_9" tabindex="0" aria-expanded="false">
+          Soft
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Soft" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          Soft
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_1" type="checkbox" id="__nav_2_9_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/PostgreSQL/">PostgreSQL</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PostgreSQL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_1">
+          <span class="md-nav__icon md-icon"></span>
+          PostgreSQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_2" type="checkbox" id="__nav_2_9_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Ranger/">Ranger</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Ranger" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ranger
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_3" type="checkbox" id="__nav_2_9_3" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Rsync/">Rsync</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Rsync" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_3">
+          <span class="md-nav__icon md-icon"></span>
+          Rsync
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_4" type="checkbox" id="__nav_2_9_4" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Vim/">Vim</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Vim" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_4">
+          <span class="md-nav__icon md-icon"></span>
+          Vim
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_5" type="checkbox" id="__nav_2_9_5" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Zsh/">Zsh</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Zsh" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_5">
+          <span class="md-nav__icon md-icon"></span>
+          Zsh
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_9_6" type="checkbox" id="__nav_2_9_6" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Soft/Whatsapp/">Whatsapp</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Whatsapp" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_9_6">
+          <span class="md-nav__icon md-icon"></span>
+          Whatsapp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Linux/">Linux</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          Linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_11" type="checkbox" id="__nav_2_11" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Windows/">Windows</a>
+          
+            <label for="__nav_2_11">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Windows" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_11">
+          <span class="md-nav__icon md-icon"></span>
+          Windows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_11_2" type="checkbox" id="__nav_2_11_2" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Windows/MsExcel/">MsExcel</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="MsExcel" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          MsExcel
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_12" type="checkbox" id="__nav_2_12" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_12" tabindex="0" aria-expanded="false">
+          Hardware
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Hardware" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_12">
+          <span class="md-nav__icon md-icon"></span>
+          Hardware
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_12_1" type="checkbox" id="__nav_2_12_1" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../Hardware/Easy2Boot%28OSes%20Installatiion%29/">Easy2Boot(OSes Installatiion)</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Easy2Boot(OSes Installatiion)" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_12_1">
+          <span class="md-nav__icon md-icon"></span>
+          Easy2Boot(OSes Installatiion)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conventions-and-standards" class="md-nav__link">
+    Conventions and standards
+  </a>
+  
+    <nav class="md-nav" aria-label="Conventions and standards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-2-1-data-backup-rule" class="md-nav__link">
+    3-2-1 Data Backup Rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-versioning-aabbcc" class="md-nav__link">
+    Semantic Versioning: aa.bb.cc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-twelve-factor-appsource" class="md-nav__link">
+    The Twelve Factor App(source)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    Environment variables
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-environment-variables" class="md-nav__link">
+    Common Environment Variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-commands" class="md-nav__link">
+    Common commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-environment-variables" class="md-nav__link">
+    Types of environment variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#levels-of-environment-variables" class="md-nav__link">
+    Levels of environment variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regex" class="md-nav__link">
+    Regex
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="general-concepts">General Concepts</h1>
+<h2 id="conventions-and-standards">Conventions and standards</h2>
+<h3 id="3-2-1-data-backup-rule">3-2-1 Data Backup Rule</h3>
+<ul>
+<li><strong>3</strong> - at least 3 copies (one primary, two copies)</li>
+<li><strong>2</strong> - two different technologies (e.g. different filesystem, different software, or different media types)</li>
+<li><strong>1</strong> - one copy should be off-site/offline</li>
+</ul>
+<h3 id="semantic-versioning-aabbcc">Semantic Versioning: aa.bb.cc</h3>
+<ul>
+<li><strong>aa</strong> - major release, quite different from previous version</li>
+<li><strong>bb</strong> - minor release, add a new feature</li>
+<li><strong>cc</strong> - patch release, a bug fix</li>
+</ul>
+<h3 id="the-twelve-factor-appsource">The Twelve Factor App(<a href="https://www.12factor.net/">source</a>)</h3>
+<ol>
+<li><strong>Codebase</strong> - <em>One codebase tracked in revision control, many deploys</em></li>
+<li><strong>Dependencies</strong> - <em>Explicitly declare and isolate dependencies</em></li>
+<li><strong>Config</strong> - <em>Store config in the environment</em></li>
+<li><strong>Backing services</strong> - <em>Treat backing services as attached resources</em></li>
+<li><strong>Build, release, run</strong> - <em>Strictly separate build and run stages</em></li>
+<li><strong>Processes</strong> - <em>Execute the app as one or more stateless processes</em></li>
+<li><strong>Port binding</strong> - <em>Export services via port binding</em></li>
+<li><strong>Concurrency</strong> - <em>Scale out via the process model</em></li>
+<li><strong>Disposability</strong> - <em>Maximize robustness with fast startup and graceful shutdown</em></li>
+<li><strong>Dev/prod parity</strong> - <em>Keep development, staging, and production as similar as possible</em></li>
+<li><strong>Logs</strong> - <em>Treat logs as event streams</em></li>
+<li><strong>Admin processes</strong> - <em>Run admin/management tasks as one-off processes</em></li>
+</ol>
+<h2 id="environment-variables">Environment variables</h2>
+<div class="admonition info">
+<p><strong>Linux:</strong></p>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux">How To Read and Set Environmental and Shell Variables on Linux(Digital Ocean)</a></li>
+</ul>
+<p><strong>Windows:</strong></p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.1&amp;viewFallbackFrom=powershell-6">about_Environment_Variables</a></li>
+<li><a href="http://www.dowdandassociates.com/blog/content/howto-set-an-environment-variable-in-windows-command-line-and-registry/">HowTo: Set an Environment Variable in Windows - Command Line and Registry</a></li>
+<li><a href="https://www.opentechguides.com/how-to/article/windows-10/113/windows-10-set-path.html">Set PATH and other environment variables in Windows 10</a></li>
+</ul>
+</div>
+<ul>
+<li><em>Environment</em> is an area that the shell builds every time that it starts a session that contains variables that define system properties.</li>
+<li>The environment provides a medium through which the shell process can get or set settings and, in turn, pass these on to its child processes. It implemented as strings that represent key-value pairs. If multiple values are passed, they are typically separated by colon(<code>:</code>) characters: <code class="highlight"><span class="nv">KEY</span><span class="o">=</span>value1:value2:...</code>. If the value contains significant white-space, quotations(as double as single quotes) are used: <code class="highlight"><span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;value with spaces&quot;</span></code>, <code class="highlight"><span class="nv">KEY</span><span class="o">=</span><span class="s1">&#39;value with spaces&#39;</span></code>.</li>
+<li>An <em>environment variable</em> is a storage location that has a <ins>name(key)</ins> and a <ins>value</ins>. The keys in these scenarios are variables. They can be one of two types, <em>environmental variables</em> or <em>shell variables</em>(<mark><a href="#types-of-environment-variables">see below</a></mark>).</li>
+<li>Benefit to things that should <strong>keep secret</strong> or <strong>need to be dynamic</strong>, like API keys, PORT, database url.</li>
+</ul>
+<h3 id="common-environment-variables">Common Environment Variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EDITOR</td>
+<td>The program to run to perform edits.</td>
+</tr>
+<tr>
+<td>HOME</td>
+<td>The Home directory of the user.</td>
+</tr>
+<tr>
+<td>LOGNAME</td>
+<td>The login name of the user.</td>
+</tr>
+<tr>
+<td>MAIL</td>
+<td>The location of the user's local inbox.</td>
+</tr>
+<tr>
+<td>OLDPWD</td>
+<td>The previous working directory.</td>
+</tr>
+<tr>
+<td>PATH</td>
+<td>A colon separated list of directories to search for commands.</td>
+</tr>
+<tr>
+<td>PAGER</td>
+<td>This program may be called to view a file.</td>
+</tr>
+<tr>
+<td>PS1</td>
+<td>The primary prompt string.</td>
+</tr>
+<tr>
+<td>PWD</td>
+<td>The present working directory.</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>The username of the user.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-commands">Common commands</h3>
+<ul>
+<li><code class="highlight"><span class="nb">echo</span><span class="w"> </span><span class="nv">$VARIABLE_NAME</span></code> or <code class="highlight">printenv<span class="w"> </span>VARIABLE_NAME</code> - examine specific variable</li>
+<li><code class="highlight">env</code> or <code class="highlight">printenv</code> - examine all the environmental variables that are set</li>
+<li>
+<p><code class="highlight"><span class="nb">set</span></code> - list of all <em>shell variables</em>, <em>environmental variables</em>, <em>local variables</em>(and also <em>shell functions</em> in Bash)</p>
+<ul>
+<li><code>(#!bash set -o posix; set)</code> - for Bash: clean up the output by specifying that <code>set</code> should operate in POSIX mode, which won’t print the <em>shell functions</em> by executing this in a sub-shell(by wrapping the whole command with parenthesis) so that it does not change our current environment.</li>
+<li>
+<p><code class="highlight">comm<span class="w"> </span>-23<span class="w"> </span>&lt;<span class="o">(</span><span class="nb">set</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="o">)</span><span class="w"> </span>&lt;<span class="o">(</span>env<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="o">)</span></code>, <code class="highlight">comm<span class="w"> </span>-23<span class="w"> </span>&lt;<span class="o">(</span><span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>posix<span class="p">;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="o">)</span><span class="w"> </span>&lt;<span class="o">(</span>env<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="o">)</span></code>(in Bash) - list of only shell variables</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This will likely still include a few environmental variables, due to the fact that the <code>set</code> outputs quoted values, while the <code>printenv</code> and <code>env</code> do not quote the values of strings.</p>
+</div>
+</li>
+</ul>
+</li>
+<li>
+<p><code class="highlight"><span class="nv">KEY</span><span class="o">=</span>VALUE</code> or <code class="highlight"><span class="nb">export</span><span class="w"> </span><span class="nv">KEY</span><span class="o">=</span>VALUE</code> - set <em>shell</em> or <em>environmental</em> variable(see below)</p>
+</li>
+<li><code class="highlight">env<span class="w"> </span><span class="nv">VAR1</span><span class="o">=</span><span class="s2">&quot;value1&quot;</span><span class="w"> </span><span class="nv">VAR2</span><span class="o">=</span><span class="s2">&quot;value2&quot;</span><span class="w"> </span>command_to_run<span class="w"> </span>command_options</code> - modify the environment that programs run in by passing a set of variable definitions into a command</li>
+<li><code class="highlight">printenv<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>VARIABLE_NAME</code> - check if variable is an <em>environmental variable</em></li>
+<li><code class="highlight"><span class="nb">set</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>VARIABLE_NAME</code> - check if variable is a <em>shell variable</em></li>
+<li><code class="highlight"><span class="nb">export</span><span class="w"> </span>-n<span class="w"> </span>VARIABLE_NAME</code> - demote an environmental variable, i.e. set to shell variable</li>
+<li><code class="highlight"><span class="nb">unset</span><span class="w"> </span>VARIABLE_NAME</code> - remove or delete an environment variable</li>
+</ul>
+<h3 id="types-of-environment-variables">Types of environment variables</h3>
+<ul>
+<li>
+<p><strong><em>Shell(Local?) Variables</em></strong> - defined using <code>KEY=VALUE</code> format. Only effects the current running process, e.g. within the running script or shell in which they were set or defined. There are some predefined by shell vars of such type and they are often used to keep track of ephemeral data, like the current working directory(<code>PWD</code>).</p>
+</li>
+<li>
+<p><strong><em>Environmental(Global?) Variables</em></strong> - defined using <code>export KEY=VALUE</code> format. <code>export</code> exports the variable assignment to child processes of the shell in which the export command was ran. In general, when a process is started it inherits the exported environment variables of the process that spawned it.</p>
+</li>
+<li>
+<p>Local vs. Global variables example:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PAGER</span>
+<span class="w">                       </span><span class="c1"># PAGER is not defined</span>
+$<span class="w"> </span><span class="nv">PAGER</span><span class="o">=</span>less<span class="w">           </span><span class="c1"># let&#39;s difine it</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PAGER</span>
+less<span class="w">                   </span><span class="c1"># now PAGER defined locally</span>
+$<span class="w"> </span>bash<span class="w">                 </span><span class="c1"># running a sub-shell</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PAGER</span>
+<span class="w">                       </span><span class="c1"># PAGER is not defined in child process</span>
+$<span class="w"> </span><span class="nb">exit</span><span class="w">                 </span><span class="c1"># exit from a sub-shell to parent shell</span>
+<span class="nb">exit</span>
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PAGER</span><span class="o">=</span>less<span class="w">    </span><span class="c1"># let&#39;s define PAGER globally</span>
+$<span class="w"> </span>bash<span class="w">                 </span><span class="c1"># running a sub-shell</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PAGER</span>
+less<span class="w">                   </span><span class="c1"># now PAGER defined in child process too!</span>
+$<span class="w"> </span><span class="nb">exit</span>
+<span class="nb">exit</span>
+$
+</code></pre></div>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you need envs(wether they are <strong>local</strong> or <strong>environmental</strong>) that are defined in some file to be available in current running <strong>interactive</strong> or <strong>non-interacrive</strong>(e.x. when running script) shell you should use <code>.</code>(<code>source</code> - optional for Bash) command, e.g.: <code class="highlight">.<span class="w"> </span>./file-with-envs.sh</code>(this actually executes the script commands in the current shell environment)</p>
+</div>
+<h3 id="levels-of-environment-variables">Levels of environment variables</h3>
+<div class="admonition info">
+<p><strong>Definitions:</strong></p>
+<ul>
+<li><ins><em>Login Shell</em></ins> - is a shell session that begins by authenticating the user, e.g. if you signing into a terminal session or through SSH and authenticate.</li>
+<li><ins><em>Non-Login Shell</em></ins> -is a new shell session from within your authenticated session.</li>
+<li><ins><em>Interactive Shell</em></ins> - is a shell session that is attached to a terminal.</li>
+<li><ins><em>Non-Interactive Shell</em></ins> - is a shell session that is not attached to a terminal session. It’s most often run from a script or similar. It is important to note that this often influences your <code>PATH</code> variable.</li>
+<li>
+<p>Detect the type of shell:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">## Detect login/non-login shells:</span>
+<span class="nb">shopt</span><span class="w"> </span>-q<span class="w"> </span>login_shell<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;login&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;not-login&#39;</span><span class="w">    </span><span class="c1"># for Bash only</span>
+<span class="c1"># or</span>
+<span class="nb">shopt</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>login_shell<span class="w">                                    </span><span class="c1"># for Bash only</span>
+<span class="c1"># or</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$0</span><span class="w">                                                     </span><span class="c1"># if output prepended with &#39;-&#39; then it is a login shell, e.g. &#39;-zsh&#39;</span>
+
+<span class="c1">## Detect interactive/non-interactive shells:</span>
+<span class="o">[[</span><span class="w"> </span><span class="nv">$-</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>*i*<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;Interactive&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;not-interactive&#39;</span>
+</code></pre></div>
+</li>
+</ul>
+<p><strong>Reference:</strong></p>
+<ul>
+<li><a href="https://hyperpolyglot.org/unix-shells#startup-file">Unix Shells: Bash, Fish, Ksh, Tcsh, Zsh startup files</a></li>
+<li><a href="https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell">Difference between Login Shell and Non-Login Shell?(Unix &amp; Linux Stack Exchange)</a></li>
+<li><a href="https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/">Zsh/Bash startup files loading order (.bashrc, .zshrc etc.)</a></li>
+<li>
+<p><a href="https://wiki.archlinux.org/title/Zsh#Startup/Shutdown_files">Zsh - Startup/Shutdown files(ArchWiki)</a></p>
+</li>
+<li>
+<p>Shell Startup Graph
+    <figure markdown>
+      <img alt="Javascript Engine" class="zoom" src="shell-startup-graph.png" />
+      <figcaption>
+          <a href="https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html" target="_blank">https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html</a>
+      </figcaption>
+    </figure></p>
+</li>
+</ul>
+</div>
+<ol>
+<li>
+<p><ins class="critic"><strong>System-wide</strong></ins> - available for <ins>any</ins> user, session, app etc. Set in folowing files:</p>
+<ul>
+<li>
+<p><code>/etc/environment</code> - This file is parsed by <em>pam_env</em> module. Syntax: simple "KEY=VAL" pairs on separate lines.</p>
+</li>
+<li>
+<p>for <ins><em>Login Shells</em></ins>:</p>
+<ul>
+<li>
+<p><strong><ins>Bash</ins></strong>(read by shell in this order!<sup> <a href="https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html">source</a></sup>): <code>/etc/profile</code> -&gt; <em>logged-in user dotfiles</em></p>
+</li>
+<li>
+<p><strong><ins>Zsh</ins></strong>(read by shell in this order!): <code>/etc/zshenv</code> -&gt; <em>logged-in user dotfile</em> -&gt; <code>/etc/zprofile</code> -&gt; <em>logged-in user dotfile</em> -&gt; <code>/etc/zshrc</code> -&gt; <em>logged-in user dotfile</em> -&gt; <code>/etc/zlogin</code> -&gt; <em>logged-in user dotfile</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>for <ins><em>Non-Login Interactive Shells</em></ins>:</p>
+<ul>
+<li>
+<p><strong><ins>Bash</ins></strong>(read by shell in this order!): <code>/etc/bash.bashrc</code> -&gt; <em>logged-in user dotfiles</em></p>
+</li>
+<li>
+<p><strong><ins>Zsh</ins></strong>(read by shell in this order!): <code>/etc/zshenv</code> -&gt; <em>logged-in user dotfile</em> -&gt; <code>/etc/zshrc</code> -&gt; <em>logged-in user dotfile</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>for <ins><em>Non-Login Non-Interactive Shells(scripts etc.)</em></ins>:</p>
+<ul>
+<li>
+<p><strong><ins>Bash</ins></strong>: <em>BASH_ENV</em> environmental variable</p>
+</li>
+<li>
+<p><strong><ins>Zsh</ins></strong>(read by shell in this order!): <code>/etc/zshenv</code> -&gt; <em>logged-in user dotfile</em></p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Restart system after modifying these system files so changes will take effect.</p>
+</div>
+</li>
+<li>
+<p><ins class="critic"><strong>User</strong></ins> - available for <ins>current</ins> logged-in user. Set in following dotfiles of the shell that is currently used by that user in a <em>KEY=VALUE</em> format:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>IMHO:</strong> <code>export KEY=VALUE</code> can be used too, but thus it exports the variable assignment to child processes of the shell which is in my opinion quite unneseccairy for most of defined envs because each time we run new sub-shell those envs get <strong>sourced</strong> by the shell.</p>
+</div>
+<ul>
+<li>
+<p>for <ins><em>Login Shells</em></ins>:</p>
+<ul>
+<li>
+<p><strong><ins>Bash</ins></strong>(read by shell in this order but it executes only the first of those files found!<sup> <a href="https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html">source</a></sup>): <em>system-wide settings files</em> -&gt; <code>~/.bash_profile</code> -&gt; <code>~/.bash_login</code> -&gt; <code>~/.profile</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Put these in <code>~/.profile</code> at the top in order to source <code>~/.bashrc</code>:
+<div class="highlight"><pre><span></span><code><span class="c1"># ~/.profile must include ~/.bashrc, but only if the shell is interactive and is bash but not if the login shell is some other shell</span>
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$-</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>*i*<span class="o">)</span>
+<span class="w">    </span><span class="k">if</span>
+<span class="w">        </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BASH_VERSION</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="se">\</span>
+<span class="w">        </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">0</span><span class="p">#-</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span>sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="se">\</span>
+<span class="w">        </span><span class="nb">test</span><span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">&quot;</span>/.bashrc
+<span class="w">    </span><span class="k">then</span>
+<span class="w">        </span>.<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">&quot;</span>/.bashrc
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></p>
+</div>
+<div class="admonition info">
+<ul>
+<li><a href="http://mywiki.wooledge.org/DotFiles">Configuring your login sessions(for 5 different environments!) with dot files</a></li>
+<li><a href="https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile">Difference between .bashrc and .bash_profile(SuperUser)</a></li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong><ins>Zsh</ins></strong>(read by shell in this order!): <em>system-wide settings file</em> -&gt; <code>$ZDOTDIR/.zshenv</code> -&gt; <em>system-wide settings file</em> -&gt; <code>$ZDOTDIR/.zprofile</code> -&gt; <em>system-wide settings file</em> -&gt; <code>$ZDOTDIR/.zshrc</code> -&gt; <em>system-wide settings file</em> -&gt; <code>$ZDOTDIR/.zlogin</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>for <ins><em>Non-Login Interactive Shells</em></ins>:</p>
+<ul>
+<li>
+<p><strong><ins>Bash</ins></strong>(read by shell in this order!): <em>system-wide settings files</em> -&gt; <code>~/.bashrc</code></p>
+</li>
+<li>
+<p><strong><ins>Zsh</ins></strong>(read by shell in this order!): <em>system-wide settings file</em> -&gt; <code>$ZDOTDIR/.zshenv</code> -&gt; <em>system-wide settings file</em> -&gt; <code>$ZDOTDIR/.zshrc</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>for <ins><em>Non-Login Non-Interactive Shells(scripts etc.)</em></ins>:</p>
+<ul>
+<li>
+<p><strong><ins>Bash</ins></strong>: <em>BASH_ENV</em> environmental variable</p>
+</li>
+<li>
+<p><strong><ins>Zsh</ins></strong>(read by shell in this order!): <em>system-wide settings</em> -&gt; <code>$ZDOTDIR/.zshenv</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <code>$ZDOTDIR</code> is not set, <code>$HOME</code> is used instead.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When you have both <em>Bash</em> and <em>Zsh</em> shells in your system it is convenient to define $PATH(and other system envs) and also some other user-defined envs in <code>~/.profile</code> and source it through <code>~/.zprofile</code> by adding <code class="highlight"><span class="o">[[</span><span class="w"> </span>-e<span class="w"> </span>~/.profile<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>emulate<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;. ~/.profile&#39;</span></code> line at the top of the file(<a href="https://superuser.com/a/398990">Zsh not hitting ~/.profile(SuperUser thread comment)</a>).</p>
+<p>There is also other complicated scenario with multiple shells and ways to arrange your envs in one place:</p>
+<ul>
+<li><a href="https://github.com/sgleizes/xsh">Xsh - A simple framework for shell configuration management.</a></li>
+<li><a href="https://unix.stackexchange.com/a/44619">Is there a ".bashrc" equivalent file read by all shells?(SuperUser thread comment)</a></li>
+<li><a href="https://blog.flowblok.id.au/2013-02/shell-startup-scripts.html">Shell startup scripts</a></li>
+</ul>
+</div>
+</li>
+<li>
+<p><ins class="critic"><strong>Shell Session</strong></ins> - available for current shell session and its child processes. Set by using <em>environmental variables</em>.</p>
+</li>
+<li>
+<p><ins class="critic"><strong>Application/Script</strong></ins> - available for current running app/script process <ins>only</ins>. Set by using <em>shell variables</em>, e.g.:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Prepending Variables - you can prepend ANY number of variables before running a command.</span>
+
+<span class="nv">PORT</span><span class="o">=</span><span class="m">3000</span><span class="w"> </span>node<span class="w"> </span>server.js<span class="w">    </span><span class="c1"># set port of server</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># myscript.sh</span>
+
+<span class="nv">MY_VAR</span><span class="o">=</span><span class="s2">&quot;Hello World!&quot;</span>
+<span class="nb">echo</span><span class="w"> </span>MY_VAR<span class="w">    </span><span class="c1"># Hello World!</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="regex">Regex</h2>
+<div class="admonition info">
+<ul>
+<li><a href="https://4pda.to/forum/index.php?showtopic=940394">RegExp(4pda)</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet">Regex in Java Script(MDN)</a></li>
+<li><a href="https://docs.python.org/dev/howto/regex.html">Regular Expression HOWTO(python.org)</a></li>
+<li><a href="https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285">Regex tutorial — A quick cheatsheet by examples(Medium)</a></li>
+<li><a href="https://medium.com/factory-mind/regex-cookbook-most-wanted-regex-aa721558c3c1">Regex cookbook — Top 10 Most wanted regex(Medium)</a></li>
+<li><a href="https://regexone.com/">RegexOne Tutorial</a></li>
+<li>
+<p><a href="https://www.exlab.net/tools/sheets/regexp.html">Шпаргалка по регулярным выражениям</a></p>
+<p><img alt="regexp(rus)" class="zoom" src="regexp%28rus%29.png" /></p>
+</li>
+</ul>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-26T18:33:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-26</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../../../js/timeago.min.js"></script>
+      
+        <script src="../../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
